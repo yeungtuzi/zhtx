@@ -306,11 +306,7 @@ void reset_action()
 	} else {
 		// Else, let weapon handle it.
 		if( ob ) set("actions", ob->query("actions",1) );
-		else {
-			mixed def = query("default_actions",1);
-			if( mapp(def) ) set("actions", def);
-			else set("actions", (: call_other, WEAPON_D, "query_action" :) );
-		}
+		else set("actions", query("default_actions",1) );
 	}
 }
 

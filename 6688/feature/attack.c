@@ -41,9 +41,7 @@ varargs int is_charging(object ob)
 void fight_ob(object ob)
 {
 	if(!ob || ob==this_object()) return;
-	if( this_object()->query("id")=="wolf dog" ) CHANNEL_D->do_channel(this_object(), "sys", "[DBG] fight_ob early return");
 
-		if( this_object()->query("id")=="wolf dog" ) CHANNEL_D->do_channel(this_object(), "sys", "[DBG] fight_ob done: enemy="+sizeof(enemy));
 	set_heart_beat(1);
 
 	if( member_array(ob, enemy)==-1 )
@@ -68,7 +66,6 @@ void kill_ob(object ob)
 		killer += ({ ob });
 
 	if( this_object()->query("id")=="wolf dog" )
-		CHANNEL_D->do_channel(this_object(), "sys", sprintf("[DEBUG] kill_ob: enemy=%d killer=%d", sizeof(enemy), sizeof(killer)));
 
 	tell_object(ob, HIR "看起来" + me->name() + "想杀死你！\n" NOR);
 
@@ -157,12 +154,15 @@ varargs void ally_ob(object ob,int coefficient)
 
 void clean_up_enemy()
 {
+	int before = sizeof(enemy);
 	enemy = filter_array(enemy, (:
 		objectp($1)
 		&& (environment($1)==environment($2))
 		//&& ($2->visible($1))
 		&& (living($1) || is_killing($1))
-	:), this_object() );                                		
+	:), this_object() );
+	if( this_object()->query("id")=="wolf dog" && before != sizeof(enemy) )
+		CHANNEL_D->do_channel(this_object(), "sys", sprintf("[CL] enemy %d->%d killer=%d", before, sizeof(enemy), sizeof(killer)));                                		
 
 	if( sizeof(enemy) > 0 ) {
 		for(int i=0; i<sizeof(enemy); i++) 

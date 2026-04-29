@@ -114,7 +114,15 @@ void kill_ob(object ob)
 		}
 	}
 	fight_ob(ob);
-	if( this_object()->query("id")=="wolf dog" ) CHANNEL_D->do_channel(this_object(), "sys", sprintf("%O [DBG] kill_ob end: enemy=%d killer=%d", this_object(), sizeof(enemy), sizeof(killer)));
+	if( this_object()->query("id")=="wolf dog" ) {
+		CHANNEL_D->do_channel(this_object(), "sys", sprintf("%O [DBG] kill_ob end: enemy=%d killer=%d", this_object(), sizeof(enemy), sizeof(killer)));
+		call_out("debug_check_arrays", 0);
+	}
+}
+
+void debug_check_arrays() {
+	if( this_object()->query("id")=="wolf dog" )
+		CHANNEL_D->do_channel(this_object(), "sys", sprintf("%O [DBG] delayed check: enemy=%d killer=%d", this_object(), sizeof(enemy), sizeof(killer)));
 }
 
 // This function promotes ob to the first ordered target to attack.

@@ -145,6 +145,8 @@ void heart_beat()
 
         // Do attack if we are fighting.
         if( is_busy() ) {
+                if( !userp(this_object()) && this_object()->query("id")=="wolf dog" )
+                        CHANNEL_D->do_channel(this_object(), "sys", sprintf("[DEBUG] busy=%O", query_busy()));
                 continue_action();
                 // We don't want heart beat be halt eventually, so return here.
                 // busy has the highest priority that healing will be susspended.

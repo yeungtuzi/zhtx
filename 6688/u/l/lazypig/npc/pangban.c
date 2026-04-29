@@ -83,7 +83,7 @@ carry_rnd_equip(7,7);
 carry_rnd_equip(7,7);
 }                          
 
-int init()
+void init()
 {
         set("shen",-1*this_player()->query("shen")/10);
         return 1;

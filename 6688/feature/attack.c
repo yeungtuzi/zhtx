@@ -343,7 +343,7 @@ void init()
 	// launched by auto_fight() and saves some overhead.
 	if(	is_fighting()
 	||	!living(this_object())
-	||	!(ob = this_player()) 
+	||	!(ob = this_player())
 	||	!this_object()->visible(ob)
 	||	environment(ob)!=environment()
 	||	!living(ob)
@@ -364,5 +364,5 @@ void init()
 	} else if( random((int)query("bellicosity") / 40) > (int)query("cps") ) {
 		COMBAT_D->auto_fight(this_object(), ob, "berserk");
 		return;
-	} 
+	}
 }

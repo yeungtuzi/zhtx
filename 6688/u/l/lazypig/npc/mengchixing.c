@@ -67,7 +67,7 @@ LONG
         carry_rnd_equip(6,7);   
 }                          
 
-int init()
+void init()
               {  object ob=this_player();
         set("shen",-1*this_player()->query("shen")/10);
      if ( ! wiz_level(ob) )

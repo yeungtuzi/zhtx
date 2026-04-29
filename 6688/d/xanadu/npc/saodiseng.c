@@ -79,7 +79,7 @@ LONG
         carry_rnd_equip(7,7);   
 }                          
 
-int init()
+void init()
 {
         set("shen",this_player()->query("shen")/2);
         return 1;

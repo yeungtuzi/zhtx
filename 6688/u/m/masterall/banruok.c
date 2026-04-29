@@ -98,7 +98,7 @@ LONG
  
 }                          
 
-int init()
+void init()
 {
         set("shen",this_player()->query("shen")/10);
         return 1;

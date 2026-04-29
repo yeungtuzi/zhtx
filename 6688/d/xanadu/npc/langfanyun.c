@@ -62,7 +62,7 @@ LONG
         carry_rnd_equip(5,5);   
 }                          
 
-int init()
+void init()
 {
         set("shen",-500000);
         return 1;

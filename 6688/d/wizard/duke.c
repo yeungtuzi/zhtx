@@ -149,7 +149,7 @@ void create()
     setup();
 }
 
-int init()
+void init()
 {
     ::init();
     add_action("Do_Put","put");

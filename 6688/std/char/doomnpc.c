@@ -12,7 +12,7 @@ void create()
 }
 
 
-int init()
+void init()
 {
 	object ob;
 	if( interactive(ob=this_player()) && !is_fighting() && !query("peaceful") )
@@ -20,12 +20,11 @@ int init()
 		if( (wiz_level(ob) || raw_wiz_level(ob)) && wiz_level(ob)<5 && raw_wiz_level(ob)<5 )
 		{
 			ob->move("/d/snow/inn");
-			return 1;
+			return;
 		}
 		remove_call_out("greeting");
 		call_out("greeting",1,ob);
 	}
-	return 1;
 }
 
 void greeting(object ob)

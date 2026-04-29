@@ -83,7 +83,7 @@ LONG
         if(random(10)>2) carry_rnd_equip(2,4);
 }                          
 
-int init()
+void init()
 {
 	object victim;
         set("shen",-1*this_player()->query("shen")/10);

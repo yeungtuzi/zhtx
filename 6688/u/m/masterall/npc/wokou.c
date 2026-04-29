@@ -39,7 +39,7 @@ void create()
         carry_rnd_equip(3,3);   
 }                          
 
-int init()
+void init()
 {
         object ob;
 

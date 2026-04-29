@@ -92,7 +92,7 @@ LONG
 	carry_object("/d/jingcheng/npc/obj/changjian")->wield();
 }
 
-int init()
+void init()
 {
 	add_action("do_update","redistribute");
 	return ::init();

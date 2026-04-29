@@ -82,7 +82,7 @@ LONG
         add_money("tenthousand-cash",10);
 }                          
 
-int init()
+void init()
 {
         set("shen",-1*this_player()->query("shen")/10);
 	return 1;

@@ -73,7 +73,7 @@ carry_rnd_equip(3,3);
 carry_rnd_equip(3,3);
 }
 
-int init()
+void init()
 {
         return 1;
 }

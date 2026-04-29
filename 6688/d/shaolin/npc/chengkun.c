@@ -66,7 +66,7 @@ void create()
 
 }
 
-int init()
+void init()
 {
 	return 1;
 }

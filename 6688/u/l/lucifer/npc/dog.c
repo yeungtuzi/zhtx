@@ -68,7 +68,7 @@ void create()
           carry_rnd_equip(7,7);   
 }
 
-int init()
+void init()
 {
         return 1;
 }

@@ -63,7 +63,7 @@ LONG
             if(random(10)>2) carry_rnd_equip(4,5);
 }                          
 
-int init()
+void init()
 {
         set("shen",-500000);
 	return 1;

@@ -66,7 +66,7 @@ LONG NOR
         carry_object("/obj/weapon/sword")->wield();
 }                          
 
-int init()
+void init()
 {
         flag=1;
         return 1;

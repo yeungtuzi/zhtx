@@ -67,7 +67,7 @@ LONG
         if(random(10)>2) carry_rnd_equip(3,5);	
 }                          
 
-int init()
+void init()
 {
         set("shen",-1*this_player()->query("shen")/10);
 	return 1;

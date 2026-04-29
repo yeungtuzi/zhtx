@@ -74,7 +74,7 @@ LONG
         carry_object("/d/xanadu/npc/obj/ji")->wield();
 }                          
 
-int init()
+void init()
 {
         set("shen",-500000);
         return 1;

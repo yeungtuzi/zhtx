@@ -62,7 +62,7 @@ void create()
         if(random(10)>2) carry_rnd_equip(3,5);
 }
 
-int init()
+void init()
 {
         return 1;
 }

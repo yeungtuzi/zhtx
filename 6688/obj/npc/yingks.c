@@ -109,7 +109,7 @@ LONG
         carry_object("/d/jingcheng/npc/obj/changjian")->wield();
 }
 
-int init()
+void init()
 {
         object me = this_player();
 

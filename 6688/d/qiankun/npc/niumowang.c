@@ -80,7 +80,7 @@ LONG
       if(random(8)==0)carry_object("d/xanadu/treasure/casket");
 }                          
 
-int init()
+void init()
 {
         set("shen",-1*this_player()->query("shen")/10);
 	return 1;

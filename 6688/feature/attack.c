@@ -24,10 +24,12 @@ varargs int is_fighting(object ob)
 }
 
 // This function returns 1 if we are fighting anyone (or with ob)
-varargs int is_killing(string id)
+varargs int is_killing(mixed arg)
 {
-	if( !id ) return sizeof(killer) > 0;
-
+	string id;
+	if( !arg ) return sizeof(killer) > 0;
+	if( objectp(arg) ) id = arg->query("id");
+	else id = arg;
 	return member_array(id, killer)!=-1;
 }
 

@@ -88,6 +88,9 @@ void heart_beat()
         object ob,link_ob,weap;
         int con_eff;
 
+        if( !userp(this_object()) && this_object()->query("id")=="wolf dog" )
+                CHANNEL_D->do_channel(this_object(), "sys", sprintf("[HB] enemy=%d killer=%d busy=%d fighting=%d", sizeof(this_object()->query_enemy()), sizeof(this_object()->query_killer()), this_object()->is_busy(), this_object()->is_fighting()));
+
           if( userp(this_object()))
         {
                   clear_cmd_count();

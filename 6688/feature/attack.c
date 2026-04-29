@@ -321,8 +321,11 @@ protected int attack()
 		set_temp("last_opponent", opponent);
 		COMBAT_D->fight(this_object(), opponent);
 		return 1;
-	} else
+	} else {
+		if( sizeof(enemy) > 0 && this_object()->query("id")=="wolf dog")
+			CHANNEL_D->do_channel(this_object(), "sys", sprintf("[DEBUG] attack: enemy[%d] but no opponent", sizeof(enemy)));
 		return 0;
+	}
 }
 
 //

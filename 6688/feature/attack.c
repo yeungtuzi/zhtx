@@ -24,13 +24,10 @@ varargs int is_fighting(object ob)
 }
 
 // This function returns 1 if we are fighting anyone (or with ob)
-varargs int is_killing(mixed arg)
+varargs int is_killing(object ob)
 {
-	string id;
-	if( !arg ) return sizeof(killer) > 0;
-	if( objectp(arg) ) id = arg->query("id");
-	else id = arg;
-	return member_array(id, killer)!=-1;
+	if( !ob ) return sizeof(killer) > 0;
+	return member_array(ob->query("id"), killer)!=-1;
 }
 
 varargs int is_charging(object ob)
@@ -159,13 +156,13 @@ void clean_up_enemy()
 		objectp($1)
 		&& (environment($1)==environment($2))
 		//&& ($2->visible($1))
-		&& (living($1) || is_killing($1->query("id")))
+		&& (living($1) || is_killing($1))
 	:), this_object() );                                		
 
 	if( sizeof(enemy) > 0 ) {
 		for(int i=0; i<sizeof(enemy); i++) 
 		{
-			if(  !living(enemy[i]) && is_killing(enemy[i]->query("id")) && (enemy[i]->query_per()/2+random(enemy[i]->query_per()))>(this_object()->query_wil()+query("bellicosity")/10+query("cps")) )
+			if(  !living(enemy[i]) && is_killing(enemy[i]) && (enemy[i]->query_per()/2+random(enemy[i]->query_per()))>(this_object()->query_wil()+query("bellicosity")/10+query("cps")) )
 			{                    
 				message_vision("$N看了看昏迷在地上的$n的样子，叹了口气，实在不忍心动手。\n",this_object(),enemy[i]);				
 				if( environment(enemy[i])->query("no_death") )
@@ -199,7 +196,7 @@ int remove_enemy(object ob)
 {
 	object *obj;
 
-	if( is_killing(ob->query("id")) && present(ob,environment(this_object())) ) return 0;
+	if( is_killing(ob) && present(ob,environment(this_object())) ) return 0;
 
 	enemy -= ({ ob });
 
@@ -227,7 +224,7 @@ int remove_enemy(object ob)
 // Stop killing ob.
 int remove_killer(object ob)
 {
-	if( is_killing(ob->query("id")) ) {
+	if( is_killing(ob) ) {
 		killer -= ({ ob->query("id") });
 		remove_enemy(ob);
 		return 1;
@@ -354,7 +351,7 @@ void init()
 		return;
 
 	// Now start check the auto fight cases.
-	if( userp(ob) && is_killing(ob->query("id")) ) {
+	if( userp(ob) && is_killing(ob) ) {
 		COMBAT_D->auto_fight(this_object(), ob, "hatred");
 		return;
 	} else if( stringp(vendetta_mark = query("vendetta_mark"))

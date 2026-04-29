@@ -34,7 +34,7 @@ int perform(object me, object target)
                 return notify_fail("你的内力不够。\n");
         if( (int)me->query("kee") <30)
                 return notify_fail("你的精神没法集中。\n");
-        if( !me->is_killing(target->query("id")) )
+        if( !me->is_killing(target) )
                 return notify_fail("双方只是比武较技，何必下杀手？\n");
         if(userp(target))
                 return notify_fail("这么阴毒的功夫你还是别用了，省得缺德到家会被骂得很惨。\n");

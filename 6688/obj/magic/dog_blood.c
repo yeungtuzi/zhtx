@@ -50,7 +50,7 @@ int do_splash(string arg)
 	}
 	message_vision(msg, this_player(), ob);
 	// 要对方是鬼才会开打
-	if( !ob->is_killing(this_player()->query("id")) && ghost_hit )
+	if( !ob->is_killing(this_player()) && ghost_hit )
 		ob->kill_ob(this_player());
 	destruct(this_object());
 	return 1;

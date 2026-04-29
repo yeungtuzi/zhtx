@@ -26,7 +26,7 @@ int follow_me(object ob, string dir)
 	if( !living(this_object()) || ob==this_object() ) return 0;
 
 	if( ob==leader
-	||	(query("pursuer") && this_object()->is_killing(ob->query("id")))) {
+	||	(query("pursuer") && this_object()->is_killing(ob))) {
 		if( random(ob->query_skill("move")) > this_object()->query_skill("move") ) {
 			remove_call_out("follow_path");
 			call_out("follow_path", 1, dir);

@@ -117,7 +117,7 @@ int check_fight(object me, object target, object weapon)
         else if(environment(me) != environment(target))
                 msg = HIY"$N将手中"+wep->name()+HIY"向后一摆，抱圆守一，撤回了散开的太极剑意．\n"NOR;
 
-        else if(!living(target) || (!me->is_fighting(target) && !me->is_killing(target->query("id")))){
+        else if(!living(target) || (!me->is_fighting(target) && !me->is_killing(target))){
                 if(target && !living(target)) msg = HIY"$N不屑地望了$n一眼，将手中"+wep->name()+HIY"一向后摆，撤回了散开的剑幕．\n"NOR;
                 else msg = HIY"$N将手中"+wep->name()+HIY"向后一摆，抱圆守一，撤回了散开的太极剑意．\n"NOR;
                 }           

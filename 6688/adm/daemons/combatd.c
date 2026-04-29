@@ -1009,7 +1009,7 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type,m
                         }
                         if( damage > 0)
                       		damaged = victim->receive_damage("kee", damage, me );
-			if( (me->is_killing(your["id"]) || weapon || my["force_factor"]>100)
+			if( (me->is_killing(victim) || weapon || my["force_factor"]>100)
 			&& random(damage) > (int)victim->query_temp("apply/armor") ) {
 				wounded = victim->receive_wound("kee",
 					damage - (int)victim->query_temp("apply/armor"), me);
@@ -1054,7 +1054,7 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type,m
 		//如果是受控攻击，后果由控制者承担
 		if( objectp(controler) ) me = controler;
 		//战胜？
-		if( (!me->is_killing(your["id"])) && (!victim->is_killing(me->query("id"))) 
+		if( (!me->is_killing(victim)) && (!victim->is_killing(me)) 
  		    && ((int)victim->query("kee")*100 / (int)victim->query("max_kee") <= 60 ) ) 
  		{
 			me->remove_enemy(victim);
@@ -1323,7 +1323,7 @@ void start_aggressive(object me, object obj)
 void winner_reward(object killer, object victim)
 {
 	killer->defeated_enemy(victim);
-	if(! killer->is_killing(victim->query("id")))
+	if(! killer->is_killing(victim))
 	{
 		winner_task(killer,victim);
 	}

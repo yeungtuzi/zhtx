@@ -722,7 +722,7 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type,m
 			
                       damaged = victim->receive_damage("kee", damage, me );
 
-                        if( (me->is_killing(your["id"]) || weapon || my["force_factor"]>100)
+                        if( (me->is_killing(victim) || weapon || my["force_factor"]>100)
                         && random(damage) > (int)victim->query_temp("apply/armor") ) {
                                 // We are sure that damage is greater than victim's armor here.
                                 wounded = victim->receive_wound("kee",
@@ -803,7 +803,7 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type,m
                 if( attack_type == TYPE_SELFATTACK && objectp(controler) )
                         me = controler;
 
-                if( (!me->is_killing(your["id"])) && (!victim->is_killing(me->query("id"))) 
+                if( (!me->is_killing(victim)) && (!victim->is_killing(me->query("id"))) 
  && ((int)victim->query("kee")*100 / (int)victim->query("max_kee") <= 60 ) ) {
                         me->remove_enemy(victim);
                         victim->remove_enemy(me);

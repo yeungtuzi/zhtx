@@ -29,7 +29,7 @@ int main(object me, string arg)
                 object ob;
                 pk_id=me->query_temp("pk_id");
                 for(i=0;i<sizeof(pk_id);i++) {
-                        if( me->is_killing(pk_id[i]) ) {
+                        if( ob = find_living(pk_id[i]) && me->is_killing(ob) ) {
                                 return notify_fail(RED"你正在和人性命相搏,不能停手罢斗.\n"NOR);
                         }
                 }
@@ -43,7 +43,7 @@ int main(object me, string arg)
                 i = sizeof(enemys);
                 while( i-- )
                 {
-                        if( !enemys[i]->is_killing(me->query("id")) || !living(enemys[i]) )
+                        if( !enemys[i]->is_killing(me) || !living(enemys[i]) )
                                 me->remove_enemy(enemys[i]);
                 }
                 message_vision("$N向後一跃，离开战圈罢手不斗了。\n", me);

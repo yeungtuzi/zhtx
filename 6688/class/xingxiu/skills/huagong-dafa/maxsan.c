@@ -16,7 +16,7 @@ int exert(object me, object target)
 	if( !target )
 		return notify_fail("你要化谁的内力？\n");
 
-if( !me->is_killing(target->query("id")))
+if( !me->is_killing(target))
 return notify_fail("大家只是比武较技,何必下杀手");
 
         my_max = me->query("max_force");
@@ -45,7 +45,7 @@ return notify_fail("大家只是比武较技,何必下杀手");
 		me, target );
 
         if ( living(target) ){ 
-		if( !target->is_killing(me->query("id")) ) target->kill_ob(me);
+		if( !target->is_killing(me) ) target->kill_ob(me);
 	 }
 
         sp = me->query_skill("force") + me->query_skill("dodge");

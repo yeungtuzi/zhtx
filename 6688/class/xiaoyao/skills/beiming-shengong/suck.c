@@ -32,7 +32,7 @@ int exert(object me, object target)
 	message_vision(HIR"$N施展北冥神功，要吸$n的内力！\n\n"NOR, me, target);
 
         if ( living(target) ){ 
-		if( !target->is_killing(me->query("id")) ) target->kill_ob(me); 
+		if( !target->is_killing(me) ) target->kill_ob(me); 
 		me->fight_ob(target);
 	}
 

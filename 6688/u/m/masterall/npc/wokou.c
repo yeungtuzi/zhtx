@@ -82,7 +82,7 @@ void init()
         map_skill("force", "huashan-neigong");
 
 
-        return 1;
+        return;
 }
    
 

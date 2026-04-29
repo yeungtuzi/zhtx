@@ -75,7 +75,7 @@ carry_rnd_equip(3,3);
 
 void init()
 {
-        return 1;
+        return;
 }
 
 int consider()

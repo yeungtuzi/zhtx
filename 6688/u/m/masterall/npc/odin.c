@@ -59,7 +59,7 @@ LONG NOR
 
 void init()
 {
-        return 1;
+        return;
 }
                              
 int killed_enemy(object ob)

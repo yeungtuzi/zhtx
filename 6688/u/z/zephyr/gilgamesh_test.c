@@ -69,7 +69,7 @@ LONG NOR
 void init()
 {
 	flag=1;
-	return 1;
+	return;
 }
                              
                      

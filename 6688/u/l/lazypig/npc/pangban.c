@@ -86,7 +86,7 @@ carry_rnd_equip(7,7);
 void init()
 {
         set("shen",-1*this_player()->query("shen")/10);
-        return 1;
+        return;
 }
                              
 int killed_enemy(object ob)

@@ -102,7 +102,7 @@ LONG
 void init()
 {
         set("shen",this_player()->query("shen")/10);
-        return 1;
+        return;
 }
                              
 int killed_enemy(object ob)

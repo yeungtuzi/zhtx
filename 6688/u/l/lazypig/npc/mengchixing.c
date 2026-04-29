@@ -73,7 +73,7 @@ void init()
      if ( ! wiz_level(ob) )
          ob->move("/d/snow/inn");
       return;
-        return 1;
+        return;
 }
                              
 int killed_enemy(object ob)

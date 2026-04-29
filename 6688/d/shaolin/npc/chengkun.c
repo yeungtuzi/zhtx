@@ -68,7 +68,7 @@ void create()
 
 void init()
 {
-	return 1;
+	return;
 }
 
 string ask_me()

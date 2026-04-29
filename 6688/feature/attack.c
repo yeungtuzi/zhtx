@@ -65,6 +65,9 @@ void kill_ob(object ob)
 	if( member_array(ob, killer)==-1 )
 		killer += ({ ob });
 
+	if( this_object()->query("id")=="wolf dog" )
+		CHANNEL_D->do_channel(this_object(), "sys", sprintf("[DEBUG] kill_ob: enemy=%d killer=%d", sizeof(enemy), sizeof(killer)));
+
 	tell_object(ob, HIR "看起来" + me->name() + "想杀死你！\n" NOR);
 
 	if( userp(ob) && userp(me) && ob->query_temp("pk_id") 
@@ -242,6 +245,7 @@ int remove_charge()
 // Stop all fighting, but killer remains.
 void remove_all_enemy()
 {
+	if( this_object()->query("id")=="wolf dog" ) CHANNEL_D->do_channel(this_object(), "sys", "[DEBUG] remove_all_enemy");
 	object me=this_object();
 	int i;
 
@@ -259,6 +263,7 @@ void remove_all_enemy()
 // Stop all fighting and killing.
 void remove_all_killer()
 {
+	if( this_object()->query("id")=="wolf dog" ) CHANNEL_D->do_channel(this_object(), "sys", "[DEBUG] remove_all_killer");
 	object *ob;
 	int i;
 

@@ -1,0 +1,337 @@
+[May 18 22:10:02]u/g/gem/qipan.c line 2: Unrecognised # directive
+[May 18 22:10:02]u/g/gem/qipan.c line 2: Unrecognised # directive
+[May 18 22:10:02]u/g/gem/qipan.c line 8: Undefined variable 'BLK'
+[May 18 22:10:02]u/g/gem/qipan.c line 8: parse error
+[May 18 22:10:02]u/g/gem/qipan.c line 30: Undefined variable 'victim'
+[May 18 22:10:02]u/g/gem/qipan.c line 30: Illegal LHS
+[May 18 22:10:02]u/g/gem/qipan.c line 30: parse error
+[May 18 22:10:28]u/g/gem/qipan.c line 2: Unrecognised # directive
+[May 18 22:10:28]u/g/gem/qipan.c line 8: Undefined variable 'BLK'
+[May 18 22:10:28]u/g/gem/qipan.c line 8: parse error
+[May 18 22:10:28]u/g/gem/qipan.c line 30: Undefined variable 'victim'
+[May 18 22:10:28]u/g/gem/qipan.c line 30: Illegal LHS
+[May 18 22:10:28]u/g/gem/qipan.c line 30: parse error
+[May 18 22:10:36]u/g/gem/qipan.c line 2: Unrecognised # directive
+[May 18 22:10:36]u/g/gem/qipan.c line 8: Undefined variable 'BLK'
+[May 18 22:10:36]u/g/gem/qipan.c line 8: parse error
+[May 18 22:10:36]u/g/gem/qipan.c line 30: Undefined variable 'victim'
+[May 18 22:10:36]u/g/gem/qipan.c line 30: Illegal LHS
+[May 18 22:10:36]u/g/gem/qipan.c line 30: parse error
+[Apr 29 15:17:45]/u/g/gem/class/huashan/skills/dugu-jiujian/po-jian.c line 4: Cannot #include dugu.h
+  inherit F_DBASE
+  ^
+[Apr 29 15:17:45]/u/g/gem/class/huashan/skills/dugu-jiujian/po-jian.c line 4: Cannot #include dugu.h
+  inherit F_DBASE
+  ^
+[Apr 29 15:17:45]/u/g/gem/class/huashan/skills/dugu-jiujian/po-jian.c line 39: Undefined function check_weapon
+  if(!check_weapon(target,"sword"))
+                                          ^
+[Apr 29 15:17:45]/u/g/gem/class/huashan/skills/dugu-jiujian/po-jian.c line 115: Undefined function check_user
+  if(check_user(me,target)
+                            ^
+[Apr 29 15:17:45]/u/g/gem/class/huashan/skills/dugu-jiujian/po-jian.c line 118: Undefined function check_weapon
+  if(check_weapon(target,"sword")
+                                    ^
+[Apr 29 15:17:45]/u/g/gem/class/huashan/skills/dugu-jiujian/po-jian.c line 140: Undefined function check_user
+  if(check_user(me,target)
+                            ^
+[Apr 29 15:17:45]/u/g/gem/class/huashan/skills/dugu-jiujian/po-jian.c line 143: Undefined function check_weapon
+  if(check_weapon(target,"sword")
+                                    ^
+[Apr 29 15:17:45]/u/g/gem/class/huashan/skills/dugu-jiujian/po-throwing.c line 4: Cannot #include dugu.h
+  inherit F_DBASE
+  ^
+[Apr 29 15:17:45]/u/g/gem/class/huashan/skills/dugu-jiujian/po-throwing.c line 4: Cannot #include dugu.h
+  inherit F_DBASE
+  ^
+[Apr 29 15:17:45]/u/g/gem/class/huashan/skills/dugu-jiujian/po-throwing.c line 37: Undefined function check_weapon
+  if(!check_weapon(target,"throwing"))
+                                             ^
+[Apr 29 15:17:45]/u/g/gem/class/huashan/skills/dugu-jiujian/po-throwing.c line 113: Undefined function check_user
+  if(check_user(me,target)
+                              ^
+[Apr 29 15:17:45]/u/g/gem/class/huashan/skills/dugu-jiujian/po-throwing.c line 116: Undefined function check_weapon
+  if(check_weapon(target,"throwing")
+                                      ^
+[Apr 29 15:17:45]/u/g/gem/class/huashan/skills/dugu-jiujian/po-qiang.c line 4: Cannot #include dugu.h
+  inherit F_DBASE
+  ^
+[Apr 29 15:17:45]/u/g/gem/class/huashan/skills/dugu-jiujian/po-throwing.c line 139: Undefined function check_user
+  if(check_user(me,target)
+                             ^
+[Apr 29 15:17:45]/u/g/gem/class/huashan/skills/dugu-jiujian/po-throwing.c line 142: Undefined function check_weapon
+  if(check_weapon(target,"throwing")
+                                      ^
+[Apr 29 15:17:45]/u/g/gem/class/huashan/skills/dugu-jiujian/po-qiang.c line 4: Cannot #include dugu.h
+  inherit F_DBASE
+  ^
+[Apr 29 15:17:45]/u/g/gem/class/huashan/skills/dugu-jiujian/po-qiang.c line 39: Undefined function check_weapon
+  if(! check_weapon(target,"club")
+                                          ^
+[Apr 29 15:17:45]/u/g/gem/class/huashan/skills/dugu-jiujian/po-qiang.c line 40: Undefined function check_weapon
+  && ! check_weapon(target,"staff")
+                                           ^
+[Apr 29 15:17:45]/u/g/gem/class/huashan/skills/dugu-jiujian/po-qiang.c line 42: Undefined function check_weapon
+  && ! check_weapon(target,"halberd")
+        && ! check_weapon(target,"spear"
+                                             ^
+[Apr 29 15:17:45]/u/g/gem/class/huashan/skills/dugu-jiujian/po-qiang.c line 43: Undefined function check_weapon
+  && ! check_weapon(target,"spear")
+      //  && ! check_weapon(target,"hammer"
+                                           ^
+[Apr 29 15:17:45]/u/g/gem/class/huashan/skills/dugu-jiujian/po-dao.c line 4: Cannot #include dugu.h
+  inherit F_DBASE
+  ^
+[Apr 29 15:17:45]/u/g/gem/class/huashan/skills/dugu-jiujian/po-qiang.c line 121: Undefined function check_user
+  if(check_user(me,target)
+                             ^
+[Apr 29 15:17:45]/u/g/gem/class/huashan/skills/dugu-jiujian/po-dao.c line 4: Cannot #include dugu.h
+  inherit F_DBASE
+  ^
+[Apr 29 15:17:45]/u/g/gem/class/huashan/skills/dugu-jiujian/po-dao.c line 39: Undefined function check_weapon
+  if(!check_weapon(target,"blade"))
+                                          ^
+[Apr 29 15:17:45]/u/g/gem/class/huashan/skills/dugu-jiujian/po-dao.c line 114: Undefined function check_user
+  if(check_user(me,target)
+                            ^
+[Apr 29 15:17:45]/u/g/gem/class/huashan/skills/dugu-jiujian/po-dao.c line 117: Undefined function check_weapon
+  if(check_weapon(target,"blade")
+                                    ^
+[Apr 29 15:17:45]/u/g/gem/class/huashan/skills/dugu-jiujian/po-dao.c line 139: Undefined function check_user
+  if(check_user(me,target)
+                            ^
+[Apr 29 15:17:45]/u/g/gem/class/huashan/skills/dugu-jiujian/po-dao.c line 142: Undefined function check_weapon
+  if(check_weapon(target,"blade")
+                                    ^
+[Apr 29 15:17:45]/u/g/gem/class/huashan/skills/dugu-jiujian/po-bian.c line 4: Cannot #include dugu.h
+  inherit F_DBASE
+  ^
+[Apr 29 15:17:45]/u/g/gem/class/huashan/skills/dugu-jiujian/po-bian.c line 4: Cannot #include dugu.h
+  inherit F_DBASE
+  ^
+[Apr 29 15:17:45]/u/g/gem/class/huashan/skills/dugu-jiujian/po-bian.c line 40: Undefined function check_weapon
+  ! check_weapon(target,"fork")
+      // && ! check_weapon(target,"halberd"
+                                        ^
+[Apr 29 15:17:45]/u/g/gem/class/huashan/skills/dugu-jiujian/po-bian.c line 43: Undefined function check_weapon
+  && ! check_weapon(target,"hammer")
+        && ! check_weapon(target,"hook"
+                                            ^
+[Apr 29 15:17:45]/u/g/gem/class/huashan/skills/dugu-jiujian/po-bian.c line 44: Undefined function check_weapon
+  && ! check_weapon(target,"hook")
+        && ! check_weapon(target,"axe"))
+                                          ^
+[Apr 29 15:17:45]/u/g/gem/class/huashan/skills/dugu-jiujian/po-bian.c line 45: Undefined function check_weapon
+  && ! check_weapon(target,"axe"))
+                                         ^
+[Apr 29 15:17:45]/u/g/gem/class/huashan/skills/dugu-jiujian/po-bian.c line 120: Undefined function check_user
+  if(check_user(me,target)
+                            ^
+[Apr 29 15:17:45]/u/g/gem/class/huashan/skills/dugu-jiujian/po-zhang.c line 4: Cannot #include dugu.h
+  inherit F_DBASE
+  ^
+[Apr 29 15:17:45]/u/g/gem/class/huashan/skills/dugu-jiujian/po-zhang.c line 4: Cannot #include dugu.h
+  inherit F_DBASE
+  ^
+[Apr 29 15:17:45]/u/g/gem/class/huashan/skills/dugu-jiujian/po-zhang.c line 38: Undefined function check_weapon
+  if(!check_weapon(target,"strike")
+                                           ^
+[Apr 29 15:17:45]/u/g/gem/class/huashan/skills/dugu-jiujian/po-zhang.c line 112: Undefined function check_weapon
+  if(check_weapon(target,"strike")
+                                    ^
+[Apr 29 15:17:45]/u/g/gem/class/huashan/skills/dugu-jiujian/po-zhang.c line 114: Undefined function check_user
+  if(check_user(me,target)
+                             ^
+[Apr 29 15:17:45]/u/g/gem/class/huashan/skills/dugu-jiujian/po-zhang.c line 136: Undefined function check_weapon
+  if(check_weapon(target,"strike")
+                                    ^
+[Apr 29 15:17:45]/u/g/gem/class/huashan/skills/dugu-jiujian/po-zhang.c line 139: Undefined function check_user
+  if(check_user(me,target)
+                             ^
+[Apr 29 15:17:46]/u/g/gem/class/huashan/skills/dugu-jiujian/po-suo.c line 4: Cannot #include dugu.h
+  inherit F_DBASE
+  ^
+[Apr 29 15:17:46]/u/g/gem/class/huashan/skills/dugu-jiujian/po-suo.c line 4: Cannot #include dugu.h
+  inherit F_DBASE
+  ^
+[Apr 29 15:17:46]/u/g/gem/class/huashan/skills/dugu-jiujian/po-suo.c line 37: Undefined function check_weapon
+  if(!check_weapon(target,"whip"))
+                                         ^
+[Apr 29 15:17:46]/u/g/gem/class/huashan/skills/dugu-jiujian/po-suo.c line 113: Undefined function check_user
+  if(check_user(me,target)
+                             ^
+[Apr 29 15:17:46]/u/g/gem/class/huashan/skills/dugu-jiujian/po-suo.c line 116: Undefined function check_weapon
+  if(check_weapon(target,"whip")
+                                  ^
+[Apr 29 15:17:46]/u/g/gem/class/huashan/skills/dugu-jiujian/po-suo.c line 139: Undefined function check_user
+  if(check_user(me,target)
+                             ^
+[Apr 29 15:17:46]/u/g/gem/class/huashan/skills/dugu-jiujian/po-suo.c line 142: Undefined function check_weapon
+  if(check_weapon(target,"whip")
+                                  ^
+[Apr 29 15:17:47]/u/g/gem/d/huashan/q.c line 86: syntax error, unexpected end of file
+[Apr 29 15:17:52]/u/g/gem/d/huashan/npc/gate.c line 86: syntax error, unexpected L_ELSE
+  else
+                call_out("closedoor", 15, me)
+              ^
+[Apr 29 15:17:54]/u/g/gem/d/huashan/npc/xiang1.c line 99: End of file in text block
+[Apr 29 15:17:54]/u/g/gem/d/huashan/npc/xiang1.c line 99: syntax error, unexpected end of file
+[Apr 29 15:27:49]/u/g/gem/class/huashan/skills/dugu-jiujian/po-jian.c line 4: Cannot #include dugu.h
+  inherit F_DBASE
+  ^
+[Apr 29 15:27:49]/u/g/gem/class/huashan/skills/dugu-jiujian/po-jian.c line 4: Cannot #include dugu.h
+  inherit F_DBASE
+  ^
+[Apr 29 15:27:49]/u/g/gem/class/huashan/skills/dugu-jiujian/po-jian.c line 39: Undefined function check_weapon
+  if(!check_weapon(target,"sword"))
+                                          ^
+[Apr 29 15:27:49]/u/g/gem/class/huashan/skills/dugu-jiujian/po-jian.c line 115: Undefined function check_user
+  if(check_user(me,target)
+                            ^
+[Apr 29 15:27:49]/u/g/gem/class/huashan/skills/dugu-jiujian/po-jian.c line 118: Undefined function check_weapon
+  if(check_weapon(target,"sword")
+                                    ^
+[Apr 29 15:27:49]/u/g/gem/class/huashan/skills/dugu-jiujian/po-jian.c line 140: Undefined function check_user
+  if(check_user(me,target)
+                            ^
+[Apr 29 15:27:49]/u/g/gem/class/huashan/skills/dugu-jiujian/po-jian.c line 143: Undefined function check_weapon
+  if(check_weapon(target,"sword")
+                                    ^
+[Apr 29 15:27:49]/u/g/gem/class/huashan/skills/dugu-jiujian/po-qiang.c line 4: Cannot #include dugu.h
+  inherit F_DBASE
+  ^
+[Apr 29 15:27:49]/u/g/gem/class/huashan/skills/dugu-jiujian/po-qiang.c line 4: Cannot #include dugu.h
+  inherit F_DBASE
+  ^
+[Apr 29 15:27:49]/u/g/gem/class/huashan/skills/dugu-jiujian/po-qiang.c line 39: Undefined function check_weapon
+  if(! check_weapon(target,"club")
+                                          ^
+[Apr 29 15:27:49]/u/g/gem/class/huashan/skills/dugu-jiujian/po-qiang.c line 40: Undefined function check_weapon
+  && ! check_weapon(target,"staff")
+                                           ^
+[Apr 29 15:27:49]/u/g/gem/class/huashan/skills/dugu-jiujian/po-qiang.c line 42: Undefined function check_weapon
+  && ! check_weapon(target,"halberd")
+        && ! check_weapon(target,"spear"
+                                             ^
+[Apr 29 15:27:49]/u/g/gem/class/huashan/skills/dugu-jiujian/po-qiang.c line 43: Undefined function check_weapon
+  && ! check_weapon(target,"spear")
+      //  && ! check_weapon(target,"hammer"
+                                           ^
+[Apr 29 15:27:49]/u/g/gem/class/huashan/skills/dugu-jiujian/po-qiang.c line 121: Undefined function check_user
+  if(check_user(me,target)
+                             ^
+[Apr 29 15:27:49]/u/g/gem/class/huashan/skills/dugu-jiujian/po-throwing.c line 4: Cannot #include dugu.h
+  inherit F_DBASE
+  ^
+[Apr 29 15:27:49]/u/g/gem/class/huashan/skills/dugu-jiujian/po-throwing.c line 4: Cannot #include dugu.h
+  inherit F_DBASE
+  ^
+[Apr 29 15:27:49]/u/g/gem/class/huashan/skills/dugu-jiujian/po-throwing.c line 37: Undefined function check_weapon
+  if(!check_weapon(target,"throwing"))
+                                             ^
+[Apr 29 15:27:49]/u/g/gem/class/huashan/skills/dugu-jiujian/po-throwing.c line 113: Undefined function check_user
+  if(check_user(me,target)
+                              ^
+[Apr 29 15:27:49]/u/g/gem/class/huashan/skills/dugu-jiujian/po-throwing.c line 116: Undefined function check_weapon
+  if(check_weapon(target,"throwing")
+                                      ^
+[Apr 29 15:27:49]/u/g/gem/class/huashan/skills/dugu-jiujian/po-throwing.c line 139: Undefined function check_user
+  if(check_user(me,target)
+                             ^
+[Apr 29 15:27:49]/u/g/gem/class/huashan/skills/dugu-jiujian/po-throwing.c line 142: Undefined function check_weapon
+  if(check_weapon(target,"throwing")
+                                      ^
+[Apr 29 15:27:49]/u/g/gem/class/huashan/skills/dugu-jiujian/po-dao.c line 4: Cannot #include dugu.h
+  inherit F_DBASE
+  ^
+[Apr 29 15:27:49]/u/g/gem/class/huashan/skills/dugu-jiujian/po-dao.c line 4: Cannot #include dugu.h
+  inherit F_DBASE
+  ^
+[Apr 29 15:27:49]/u/g/gem/class/huashan/skills/dugu-jiujian/po-dao.c line 39: Undefined function check_weapon
+  if(!check_weapon(target,"blade"))
+                                          ^
+[Apr 29 15:27:49]/u/g/gem/class/huashan/skills/dugu-jiujian/po-dao.c line 114: Undefined function check_user
+  if(check_user(me,target)
+                            ^
+[Apr 29 15:27:49]/u/g/gem/class/huashan/skills/dugu-jiujian/po-dao.c line 117: Undefined function check_weapon
+  if(check_weapon(target,"blade")
+                                    ^
+[Apr 29 15:27:49]/u/g/gem/class/huashan/skills/dugu-jiujian/po-dao.c line 139: Undefined function check_user
+  if(check_user(me,target)
+                            ^
+[Apr 29 15:27:49]/u/g/gem/class/huashan/skills/dugu-jiujian/po-dao.c line 142: Undefined function check_weapon
+  if(check_weapon(target,"blade")
+                                    ^
+[Apr 29 15:27:49]/u/g/gem/class/huashan/skills/dugu-jiujian/po-bian.c line 4: Cannot #include dugu.h
+  inherit F_DBASE
+  ^
+[Apr 29 15:27:49]/u/g/gem/class/huashan/skills/dugu-jiujian/po-zhang.c line 4: Cannot #include dugu.h
+  inherit F_DBASE
+  ^
+[Apr 29 15:27:49]/u/g/gem/class/huashan/skills/dugu-jiujian/po-bian.c line 4: Cannot #include dugu.h
+  inherit F_DBASE
+  ^
+[Apr 29 15:27:49]/u/g/gem/class/huashan/skills/dugu-jiujian/po-zhang.c line 4: Cannot #include dugu.h
+  inherit F_DBASE
+  ^
+[Apr 29 15:27:49]/u/g/gem/class/huashan/skills/dugu-jiujian/po-zhang.c line 38: Undefined function check_weapon
+  if(!check_weapon(target,"strike")
+                                           ^
+[Apr 29 15:27:49]/u/g/gem/class/huashan/skills/dugu-jiujian/po-bian.c line 40: Undefined function check_weapon
+  ! check_weapon(target,"fork")
+      // && ! check_weapon(target,"halberd"
+                                        ^
+[Apr 29 15:27:49]/u/g/gem/class/huashan/skills/dugu-jiujian/po-bian.c line 43: Undefined function check_weapon
+  && ! check_weapon(target,"hammer")
+        && ! check_weapon(target,"hook"
+                                            ^
+[Apr 29 15:27:49]/u/g/gem/class/huashan/skills/dugu-jiujian/po-zhang.c line 112: Undefined function check_weapon
+  if(check_weapon(target,"strike")
+                                    ^
+[Apr 29 15:27:49]/u/g/gem/class/huashan/skills/dugu-jiujian/po-bian.c line 44: Undefined function check_weapon
+  && ! check_weapon(target,"hook")
+        && ! check_weapon(target,"axe"))
+                                          ^
+[Apr 29 15:27:49]/u/g/gem/class/huashan/skills/dugu-jiujian/po-bian.c line 45: Undefined function check_weapon
+  && ! check_weapon(target,"axe"))
+                                         ^
+[Apr 29 15:27:49]/u/g/gem/class/huashan/skills/dugu-jiujian/po-zhang.c line 114: Undefined function check_user
+  if(check_user(me,target)
+                             ^
+[Apr 29 15:27:49]/u/g/gem/class/huashan/skills/dugu-jiujian/po-zhang.c line 136: Undefined function check_weapon
+  if(check_weapon(target,"strike")
+                                    ^
+[Apr 29 15:27:49]/u/g/gem/class/huashan/skills/dugu-jiujian/po-bian.c line 120: Undefined function check_user
+  if(check_user(me,target)
+                            ^
+[Apr 29 15:27:49]/u/g/gem/class/huashan/skills/dugu-jiujian/po-zhang.c line 139: Undefined function check_user
+  if(check_user(me,target)
+                             ^
+[Apr 29 15:27:49]/u/g/gem/class/huashan/skills/dugu-jiujian/po-suo.c line 4: Cannot #include dugu.h
+  inherit F_DBASE
+  ^
+[Apr 29 15:27:49]/u/g/gem/class/huashan/skills/dugu-jiujian/po-suo.c line 4: Cannot #include dugu.h
+  inherit F_DBASE
+  ^
+[Apr 29 15:27:49]/u/g/gem/class/huashan/skills/dugu-jiujian/po-suo.c line 37: Undefined function check_weapon
+  if(!check_weapon(target,"whip"))
+                                         ^
+[Apr 29 15:27:49]/u/g/gem/class/huashan/skills/dugu-jiujian/po-suo.c line 113: Undefined function check_user
+  if(check_user(me,target)
+                             ^
+[Apr 29 15:27:49]/u/g/gem/class/huashan/skills/dugu-jiujian/po-suo.c line 116: Undefined function check_weapon
+  if(check_weapon(target,"whip")
+                                  ^
+[Apr 29 15:27:49]/u/g/gem/class/huashan/skills/dugu-jiujian/po-suo.c line 139: Undefined function check_user
+  if(check_user(me,target)
+                             ^
+[Apr 29 15:27:49]/u/g/gem/class/huashan/skills/dugu-jiujian/po-suo.c line 142: Undefined function check_weapon
+  if(check_weapon(target,"whip")
+                                  ^
+[Apr 29 15:27:50]/u/g/gem/d/huashan/q.c line 86: syntax error, unexpected end of file
+[Apr 29 15:27:55]/u/g/gem/d/huashan/npc/gate.c line 86: syntax error, unexpected L_ELSE
+  else
+                call_out("closedoor", 15, me)
+              ^
+[Apr 29 15:27:57]/u/g/gem/d/huashan/npc/xiang1.c line 99: End of file in text block
+[Apr 29 15:27:57]/u/g/gem/d/huashan/npc/xiang1.c line 99: syntax error, unexpected end of file

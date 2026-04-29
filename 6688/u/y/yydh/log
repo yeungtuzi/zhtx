@@ -1,0 +1,540 @@
+[Nov 20 21:49:30]u/y/yydh/workroom.c line 7: parse error
+[Nov 25 10:27:08]u/y/yydh/flybag.c line 1: Line too long.
+[Nov 25 10:30:00]u/y/yydh/flybag.c line 1: Line too long.
+[Nov 25 10:33:12]u/y/yydh/tian.c line 41: End of file in text block
+[Nov 25 10:33:12]u/y/yydh/tian.c line 41: parse error
+[Nov 25 10:36:14]u/y/yydh/tian.c line 46: End of file in text block
+[Nov 25 10:36:14]u/y/yydh/tian.c line 46: parse error
+[Nov 25 10:45:18]u/y/yydh/flybag.c line 17: parse error
+[Nov 25 10:45:18]u/y/yydh/flybag.c line 19: Reserved type name unexpected.
+[Nov 25 10:45:18]u/y/yydh/flybag.c line 19: parse error
+[Nov 25 10:45:18]u/y/yydh/flybag.c line 22: Illegal LHS
+[Nov 25 10:45:18]u/y/yydh/flybag.c line 23: Undefined variable 'ob'
+[Nov 25 10:45:18]u/y/yydh/flybag.c line 33: Undefined variable 'myenv'
+[Nov 28 10:47:16]u/y/yydh/f.c line 46: Undefined variable 'ob'
+[Nov 28 11:06:38]u/y/yydh/f.c line 52: Undefined variable 'ob'
+[Nov 28 11:07:12]u/y/yydh/f.c line 63: Undefined variable 'me'
+[Sep 23 21:50:21]u/y/yydh/obj/zhen.c line 3: parse error
+[Sep 23 21:50:27]u/y/yydh/obj/zhen.c line 3: parse error
+[Sep 23 21:54:27]u/y/yydh/obj/zhen.c line 3: parse error
+[Sep 23 22:00:57]u/y/yydh/obj/zhen.c line 2: parse error
+[Sep 23 22:06:23]u/y/yydh/obj/zhen.c line 2: parse error
+[Sep 23 22:07:07]u/y/yydh/obj/zhen.c line 2: parse error
+[Sep 23 22:07:51]u/y/yydh/obj/zhen.c line 6: Illegal to redefine 'nomask' function "_query"
+[Sep 23 22:07:51]u/y/yydh/obj/zhen.c line 6: Illegal to redefine 'nomask' function "_delete"
+[Sep 23 22:07:51]u/y/yydh/obj/zhen.c line 6: Illegal to redefine 'nomask' function "_set"
+[Sep 23 22:07:53]u/y/yydh/obj/zhen.c line 6: Illegal to redefine 'nomask' function "_query"
+[Sep 23 22:07:53]u/y/yydh/obj/zhen.c line 6: Illegal to redefine 'nomask' function "_delete"
+[Sep 23 22:07:53]u/y/yydh/obj/zhen.c line 6: Illegal to redefine 'nomask' function "_set"
+[Sep 23 22:53:57]u/y/yydh/obj/lu.c line 34: Undefined variable 'query'
+[Sep 23 22:53:57]u/y/yydh/obj/lu.c line 34: parse error
+[Sep 24 00:09:19]u/y/yydh/obj/casket.c line 40: parse error
+[Sep 24 00:09:19]u/y/yydh/obj/casket.c line 50: Illegal LHS
+[Sep 24 00:09:19]u/y/yydh/obj/casket.c line 50: parse error
+[Sep 24 00:09:19]u/y/yydh/obj/casket.c line 51: Illegal LHS
+[Sep 24 00:09:19]u/y/yydh/obj/casket.c line 51: parse error
+[Sep 24 00:09:19]u/y/yydh/obj/casket.c line 62: Undefined variable 'start_room'
+[Sep 24 00:11:11]u/y/yydh/obj/casket.c line 7: parse error
+[Sep 24 00:11:11]u/y/yydh/obj/casket.c line 53: Illegal LHS
+[Sep 24 00:11:11]u/y/yydh/obj/casket.c line 53: parse error
+[Sep 24 00:11:11]u/y/yydh/obj/casket.c line 54: Illegal LHS
+[Sep 24 00:11:11]u/y/yydh/obj/casket.c line 54: parse error
+[Sep 24 00:11:11]u/y/yydh/obj/casket.c line 65: Undefined variable 'start_room'
+[Sep 24 00:12:11]u/y/yydh/obj/casket.c line 43: parse error
+[Sep 24 00:12:11]u/y/yydh/obj/casket.c line 53: Illegal LHS
+[Sep 24 00:12:11]u/y/yydh/obj/casket.c line 53: parse error
+[Sep 24 00:12:11]u/y/yydh/obj/casket.c line 54: Illegal LHS
+[Sep 24 00:12:11]u/y/yydh/obj/casket.c line 54: parse error
+[Sep 24 00:12:11]u/y/yydh/obj/casket.c line 65: Illegal LHS
+[Sep 24 01:39:56]u/y/yydh/npc/husband.c line 6: parse error
+[Sep 24 01:43:50]u/y/yydh/workroom.c line 8: Undefined variable 'HIW'
+[Sep 24 01:43:50]u/y/yydh/workroom.c line 8: parse error
+[Sep 24 01:43:50]u/y/yydh/workroom.c line 39: Illegal LHS
+[Sep 24 01:43:50]u/y/yydh/workroom.c line 39: parse error
+[Sep 24 01:43:50]u/y/yydh/workroom.c line 48: Illegal LHS
+[Sep 24 01:43:50]u/y/yydh/workroom.c line 48: parse error
+[Sep 24 01:47:06]u/y/yydh/workroom.c line 8: Undefined variable 'HIW'
+[Sep 24 01:47:06]u/y/yydh/workroom.c line 8: parse error
+[Sep 24 01:47:06]u/y/yydh/workroom.c line 39: Illegal LHS
+[Sep 24 01:47:06]u/y/yydh/workroom.c line 39: parse error
+[Sep 24 01:47:06]u/y/yydh/workroom.c line 48: Illegal LHS
+[Sep 24 01:47:06]u/y/yydh/workroom.c line 48: parse error
+[Sep 24 01:50:02]u/y/yydh/workroom.c line 8: Undefined variable 'HIW'
+[Sep 24 01:50:02]u/y/yydh/workroom.c line 8: parse error
+[Sep 24 01:50:02]u/y/yydh/workroom.c line 39: Illegal LHS
+[Sep 24 01:50:02]u/y/yydh/workroom.c line 39: parse error
+[Sep 24 01:50:02]u/y/yydh/workroom.c line 48: Illegal LHS
+[Sep 24 01:50:02]u/y/yydh/workroom.c line 48: parse error
+[Sep 24 01:50:12]u/y/yydh/workroom.c line 8: Undefined variable 'HIW'
+[Sep 24 01:50:12]u/y/yydh/workroom.c line 8: parse error
+[Sep 24 01:50:12]u/y/yydh/workroom.c line 39: Illegal LHS
+[Sep 24 01:50:12]u/y/yydh/workroom.c line 39: parse error
+[Sep 24 01:50:12]u/y/yydh/workroom.c line 48: Illegal LHS
+[Sep 24 01:50:12]u/y/yydh/workroom.c line 48: parse error
+[Sep 24 02:00:04]u/y/yydh/workroom.c line 8: Undefined variable 'HIW'
+[Sep 24 02:00:04]u/y/yydh/workroom.c line 8: parse error
+[Sep 24 02:00:04]u/y/yydh/workroom.c line 39: Illegal LHS
+[Sep 24 02:00:04]u/y/yydh/workroom.c line 39: parse error
+[Sep 24 02:00:04]u/y/yydh/workroom.c line 48: Illegal LHS
+[Sep 24 02:00:04]u/y/yydh/workroom.c line 48: parse error
+[Sep 24 02:01:48]u/y/yydh/workroom.c line 8: Undefined variable 'HIW'
+[Sep 24 02:01:48]u/y/yydh/workroom.c line 8: parse error
+[Sep 24 02:01:48]u/y/yydh/workroom.c line 39: Illegal LHS
+[Sep 24 02:01:48]u/y/yydh/workroom.c line 39: parse error
+[Sep 24 02:01:48]u/y/yydh/workroom.c line 48: Illegal LHS
+[Sep 24 02:01:48]u/y/yydh/workroom.c line 48: parse error
+[Sep 24 02:06:26]u/y/yydh/workroom.c line 20: parse error
+[Sep 24 02:06:26]u/y/yydh/workroom.c line 41: Illegal LHS
+[Sep 24 02:06:26]u/y/yydh/workroom.c line 41: parse error
+[Sep 24 02:06:26]u/y/yydh/workroom.c line 50: Illegal LHS
+[Sep 24 02:06:26]u/y/yydh/workroom.c line 50: parse error
+[Sep 24 02:06:26]u/y/yydh/workroom.c line 66: Illegal LHS
+[Sep 24 02:10:28]u/y/yydh/workroom.c line 20: parse error
+[Sep 24 02:10:28]u/y/yydh/workroom.c line 41: Illegal LHS
+[Sep 24 02:10:28]u/y/yydh/workroom.c line 41: parse error
+[Sep 24 02:10:28]u/y/yydh/workroom.c line 50: Illegal LHS
+[Sep 24 02:10:28]u/y/yydh/workroom.c line 50: parse error
+[Sep 24 02:10:28]u/y/yydh/workroom.c line 66: Illegal LHS
+[Sep 24 02:12:22]u/y/yydh/workroom.c line 20: parse error
+[Sep 24 02:12:22]u/y/yydh/workroom.c line 40: Illegal LHS
+[Sep 24 02:12:22]u/y/yydh/workroom.c line 40: parse error
+[Sep 24 02:12:22]u/y/yydh/workroom.c line 49: Illegal LHS
+[Sep 24 02:12:22]u/y/yydh/workroom.c line 49: parse error
+[Sep 24 02:12:22]u/y/yydh/workroom.c line 65: Illegal LHS
+[Sep 24 02:13:48]u/y/yydh/workroom.c line 18: parse error
+[Sep 24 02:13:48]u/y/yydh/workroom.c line 41: Illegal LHS
+[Sep 24 02:13:48]u/y/yydh/workroom.c line 41: parse error
+[Sep 24 02:13:48]u/y/yydh/workroom.c line 50: Illegal LHS
+[Sep 24 02:13:48]u/y/yydh/workroom.c line 50: parse error
+[Sep 24 02:13:48]u/y/yydh/workroom.c line 66: Illegal LHS
+[Sep 24 02:14:46]u/y/yydh/workroom.c line 20: parse error
+[Sep 24 02:14:46]u/y/yydh/workroom.c line 41: Illegal LHS
+[Sep 24 02:14:46]u/y/yydh/workroom.c line 41: parse error
+[Sep 24 02:14:46]u/y/yydh/workroom.c line 50: Illegal LHS
+[Sep 24 02:14:46]u/y/yydh/workroom.c line 50: parse error
+[Sep 24 02:14:46]u/y/yydh/workroom.c line 66: Illegal LHS
+[Sep 24 02:15:34]u/y/yydh/workroom.c line 42: Undefined variable 'marks'
+[Sep 24 02:15:34]u/y/yydh/workroom.c line 42: parse error
+[Sep 24 02:15:34]u/y/yydh/workroom.c line 50: Illegal LHS
+[Sep 24 02:15:34]u/y/yydh/workroom.c line 50: parse error
+[Sep 24 02:15:34]u/y/yydh/workroom.c line 66: Illegal LHS
+[Sep 24 02:15:34]u/y/yydh/workroom.c line 66: parse error
+[Sep 24 08:08:20]u/y/yydh/workroom.c line 42: Undefined variable 'marks'
+[Sep 24 08:08:20]u/y/yydh/workroom.c line 42: parse error
+[Sep 24 08:08:20]u/y/yydh/workroom.c line 50: Illegal LHS
+[Sep 24 08:08:20]u/y/yydh/workroom.c line 50: parse error
+[Sep 24 08:08:20]u/y/yydh/workroom.c line 66: Illegal LHS
+[Sep 24 08:08:20]u/y/yydh/workroom.c line 66: parse error
+[Sep 24 08:31:03]u/y/yydh/workroom.c line 42: Undefined variable 'marks'
+[Sep 24 08:31:03]u/y/yydh/workroom.c line 42: parse error
+[Sep 24 08:31:03]u/y/yydh/workroom.c line 50: Illegal LHS
+[Sep 24 08:31:03]u/y/yydh/workroom.c line 50: parse error
+[Sep 24 08:31:03]u/y/yydh/workroom.c line 66: Illegal LHS
+[Sep 24 08:31:03]u/y/yydh/workroom.c line 66: parse error
+[Sep 24 08:35:13]u/y/yydh/workroom.c line 42: Undefined variable 'marks'
+[Sep 24 08:35:13]u/y/yydh/workroom.c line 42: parse error
+[Sep 24 08:35:13]u/y/yydh/workroom.c line 50: Illegal LHS
+[Sep 24 08:35:13]u/y/yydh/workroom.c line 50: parse error
+[Sep 24 08:35:13]u/y/yydh/workroom.c line 66: Illegal LHS
+[Sep 24 08:35:13]u/y/yydh/workroom.c line 66: parse error
+[Sep 24 08:44:29]u/y/yydh/workroom.c line 42: Undefined variable 'marks'
+[Sep 24 08:44:29]u/y/yydh/workroom.c line 42: parse error
+[Sep 24 08:44:29]u/y/yydh/workroom.c line 50: Illegal LHS
+[Sep 24 08:44:29]u/y/yydh/workroom.c line 50: parse error
+[Sep 24 08:44:29]u/y/yydh/workroom.c line 66: Illegal LHS
+[Sep 24 08:44:29]u/y/yydh/workroom.c line 66: parse error
+[Sep 24 08:45:33]u/y/yydh/workroom.c line 44: No such inherited function ::init
+[Sep 24 08:45:33]u/y/yydh/workroom.c line 45: Redeclaration of function init.
+[Sep 24 08:45:33]u/y/yydh/workroom.c line 89: Invalid types to '*' ( string vs int )
+[Sep 24 08:45:33]u/y/yydh/workroom.c line 131: Undefined variable 'armor'
+[Sep 24 08:45:33]u/y/yydh/workroom.c line 137: Undefined variable 'zi'
+[Sep 24 08:45:33]u/y/yydh/workroom.c line 143: Undefined variable 'wan'
+[Sep 24 08:46:16]u/y/yydh/workroom.c line 44: Redeclaration of function init.
+[Sep 24 08:46:16]u/y/yydh/workroom.c line 88: Invalid types to '*' ( string vs int )
+[Sep 24 08:46:16]u/y/yydh/workroom.c line 130: Undefined variable 'armor'
+[Sep 24 08:46:16]u/y/yydh/workroom.c line 136: Undefined variable 'zi'
+[Sep 24 08:46:16]u/y/yydh/workroom.c line 142: Undefined variable 'wan'
+[Sep 24 08:46:16]u/y/yydh/workroom.c line 160: Undefined variable 'wang'
+[Sep 24 08:47:16]u/y/yydh/workroom.c line 44: No such inherited function ::init
+[Sep 24 08:47:16]u/y/yydh/workroom.c line 44: parse error
+[Sep 24 08:47:16]u/y/yydh/workroom.c line 49: Illegal LHS
+[Sep 24 08:47:16]u/y/yydh/workroom.c line 50: Undefined variable 'me'
+[Sep 24 08:47:16]u/y/yydh/workroom.c line 53: Type of returned value doesn't match function return type ( int vs void )
+[Sep 24 08:47:16]u/y/yydh/workroom.c line 57: Redeclaration of function init.
+[Sep 24 08:51:49]u/y/yydh/workroom.c line 44: No such inherited function ::init
+[Sep 24 08:51:49]u/y/yydh/workroom.c line 45: Redeclaration of function init.
+[Sep 24 08:51:49]u/y/yydh/workroom.c line 89: Invalid types to '*' ( string vs int )
+[Sep 24 08:51:49]u/y/yydh/workroom.c line 131: Undefined variable 'armor'
+[Sep 24 08:51:49]u/y/yydh/workroom.c line 137: Undefined variable 'zi'
+[Sep 24 08:51:49]u/y/yydh/workroom.c line 143: Undefined variable 'wan'
+[Sep 24 08:53:39]u/y/yydh/workroom.c line 82: Invalid types to '*' ( string vs int )
+[Sep 24 08:53:39]u/y/yydh/workroom.c line 124: Undefined variable 'armor'
+[Sep 24 08:53:39]u/y/yydh/workroom.c line 130: Undefined variable 'zi'
+[Sep 24 08:53:39]u/y/yydh/workroom.c line 136: Undefined variable 'wan'
+[Sep 24 08:53:39]u/y/yydh/workroom.c line 154: Undefined variable 'wang'
+[Sep 24 08:53:39]u/y/yydh/workroom.c line 160: Undefined variable 'casket'
+[Sep 24 08:58:21]u/y/yydh/workroom.c line 64: parse error
+[Sep 24 08:58:21]u/y/yydh/workroom.c line 84: parse error
+[Sep 24 08:58:21]u/y/yydh/workroom.c line 126: Undefined variable 'armor'
+[Sep 24 08:58:21]u/y/yydh/workroom.c line 132: Undefined variable 'zi'
+[Sep 24 08:58:21]u/y/yydh/workroom.c line 138: Undefined variable 'wan'
+[Sep 24 08:58:21]u/y/yydh/workroom.c line 156: Undefined variable 'wang'
+[Sep 24 09:03:20]u/y/yydh/workroom.c line 126: Undefined variable 'armor'
+[Sep 24 09:03:20]u/y/yydh/workroom.c line 132: Undefined variable 'zi'
+[Sep 24 09:03:20]u/y/yydh/workroom.c line 138: Undefined variable 'wan'
+[Sep 24 09:03:20]u/y/yydh/workroom.c line 156: Undefined variable 'wang'
+[Sep 24 09:03:20]u/y/yydh/workroom.c line 162: Undefined variable 'casket'
+[Sep 24 09:03:20]u/y/yydh/workroom.c line 182: parse error
+[Sep 24 09:06:08]u/y/yydh/workroom.c line 126: Undefined variable 'armor'
+[Sep 24 09:06:08]u/y/yydh/workroom.c line 132: Undefined variable 'zi'
+[Sep 24 09:06:08]u/y/yydh/workroom.c line 138: Undefined variable 'wan'
+[Sep 24 09:06:08]u/y/yydh/workroom.c line 156: Undefined variable 'wang'
+[Sep 24 09:06:08]u/y/yydh/workroom.c line 162: Undefined variable 'casket'
+[Sep 24 09:06:08]u/y/yydh/workroom.c line 182: parse error
+[Sep 24 09:10:18]u/y/yydh/workroom.c line 182: parse error
+[Sep 24 09:19:02]u/y/yydh/workroom.c line 182: parse error
+[Sep 24 09:21:50]u/y/yydh/workroom.c line 182: parse error
+[Sep 24 09:23:40]u/y/yydh/workroom.c line 182: parse error
+[Sep 24 09:29:29]u/y/yydh/workroom.c line 87: Undefined variable 'u'
+[Sep 24 09:29:29]u/y/yydh/workroom.c line 87: Bad argument 1 to '/': "string "
+[Sep 24 09:29:29]u/y/yydh/workroom.c line 87: Undefined variable 'y'
+[Sep 24 09:29:29]u/y/yydh/workroom.c line 87: Undefined variable 'yydh'
+[Sep 24 09:29:29]u/y/yydh/workroom.c line 96: Undefined variable 'workroom'
+[Sep 24 09:29:29]u/y/yydh/workroom.c line 96: parse error
+[Sep 24 09:33:07]u/y/yydh/workroom.c line 87: Undefined variable 'u'
+[Sep 24 09:33:07]u/y/yydh/workroom.c line 87: Bad argument 1 to '/': "string "
+[Sep 24 09:33:07]u/y/yydh/workroom.c line 87: Undefined variable 'y'
+[Sep 24 09:33:07]u/y/yydh/workroom.c line 87: Undefined variable 'yydh'
+[Sep 24 09:33:07]u/y/yydh/workroom.c line 96: Undefined variable 'workroom'
+[Sep 24 09:33:07]u/y/yydh/workroom.c line 96: parse error
+[Sep 24 09:34:09]u/y/yydh/workroom.c line 87: Undefined variable 'u'
+[Sep 24 09:34:09]u/y/yydh/workroom.c line 87: Bad argument 1 to '/': "string "
+[Sep 24 09:34:09]u/y/yydh/workroom.c line 87: Undefined variable 'y'
+[Sep 24 09:34:09]u/y/yydh/workroom.c line 87: Undefined variable 'yydh'
+[Sep 24 09:34:09]u/y/yydh/workroom.c line 96: Undefined variable 'workroom'
+[Sep 24 09:34:09]u/y/yydh/workroom.c line 96: parse error
+[Sep 24 09:34:57]u/y/yydh/workroom.c line 87: Undefined variable 'u'
+[Sep 24 09:34:57]u/y/yydh/workroom.c line 87: Bad argument 1 to '/': "string "
+[Sep 24 09:34:57]u/y/yydh/workroom.c line 87: Undefined variable 'y'
+[Sep 24 09:34:57]u/y/yydh/workroom.c line 87: Undefined variable 'yydh'
+[Sep 24 09:34:57]u/y/yydh/workroom.c line 96: Undefined variable 'workroom'
+[Sep 24 09:34:57]u/y/yydh/workroom.c line 96: parse error
+[Sep 24 09:35:21]u/y/yydh/workroom.c line 87: Undefined variable 'u'
+[Sep 24 09:35:21]u/y/yydh/workroom.c line 87: Bad argument 1 to '/': "string "
+[Sep 24 09:35:21]u/y/yydh/workroom.c line 87: Undefined variable 'y'
+[Sep 24 09:35:21]u/y/yydh/workroom.c line 87: Undefined variable 'yydh'
+[Sep 24 09:35:21]u/y/yydh/workroom.c line 96: Undefined variable 'workroom'
+[Sep 24 09:35:21]u/y/yydh/workroom.c line 96: parse error
+[Sep 24 09:42:31]u/y/yydh/workroom.c line 87: Undefined variable 'u'
+[Sep 24 09:42:31]u/y/yydh/workroom.c line 87: Bad argument 1 to '/': "string "
+[Sep 24 09:42:31]u/y/yydh/workroom.c line 87: Undefined variable 'y'
+[Sep 24 09:42:31]u/y/yydh/workroom.c line 87: Undefined variable 'yydh'
+[Sep 24 09:42:31]u/y/yydh/workroom.c line 96: Undefined variable 'workroom'
+[Sep 24 09:42:31]u/y/yydh/workroom.c line 96: parse error
+[Sep 24 09:43:29]u/y/yydh/workroom.c line 87: Undefined variable 'u'
+[Sep 24 09:43:29]u/y/yydh/workroom.c line 87: Bad argument 1 to '/': "string "
+[Sep 24 09:43:29]u/y/yydh/workroom.c line 87: Undefined variable 'y'
+[Sep 24 09:43:29]u/y/yydh/workroom.c line 87: Undefined variable 'yydh'
+[Sep 24 09:43:29]u/y/yydh/workroom.c line 96: Undefined variable 'workroom'
+[Sep 24 09:43:29]u/y/yydh/workroom.c line 96: parse error
+[Sep 24 09:50:57]u/y/yydh/workroomm.c line 89: Undefined variable 'u'
+[Sep 24 09:50:57]u/y/yydh/workroomm.c line 89: Bad argument 1 to '/': "string "
+[Sep 24 09:50:57]u/y/yydh/workroomm.c line 89: Undefined variable 'y'
+[Sep 24 09:50:57]u/y/yydh/workroomm.c line 89: Undefined variable 'yydh'
+[Sep 24 09:50:57]u/y/yydh/workroomm.c line 98: Undefined variable 'workroom'
+[Sep 24 09:50:57]u/y/yydh/workroomm.c line 98: parse error
+[Sep 24 09:51:47]u/y/yydh/workroomm.c line 89: Undefined variable 'u'
+[Sep 24 09:51:47]u/y/yydh/workroomm.c line 89: Bad argument 1 to '/': "string "
+[Sep 24 09:51:47]u/y/yydh/workroomm.c line 89: Undefined variable 'y'
+[Sep 24 09:51:47]u/y/yydh/workroomm.c line 89: Undefined variable 'yydh'
+[Sep 24 09:51:47]u/y/yydh/workroomm.c line 98: Undefined variable 'workroom'
+[Sep 24 09:51:47]u/y/yydh/workroomm.c line 98: parse error
+[Sep 24 09:53:17]u/y/yydh/workroomm.c line 89: Undefined variable 'u'
+[Sep 24 09:53:17]u/y/yydh/workroomm.c line 89: Bad argument 1 to '/': "string "
+[Sep 24 09:53:17]u/y/yydh/workroomm.c line 89: Undefined variable 'y'
+[Sep 24 09:53:17]u/y/yydh/workroomm.c line 89: Undefined variable 'yydh'
+[Sep 24 09:53:17]u/y/yydh/workroomm.c line 98: Undefined variable 'workroom'
+[Sep 24 09:53:17]u/y/yydh/workroomm.c line 98: parse error
+[Sep 24 09:56:33]u/y/yydh/workroomm.c line 89: Undefined variable 'u'
+[Sep 24 09:56:33]u/y/yydh/workroomm.c line 89: Bad argument 1 to '/': "string "
+[Sep 24 09:56:33]u/y/yydh/workroomm.c line 89: Undefined variable 'y'
+[Sep 24 09:56:33]u/y/yydh/workroomm.c line 89: Undefined variable 'yydh'
+[Sep 24 09:56:33]u/y/yydh/workroomm.c line 98: Undefined variable 'workroom'
+[Sep 24 09:56:33]u/y/yydh/workroomm.c line 98: parse error
+[Sep 24 09:58:01]u/y/yydh/workroomm.c line 89: Undefined variable 'u'
+[Sep 24 09:58:01]u/y/yydh/workroomm.c line 89: Bad argument 1 to '/': "string "
+[Sep 24 09:58:01]u/y/yydh/workroomm.c line 89: Undefined variable 'y'
+[Sep 24 09:58:01]u/y/yydh/workroomm.c line 89: Undefined variable 'yydh'
+[Sep 24 09:58:01]u/y/yydh/workroomm.c line 98: Undefined variable 'workroom'
+[Sep 24 09:58:01]u/y/yydh/workroomm.c line 98: parse error
+[Sep 24 10:00:27]u/y/yydh/workroomm.c line 195: parse error
+[Sep 24 16:17:58]u/y/yydh/obj/zhen.c line 2: parse error
+[Sep 24 16:19:48]u/y/yydh/obj/zhen.c line 2: parse error
+[Sep 24 16:21:56]u/y/yydh/workroom.c line 87: Undefined variable 'u'
+[Sep 24 16:21:56]u/y/yydh/workroom.c line 87: Bad argument 1 to '/': "string "
+[Sep 24 16:21:56]u/y/yydh/workroom.c line 87: Undefined variable 'y'
+[Sep 24 16:21:56]u/y/yydh/workroom.c line 87: Undefined variable 'yydh'
+[Sep 24 16:21:56]u/y/yydh/workroom.c line 96: Undefined variable 'workroom'
+[Sep 24 16:21:56]u/y/yydh/workroom.c line 96: parse error
+[Sep 24 16:22:38]u/y/yydh/obj/zhen.c line 5: parse error
+[Sep 24 20:04:06]u/y/yydh/workroom.c line 87: Undefined variable 'u'
+[Sep 24 20:04:06]u/y/yydh/workroom.c line 87: Bad argument 1 to '/': "string "
+[Sep 24 20:04:06]u/y/yydh/workroom.c line 87: Undefined variable 'y'
+[Sep 24 20:04:06]u/y/yydh/workroom.c line 87: Undefined variable 'yydh'
+[Sep 24 20:04:06]u/y/yydh/workroom.c line 96: Undefined variable 'workroom'
+[Sep 24 20:04:06]u/y/yydh/workroom.c line 96: parse error
+[Sep 25 03:00:07]u/y/yydh/workroom.c line 87: Undefined variable 'u'
+[Sep 25 03:00:07]u/y/yydh/workroom.c line 87: Bad argument 1 to '/': "string "
+[Sep 25 03:00:07]u/y/yydh/workroom.c line 87: Undefined variable 'y'
+[Sep 25 03:00:07]u/y/yydh/workroom.c line 87: Undefined variable 'yydh'
+[Sep 25 03:00:07]u/y/yydh/workroom.c line 96: Undefined variable 'workroom'
+[Sep 25 03:00:07]u/y/yydh/workroom.c line 96: parse error
+[Sep 25 12:58:25]u/y/yydh/workroom.c line 87: Undefined variable 'u'
+[Sep 25 12:58:25]u/y/yydh/workroom.c line 87: Bad argument 1 to '/': "string "
+[Sep 25 12:58:25]u/y/yydh/workroom.c line 87: Undefined variable 'y'
+[Sep 25 12:58:25]u/y/yydh/workroom.c line 87: Undefined variable 'yydh'
+[Sep 25 12:58:25]u/y/yydh/workroom.c line 96: Undefined variable 'workroom'
+[Sep 25 12:58:25]u/y/yydh/workroom.c line 96: parse error
+[Sep 25 13:08:25]u/y/yydh/workroom.c line 87: Undefined variable 'u'
+[Sep 25 13:08:25]u/y/yydh/workroom.c line 87: Bad argument 1 to '/': "string "
+[Sep 25 13:08:25]u/y/yydh/workroom.c line 87: Undefined variable 'y'
+[Sep 25 13:08:25]u/y/yydh/workroom.c line 87: Undefined variable 'yydh'
+[Sep 25 13:08:25]u/y/yydh/workroom.c line 96: Undefined variable 'workroom'
+[Sep 25 13:08:25]u/y/yydh/workroom.c line 96: parse error
+[Sep 27 22:17:36]u/y/yydh/obj/zhen.c line 23: Undefined variable 'more'
+[Sep 27 22:17:36]u/y/yydh/obj/zhen.c line 23: parse error
+[Sep 27 22:17:36]u/y/yydh/obj/zhen.c line 46: parse error
+[Sep 27 22:19:08]u/y/yydh/obj/zhen.c line 23: Undefined variable 'more'
+[Sep 27 22:19:08]u/y/yydh/obj/zhen.c line 23: parse error
+[Sep 27 22:19:08]u/y/yydh/obj/zhen.c line 46: parse error
+[Sep 27 22:19:08]u/y/yydh/obj/zhen.c line 23: Undefined variable 'more'
+[Sep 27 22:19:08]u/y/yydh/obj/zhen.c line 23: parse error
+[Sep 27 22:19:08]u/y/yydh/obj/zhen.c line 46: parse error
+[Sep 27 22:19:12]u/y/yydh/obj/zhen.c line 23: Undefined variable 'more'
+[Sep 27 22:19:12]u/y/yydh/obj/zhen.c line 23: parse error
+[Sep 27 22:19:12]u/y/yydh/obj/zhen.c line 46: parse error
+[Sep 27 22:19:14]u/y/yydh/obj/zhen.c line 23: Undefined variable 'more'
+[Sep 27 22:19:14]u/y/yydh/obj/zhen.c line 23: parse error
+[Sep 27 22:19:14]u/y/yydh/obj/zhen.c line 46: parse error
+[Sep 27 22:19:18]u/y/yydh/obj/zhen.c line 23: Undefined variable 'more'
+[Sep 27 22:19:18]u/y/yydh/obj/zhen.c line 23: parse error
+[Sep 27 22:19:18]u/y/yydh/obj/zhen.c line 46: parse error
+[Sep 27 22:19:42]u/y/yydh/obj/zhen.c line 23: Undefined variable 'more'
+[Sep 27 22:19:42]u/y/yydh/obj/zhen.c line 23: parse error
+[Sep 27 22:19:42]u/y/yydh/obj/zhen.c line 46: parse error
+[Sep 27 23:14:21]u/y/yydh/workroom.c line 87: Undefined variable 'u'
+[Sep 27 23:14:21]u/y/yydh/workroom.c line 87: Bad argument 1 to '/': "string "
+[Sep 27 23:14:21]u/y/yydh/workroom.c line 87: Undefined variable 'y'
+[Sep 27 23:14:21]u/y/yydh/workroom.c line 87: Undefined variable 'yydh'
+[Sep 27 23:14:21]u/y/yydh/workroom.c line 96: Undefined variable 'workroom'
+[Sep 27 23:14:21]u/y/yydh/workroom.c line 96: parse error
+[Sep 30 15:50:29]u/y/yydh/obj/book.c line 10: parse error
+[Sep 30 15:50:29]u/y/yydh/obj/book.c line 21: End of file in string
+[Oct  1 12:43:18]u/y/yydh/obj/daliwan.c line 42: Undefined variable 'combat_exp'
+[Oct  1 12:43:18]u/y/yydh/obj/daliwan.c line 43: Undefined variable 'potential'
+[Oct  1 12:43:18]u/y/yydh/obj/daliwan.c line 44: Undefined variable 'faith'
+[Oct  1 13:20:01]u/y/yydh/obj/daliwan.c line 42: Undefined variable 'combat_exp'
+[Oct  1 13:20:01]u/y/yydh/obj/daliwan.c line 43: Undefined variable 'potential'
+[Oct  1 13:20:01]u/y/yydh/obj/daliwan.c line 44: Undefined variable 'faith'
+[Oct  1 13:20:01]u/y/yydh/obj/daliwan.c line 56: End of file in string
+[Oct  1 13:20:01]u/y/yydh/obj/daliwan.c line 56: parse error
+[Oct  1 13:20:43]u/y/yydh/obj/daliwan.c line 56: End of file in string
+[Oct  1 13:20:43]u/y/yydh/obj/daliwan.c line 56: parse error
+[Oct  1 13:21:56]u/y/yydh/obj/daliwan.c line 55: End of file in string
+[Oct  1 13:21:56]u/y/yydh/obj/daliwan.c line 55: parse error
+[Oct  1 13:22:12]u/y/yydh/obj/daliwan.c line 55: End of file in string
+[Oct  1 13:22:12]u/y/yydh/obj/daliwan.c line 55: parse error
+[Oct  1 13:22:14]u/y/yydh/obj/daliwan.c line 55: End of file in string
+[Oct  1 13:22:14]u/y/yydh/obj/daliwan.c line 55: parse error
+[Oct  1 13:22:14]u/y/yydh/obj/daliwan.c line 55: End of file in string
+[Oct  1 13:22:14]u/y/yydh/obj/daliwan.c line 55: parse error
+[Oct  1 13:22:16]u/y/yydh/obj/daliwan.c line 55: End of file in string
+[Oct  1 13:22:16]u/y/yydh/obj/daliwan.c line 55: parse error
+[Oct  1 13:22:26]u/y/yydh/obj/daliwan.c line 55: End of file in string
+[Oct  1 13:22:26]u/y/yydh/obj/daliwan.c line 55: parse error
+[Oct  1 13:22:28]u/y/yydh/obj/daliwan.c line 55: End of file in string
+[Oct  1 13:22:28]u/y/yydh/obj/daliwan.c line 55: parse error
+[Oct  1 13:22:34]u/y/yydh/obj/daliwan.c line 55: End of file in string
+[Oct  1 13:22:34]u/y/yydh/obj/daliwan.c line 55: parse error
+[Oct  1 13:22:40]u/y/yydh/obj/daliwan.c line 55: End of file in string
+[Oct  1 13:22:40]u/y/yydh/obj/daliwan.c line 55: parse error
+[Oct  1 13:22:44]u/y/yydh/obj/daliwan.c line 55: End of file in string
+[Oct  1 13:22:44]u/y/yydh/obj/daliwan.c line 55: parse error
+[Oct  1 13:22:46]u/y/yydh/obj/daliwan.c line 55: End of file in string
+[Oct  1 13:22:46]u/y/yydh/obj/daliwan.c line 55: parse error
+[Oct  1 13:22:46]u/y/yydh/obj/daliwan.c line 55: End of file in string
+[Oct  1 13:22:46]u/y/yydh/obj/daliwan.c line 55: parse error
+[Oct  1 13:23:02]u/y/yydh/obj/daliwan.c line 55: End of file in string
+[Oct  1 13:23:02]u/y/yydh/obj/daliwan.c line 55: parse error
+[Oct  1 13:23:10]u/y/yydh/obj/daliwan.c line 55: End of file in string
+[Oct  1 13:23:10]u/y/yydh/obj/daliwan.c line 55: parse error
+[Oct  1 13:24:44]u/y/yydh/obj/daliwan.c line 55: End of file in string
+[Oct  1 13:24:44]u/y/yydh/obj/daliwan.c line 55: parse error
+[Oct  1 13:25:46]u/y/yydh/obj/daliwan.c line 55: End of file in string
+[Oct  1 13:25:46]u/y/yydh/obj/daliwan.c line 55: parse error
+[Oct  1 13:26:14]u/y/yydh/obj/daliwan.c line 55: End of file in string
+[Oct  1 13:26:14]u/y/yydh/obj/daliwan.c line 55: parse error
+[Oct  1 13:26:42]u/y/yydh/obj/daliwan.c line 55: End of file in string
+[Oct  1 13:26:42]u/y/yydh/obj/daliwan.c line 55: parse error
+[Oct  1 13:27:02]u/y/yydh/obj/daliwan.c line 55: End of file in string
+[Oct  1 13:27:02]u/y/yydh/obj/daliwan.c line 55: parse error
+[Oct  1 13:27:18]u/y/yydh/obj/daliwan.c line 55: End of file in string
+[Oct  1 13:27:18]u/y/yydh/obj/daliwan.c line 55: parse error
+[Oct  1 13:27:20]u/y/yydh/obj/daliwan.c line 55: End of file in string
+[Oct  1 13:27:20]u/y/yydh/obj/daliwan.c line 55: parse error
+[Oct  1 13:27:22]u/y/yydh/obj/daliwan.c line 55: End of file in string
+[Oct  1 13:27:22]u/y/yydh/obj/daliwan.c line 55: parse error
+[Oct  1 13:28:32]u/y/yydh/obj/daliwan.c line 55: End of file in string
+[Oct  1 13:28:32]u/y/yydh/obj/daliwan.c line 55: parse error
+[Oct  1 13:28:54]u/y/yydh/obj/daliwan.c line 55: End of file in string
+[Oct  1 13:28:54]u/y/yydh/obj/daliwan.c line 55: parse error
+[Oct  1 13:29:32]u/y/yydh/obj/daliwan.c line 55: End of file in string
+[Oct  1 13:29:32]u/y/yydh/obj/daliwan.c line 55: parse error
+[Oct  1 13:29:52]u/y/yydh/obj/daliwan.c line 54: End of file in string
+[Oct  1 13:29:52]u/y/yydh/obj/daliwan.c line 54: parse error
+[Oct  1 13:30:10]u/y/yydh/obj/daliwan.c line 54: End of file in string
+[Oct  1 13:30:10]u/y/yydh/obj/daliwan.c line 54: parse error
+[Oct  1 13:31:40]u/y/yydh/obj/daliwan.c line 53: End of file in string
+[Oct  1 13:31:40]u/y/yydh/obj/daliwan.c line 53: parse error
+[Oct  1 13:32:18]u/y/yydh/obj/daliwan.c line 54: End of file in string
+[Oct  1 13:32:18]u/y/yydh/obj/daliwan.c line 54: parse error
+[Oct  1 13:34:12]u/y/yydh/obj/daliwan.c line 54: End of file in string
+[Oct  1 13:34:12]u/y/yydh/obj/daliwan.c line 54: parse error
+[Oct  1 13:35:56]u/y/yydh/obj/daliwan.c line 55: End of file in string
+[Oct  1 13:35:56]u/y/yydh/obj/daliwan.c line 55: parse error
+[Oct  1 13:36:18]u/y/yydh/obj/daliwan.c line 55: End of file in string
+[Oct  1 13:36:18]u/y/yydh/obj/daliwan.c line 55: parse error
+[Oct  1 13:37:22]u/y/yydh/obj/daliwan.c line 55: End of file in string
+[Oct  1 13:37:22]u/y/yydh/obj/daliwan.c line 55: parse error
+[Oct  1 13:39:06]u/y/yydh/obj/daliwan.c line 49: Too few arguments to message
+[Oct  1 13:39:24]u/y/yydh/obj/daliwan.c line 49: Too few arguments to message
+[Oct  1 13:40:12]u/y/yydh/obj/daliwan.c line 49: Too few arguments to message
+[Oct  1 13:40:34]u/y/yydh/obj/daliwan.c line 49: Too few arguments to message
+[Oct  1 13:41:38]u/y/yydh/obj/daliwan.c line 49: Too few arguments to message
+[Oct  1 13:47:51]u/y/yydh/obj/daliwan.c line 49: Undefined function me
+[Oct  1 13:50:13]u/y/yydh/obj/daliwan.c line 49: Undefined function me
+[Oct  2 00:47:36]u/y/yydh/obj/daliwan.c line 60: parse error
+[Oct  2 00:49:12]u/y/yydh/obj/daliwan.c line 62: parse error
+[Oct  2 00:51:08]u/y/yydh/obj/daliwan.c line 2: parse error
+[Oct  2 00:51:34]u/y/yydh/obj/daliwan.c line 19: parse error
+[Oct  2 00:51:34]u/y/yydh/obj/daliwan.c line 32: parse error
+[Oct  2 00:56:28]u/y/yydh/obj/daliwan.c line 19: parse error
+[Oct  2 00:56:28]u/y/yydh/obj/daliwan.c line 35: Illegal LHS
+[Oct  2 00:56:28]u/y/yydh/obj/daliwan.c line 37: Undefined variable 'arg'
+[Oct  2 00:56:28]u/y/yydh/obj/daliwan.c line 39: Undefined variable 'me'
+[Oct  2 00:56:28]u/y/yydh/obj/daliwan.c line 59: Type of returned value doesn't match function return type ( int vs void )
+[Oct  2 00:56:28]u/y/yydh/obj/daliwan.c line 65: parse error
+[Oct  2 00:58:20]u/y/yydh/obj/daliwan.c line 61: parse error
+[Oct  2 00:58:22]u/y/yydh/obj/daliwan.c line 61: parse error
+[Oct  2 00:58:56]u/y/yydh/obj/daliwan.c line 61: parse error
+[Oct  2 00:59:00]u/y/yydh/obj/daliwan.c line 61: parse error
+[Oct  2 00:59:00]u/y/yydh/obj/daliwan.c line 61: parse error
+[Oct  2 00:59:00]u/y/yydh/obj/daliwan.c line 61: parse error
+[Oct  2 00:59:00]u/y/yydh/obj/daliwan.c line 61: parse error
+[Oct  2 00:59:00]u/y/yydh/obj/daliwan.c line 61: parse error
+[Oct  2 00:59:00]u/y/yydh/obj/daliwan.c line 61: parse error
+[Oct  2 00:59:00]u/y/yydh/obj/daliwan.c line 61: parse error
+[Oct  2 00:59:00]u/y/yydh/obj/daliwan.c line 61: parse error
+[Oct  2 00:59:00]u/y/yydh/obj/daliwan.c line 61: parse error
+[Oct  2 00:59:00]u/y/yydh/obj/daliwan.c line 61: parse error
+[Oct  2 00:59:00]u/y/yydh/obj/daliwan.c line 61: parse error
+[Oct  2 00:59:00]u/y/yydh/obj/daliwan.c line 61: parse error
+[Oct  2 00:59:02]u/y/yydh/obj/daliwan.c line 61: parse error
+[Oct  2 00:59:02]u/y/yydh/obj/daliwan.c line 61: parse error
+[Oct  2 00:59:04]u/y/yydh/obj/daliwan.c line 61: parse error
+[Oct  2 00:59:12]u/y/yydh/obj/daliwan.c line 61: parse error
+[Oct  2 00:59:12]u/y/yydh/obj/daliwan.c line 61: parse error
+[Oct  2 00:59:12]u/y/yydh/obj/daliwan.c line 61: parse error
+[Oct  2 00:59:12]u/y/yydh/obj/daliwan.c line 61: parse error
+[Oct  2 00:59:12]u/y/yydh/obj/daliwan.c line 61: parse error
+[Oct  2 00:59:12]u/y/yydh/obj/daliwan.c line 61: parse error
+[Oct  2 00:59:12]u/y/yydh/obj/daliwan.c line 61: parse error
+[Oct  2 00:59:12]u/y/yydh/obj/daliwan.c line 61: parse error
+[Oct  2 00:59:12]u/y/yydh/obj/daliwan.c line 61: parse error
+[Oct  2 00:59:12]u/y/yydh/obj/daliwan.c line 61: parse error
+[Oct  2 00:59:12]u/y/yydh/obj/daliwan.c line 61: parse error
+[Oct  2 00:59:12]u/y/yydh/obj/daliwan.c line 61: parse error
+[Oct  2 00:59:12]u/y/yydh/obj/daliwan.c line 61: parse error
+[Oct  2 00:59:12]u/y/yydh/obj/daliwan.c line 61: parse error
+[Oct  2 00:59:12]u/y/yydh/obj/daliwan.c line 61: parse error
+[Oct  2 00:59:12]u/y/yydh/obj/daliwan.c line 61: parse error
+[Oct  2 00:59:14]u/y/yydh/obj/daliwan.c line 61: parse error
+[Oct  2 00:59:14]u/y/yydh/obj/daliwan.c line 61: parse error
+[Oct  2 00:59:14]u/y/yydh/obj/daliwan.c line 61: parse error
+[Oct  2 00:59:14]u/y/yydh/obj/daliwan.c line 61: parse error
+[Oct  2 00:59:26]u/y/yydh/obj/daliwan.c line 61: parse error
+[Oct  2 01:01:38]u/y/yydh/obj/daliwan.c line 4: parse error
+[Oct  4 21:27:23]u/y/yydh/obj/bra.c line 2: Missing leading " or < in #include
+[Oct  4 21:27:23]u/y/yydh/obj/bra.c line 7: Undefined variable 'HIR'
+[Oct  4 21:27:23]u/y/yydh/obj/bra.c line 7: parse error
+[Oct  6 09:48:03]u/y/yydh/obj/book.c line 1: parse error
+[Oct 20 10:03:18]u/y/yydh/obj/goodwhip.c line 3: parse error
+[Oct 20 10:04:16]u/y/yydh/obj/goodwhip.c line 3: parse error
+[Oct 20 10:05:04]u/y/yydh/obj/goodwhip.c line 3: parse error
+[Oct 20 10:07:10]u/y/yydh/obj/goodwhip.c line 3: parse error
+[Oct 21 23:01:40]u/y/yydh/obj/zhen.c line 60: Illegal to redefine 'nomask' function "query_weight"
+[Oct 21 23:01:40]u/y/yydh/obj/zhen.c line 60: Illegal to redefine 'nomask' function "query_encumbrance"
+[Oct 21 23:01:40]u/y/yydh/obj/zhen.c line 60: Illegal to redefine 'nomask' function "query_max_encumbrance"
+[Oct 21 23:01:40]u/y/yydh/obj/zhen.c line 60: Illegal to redefine 'nomask' function "over_encumbranced"
+[Oct 21 23:01:40]u/y/yydh/obj/zhen.c line 60: Illegal to redefine 'nomask' function "_query"
+[Oct 21 23:01:40]u/y/yydh/obj/zhen.c line 60: Illegal to redefine 'nomask' function "_delete"
+[Dec  4 22:36:45]u/y/yydh/npc/meng.c line 2: parse error
+[Dec  4 22:37:19]u/y/yydh/npc/meng.c line 184: parse error
+[Dec 27 20:05:52]u/y/yydh/workroom.c line 31: parse error
+[Dec 27 20:06:00]u/y/yydh/workroom.c line 31: parse error
+[Dec 27 20:06:46]u/y/yydh/workroom.c line 30: parse error
+[Dec 27 21:23:54]u/y/yydh/obj/jieyao2.c line 2: parse error
+[Dec 27 21:24:46]u/y/yydh/obj/jieyao2.c line 2: parse error
+[Dec 27 21:26:01]u/y/yydh/obj/jieyao2.c line 2: parse error
+[Dec 27 21:26:37]u/y/yydh/obj/jieyao2.c line 2: parse error
+[Dec 27 21:29:35]u/y/yydh/obj/jieyao2.c line 5: parse error
+[Dec 27 21:29:53]u/y/yydh/obj/jieyao2.c line 5: parse error
+[Dec 27 21:30:31]u/y/yydh/obj/jieyao2.c line 5: parse error
+[Dec 27 21:37:51]u/y/yydh/obj/jieyao2.c line 34: parse error
+[Dec 27 21:40:29]u/y/yydh/obj/jieyao2.c line 18: parse error
+[Dec 27 21:45:47]u/y/yydh/obj/jieyao.c line 18: Undefined variable 'arg'
+[Dec 27 21:45:47]u/y/yydh/obj/jieyao.c line 20: Reserved type name unexpected.
+[Dec 27 21:45:47]u/y/yydh/obj/jieyao.c line 20: parse error
+[Dec 27 21:45:47]u/y/yydh/obj/jieyao.c line 22: Illegal LHS
+[Dec 27 21:45:47]u/y/yydh/obj/jieyao.c line 23: Undefined variable 'xiandan'
+[Dec 27 21:45:47]u/y/yydh/obj/jieyao.c line 23: Undefined variable 'me'
+[Dec 27 21:47:23]u/y/yydh/obj/jieyao2.c line 20: Reserved type name unexpected.
+[Dec 27 21:47:23]u/y/yydh/obj/jieyao2.c line 20: parse error
+[Dec 27 21:47:23]u/y/yydh/obj/jieyao2.c line 22: Illegal LHS
+[Dec 27 21:47:23]u/y/yydh/obj/jieyao2.c line 23: Undefined variable 'xiandan'
+[Dec 27 21:47:23]u/y/yydh/obj/jieyao2.c line 23: Undefined variable 'me'
+[Dec 27 21:47:23]u/y/yydh/obj/jieyao2.c line 24: Undefined variable 'bonze'
+[Dec 27 21:49:43]u/y/yydh/obj/jieyao2.c line 27: Undefined variable 'me'
+[Dec 27 21:49:43]u/y/yydh/obj/jieyao2.c line 31: Illegal to redeclare local name 'me'
+[Dec 27 21:51:43]u/y/yydh/obj/jieyao2.c line 7: Undefined function set_nathis_player
+[Dec 27 21:51:43]u/y/yydh/obj/jieyao2.c line 7: parse error
+[Dec 27 21:51:43]u/y/yydh/obj/jieyao2.c line 23: parse error
+[Dec 27 21:51:43]u/y/yydh/obj/jieyao2.c line 27: parse error
+[Dec 27 21:51:43]u/y/yydh/obj/jieyao2.c line 31: Illegal LHS
+[Dec 27 21:51:43]u/y/yydh/obj/jieyao2.c line 32: Undefined variable 'bonze'
+[Dec 27 21:53:11]u/y/yydh/obj/jieyao2.c line 7: Undefined function set_nathis_player
+[Dec 27 21:53:11]u/y/yydh/obj/jieyao2.c line 7: parse error
+[Dec 27 21:53:11]u/y/yydh/obj/jieyao2.c line 23: parse error
+[Dec 27 21:53:11]u/y/yydh/obj/jieyao2.c line 27: parse error
+[Dec 27 21:53:11]u/y/yydh/obj/jieyao2.c line 31: Illegal LHS
+[Dec 27 21:53:11]u/y/yydh/obj/jieyao2.c line 32: Undefined variable 'bonze'
+[Dec 27 21:54:29]u/y/yydh/obj/jieyao2.c line 7: Undefined function set_me
+[Dec 27 21:54:29]u/y/yydh/obj/jieyao2.c line 7: parse error
+[Dec 27 21:54:29]u/y/yydh/obj/jieyao2.c line 36: parse error
+[Feb  2 15:31:28]u/y/yydh/zhou.c line 37: parse error
+[Feb  9 12:35:16]u/y/yydh/npc/girl.c line 16: parse error
+[Feb  9 12:36:12]u/y/yydh/npc/girl.c line 16: parse error
+[Feb  9 12:40:52]u/y/yydh/npc/girl.c line 17: parse error
+[Feb  9 12:40:56]u/y/yydh/npc/girl.c line 17: parse error
+[Feb  9 12:41:18]u/y/yydh/npc/girl.c line 17: parse error
+[Feb  9 12:41:48]u/y/yydh/npc/girl.c line 17: parse error
+[Feb  9 12:42:20]u/y/yydh/npc/girl.c line 156: End of file in a comment
+[Feb  9 12:42:20]u/y/yydh/npc/girl.c line 156: parse error
+[Feb  9 12:42:54]u/y/yydh/npc/girl.c line 156: End of file in a comment
+[Feb  9 12:42:54]u/y/yydh/npc/girl.c line 156: parse error
+[Apr 29 15:18:18]/u/y/yydh/obj/armor.c line 21: syntax error, unexpected ':'
+  setup():
+                ^
+[Apr 29 15:28:21]/u/y/yydh/obj/armor.c line 21: syntax error, unexpected ':'
+  setup():
+                ^

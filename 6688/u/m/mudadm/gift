@@ -1,0 +1,23 @@
+一等奖：
+异果
+效果：所有天赋随机各加一点或0点，
+提高最大内力灵力法力若干，能加多少看你自己的运气了。
+最大内力8000为上限，增加点数最少100，
+最大法力4000为上限，增加点数最少50，
+最大灵力4000为上限，增加点数最少50，
+/d/tieflag/npc/obj/yiguo1.c
+
+二等奖：
+寒于宝衣一件，lighting armor，装备无内功心法要求。
+/d/xueshan/npc/obj/xxarmor.c
+
+三等奖：
+level 5魔法装备一件，任选。
+
+参与奖：
+风泉之剑，怒龙锦胄，霓虹羽衣，
+/class/fighter/dragon_armor.c
+/class/scholar/windspring.c
+/d/xueshan/npc/obj/fcloth.c
+三选一。
+

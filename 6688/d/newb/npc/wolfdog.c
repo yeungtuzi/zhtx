@@ -21,6 +21,14 @@ void create()
 
         set("limbs", ({ "头部", "身体", "前脚", "后脚", "尾巴" }) );
         set("verbs", ({ "bite", "claw" }) );
+        set("default_actions", ([
+                "action": "$N扑上来张嘴就咬$n的$l",
+                "damage": 20,
+                "damage_type": "抓伤",
+                "dodge": 50,
+                "attack": 50,
+                "parry": 10,
+        ]) );
 
         set("combat_exp", 20000);
 //      set("shen_type", -1);

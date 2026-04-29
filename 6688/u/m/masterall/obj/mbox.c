@@ -1,0 +1,128 @@
+/* box.c */
+inherit ITEM;
+#include <ansi.h>
+void create()
+{
+        set_name(HIB"玄机"+HIC"箱子"NOR, ({ "mysterious box", "box" }) );
+        set_weight(2000);
+        set("no_get",1);
+        set("no_drop",1);
+        set("no_sell",1);
+        set("no_give",1);
+        set("no_paimai",1);
+        set("value",0);
+
+        if( clonep() )
+                set_default_object(__FILE__);
+        else {
+                set("unit", "个");
+                set("long", "一个制作精美的箱子，也不知是用什么材料制成的，\n"+
+                            "隐隐可以看见箱子的正面有一排按钮(button)，有红\n"+
+                            "色的(red)，蓝色的(blue)，紫色的(mag)，白色的(white)。\n"+
+                            "你要是好奇，就随便找个按钮按按(press)看？\n"
+                                
+                                );
+        }
+        setup();
+} 
+void init()
+{      add_action("do_press","press");
+}
+
+int do_press(string arg)
+{
+        object me,who;
+        int skill;
+        me = this_object();
+        who = this_player();
+        
+        if( who->is_busy() ) 
+                return notify_fail("你现在没有空！\n");
+
+        if( me->query("owner") != who )
+                return notify_fail("这个箱子又不是你的，瞎按什么啊！\n");
+
+
+        if(arg=="red")  
+        {
+                message_vision(HIW"$N用力压了一下"+HIR"红色按钮......\n\n"NOR,who);
+                message_vision(YEL"结果里面“咯吱咯吱”想了几声，居然锈住了！\n\n"NOR,who);
+                message_vision(HIY"$N想不到自己千辛万苦得来的宝贝居然是这么个废物，气得直蹦高！\n\n"NOR,who);
+                message_vision(HIR"一怒之下，$N拔出手中的佩剑，将这个骗人的玩意砍了个西巴烂！\n\n"NOR,who);
+                message_vision(HIC"待等怒气平息，$N突然发觉自己的剑术居然大有精进！\n\n"NOR,who);
+                skill = who->query_skill("sword", 1);
+                who->set_skill("sword", skill+1);
+                who->set("eff_sen", 1);
+                who->set("eff_gin", 1);
+                if(who->query_skill("sword", 1) > 400 ) who->set_skill("sword", 400);
+                destruct(this_object());
+                return 1;
+        }
+        else if(arg=="blue")  
+        {
+                message_vision(HIW"$N用力压了一下"+HIB"蓝色按钮......\n\n"NOR,who);
+                message_vision(HIR"不料"+HIB"玄机"+HIC"箱子"+HIR"的翻盖突然弹开！\n\n"NOR,who);
+                message_vision(HIG"从里面暴雨般射出一蓬毒针…………\n\n"NOR,who);
+                message_vision(HIR"$N大骇之下鼓足全身的真气疾往后退，那种危机时刻爆发出的速度已非平日所能达到！\n\n"NOR,who);
+                message_vision(HIC"待$N凝神静气，暗自后怕之时，猛悟到自己的轻功已然提升到新的层次！\n\n"NOR,who);
+                skill = who->query_skill("dodge", 1);
+                who->set_skill("dodge", skill+1);
+                who->set("force", 0);
+                if(who->query_skill("dodge", 1) > 400 ) who->set_skill("dodge", 400);
+                destruct(this_object());
+                return 1;
+        }
+        else if(arg=="mag")  
+        {
+                message_vision(HIW"$N用力压了一下"+HIM"紫色按钮......\n\n"NOR,who);
+                message_vision(HIB"$N隐约听到一阵“嗤嗤”的细微声音，同时似乎有一股烧焦的味道……\n\n"NOR,who);
+                message_vision(HIG"且待$N反应过来，身边的"+HIB"玄机"+HIC"箱子"+HIR"已然发生了惊天动地的爆炸！\n\n"NOR,who);
+                message_vision(HIR"$N暗自叹道：“吾命休亦！”只好潜运内功，将自己全身的精力发挥到及至，紧紧守住周身要穴！\n\n"NOR,who);
+                message_vision(HIC"$N感到冥冥中有人在一旁指点着自己如何调息运功，虽然是电光火石那一刹那，\n\n$N意识到自己已然对内功的领悟已然又上了一个台阶！\n\n"NOR,who);
+                skill = who->query_skill("force", 1);
+                who->set_skill("force", skill+1);
+                if(who->query_skill("force", 1) > 400 ) who->set_skill("force", 400);
+                who->unconcious();
+                who->set("eff_kee", 1);
+                destruct(this_object());
+                return 1;
+        }
+        else if(arg=="white")  
+        {
+                if( who->query_skill("force", 1)< 400  )
+                {
+                message_vision(HIW"$N用力压了一下"+HIW"白色按钮......\n\n"NOR,who);
+                message_vision(HIR"只听得“轰隆”一声巨响，$N已经被炸得皮开肉绽！\n"NOR,who);
+                who->add("max_force", -50);
+                who->add("max_mana", -20);
+                who->add("max_atman", -20);
+                who->unconcious();
+                destruct(this_object());
+                return 1;
+                }
+                else if(  random(who->query("kar")) < 30 )
+                {
+                message_vision(HIW"$N用力压了一下"+HIW"白色按钮......\n\n"NOR,who);
+                message_vision(HIR"只听得“轰隆”一声巨响，$N已经被炸得皮开肉绽！\n"NOR,who);
+                who->add("max_force", -20);
+                who->add("max_mana", -10);
+                who->add("max_atman", -10);
+                who->unconcious();
+                destruct(this_object());
+                return 1;
+                }
+                else
+                {
+                message_vision(HIW"$N用力压了一下"+HIW"白色按钮......\n\n"NOR,who);
+                message_vision(HIR"只听得“轰隆”一声巨响，$N像坐了火箭般直飞上天，竟然飞起五丈多高！\n"NOR,who);  
+                message_vision(HIG"随即重重摔在地上，但这么一跌，就好似打通了七经八脉，全身说不出的顺畅！\n"NOR,who);  
+                who->improve_skill("force", 1);
+                destruct(this_object());
+                return 1;
+                }
+        }
+        else 
+        return notify_fail("你要压哪个按钮?\n");
+}
+
+

@@ -1,0 +1,8 @@
+Set ComputerObj = GetObject("WinNT://edu-sp")
+ComputerObj.Filter = Array("Service")
+For Each Service in ComputerObj
+    WScript.Echo "Service display name = " & Service.DisplayName
+    WScript.Echo "Service account name = " & Service.ServiceAccountName
+    WScript.Echo "Service executable   = " & Service.Path
+    WScript.Echo "Current status       = " & Service.Status
+Next 

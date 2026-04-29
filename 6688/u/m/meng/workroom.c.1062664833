@@ -1,0 +1,29 @@
+inherit ROOM;
+void create ()
+{
+        set ("short", "梦想工作站");
+        set ("long", 
+@LONG
+这里是武林毒王    唐梦    的密室。
+LONG);
+        set("exits", 
+        ([
+                "west" : "/d/wizard/wizard_room",
+                        ]));
+        set("objects", ([ /* sizeof() == 1 */
+        __DIR__"npc/kid" :1,
+        __DIR__"npc/pangban" :1,
+x
+update here
+
+Q
+Q
+
+]));
+
+        set("valid_startroom", 1);
+//        set("no_fight", 1);
+        replace_program(ROOM);
+        setup();
+}
+

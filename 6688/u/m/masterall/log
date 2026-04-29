@@ -1,0 +1,432 @@
+[Jul 15 10:32:09]u/m/masterall/yun.c line 6: parse error
+[Jul 15 10:33:07]u/m/masterall/yun.c line 7: parse error
+[Jul 15 10:33:37]u/m/masterall/yun.c line 6: parse error
+[Jul 15 10:34:01]u/m/masterall/yun.c line 6: parse error
+[Jul 15 10:34:47]u/m/masterall/dianxue.c line 8: parse error
+[Jul 15 10:41:19]u/m/masterall/yun.c line 27: parse error
+[Jul 15 10:41:19]u/m/masterall/yun.c line 42: $var illegal outside of function pointer.
+[Jul 15 10:41:19]u/m/masterall/yun.c line 42: $var illegal outside of function pointer.
+[Jul 15 10:41:19]u/m/masterall/yun.c line 47: $var illegal outside of function pointer.
+[Jul 15 10:41:19]u/m/masterall/yun.c line 47: $var illegal outside of function pointer.
+[Jul 15 10:41:19]u/m/masterall/yun.c line 47: $var illegal outside of function pointer.
+[Jul 15 10:43:41]u/m/masterall/yun.c line 39: Undefined variable 'HIY'
+[Jul 15 10:43:41]u/m/masterall/yun.c line 39: parse error
+[Aug 18 16:16:54]u/m/masterall/book-zixia.c line 20: parse error
+[Aug 20 14:56:38]u/m/masterall/banruok.c line 65: Undefined function perpare_skill
+[Aug 20 14:58:14]u/m/masterall/banruok.c line 65: Undefined function perpare_skill
+[Aug 21 20:20:37]u/m/masterall/sevenf.c line 171: Undefined variable 'wlshw'
+[Aug 22 15:15:36]u/m/masterall/xianglong.c line 180: Undefined variable 'TYPE_SELFATTACK'
+[Aug 23 15:46:20]u/m/masterall/coolsword.c line 12: Undefined function restore
+[Aug 23 15:46:20]u/m/masterall/coolsword.c line 12: Bad assignment ( int vs unknown ).
+[Aug 23 15:46:20]u/m/masterall/coolsword.c line 38: Undefined function save
+[Aug 25 11:12:11]u/m/masterall/money.c line 77: Wrong number of arguments to carry_object
+    Expected: 1  Got: 2
+[Aug 25 19:26:22]u/m/masterall/jingang.c line 6: parse error
+[Aug 25 19:29:26]u/m/masterall/fumo.c line 5: parse error
+[Aug 27 09:37:39]u/m/masterall/tieluohan.c line 76: Illegal to redefine 'nomask' function "query_weight"
+[Aug 27 09:37:39]u/m/masterall/tieluohan.c line 76: Illegal to redefine 'nomask' function "query_encumbrance"
+[Aug 27 09:37:39]u/m/masterall/tieluohan.c line 76: Illegal to redefine 'nomask' function "query_max_encumbrance"
+[Aug 27 09:37:39]u/m/masterall/tieluohan.c line 76: Illegal to redefine 'nomask' function "over_encumbranced"
+[Aug 27 09:37:39]u/m/masterall/tieluohan.c line 76: Illegal to redefine 'nomask' function "_query"
+[Aug 27 09:37:39]u/m/masterall/tieluohan.c line 76: Illegal to redefine 'nomask' function "_delete"
+[Aug 27 14:52:14]u/m/masterall/quan.c line 68: Undefined function ob
+[Aug 27 14:52:14]u/m/masterall/quan.c line 68: Type of returned value doesn't match function return type ( string vs int )
+[Aug 27 14:55:34]u/m/masterall/quan.c line 69: Undefined function killer
+[Aug 27 14:55:34]u/m/masterall/quan.c line 69: Undefined function ob
+[Aug 27 14:55:34]u/m/masterall/quan.c line 70: parse error
+[Aug 27 14:56:28]u/m/masterall/quan.c line 70: Undefined function ob
+[Aug 27 15:02:50]u/m/masterall/quan.c line 70: Undefined function ob
+[Aug 27 15:04:30]u/m/masterall/quan.c line 70: parse error
+[Aug 27 15:04:30]u/m/masterall/quan.c line 78: End of file in string
+[Aug 27 15:04:58]u/m/masterall/quan.c line 70: parse error
+[Aug 27 15:04:58]u/m/masterall/quan.c line 78: End of file in string
+[Aug 27 15:05:38]u/m/masterall/quan.c line 71: parse error
+[Aug 27 15:05:38]u/m/masterall/quan.c line 79: End of file in string
+[Aug 27 15:19:48]u/m/masterall/quan.c line 69: parse error
+[Aug 27 15:19:48]u/m/masterall/quan.c line 77: End of file in string
+[Aug 27 15:20:02]u/m/masterall/quan.c line 69: parse error
+[Aug 27 15:20:02]u/m/masterall/quan.c line 77: End of file in string
+[Sep  5 10:05:25]u/m/masterall/status.c line 119: Undefined variable 'conditions'
+[Sep  5 10:05:25]u/m/masterall/status.c line 119: Undefined variable 'i'
+[Sep  5 10:05:25]u/m/masterall/status.c line 121: parse error
+[Sep  5 10:05:25]u/m/masterall/status.c line 122: parse error
+[Sep  5 10:05:57]u/m/masterall/status.c line 119: Undefined variable 'conditions'
+[Sep  5 10:05:57]u/m/masterall/status.c line 119: Undefined variable 'i'
+[Sep  5 10:05:57]u/m/masterall/status.c line 122: parse error
+[Sep  5 10:06:43]u/m/masterall/status.c line 119: Undefined variable 'conditions'
+[Sep  5 10:06:43]u/m/masterall/status.c line 119: Undefined variable 'i'
+[Sep  5 10:06:43]u/m/masterall/status.c line 122: parse error
+[Sep  5 10:06:43]u/m/masterall/status.c line 157: End of file in string
+[Sep  5 10:09:03]u/m/masterall/status.c line 120: Undefined variable 'i'
+[Sep  5 10:09:03]u/m/masterall/status.c line 123: parse error
+[Sep  5 10:09:03]u/m/masterall/status.c line 158: End of file in string
+[Sep  5 10:11:19]u/m/masterall/status.c line 120: Undefined variable 'i'
+[Sep  5 10:11:19]u/m/masterall/status.c line 132: Bad left argument to '%' : "string "
+[Sep  5 10:11:19]u/m/masterall/status.c line 132: parse error
+[Sep  5 10:11:19]u/m/masterall/status.c line 158: End of file in string
+[Sep  5 10:14:07]u/m/masterall/status.c line 153: End of file in string
+[Sep  5 10:14:07]u/m/masterall/status.c line 153: parse error
+[Sep  5 10:14:39]u/m/masterall/status.c line 142: End of file in string
+[Sep  5 10:14:39]u/m/masterall/status.c line 142: parse error
+[Sep  5 10:15:13]u/m/masterall/status.c line 134: End of file in string
+[Sep  5 10:15:13]u/m/masterall/status.c line 134: parse error
+[Sep  5 10:15:51]u/m/masterall/status.c line 134: End of file in string
+[Sep  5 10:15:51]u/m/masterall/status.c line 134: parse error
+[Sep  5 10:16:13]u/m/masterall/status.c line 129: End of file in string
+[Sep  5 10:16:13]u/m/masterall/status.c line 129: parse error
+[Sep  5 10:16:31]u/m/masterall/status.c line 129: End of file in string
+[Sep  5 10:16:31]u/m/masterall/status.c line 129: parse error
+[Sep  5 10:16:45]u/m/masterall/status.c line 130: End of file in string
+[Sep  5 10:16:45]u/m/masterall/status.c line 130: parse error
+[Sep  5 10:19:37]u/m/masterall/status.c line 74: Illegal to redeclare local name 'arg'
+[Sep  5 10:19:37]u/m/masterall/status.c line 168: End of file in string
+[Sep  5 10:19:37]u/m/masterall/status.c line 168: parse error
+[Sep  5 10:20:51]u/m/masterall/status.c line 80: Undefined variable 'list'
+[Sep  5 10:20:51]u/m/masterall/status.c line 87: Bad assignment ( mapping vs mixed * ).
+[Sep  5 10:20:51]u/m/masterall/status.c line 164: End of file in string
+[Sep  5 10:20:51]u/m/masterall/status.c line 164: parse error
+[Sep 10 08:03:27]u/m/masterall/obj/quan.c line 73: parse error
+[Sep 10 14:23:57]u/m/masterall/obj/stone.c line 14: parse error
+[Sep 10 14:23:57]u/m/masterall/obj/stone.c line 37: Undefined variable 'shi'
+[Sep 10 14:23:57]u/m/masterall/obj/stone.c line 55: parse error
+[Sep 10 14:24:45]u/m/masterall/obj/stone.c line 56: parse error
+[Sep 10 14:25:13]u/m/masterall/obj/stone.c line 58: parse error
+[Sep 11 10:20:00]u/m/masterall/npc/jiliang.c line 71: Undefined variable 'ne'
+[Sep 11 10:20:00]u/m/masterall/npc/jiliang.c line 74: Redeclaration of function give_flybag.
+[Sep 11 10:20:12]u/m/masterall/npc/jiliang.c line 74: Redeclaration of function give_flybag.
+[Sep 12 09:44:52]u/m/masterall/dao.c line 33: Undefined variable 'vitim'
+[Sep 12 10:32:04]u/m/masterall/jian.c line 42: parse error
+[Sep 12 10:32:04]u/m/masterall/jian.c line 42: Illegal LHS
+[Sep 12 10:32:04]u/m/masterall/jian.c line 42: parse error
+[Sep 12 10:32:26]u/m/masterall/jian.c line 42: parse error
+[Sep 12 10:33:34]u/m/masterall/jian.c line 42: parse error
+[Sep 12 20:32:47]u/m/masterall/dianxue.c line 8: parse error
+[Sep 15 15:59:03]u/m/masterall/skills/cimu.c line 50: parse error
+[Sep 15 15:59:03]u/m/masterall/skills/cimu.c line 70: Illegal LHS
+[Sep 15 15:59:03]u/m/masterall/skills/cimu.c line 70: parse error
+[Sep 17 08:39:27]u/m/masterall/skills/po-jian.c line 4: Cannot #include dugu.h
+[Sep 17 08:39:27]u/m/masterall/skills/po-jian.c line 4: Cannot #include dugu.h
+[Sep 17 08:39:27]u/m/masterall/skills/po-jian.c line 44: Undefined function check_weapon
+[Sep 17 08:39:27]u/m/masterall/skills/po-jian.c line 124: Undefined function check_user
+[Sep 17 11:01:03]u/m/masterall/npc/odin_amulet.c line 1: parse error
+[Sep 17 11:01:37]u/m/masterall/npc/odin_amulet.c line 4: parse error
+[Sep 17 11:02:07]u/m/masterall/npc/odin_amulet.c line 4: parse error
+[Sep 17 11:02:15]u/m/masterall/npc/odin_amulet.c line 7: parse error
+[Sep 17 11:02:27]u/m/masterall/npc/odin_amulet.c line 7: parse error
+[Sep 17 11:03:32]u/m/masterall/npc/odin_amulet.c line 6: parse error
+[Sep 22 19:36:37]u/m/masterall/npc/money.c line 99: Illegal to redefine 'nomask' function "is_busy"
+[Sep 22 19:36:37]u/m/masterall/npc/money.c line 99: Illegal to redefine 'nomask' function "query_weight"
+[Sep 22 19:36:37]u/m/masterall/npc/money.c line 99: Illegal to redefine 'nomask' function "query_encumbrance"
+[Sep 22 19:36:37]u/m/masterall/npc/money.c line 99: Illegal to redefine 'nomask' function "query_max_encumbrance"
+[Sep 22 19:36:37]u/m/masterall/npc/money.c line 99: Illegal to redefine 'nomask' function "over_encumbranced"
+[Sep 22 19:36:37]u/m/masterall/npc/money.c line 99: Illegal to redefine 'nomask' function "query_busy"
+[Sep 22 19:37:07]u/m/masterall/npc/money.c line 99: Illegal to redefine 'nomask' function "is_busy"
+[Sep 22 19:37:07]u/m/masterall/npc/money.c line 99: Illegal to redefine 'nomask' function "query_weight"
+[Sep 22 19:37:07]u/m/masterall/npc/money.c line 99: Illegal to redefine 'nomask' function "query_encumbrance"
+[Sep 22 19:37:07]u/m/masterall/npc/money.c line 99: Illegal to redefine 'nomask' function "query_max_encumbrance"
+[Sep 22 19:37:07]u/m/masterall/npc/money.c line 99: Illegal to redefine 'nomask' function "over_encumbranced"
+[Sep 22 19:37:07]u/m/masterall/npc/money.c line 99: Illegal to redefine 'nomask' function "query_busy"
+[Sep 27 15:56:21]u/m/masterall/workroom.c line 28: Undefined variable 'dir'
+[Sep 29 15:34:27]u/m/masterall/npc/wokou.c line 50: parse error
+[Sep 29 15:34:27]u/m/masterall/npc/wokou.c line 81: Illegal LHS
+[Sep 29 15:34:27]u/m/masterall/npc/wokou.c line 81: parse error
+[Sep 29 15:34:51]u/m/masterall/npc/wokou.c line 50: parse error
+[Sep 29 15:34:51]u/m/masterall/npc/wokou.c line 80: Illegal LHS
+[Sep 29 15:34:51]u/m/masterall/npc/wokou.c line 80: parse error
+[Sep 29 15:35:15]u/m/masterall/npc/wokou.c line 54: parse error
+[Sep 29 15:35:15]u/m/masterall/npc/wokou.c line 128: $var illegal outside of function pointer.
+[Sep 29 15:35:15]u/m/masterall/npc/wokou.c line 128: $var illegal outside of function pointer.
+[Sep 29 15:35:15]u/m/masterall/npc/wokou.c line 128: $var illegal outside of function pointer.
+[Sep 29 15:35:15]u/m/masterall/npc/wokou.c line 128: $var illegal outside of function pointer.
+[Sep 29 15:35:15]u/m/masterall/npc/wokou.c line 128: $var illegal outside of function pointer.
+[Sep 29 15:35:37]u/m/masterall/npc/wokou.c line 84: Redeclaration of function init.
+[Sep 29 15:35:37]u/m/masterall/npc/wokou.c line 129: Undefined variable 'me'
+[Sep 29 15:35:59]u/m/masterall/npc/wokou.c line 84: Redeclaration of function init.
+[Sep 29 15:35:59]u/m/masterall/npc/wokou.c line 129: Undefined variable 'me'
+[Sep 29 15:37:29]u/m/masterall/npc/wokou.c line 126: Undefined variable 'me'
+[Sep 29 16:22:19]u/m/masterall/npc/libai.c line 125: Undefined variable 'ob'
+[Sep 29 16:22:55]u/m/masterall/npc/libai.c line 125: Undefined variable 'ob'
+[Sep 29 16:45:15]u/m/masterall/npc/libai.c line 40: parse error
+[Sep 29 16:45:15]u/m/masterall/npc/libai.c line 83: Undefined variable 'set'
+[Sep 29 16:45:15]u/m/masterall/npc/libai.c line 83: parse error
+[Sep 29 16:45:15]u/m/masterall/npc/libai.c line 142: Undefined variable 'set'
+[Sep 29 16:45:15]u/m/masterall/npc/libai.c line 142: parse error
+[Sep 29 16:45:31]u/m/masterall/npc/libai.c line 83: Undefined variable 'set'
+[Sep 29 16:45:31]u/m/masterall/npc/libai.c line 83: parse error
+[Sep 29 16:45:31]u/m/masterall/npc/libai.c line 142: Undefined variable 'set'
+[Sep 29 16:45:31]u/m/masterall/npc/libai.c line 142: parse error
+[Sep 29 16:46:45]u/m/masterall/npc/libai.c line 83: Undefined variable 'add'
+[Sep 29 16:46:45]u/m/masterall/npc/libai.c line 83: parse error
+[Sep 29 16:46:45]u/m/masterall/npc/libai.c line 142: Undefined variable 'add'
+[Sep 29 16:46:45]u/m/masterall/npc/libai.c line 142: parse error
+[Oct  9 19:06:38]u/m/masterall/npc/gelun.c line 1: parse error
+[Oct  9 19:06:50]u/m/masterall/npc/gelun.c line 149: Illegal lvalue
+[Oct  9 19:07:46]u/m/masterall/npc/gelun.c line 149: Reserved type name unexpected.
+[Oct  9 19:07:46]u/m/masterall/npc/gelun.c line 149: Missing type for argument
+[Oct  9 19:07:46]u/m/masterall/npc/gelun.c line 149: parse error
+[Oct  9 19:07:46]u/m/masterall/npc/gelun.c line 149: Illegal LHS
+[Oct 14 13:08:29]u/m/masterall/obj/goldencloth.c line 33: parse error
+[Oct 14 13:08:29]u/m/masterall/obj/goldencloth.c line 43: Illegal LHS
+[Oct 14 13:08:29]u/m/masterall/obj/goldencloth.c line 43: parse error
+[Oct 14 13:08:29]u/m/masterall/obj/goldencloth.c line 44: Illegal LHS
+[Oct 14 13:08:29]u/m/masterall/obj/goldencloth.c line 44: parse error
+[Oct 14 13:08:29]u/m/masterall/obj/goldencloth.c line 63: Illegal LHS
+[Oct 14 13:09:15]u/m/masterall/obj/goldencloth.c line 72: parse error
+[Oct 14 13:09:15]u/m/masterall/obj/goldencloth.c line 72: $var illegal outside of function pointer.
+[Oct 14 13:09:15]u/m/masterall/obj/goldencloth.c line 72: $var illegal outside of function pointer.
+[Oct 14 13:09:15]u/m/masterall/obj/goldencloth.c line 88: End of file in string
+[Oct 14 13:25:13]u/m/masterall/obj/goldencloth.c line 33: parse error
+[Oct 14 13:25:13]u/m/masterall/obj/goldencloth.c line 79: $var illegal outside of function pointer.
+[Oct 14 13:25:13]u/m/masterall/obj/goldencloth.c line 79: $var illegal outside of function pointer.
+[Oct 14 13:25:13]u/m/masterall/obj/goldencloth.c line 79: $var illegal outside of function pointer.
+[Oct 14 13:25:13]u/m/masterall/obj/goldencloth.c line 95: End of file in string
+[Oct 14 13:25:35]u/m/masterall/obj/goldencloth.c line 33: parse error
+[Oct 14 13:25:35]u/m/masterall/obj/goldencloth.c line 79: $var illegal outside of function pointer.
+[Oct 14 13:25:35]u/m/masterall/obj/goldencloth.c line 79: $var illegal outside of function pointer.
+[Oct 14 13:25:35]u/m/masterall/obj/goldencloth.c line 79: $var illegal outside of function pointer.
+[Oct 14 13:25:35]u/m/masterall/obj/goldencloth.c line 95: End of file in string
+[Nov  3 20:08:04]u/m/masterall/obj/xsword.c line 51: Undefined variable 'owner'
+[Nov  3 20:09:18]u/m/masterall/obj/xsword.c line 51: Undefined variable 'owner'
+[Nov  3 20:33:35]u/m/masterall/obj/xsword.c line 69: Undefined variable 'owner'
+[Nov  4 14:37:29]u/m/masterall/skills/combatd.c line 304: Reserved type name unexpected.
+[Nov  4 14:37:29]u/m/masterall/skills/combatd.c line 304: parse error
+[Nov  4 14:37:29]u/m/masterall/skills/combatd.c line 304: Undefined variable 'ob'
+[Nov  4 14:37:29]u/m/masterall/skills/combatd.c line 304: Illegal LHS
+[Nov  4 14:37:29]u/m/masterall/skills/combatd.c line 305: Undefined variable 'tmp'
+[Nov  4 14:37:29]u/m/masterall/skills/combatd.c line 306: Undefined variable 'level'
+[Nov  4 14:39:33]u/m/masterall/skills/combatd.c line 315: Reserved type name unexpected.
+[Nov  4 14:39:33]u/m/masterall/skills/combatd.c line 315: parse error
+[Nov  4 14:39:33]u/m/masterall/skills/combatd.c line 315: Undefined variable 'ob'
+[Nov  4 14:39:33]u/m/masterall/skills/combatd.c line 315: Illegal LHS
+[Nov  4 14:39:33]u/m/masterall/skills/combatd.c line 316: Undefined variable 'tmp'
+[Nov  4 14:39:33]u/m/masterall/skills/combatd.c line 318: Undefined variable 'level'
+[Nov  4 14:45:08]u/m/masterall/skills/combatd.c line 282: Undefined variable 'maxdefens'
+[Nov  4 14:45:08]u/m/masterall/skills/combatd.c line 323: Undefined variable 'defense'
+[Nov  4 14:45:24]u/m/masterall/skills/combatd.c line 323: Undefined variable 'defense'
+[Nov  6 12:18:48]u/m/masterall/obj/dagger.c line 26: Undefined function init_dagger
+[Nov  6 12:21:24]u/m/masterall/obj/dagger.c line 26: Undefined function init_dagger
+[Nov  6 12:40:28]u/m/masterall/obj/baojia.c line 3: Cannot #include /ldg/std/adv_ARMOR.h
+[Nov  6 12:40:28]u/m/masterall/obj/baojia.c line 5: parse error
+[Nov  6 12:40:58]u/m/masterall/obj/baojia.c line 25: Undefined function init_dagger
+[Nov  6 17:12:15]u/m/masterall/npc/work.c line 61: Undefined variable 'HIM'
+[Nov  6 17:12:15]u/m/masterall/npc/work.c line 61: parse error
+[Nov  6 17:12:15]u/m/masterall/npc/work.c line 65: Illegal LHS
+[Nov  6 17:12:15]u/m/masterall/npc/work.c line 65: parse error
+[Nov  6 17:12:15]u/m/masterall/npc/work.c line 71: Illegal LHS
+[Nov  6 17:12:15]u/m/masterall/npc/work.c line 71: parse error
+[Nov  6 20:29:39]u/m/masterall/npc/feng.c line 76: parse error
+[Nov  6 20:29:39]u/m/masterall/npc/feng.c line 81: Illegal LHS
+[Nov  6 20:29:39]u/m/masterall/npc/feng.c line 84: parse error
+[Nov  7 15:05:35]u/m/masterall/npc/mp1.c line 116: parse error
+[Nov  7 15:07:25]u/m/masterall/npc/mp1.c line 73: parse error
+[Nov  7 15:14:39]u/m/masterall/npc/mp1.c line 121: Type of returned value doesn't match function return type ( int vs void )
+[Nov  7 15:21:43]u/m/masterall/npc/mp1.c line 126: Type of returned value doesn't match function return type ( int vs void )
+[Nov  7 15:29:57]u/m/masterall/npc/mp1.c line 128: Type of returned value doesn't match function return type ( int vs void )
+[Nov  7 15:29:57]u/m/masterall/npc/mp1.c line 136: Reserved type name unexpected.
+[Nov  7 15:29:57]u/m/masterall/npc/mp1.c line 136: parse error
+[Nov  7 15:29:57]u/m/masterall/npc/mp1.c line 136: Illegal LHS
+[Nov  7 15:29:57]u/m/masterall/npc/mp1.c line 137: Reserved type name unexpected.
+[Nov  7 15:29:57]u/m/masterall/npc/mp1.c line 137: parse error
+[Nov  7 15:32:11]u/m/masterall/npc/mp1.c line 136: Reserved type name unexpected.
+[Nov  7 15:32:11]u/m/masterall/npc/mp1.c line 136: parse error
+[Nov  7 15:32:11]u/m/masterall/npc/mp1.c line 136: Illegal LHS
+[Nov  7 15:32:11]u/m/masterall/npc/mp1.c line 137: Reserved type name unexpected.
+[Nov  7 15:32:11]u/m/masterall/npc/mp1.c line 137: parse error
+[Nov  7 15:32:11]u/m/masterall/npc/mp1.c line 151: Illegal LHS
+[Nov  7 15:39:07]u/m/masterall/npc/mp1.c line 156: Undefined variable 'ob'
+[Nov  7 15:46:08]u/m/masterall/npc/cave6.c line 63: parse error
+[Nov  9 23:51:45]u/m/masterall/npc/libai.c line 118: Undefined variable 'i'
+[Nov  9 23:51:45]u/m/masterall/npc/libai.c line 125: parse error
+[Nov  9 23:51:59]u/m/masterall/npc/libai.c line 126: parse error
+[Nov 10 15:23:05]u/m/masterall/obj/zi-wei.c line 74: Undefined variable 'TYPE_QUICK'
+[Nov 10 15:25:27]u/m/masterall/obj/zi-wei.c line 68: parse error
+[Nov 10 15:42:00]u/m/masterall/obj/zi-wei.c line 58: Undefined variable 'target'
+[Nov 10 15:42:00]u/m/masterall/obj/zi-wei.c line 64: Undefined variable 'ob'
+[Nov 10 15:42:00]u/m/masterall/obj/zi-wei.c line 64: parse error
+[Nov 10 15:42:00]u/m/masterall/obj/zi-wei.c line 85: End of file in string
+[Nov 10 15:46:12]u/m/masterall/obj/zi-wei.c line 64: parse error
+[Nov 10 15:46:12]u/m/masterall/obj/zi-wei.c line 85: End of file in string
+[Nov 10 15:47:20]u/m/masterall/obj/zi-wei.c line 65: break statement outside loop
+[Nov 10 16:03:37]u/m/masterall/skills/dugu-jiujian.c line 161: parse error
+[Nov 10 16:03:37]u/m/masterall/skills/dugu-jiujian.c line 166: Illegal LHS
+[Nov 10 16:03:37]u/m/masterall/skills/dugu-jiujian.c line 174: parse error
+[Nov 11 00:35:17]u/m/masterall/npc/pangban.c line 73: parse error
+[Nov 11 00:36:39]u/m/masterall/npc/pangban.c line 73: parse error
+[Nov 16 00:55:18]u/m/masterall/npc/riben.c line 140: parse error
+[Nov 16 23:41:03]u/m/masterall/npc/riben.c line 93: parse error
+[Nov 16 23:41:03]u/m/masterall/npc/riben.c line 124: $var illegal outside of function pointer.
+[Nov 16 23:41:03]u/m/masterall/npc/riben.c line 125: $var illegal outside of function pointer.
+[Nov 16 23:41:03]u/m/masterall/npc/riben.c line 125: $var illegal outside of function pointer.
+[Nov 16 23:41:03]u/m/masterall/npc/riben.c line 125: $var illegal outside of function pointer.
+[Nov 16 23:41:03]u/m/masterall/npc/riben.c line 132: $var illegal outside of function pointer.
+[Nov 16 23:52:49]u/m/masterall/npc/riben.c line 133: parse error
+[Nov 24 17:07:21]u/m/masterall/obj/wan.c line 64: Redeclaration of function init.
+[Nov 25 16:09:43]u/m/masterall/npc/riben.c line 160: Illegal to inherit after defining global variables.
+[Nov 25 16:09:43]u/m/masterall/npc/riben.c line 160: Illegal to redefine 'nomask' function "is_busy"
+[Nov 25 16:09:43]u/m/masterall/npc/riben.c line 160: Illegal to redefine 'nomask' function "query_weight"
+[Nov 25 16:09:43]u/m/masterall/npc/riben.c line 160: Illegal to redefine 'nomask' function "query_encumbrance"
+[Nov 25 16:09:43]u/m/masterall/npc/riben.c line 160: Illegal to redefine 'nomask' function "query_max_encumbrance"
+[Nov 25 16:09:43]u/m/masterall/npc/riben.c line 160: Illegal to redefine 'nomask' function "over_encumbranced"
+[Nov 25 16:10:13]u/m/masterall/npc/riben.c line 160: Illegal to inherit after defining global variables.
+[Nov 25 16:10:13]u/m/masterall/npc/riben.c line 160: Illegal to redefine 'nomask' function "is_busy"
+[Nov 25 16:10:13]u/m/masterall/npc/riben.c line 160: Illegal to redefine 'nomask' function "query_weight"
+[Nov 25 16:10:13]u/m/masterall/npc/riben.c line 160: Illegal to redefine 'nomask' function "query_encumbrance"
+[Nov 25 16:10:13]u/m/masterall/npc/riben.c line 160: Illegal to redefine 'nomask' function "query_max_encumbrance"
+[Nov 25 16:10:13]u/m/masterall/npc/riben.c line 160: Illegal to redefine 'nomask' function "over_encumbranced"
+[Nov 25 16:10:33]u/m/masterall/npc/riben.c line 1: parse error
+[Nov 25 19:13:32]u/m/masterall/obj/giftbox.c line 45: parse error
+[Nov 25 20:14:45]u/m/masterall/npc/jiliang.c line 68: parse error
+[Nov 25 20:14:45]u/m/masterall/npc/jiliang.c line 75: Illegal LHS
+[Nov 25 20:15:17]u/m/masterall/npc/jiliang.c line 68: parse error
+[Nov 25 20:15:17]u/m/masterall/npc/jiliang.c line 75: Illegal LHS
+[Nov 25 20:15:47]u/m/masterall/npc/jiliang.c line 68: parse error
+[Nov 25 20:15:47]u/m/masterall/npc/jiliang.c line 77: Illegal LHS
+[Nov 28 22:39:46]u/m/masterall/npc/li.c line 176: Type of returned value doesn't match function return type ( string vs int )
+[Nov 28 22:39:46]u/m/masterall/npc/li.c line 259: Redeclaration of function accept_object.
+[Dec  2 11:01:29]u/m/masterall/obj/zt.c line 2: parse error
+[Dec  2 11:01:37]u/m/masterall/obj/zt.c line 5: parse error
+[Dec 19 19:00:09]u/m/masterall/gift/tree.c line 11: Undefined variable 'HIG'
+[Dec 19 19:00:09]u/m/masterall/gift/tree.c line 11: parse error
+[Dec 19 19:00:09]u/m/masterall/gift/tree.c line 33: Illegal LHS
+[Dec 19 19:00:09]u/m/masterall/gift/tree.c line 33: parse error
+[Dec 19 19:00:09]u/m/masterall/gift/tree.c line 35: Undefined variable 'me'
+[Dec 19 19:00:09]u/m/masterall/gift/tree.c line 35: Illegal LHS
+[Dec 19 19:00:55]u/m/masterall/gift/tree.c line 44: parse error
+[Dec 19 19:00:55]u/m/masterall/gift/tree.c line 76: Illegal LHS
+[Dec 19 19:00:55]u/m/masterall/gift/tree.c line 77: Reserved type name unexpected.
+[Dec 19 19:00:55]u/m/masterall/gift/tree.c line 77: parse error
+[Dec 19 19:00:55]u/m/masterall/gift/tree.c line 77: Illegal LHS
+[Dec 19 19:00:55]u/m/masterall/gift/tree.c line 79: Undefined variable 'arg'
+[Dec 19 19:17:38]u/m/masterall/gift/tree1.c line 7: Undefined variable 'YEL'
+[Dec 19 19:17:38]u/m/masterall/gift/tree1.c line 7: parse error
+[Dec 19 19:17:38]u/m/masterall/gift/tree1.c line 32: Illegal LHS
+[Dec 19 19:17:38]u/m/masterall/gift/tree1.c line 32: parse error
+[Dec 19 19:17:38]u/m/masterall/gift/tree1.c line 33: Illegal LHS
+[Dec 19 19:17:38]u/m/masterall/gift/tree1.c line 33: parse error
+[Jan 27 15:22:47]u/m/masterall/obj/mbox.c line 112: parse error
+[Apr 29 13:45:09]/u/m/masterall/fangyeyu.c line 77: Warning: Function init inherited from '/std/char/doomnpc.c' does not match current function in return type ( void vs int )
+  int init()
+            ^
+[Apr 29 13:45:09]/u/m/masterall/fangyeyu.c line 83: Warning: Function killed_enemy inherited from '/std/char/doomnpc.c' does not match current function in return type ( void vs int )
+  int killed_enemy(object ob)
+                             ^
+[Apr 29 15:18:09]/u/m/masterall/fumo.c line 5: syntax error, unexpected L_INHERIT, expecting L_STRING or '+' or ';'
+  inherit F_SSERVE
+         ^
+[Apr 29 15:18:09]/u/m/masterall/dianxue.c line 8: syntax error, unexpected L_BASIC_TYPE, expecting L_STRING or '+' or ';'
+  int perform(object me, object target
+     ^
+[Apr 29 15:18:10]/u/m/masterall/jingang.c line 6: syntax error, unexpected L_BASIC_TYPE, expecting L_STRING or '+' or ';'
+  void remove_effect(object me, int amount
+      ^
+[Apr 29 15:18:12]/u/m/masterall/skills/po-jian.c line 4: Cannot #include dugu.h
+  inherit F_DBASE
+  ^
+[Apr 29 15:18:12]/u/m/masterall/skills/po-jian.c line 4: Cannot #include dugu.h
+  inherit F_DBASE
+  ^
+[Apr 29 15:18:12]/u/m/masterall/skills/po-jian.c line 44: Undefined function check_weapon
+  if(!check_weapon(target,"sword"))
+                                          ^
+[Apr 29 15:18:12]/u/m/masterall/skills/po-jian.c line 124: Undefined function check_user
+  if(check_user(me,target)
+                                          ^
+[Apr 29 15:18:12]/u/m/masterall/skills/po-jian.c line 127: Undefined function check_weapon
+  if(check_weapon(target,"sword")
+                                                         ^
+[Apr 29 15:18:12]/u/m/masterall/skills/po-jian.c line 149: Undefined function check_user
+  if(check_user(me,target)
+                                          ^
+[Apr 29 15:18:12]/u/m/masterall/skills/po-jian.c line 152: Undefined function check_weapon
+  if(check_weapon(target,"sword")
+                                                         ^
+[Apr 29 15:18:12]/u/m/masterall/skills/dugu-jiujian.c line 161: syntax error, unexpected L_LAND
+  if(  (weapon = me->query_temp("weapon")) && weapon->query("id") == "ziwei ruanjian" ) && random(skill)> 200
+                                                                                                  ^
+[Apr 29 15:18:12]/u/m/masterall/skills/dugu-jiujian.c line 166: Illegal LHS
+  victim = me->select_opponent();
+                        if( objectp(victim) )
+                                                         ^
+[Apr 29 15:18:12]/u/m/masterall/skills/dugu-jiujian.c line 174: syntax error, unexpected L_FOR
+  for(i = sizeof(action); i > 0; i--
+             ^
+[Apr 29 15:18:13]/u/m/masterall/npc/work.c line 61: syntax error, unexpected L_STRING
+  message_vision(HIM"$N辛苦的工作终于结束了，可人也累的要死。\n"NOR, me)
+                                                                                           ^
+[Apr 29 15:18:13]/u/m/masterall/npc/work.c line 65: syntax error, unexpected ';'
+  my_kar = me->query("kar");
+                                    ^
+[Apr 29 15:18:13]/u/m/masterall/npc/work.c line 71: syntax error, unexpected ';'
+  skill = me->query("dodge", 1);
+                                         ^
+[Apr 29 15:18:13]/u/m/masterall/npc/work.c line 92: syntax error, unexpected ';'
+  ob = new("/obj/""money/silver");
+        ob->move(me)
+                                          ^
+[Apr 29 15:18:13]/u/m/masterall/npc/work.c line 103: syntax error, unexpected ';'
+  me=this_player();
+        if(random(31)>25)
+                           ^
+[Apr 29 15:18:13]/u/m/masterall/npc/work.c line 117: Illegal LHS
+  if(objectp(ob=present("daxiong", this_object()))
+                                                          ^
+[Apr 29 15:28:12]/u/m/masterall/fumo.c line 5: syntax error, unexpected L_INHERIT, expecting L_STRING or '+' or ';'
+  inherit F_SSERVE
+         ^
+[Apr 29 15:28:12]/u/m/masterall/dianxue.c line 8: syntax error, unexpected L_BASIC_TYPE, expecting L_STRING or '+' or ';'
+  int perform(object me, object target
+     ^
+[Apr 29 15:28:12]/u/m/masterall/jingang.c line 6: syntax error, unexpected L_BASIC_TYPE, expecting L_STRING or '+' or ';'
+  void remove_effect(object me, int amount
+      ^
+[Apr 29 15:28:15]/u/m/masterall/skills/po-jian.c line 4: Cannot #include dugu.h
+  inherit F_DBASE
+  ^
+[Apr 29 15:28:15]/u/m/masterall/skills/po-jian.c line 4: Cannot #include dugu.h
+  inherit F_DBASE
+  ^
+[Apr 29 15:28:15]/u/m/masterall/skills/po-jian.c line 44: Undefined function check_weapon
+  if(!check_weapon(target,"sword"))
+                                          ^
+[Apr 29 15:28:15]/u/m/masterall/skills/po-jian.c line 124: Undefined function check_user
+  if(check_user(me,target)
+                                          ^
+[Apr 29 15:28:15]/u/m/masterall/skills/po-jian.c line 127: Undefined function check_weapon
+  if(check_weapon(target,"sword")
+                                                         ^
+[Apr 29 15:28:15]/u/m/masterall/skills/po-jian.c line 149: Undefined function check_user
+  if(check_user(me,target)
+                                          ^
+[Apr 29 15:28:15]/u/m/masterall/skills/po-jian.c line 152: Undefined function check_weapon
+  if(check_weapon(target,"sword")
+                                                         ^
+[Apr 29 15:28:15]/u/m/masterall/skills/dugu-jiujian.c line 161: syntax error, unexpected L_LAND
+  if(  (weapon = me->query_temp("weapon")) && weapon->query("id") == "ziwei ruanjian" ) && random(skill)> 200
+                                                                                                  ^
+[Apr 29 15:28:15]/u/m/masterall/skills/dugu-jiujian.c line 166: Illegal LHS
+  victim = me->select_opponent();
+                        if( objectp(victim) )
+                                                         ^
+[Apr 29 15:28:15]/u/m/masterall/skills/dugu-jiujian.c line 174: syntax error, unexpected L_FOR
+  for(i = sizeof(action); i > 0; i--
+             ^
+[Apr 29 15:28:16]/u/m/masterall/npc/work.c line 61: syntax error, unexpected L_STRING
+  message_vision(HIM"$N辛苦的工作终于结束了，可人也累的要死。\n"NOR, me)
+                                                                                           ^
+[Apr 29 15:28:16]/u/m/masterall/npc/work.c line 65: syntax error, unexpected ';'
+  my_kar = me->query("kar");
+                                    ^
+[Apr 29 15:28:16]/u/m/masterall/npc/work.c line 71: syntax error, unexpected ';'
+  skill = me->query("dodge", 1);
+                                         ^
+[Apr 29 15:28:16]/u/m/masterall/npc/work.c line 92: syntax error, unexpected ';'
+  ob = new("/obj/""money/silver");
+        ob->move(me)
+                                          ^
+[Apr 29 15:28:16]/u/m/masterall/npc/work.c line 103: syntax error, unexpected ';'
+  me=this_player();
+        if(random(31)>25)
+                           ^
+[Apr 29 15:28:16]/u/m/masterall/npc/work.c line 117: Illegal LHS
+  if(objectp(ob=present("daxiong", this_object()))
+                                                          ^

@@ -1,0 +1,197 @@
+//同归与尽 同归剑的perform
+//by Emote 5/20/2000
+#include <ansi.h>
+
+inherit F_DBASE;
+inherit SSERVER;           
+#include <combat.h>
+
+varargs show_combat_msg(int level,object me,object victim,object weapon,mapping action,string attack_skill)
+{
+	string limb, *limbs, result;
+	
+	result = "\n" + action["action"];
+	limbs = victim->query("limbs");
+	limb = limbs[random(sizeof(limbs))];
+	
+	if( limb )
+		result = replace_string( result, "$l", limb );
+
+        if( victim->query_skill_mapped("iron-cloth"))
+                  result = replace_string( result, "$z",  to_chinese(victim->query_skill_mapped("iron-cloth")));
+
+        if( victim->query_temp("weapon"))
+        result = replace_string( result, "$v", victim->query_temp("weapon")->name() );
+
+        if( objectp(weapon) )
+                result = replace_string( result, "$w", weapon->name() );
+        else if( action && stringp(action["weapon"]) )
+                result = replace_string( result, "$w", action["weapon"] );
+        else if( attack_skill == "finger" )
+                result = replace_string( result, "$w", "手指" );
+        else if( attack_skill == "strike" )
+                result = replace_string( result, "$w", "手掌" );
+        else result = replace_string( result, "$w", "拳头" );
+        
+        result += "！\n";
+
+	message_combat(level,result, me, victim );
+}
+
+void post_action1(object me,object victim,object weapon,int damage)
+{
+	if(damage <= 1)return;  
+	if(victim->query("kee")<1)return;
+        if(victim==me) return;
+        if( damage > 0 )
+        {
+                if( objectp(me) )
+                {
+                        message_vision(GRN"$N浑身破绽百出，"+weapon->query("name")+"收势不及，被$n一击命中。\n"NOR,me,victim);
+                        victim->receive_wound("kee",damage/4);
+                        me->receive_wound("kee",damage/4);
+                        COMBAT_D->report_status(victim,me,1);
+                        message_vision("\n\n",me);
+                }
+        }
+}
+
+void post_action2(object me,object victim,object weapon,int damage)
+{
+	if(damage <= 1)return;           
+	if(victim->query("kee")<1)return;	
+        if(victim==me) return;
+        if( damage > 0 )
+        {
+                if( objectp(me) )
+                {
+                        message_vision(HIW"$N一不留神，竟然被$n击中了膻中要害，顿时口中鲜血狂喷。\n"NOR,me,victim);                 
+						victim->receive_wound("kee",damage/3);
+                        me->receive_wound("kee",damage/3);
+                        COMBAT_D->report_status(victim,me,1);
+                        message_vision("\n\n",me);                        
+                }
+        }
+}
+
+void post_action3(object me,object victim,object weapon,int damage)
+{
+	if(damage <= 1)return;           
+	if(victim->query("kee")<1)return;	
+        if(victim==me) return;
+        if( damage > 0 )
+        {
+                if( objectp(me) )
+                {
+                        message_vision(MAG"在$N刺中$n的同时，$n也同时击中$N的要害，$N面色惨白，摇摇欲坠。\n"NOR,me,victim);
+						victim->receive_wound("kee",damage/2);                        
+                        me->receive_wound("kee",damage/2);
+                        COMBAT_D->report_status(victim,me,1);
+                        message_vision("\n\n",me);                        
+                }
+        }
+}
+mapping *actions = ({
+([      "action" : "$N起手一招「生死相随」，身形向$n直扑过去，$w剑尖颤动如同灵蛇一样，\n如影随形地刺向$n的$l。",
+        "force"  : 100,
+        "dodge"  : -15,
+        "parry"  : -15,
+        "damage" : 50,
+        "attack" : 30,
+        "undodgeable": 30,
+        "unparryable": 30,
+        "post_action" : (: call_other, __FILE__, "post_action1" :),
+    	"damage_type" : "刺伤"
+]),
+([      "action" : "$N不待$n变招，手中$w反手斜撩，由右上划到左下，使出一招「折戟沉砂」，\n从背后拦腰劈向$n。",
+        "force"  : 200,
+        "dodge"  : -20,
+        "parry"  : -20,
+        "damage" : 100,
+        "attack" : 20,
+        "undodgeable": 20,
+        "unparryable": 20,
+        "post_action" : (: call_other, __FILE__, "post_action2" :),
+		"damage_type":  "割伤"
+]),
+([  	"action" : "$N不顾$n攻来的招式，向$n的怀中反退过去，手中$w蓦地回指，一招「死生挈阔」，\n刺向$n的$l。",
+        "force" : 300,
+        "dodge" :  -30,
+        "parry"  : -30,
+        "damage" : 150,
+        "attack" : 15,
+        "undodgeable": 15,
+        "unparryable": 15,
+        "post_action" : (: call_other, __FILE__, "post_action3" :),
+    	"damage_type" : "刺伤"
+]),
+});
+
+int perform(object me, object target)
+{
+        int skill,i,per_power,per_lev,victim_exp;
+        object ob;
+        if( !me->is_fighting() )
+                return notify_fail("「同归与尽」只能在战斗中施用。\n");                              
+        if( me->is_busy())
+                return notify_fail("你正忙着呢，来不及用「同归与尽」。\n");
+        if(me->query("eff_kee")>me->query("max_kee")/2)
+			    return notify_fail("又不是危急时刻，用什么「同归与尽」？\n");
+
+        if (!objectp(ob = me->query_temp("weapon"))
+        || (string)ob->query("skill_type") != "sword")
+                return notify_fail("你手中无剑，如何使用「同归与尽」。\n");     
+        
+        if( userp(me) && (int)me->query("force") < 2000 ) return notify_fail("你的内力不够。\n");
+         
+        if( !target || target == me ) target = offensive_target(me);
+
+        skill = me->query_skill("tonggui-jian",1);
+
+        if(userp(me))
+                  {
+          
+                if( skill < 180 ) 
+                          return notify_fail("你的「同归剑」招式不够娴熟，使不出「同归于尽」。\n");                                   
+                
+                if( me->query("family/family_name")!="全真派")
+                   return notify_fail("你回想起师门中所曾经受过的好处，再也无法使出「同归于尽」来了。\n");
+        }    
+
+	message_vision(HIR"$N悲啸一声，手中"+ob->name()+"招数一变，无往不复，招招\n俱是进手，显然已是只攻不守，但求与敌同归于尽！\n"NOR,me);
+
+        for(i=0;i<3;i++)
+        {
+
+           	if(!objectp(target) 
+           	   || target->is_ghost() 
+           	   || target->query("eff_kee") < 1
+           	   || (environment(me)!=environment(target))
+           	   || me->is_ghost())             
+           	{
+           		message_vision(GRN"$N"+ob->name()+"一收，面上露出悲天悯人之色，停手不攻。\n"NOR,me);
+           		break;
+           	}	
+		
+		if( !me->visible(target) )
+		{
+			per_lev = (int)me->query_skill("perception",1);
+			per_power = per_lev*per_lev*per_lev;
+			victim_exp = (int)target->query("combat_exp");
+			per_power = random(per_power);
+		 	if(per_power<victim_exp/4)
+			{
+				if( per_power>victim_exp/8 )
+				message_vision(GRN"\n$N身形凝立不动，侧耳倾听。\n"NOR,me);
+				me->set_temp("guarding", 1);				
+				continue;
+			}				
+			message_vision(YEL"\n$N从$n衣袂带风声中感应出$n身形所在，趁势发动攻击！\n"NOR,me,target);
+  	   	}                       
+
+		show_combat_msg(5,me,target,ob,actions[i],"sword");
+                COMBAT_D->do_attack(me,target,me->query_temp("weapon"),TYPE_SELFATTACK,actions[i]);
+        }
+        me->start_busy(3);
+        return 1;
+}

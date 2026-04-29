@@ -1,0 +1,88 @@
+#include <weapon.h>
+#include <ansi.h>
+
+// inherit UNARM;
+//inherit UND;
+#include <dbase.h>
+ inherit WHIP;
+
+varargs void init_und(int damage, int flag)
+{
+        string usage;
+
+        if( clonep(this_object()) ) return;
+
+        set("weapon_prop/damage", damage);
+        set("flag", (int)flag | EDGED);
+        if( !query("actions") ) {
+                set("actions", (: call_other, WEAPON_D, "query_action" :) );
+                set("verbs", ({ "slash", "slice", "thrust" }) );
+        }
+}
+
+
+void init()
+{
+  add_action("do_decide","decide");
+}
+
+int do_decide(string arg)
+{
+   object me;
+   object obj;
+   me=this_player();
+ if (arg!="hammer" && arg!="fork" && arg!="spear" && arg!="whip" && arg!="halberd" && arg!="hook" && arg!="staff" && arg!="axe") return notify_fail("你准备从百宝囊里拿什么兵器出来?\n");
+{
+       if(arg=="spear") {obj=new(__DIR__"spear");obj->move(me);
+  write("你用手在背后百宝囊里一探，只见寒光一闪，掌中已经多了一杆刺日枪!\n");}
+
+       if(arg=="hammer") {obj=new(__DIR__"hammer");obj->move(me);
+  write("你用手在背后百宝囊里一探，只见寒光一闪，掌中已经多了一柄闪电锤!\n");}
+       if(arg=="whip") {obj=new(__DIR__"whip");obj->move(me);
+  write("你用手在背后百宝囊里一探，只见寒光一闪，掌中已经多了一条疾风鞭!\n");}
+       if(arg=="halberd") {obj=new(__DIR__"halberd");obj->move(me);
+  write("你用手在背后百宝囊里一探，只见寒光一闪，掌中已经多了一杆追风戟!\n");}
+       if(arg=="hook") {obj=new(__DIR__"hook");obj->move(me);
+  write("你用手在背后百宝囊里一探，只见寒光一闪，掌中已经多了一把裂地钩!\n");}
+       if(arg=="staff") {obj=new(__DIR__"staff");obj->move(me);
+  write("你用手在背后百宝囊里一探，只见寒光一闪，掌中已经多了一条担山杖!\n");}
+       if(arg=="axe") {obj=new(__DIR__"axe");obj->move(me);
+  write("你用手在背后百宝囊里一探，只见寒光一闪，掌中已经多了一柄开天斧!\n");}
+       if(arg=="fork") {obj=new(__DIR__"fork");obj->move(me);
+   write("你用手在背后百宝囊里一探，只见寒光一闪，掌中已经多了一柄搅海叉!\n");}
+    destruct(this_object());
+   }
+   return 1;
+} 
+
+void create()
+{
+         set_name(BLU"疾风鞭"NOR, ({ "lighting whip", "whip" }) );
+        set_weight(1);
+        set("owner","no_owner");
+        set("marks/寒于",1);
+        set("no_drop",1);
+        set("unpawnable",1);
+        if( clonep() )
+                set_default_object(__FILE__);
+        else {
+                set("unit", "把");
+                set("long", "可以定义(decide)为不同种类的兵器，杀人无数，无坚不摧! \n");
+                set("value", 0);
+                set("material", "crimson gold");
+                set("rigidity", 99);
+        }
+        init_und(199);
+        setup();
+}
+
+mixed hit_ob(object me, object victim, int damage_bonus)
+{
+   me->add("force",me->query("force_factor"));
+}
+
+int query_autoload()
+{
+    return query("weapon_prop");
+}
+

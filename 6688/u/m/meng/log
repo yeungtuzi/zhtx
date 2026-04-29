@@ -1,0 +1,19 @@
+[Sep  4 15:22:36]u/m/meng/workroom.c line 2: parse error
+[Sep  4 15:25:56]u/m/meng/workroom.c line 2: parse error
+[Sep  4 15:43:38]u/m/meng/workroom.c line 5: parse error
+[Sep  4 16:12:43]u/m/meng/workroom.c line 13: parse error
+[Sep  4 16:13:13]u/m/meng/workroom.c line 13: parse error
+[Sep  4 16:28:53]u/m/meng/npc/kid.c line 20: Undefined function carry_rnd_equip
+[Sep  4 16:31:19]u/m/meng/npc/kid.c line 5: Illegal to redefine 'nomask' function "is_busy"
+[Sep  4 16:31:19]u/m/meng/npc/kid.c line 5: Illegal to redefine 'nomask' function "query_weight"
+[Sep  4 16:31:19]u/m/meng/npc/kid.c line 5: Illegal to redefine 'nomask' function "query_encumbrance"
+[Sep  4 16:31:19]u/m/meng/npc/kid.c line 5: Illegal to redefine 'nomask' function "query_max_encumbrance"
+[Sep  4 16:31:19]u/m/meng/npc/kid.c line 5: Illegal to redefine 'nomask' function "over_encumbranced"
+[Sep  4 16:31:19]u/m/meng/npc/kid.c line 5: Illegal to redefine 'nomask' function "query_busy"
+[Oct  2 23:20:45]u/m/meng/npc/kid.c line 22: Undefined function carry_rnd_equip
+[Oct  2 23:22:37]u/m/meng/npc/kid.c line 4: Illegal to redefine 'nomask' function "is_busy"
+[Oct  2 23:22:37]u/m/meng/npc/kid.c line 4: Illegal to redefine 'nomask' function "query_weight"
+[Oct  2 23:22:37]u/m/meng/npc/kid.c line 4: Illegal to redefine 'nomask' function "query_encumbrance"
+[Oct  2 23:22:37]u/m/meng/npc/kid.c line 4: Illegal to redefine 'nomask' function "query_max_encumbrance"
+[Oct  2 23:22:37]u/m/meng/npc/kid.c line 4: Illegal to redefine 'nomask' function "over_encumbranced"
+[Oct  2 23:22:37]u/m/meng/npc/kid.c line 4: Illegal to redefine 'nomask' function "query_busy"

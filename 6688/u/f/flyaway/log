@@ -1,0 +1,60 @@
+[Jul  6 15:32:25]u/f/flyaway/letter1.c line 3: parse error
+[Jul  6 15:38:47]u/f/flyaway/letter1.c line 5: parse error
+[Jul  7 22:55:52]u/f/flyaway/d_xanadu_treasure_bracelet.c line 60: Undefined variable 'inv'
+[Jul  7 22:55:52]u/f/flyaway/d_xanadu_treasure_bracelet.c line 61: Undefined variable 'i'
+[Jul 18 20:31:23]u/f/flyaway/feature_damage.c line 292: Undefined variable 'ob'
+[Nov  7 19:42:22]u/f/flyaway/hi/chicken_leg.c line 224: parse error
+[Nov  7 19:42:22]u/f/flyaway/hi/chicken_leg.c line 251: Undefined variable 'current'
+[Nov  7 19:42:22]u/f/flyaway/hi/chicken_leg.c line 252: Undefined variable 'max'
+[Nov  7 19:42:22]u/f/flyaway/hi/chicken_leg.c line 252: Illegal LHS
+[Nov  7 19:42:22]u/f/flyaway/hi/chicken_leg.c line 252: parse error
+[Nov  7 19:42:22]u/f/flyaway/hi/chicken_leg.c line 253: Illegal LHS
+[Nov  7 19:46:30]u/f/flyaway/hi/chicken_leg.c line 224: parse error
+[Nov  7 19:46:30]u/f/flyaway/hi/chicken_leg.c line 251: Undefined variable 'current'
+[Nov  7 19:46:30]u/f/flyaway/hi/chicken_leg.c line 252: Undefined variable 'max'
+[Nov  7 19:46:30]u/f/flyaway/hi/chicken_leg.c line 252: Illegal LHS
+[Nov  7 19:46:30]u/f/flyaway/hi/chicken_leg.c line 252: parse error
+[Nov  7 19:46:30]u/f/flyaway/hi/chicken_leg.c line 253: Illegal LHS
+[Nov  7 20:00:54]u/f/flyaway/hi/chicken_leg.c line 224: parse error
+[Nov  7 20:00:54]u/f/flyaway/hi/chicken_leg.c line 251: Undefined variable 'current'
+[Nov  7 20:00:54]u/f/flyaway/hi/chicken_leg.c line 252: Undefined variable 'max'
+[Nov  7 20:00:54]u/f/flyaway/hi/chicken_leg.c line 252: Illegal LHS
+[Nov  7 20:00:54]u/f/flyaway/hi/chicken_leg.c line 252: parse error
+[Nov  7 20:00:54]u/f/flyaway/hi/chicken_leg.c line 253: Illegal LHS
+[Nov  7 20:04:40]u/f/flyaway/hi/hiii.c line 224: parse error
+[Nov  7 20:04:40]u/f/flyaway/hi/hiii.c line 251: Undefined variable 'current'
+[Nov  7 20:04:40]u/f/flyaway/hi/hiii.c line 252: Undefined variable 'max'
+[Nov  7 20:04:40]u/f/flyaway/hi/hiii.c line 252: Illegal LHS
+[Nov  7 20:04:40]u/f/flyaway/hi/hiii.c line 252: parse error
+[Nov  7 20:04:40]u/f/flyaway/hi/hiii.c line 253: Illegal LHS
+[Nov  8 10:50:34]u/f/flyaway/hi/chicken_leg.c line 36: parse error
+[Apr 29 15:18:08]/u/f/flyaway/hi/test4.c line 2: syntax error, unexpected ';'
+  ;int do_search(
+   ^
+[Apr 29 15:18:08]/u/f/flyaway/hi/test1.c line 4: syntax error, unexpected L_BASIC_TYPE, expecting L_ASSIGN or ';' or ','
+  int* value=({0,0}
+             ^
+[Apr 29 15:18:08]/u/f/flyaway/hi/test1.c line 5: syntax error, unexpected L_BASIC_TYPE
+  mapping learn,off_skil
+                 ^
+[Apr 29 15:18:08]/u/f/flyaway/hi/test1.c line 12: syntax error, unexpected L_DEFINED_NAME
+  lvl+
+                     ^
+[Apr 29 15:18:08]/u/f/flyaway/hi/test.c line 2: syntax error, unexpected ';'
+  ;int do_search(
+   ^
+[Apr 29 15:28:11]/u/f/flyaway/hi/test4.c line 2: syntax error, unexpected ';'
+  ;int do_search(
+   ^
+[Apr 29 15:28:11]/u/f/flyaway/hi/test1.c line 4: syntax error, unexpected L_BASIC_TYPE, expecting L_ASSIGN or ';' or ','
+  int* value=({0,0}
+             ^
+[Apr 29 15:28:11]/u/f/flyaway/hi/test1.c line 5: syntax error, unexpected L_BASIC_TYPE
+  mapping learn,off_skil
+                 ^
+[Apr 29 15:28:11]/u/f/flyaway/hi/test1.c line 12: syntax error, unexpected L_DEFINED_NAME
+  lvl+
+                     ^
+[Apr 29 15:28:11]/u/f/flyaway/hi/test.c line 2: syntax error, unexpected ';'
+  ;int do_search(
+   ^

@@ -6,7 +6,6 @@ string fix_gift();
 
 void create()
 {
-        object ob;
         set_name("小青年", ({ "yong","qing nian","小青年"}) );
         set("gender", "男性" );
         set("age", 16);
@@ -104,8 +103,8 @@ int do_decide(string arg)
                 this_player()->set("dummy", 1);
                 this_player()->move("/d/snow/crossroad");
          return 1;
-           } 
-           return;
+           }
+           return 1;
 }
 
 
@@ -144,8 +143,8 @@ int do_decide2(string arg)
                 me->set("fixed_gift", 1);      
                 me->delete_temp("fix_gift", 1);     
                 return 1;
-           } 
-           return;
+           }
+           return 1;
 }
 
 

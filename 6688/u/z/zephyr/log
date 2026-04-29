@@ -1,0 +1,141 @@
+[Nov  2 17:40:40]u/z/zephyr/revengenpc.c line 4: Reserved type name unexpected.
+[Nov  2 17:40:40]u/z/zephyr/revengenpc.c line 4: parse error
+[Nov  2 17:40:40]u/z/zephyr/revengenpc.c line 4: Illegal LHS
+[Nov  2 17:40:40]u/z/zephyr/revengenpc.c line 4: Reserved type name unexpected.
+[Nov  2 17:40:40]u/z/zephyr/revengenpc.c line 4: parse error
+[Nov  2 17:40:40]u/z/zephyr/revengenpc.c line 4: Illegal LHS
+[Nov 24 17:50:23]u/z/zephyr/kong.c line 4: parse error
+[Nov 24 17:50:39]u/z/zephyr/kong.c line 4: parse error
+[Nov 25 11:57:52]u/z/zephyr/gilgamesh.c line 2: parse error
+[Nov 25 12:58:21]u/z/zephyr/gil_amulet_3.c line 347: parse error
+[Nov 25 13:40:36]u/z/zephyr/gilgamesh_test.c line 400: Undefined variable 'decrease'
+[Nov 26 15:17:25]u/z/zephyr/revenger.c line 351: Reserved type name unexpected.
+[Nov 26 15:17:25]u/z/zephyr/revenger.c line 351: parse error
+[Nov 26 15:17:25]u/z/zephyr/revenger.c line 353: Illegal LHS
+[Nov 26 15:17:25]u/z/zephyr/revenger.c line 354: Undefined variable 'i'
+[Nov 26 15:17:25]u/z/zephyr/revenger.c line 354: Undefined variable 'ob'
+[Nov 26 15:17:25]u/z/zephyr/revenger.c line 356: Undefined variable 'me'
+[Nov 26 15:59:48]u/z/zephyr/revenger.c line 586: Undefined variable 'dest'
+[Nov 27 10:12:19]u/z/zephyr/traitor.c line 485: Undefined variable 'ob'
+[Nov 27 10:14:19]u/z/zephyr/revenger.c line 669: Undefined variable 'me'
+[Nov 27 11:26:02]u/z/zephyr/traitor.c line 380: parse error
+[Nov 27 11:28:02]u/z/zephyr/traitor.c line 365: parse error
+[Nov 27 11:50:31]u/z/zephyr/traitor.c line 70: Illegal to inherit after defining global variables.
+[Nov 27 11:50:31]u/z/zephyr/traitor.c line 70: Illegal to redefine 'nomask' function "is_busy"
+[Nov 27 11:50:31]u/z/zephyr/traitor.c line 70: Illegal to redefine 'nomask' function "query_weight"
+[Nov 27 11:50:31]u/z/zephyr/traitor.c line 70: Illegal to redefine 'nomask' function "query_encumbrance"
+[Nov 27 11:50:31]u/z/zephyr/traitor.c line 70: Illegal to redefine 'nomask' function "query_max_encumbrance"
+[Nov 27 11:50:31]u/z/zephyr/traitor.c line 70: Illegal to redefine 'nomask' function "over_encumbranced"
+[Nov 27 11:50:53]u/z/zephyr/traitor.c line 70: Illegal to inherit after defining global variables.
+[Nov 27 11:50:53]u/z/zephyr/traitor.c line 70: Illegal to redefine 'nomask' function "is_busy"
+[Nov 27 11:50:53]u/z/zephyr/traitor.c line 70: Illegal to redefine 'nomask' function "query_weight"
+[Nov 27 11:50:53]u/z/zephyr/traitor.c line 70: Illegal to redefine 'nomask' function "query_encumbrance"
+[Nov 27 11:50:53]u/z/zephyr/traitor.c line 70: Illegal to redefine 'nomask' function "query_max_encumbrance"
+[Nov 27 11:50:53]u/z/zephyr/traitor.c line 70: Illegal to redefine 'nomask' function "over_encumbranced"
+[Nov 27 11:58:11]u/z/zephyr/traitor.c line 481: == always false because of incompatible types ( int vs object ).
+[Nov 27 13:35:42]u/z/zephyr/traitor.c line 772: Undefined variable 'me'
+[Nov 27 14:12:03]u/z/zephyr/traitor.c line 487: == always false because of incompatible types ( int vs object ).
+[Nov 27 14:13:25]u/z/zephyr/traitor.c line 487: == always false because of incompatible types ( int vs string ).
+[Nov 27 14:58:53]u/z/zephyr/traitor.c line 491: == always false because of incompatible types ( int vs object ).
+[Nov 27 14:58:57]u/z/zephyr/traitor.c line 491: == always false because of incompatible types ( int vs object ).
+[Nov 27 18:16:20]u/z/zephyr/ct_traitor.c line 403: Undefined variable 'room'
+[Nov 27 18:16:20]u/z/zephyr/ct_traitor.c line 404: Undefined variable 'ran'
+[Nov 27 18:16:20]u/z/zephyr/ct_traitor.c line 405: Undefined variable 'filename'
+[Nov 27 18:16:20]u/z/zephyr/ct_traitor.c line 421: Undefined variable 'n'
+[Nov 27 18:16:20]u/z/zephyr/ct_traitor.c line 422: Undefined variable 'flag'
+[Nov 27 18:16:20]u/z/zephyr/ct_traitor.c line 431: Undefined variable 'str'
+[Nov 27 18:17:09]u/z/zephyr/ct_traitor.c line 422: Undefined variable 'n'
+[Nov 27 18:17:09]u/z/zephyr/ct_traitor.c line 423: Undefined variable 'flag'
+[Nov 28 16:01:14]u/z/zephyr/ct_traitor.c line 319: parse error
+[Nov 28 16:01:14]u/z/zephyr/ct_traitor.c line 324: Illegal LHS
+[Nov 28 16:01:14]u/z/zephyr/ct_traitor.c line 324: parse error
+[Nov 28 16:01:14]u/z/zephyr/ct_traitor.c line 325: Illegal LHS
+[Nov 28 16:01:14]u/z/zephyr/ct_traitor.c line 325: parse error
+[Nov 28 16:01:14]u/z/zephyr/ct_traitor.c line 338: Illegal LHS
+[Nov 28 16:11:04]u/z/zephyr/ct_traitor.c line 738: == always false because of incompatible types ( int vs object ).
+[Nov 28 16:12:10]u/z/zephyr/ct_traitor.c line 738: == always false because of incompatible types ( int vs string ).
+[Nov 28 16:12:20]u/z/zephyr/ct_traitor.c line 738: == always false because of incompatible types ( int vs string ).
+[Nov 28 16:12:56]u/z/zephyr/ct_traitor.c line 738: == always false because of incompatible types ( int vs string ).
+[Nov 28 16:14:45]u/z/zephyr/ct_traitor.c line 738: Reserved type name unexpected.
+[Nov 28 16:14:45]u/z/zephyr/ct_traitor.c line 738: Missing type for argument
+[Nov 28 16:14:45]u/z/zephyr/ct_traitor.c line 738: parse error
+[Nov 28 16:14:45]u/z/zephyr/ct_traitor.c line 752: Illegal LHS
+[Nov 28 16:14:45]u/z/zephyr/ct_traitor.c line 753: Undefined variable 'me'
+[Nov 28 16:14:45]u/z/zephyr/ct_traitor.c line 753: Illegal LHS
+[Nov 28 16:14:59]u/z/zephyr/ct_traitor.c line 738: == always false because of incompatible types ( int vs string ).
+[Nov 30 11:25:30]u/z/zephyr/ct_traitor.c line 451: parse error
+[Nov 30 12:22:57]u/z/zephyr/revengenpc.c line 4: parse error
+[Nov 30 12:22:57]u/z/zephyr/revengenpc.c line 4: Missing type for global variable declaration
+[Nov 30 12:22:57]u/z/zephyr/revengenpc.c line 4: parse error
+[Nov 30 12:23:05]u/z/zephyr/revengenpc.c line 4: parse error
+[Nov 30 12:23:05]u/z/zephyr/revengenpc.c line 4: Missing type for global variable declaration
+[Nov 30 12:23:05]u/z/zephyr/revengenpc.c line 4: parse error
+[Nov 30 12:23:11]u/z/zephyr/revengenpc.c line 4: parse error
+[Nov 30 12:23:11]u/z/zephyr/revengenpc.c line 4: Missing type for global variable declaration
+[Nov 30 12:23:11]u/z/zephyr/revengenpc.c line 4: parse error
+[Nov 30 16:15:26]u/z/zephyr/ct_traitor.c line 1029: Undefined variable 'me'
+[Nov 30 16:15:26]u/z/zephyr/ct_traitor.c line 1034: Undefined variable 'message0'
+[Nov 30 16:15:26]u/z/zephyr/ct_traitor.c line 1038: Undefined variable 'me'
+[Nov 30 16:19:48]u/z/zephyr/ct_traitor.c line 1: parse error
+[Nov 30 16:51:22]u/z/zephyr/revengenpc.c line 36: parse error
+[Nov 30 16:51:22]u/z/zephyr/revengenpc.c line 36: Illegal LHS
+[Nov 30 16:51:32]u/z/zephyr/revengenpc.c line 36: parse error
+[Nov 30 16:51:32]u/z/zephyr/revengenpc.c line 36: Illegal LHS
+[Nov 30 17:33:47]u/z/zephyr/bingqipu.c line 1: parse error
+[Nov 30 17:34:05]u/z/zephyr/bingqipu.c line 2: parse error
+[Nov 30 18:11:28]u/z/zephyr/bingqipu.c line 41: No such inherited function ::init
+[Nov 30 18:11:56]u/z/zephyr/bingqipu.c line 41: No such inherited function ::init
+[Nov 30 18:12:54]u/z/zephyr/bingqipu.c line 41: No such inherited function ::init
+[Nov 30 18:13:16]u/z/zephyr/bingqipu.c line 31: No such inherited function ::init
+[Nov 30 18:14:00]u/z/zephyr/bingqipu.c line 30: No such inherited function ::init
+[Dec  2 11:44:44]u/z/zephyr/test.c line 35: Illegal to redeclare local name 'env'
+[Dec  2 11:44:44]u/z/zephyr/test.c line 36: parse error
+[Dec  2 11:44:44]u/z/zephyr/test.c line 37: Illegal LHS
+[Dec  2 11:44:44]u/z/zephyr/test.c line 38: Undefined variable 'ent'
+[Dec  2 11:44:44]u/z/zephyr/test.c line 39: Undefined variable 'env_long'
+[Dec  2 11:46:02]u/z/zephyr/test.c line 36: parse error
+[Dec  2 11:46:02]u/z/zephyr/test.c line 37: Illegal LHS
+[Dec  2 11:46:02]u/z/zephyr/test.c line 39: Undefined variable 'room_long'
+[Dec  4 17:41:33]u/z/zephyr/ct_traitor.c line 757: Bad argument 2 to efun present()
+[Dec  5 12:51:54]u/z/zephyr/ct_traitor.c line 759: Bad argument 1 to efun all_inventory()
+[Jan 15 16:36:44]u/z/zephyr/boy.c line 5: Undefined function set_name
+[Jan 15 16:36:44]u/z/zephyr/boy.c line 6: End of file in text block
+[Jan 15 16:36:44]u/z/zephyr/boy.c line 6: parse error
+[Jan 15 16:39:30]u/z/zephyr/boy.c line 1: Line too long.
+[Jan 15 16:40:02]u/z/zephyr/boy.c line 1: Line too long.
+[Jan 15 16:40:06]u/z/zephyr/boy.c line 1: Line too long.
+[Jan 15 16:42:16]u/z/zephyr/boy.c line 1: Line too long.
+[Jan 15 16:42:20]u/z/zephyr/boy.c line 1: Line too long.
+[Apr 29 15:18:02]/u/z/zephyr/revenger_bak.c line 507: Bad type for argument 2 of query ( int vs string )
+  if(stringp(type=query("weapon_type",type))
+                                             ^
+[Apr 29 15:18:02]/u/z/zephyr/wisdomer.c line 7: Cannot #include story_msg.h
+  string story_status_msg()
+  ^
+[Apr 29 15:18:03]/u/z/zephyr/ct_traitor.c line 654: Bad type for argument 2 of query ( int vs string )
+  if(stringp(type=query("weapon_type",type))
+                                             ^
+[Apr 29 15:18:03]/u/z/zephyr/traitor.c line 560: Bad type for argument 2 of query ( int vs string )
+  if(stringp(type=query("weapon_type",type))
+                                             ^
+[Apr 29 15:18:04]/u/z/zephyr/revenger.c line 507: Bad type for argument 2 of query ( int vs string )
+  if(stringp(type=query("weapon_type",type))
+                                             ^
+[Apr 29 15:28:05]/u/z/zephyr/revenger_bak.c line 507: Bad type for argument 2 of query ( int vs string )
+  if(stringp(type=query("weapon_type",type))
+                                             ^
+[Apr 29 15:28:05]/u/z/zephyr/wisdomer.c line 7: Cannot #include story_msg.h
+  string story_status_msg()
+  ^
+[Apr 29 15:28:06]/u/z/zephyr/ct_traitor.c line 654: Bad type for argument 2 of query ( int vs string )
+  if(stringp(type=query("weapon_type",type))
+                                             ^
+[Apr 29 15:28:06]/u/z/zephyr/traitor.c line 560: Bad type for argument 2 of query ( int vs string )
+  if(stringp(type=query("weapon_type",type))
+                                             ^
+[Apr 29 15:28:07]/u/z/zephyr/revenger.c line 507: Bad type for argument 2 of query ( int vs string )
+  if(stringp(type=query("weapon_type",type))
+                                             ^
+[Apr 29 15:34:13]/u/z/zephyr/traitor.c line 560: Bad type for argument 2 of query ( int vs string )
+  if(stringp(type=query("weapon_type",type))
+                                             ^

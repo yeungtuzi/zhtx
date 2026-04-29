@@ -1,0 +1,186 @@
+// score.c
+// Modify By dongsw@zhtx2 2003
+
+#include <ansi.h>
+#include <combat.h>
+
+inherit F_CLEAN_UP;
+
+string status_color(int age);
+
+void create() { seteuid(ROOT_UID); }
+
+int get_dp(object ob,int type)
+{
+        string attack_skill,skill_type,parry_type;
+        object weapon;
+        int attack_points, dodge_points, parry_points;
+        int zhenqi;
+        mapping prepare;
+
+        if( !ob ) return 0;
+
+        prepare = ob->query_skill_prepare();
+        if (!prepare) prepare = ([]);
+
+        if ( sizeof(prepare) == 0) attack_skill = "unarmed";
+          else if ( sizeof(prepare) == 1) attack_skill = (keys(prepare))[0];
+            else if ( sizeof(prepare) == 2) attack_skill = (keys(prepare))[ob->query_temp("action_flag")];
+
+        if( objectp(weapon = ob->query_temp("weapon")) )
+        {
+                skill_type = weapon->query("skill_type");
+                parry_type = "parry";
+        }
+        else
+        {
+                skill_type = attack_skill;
+                parry_type = attack_skill;
+        }
+
+        attack_points = COMBAT_D->skill_power(ob, skill_type, SKILL_USAGE_ATTACK);
+        parry_points = COMBAT_D->skill_power(ob, parry_type, SKILL_USAGE_DEFENSE);
+        dodge_points = COMBAT_D->skill_power(ob, "dodge", SKILL_USAGE_DEFENSE);
+
+        switch(type)
+        {
+                case 0: return attack_points;
+                case 1: return parry_points;
+                case 2: return dodge_points;
+                case 3: return dodge_points+parry_points;
+        }
+        return 0;
+}
+
+
+int main(object me, string arg)
+{
+        object ob;
+        mapping my;
+        string line, str, attack_skill, skill_type,parry_type;
+        object weapon;
+        int attack_points, dodge_points, parry_points, age;
+        int zhenqi;
+        mapping prepare;
+
+        seteuid(getuid(me));
+
+        if(!arg) ob = me;
+        else {
+                ob = present(arg, environment(me));
+                if (!ob) ob = find_player(arg);
+                if (!ob) ob = find_living(arg);
+                if (!ob) return notify_fail("你要察看谁的状态？\n");
+                if (!wizardp(me) && !raw_wiz_level(me) && !ob->accept_info(me, "score") )
+                        return notify_fail("只有巫师能察看别人的状态。\n");
+        }
+
+        my = ob->query_entire_dbase();
+        age = ob->query("age");
+        line  = "\n 天赋相关请用命令 gift，相关帮助请看 help gift。\n";
+        line += HIG"━━━━━━━━━━━@ZHTX2━━━━━━━━━━━\n"NOR;
+        line += sprintf(" 姓名"HIW"%10s"NOR,ob->name());
+        line += sprintf("  年龄" + status_color(age) + "%8s"NOR,chinese_number(age));
+        if (ob->query("gender") == "男性")
+        line += sprintf("  性别"HIC"%8s\n"NOR,ob->query("gender"));
+        else
+        line += sprintf("  性别"HIM"%8s\n"NOR,ob->query("gender"));
+        if( mapp(my["family"]) ) 
+        {
+                if( my["family"]["master_name"] && my["family"]["family_name"] )
+                line += sprintf(" 师门"HIW"%10s"NOR"  师父"HIW"%8s\n"NOR, my["family"]["family_name"],my["family"]["master_name"] );
+        }
+        else line += sprintf(" 师门"HIW"%10s"NOR"  师父"HIW"%8s\n"NOR, "无","无" );
+
+        if (wizardp(me)) {
+
+        line += sprintf("\n 战斗攻击力 " HIW "%d (+%d)" NOR "\t战斗防御力 " HIW "%d (+%d)\n" NOR,
+                get_dp(ob,0)/100 + 1, ob->query_temp("apply/damage"),
+                (get_dp(ob,2)/2 + (weapon? get_dp(ob,1): (get_dp(ob,1)/2)))/100 + 1, ob->query_temp("apply/armor"));
+       }
+        
+        line += HIG"\n【江湖历练】       "HIR"×"NOR" — 未通过    "HIG"√"NOR" — 已通过\n\n";
+        
+        line += HIY"「十八罗汉」";
+        if(ob->query("luohan_winner")) line += HIG"       √ ";
+        else line += HIR"       × ";
+        line += HIY"    「魔域冰宫」";
+        if(ob->query("renkuang_winner")) line += HIG"       √ \n";
+        else line += HIR"       × \n";
+        line += HIY"「幽明山庄」";
+        if(ob->query("lfy_winner") && ob->query("pangban_winner")) line += HIG"       √ ";
+        else line += HIR"       × ";
+        line += HIY"    「奇门阵法」";
+        if(ob->query_temp("a")) line += HIG"       √ \n\n"NOR;
+        else line += HIR"       × \n\n"NOR;
+        
+        if (ob->query("couple/name") != 0) line += sprintf(" 终生伴侣" HIG"  %10s"NOR,ob->query("couple/name"));
+        else line += sprintf(" 婚姻状况        " HIM"未婚"NOR);
+
+        line += sprintf("\n 杀   气   " HIR "%10d" NOR, ob->query("bellicosity") );
+        zhenqi=ob->query("shen");
+        if (zhenqi>=0 || ob->query("shenzz_type")) line +=sprintf("      正   气   "HIY"%10d\n"NOR,zhenqi);
+        else    line +=sprintf("      邪   气   "RED"%10d\n"NOR,-zhenqi);
+        line +=sprintf(" PK   点   " HIR "%10d" NOR,ob->query("pk_point"));
+        line +=sprintf("      武林声望  " HIC "%10d\n" NOR,ob->query("wlshw"));
+        line +=sprintf(" 师门忠诚度" CYN "%10d" NOR,ob->query("faith"));
+        line +=sprintf("      朝廷忠诚度" CYN "%10d\n" NOR, ob->query("ct_faith") );
+        line +=sprintf(" 夫妻感情  " HIM "%10d" NOR, ob->query("couple_faith") );
+        line +=sprintf("      游戏时间"HIR"%13s"NOR" \n"+NOR,FINGER_D->age_string( (int)ob->query("mud_age")));
+        if((int)ob->query("deposit"))
+        line +=sprintf("\n 存   款：" HIY"  %12s\n\n"NOR,MONEY_D->money_str((int)ob->query("deposit")));
+        else line+="\n 存   款：        "+HIW"穷光蛋"NOR+"\n\n";
+
+        line += sprintf(YEL" 死亡 %3d   "HIC"判师 %3d   "HIB"杀害玩家 %3d   "HIR"杀人 %5d\n"NOR,
+                my["died_times"], my["betrayer"], my["PKS"],my["MKS"] + my["PKS"]);
+
+        write(line);
+
+        return 1;
+}
+
+string display_attr(int gift, int value)
+{
+        if( value > gift ) return sprintf( HIY "%3d" NOR, value );
+        else if( value < gift ) return sprintf( CYN "%3d" NOR, value );
+        else return sprintf("%3d", value);
+}
+
+string status_color(int age)
+{
+        if( age <= 18 ) return HIG;
+        if( age <= 24 ) return HIC;
+        if( age <= 35 ) return HIY;
+        if( age <= 55 ) return YEL;
+        return HIW;
+}
+
+int help(object me)
+{
+        write(@HELP
+指令格式
+        score
+        score <id> (for wizard)
+指令详解
+        姓名：您的姓名。
+        年龄：您的年龄，年龄颜色的不同会根据您年龄的大小变化。
+        性别：男性为天青色，女性为粉红色。（文盲们有福了:P）
+        师门：您在游戏中所投靠的门派。
+        师父：您的授技恩师的姓名。
+        江湖历练：本游戏中必须通过的历练，详细请参照help experience。
+        婚姻状况： :))))；
+        杀气：杀死人增加杀气，天邪派杀气越高攻击力越强。
+        正气/邪气：您的正邪状况，请注意保持。
+        PK点：您杀死玩家的次数，多了会受到惩罚。
+        武林声望：help transfer。
+        师门忠诚度：您对师门的忠诚程度，它和您所能学到的技能等级必须要成正比。
+        朝廷忠诚度：影响到您研究奇门阵法的可能性。
+        夫妻感情：:P，自己想去吧。可以出allyhit，
+        游戏时间：可以算算您荒废了多少时间，提醒自己。:P
+        存款：您的贫富程度。
+HELP
+    );
+    return 1;
+}
+
+

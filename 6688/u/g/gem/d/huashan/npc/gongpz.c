@@ -1,0 +1,1041 @@
+//比武设擂台(/d/huashan/leitai)一个,看台(/d/huashan/kantai0..9)十个,
+//每个看台可容纳20人,即最多容纳200人观看比武.
+//注意的是比武一定要在擂台(/d/huashan/leitai.c)举行.
+
+/*
+string helpstr =
+"1.只要玩家 set biwu 1 就能参加比武.\n
+2.比武以前用召集(zhaoji)命令,可以把设 set biwu 1 的玩家抓到看台.\n
+  注意这条命令同其它命令无关,仅仅是把玩家抓到看台.\n
+3.用start from <起始年龄> to <终止年龄> 来分年龄段比武.系统会自动\n
+  选一名该年龄段的玩家作为擂主,并自动安排玩家向擂主挑战,赢者作为\n
+  新的擂主,一直下去,直至决出最后的擂主,作为该年龄段的冠军.\n
+4.每两个玩家比武以前,巫师要用确认(queren)命令,使两个玩家正式比武.\n
+  这样可以控制比武节奏.\n
+5.巫师可以用list命令,来查看比武名单.\n
+6.巫师可以用add <玩家的id>命令,把一个玩家加到比武中.\n
+7.巫师可以用retreat <玩家的id>命令,把一个玩家从比武名单中去掉.\n
+8.如果不想按年龄段来比武,可以用如下命令进行.\n
+  (1)先敲biwu命令.\n
+  (2)再用add命令把玩家加入到比赛名单中去.\n
+  (3)再用start命令使比武开始,注意这时的start命令没有参数.\n
+  (4)上述的4.5.6.7条仍然起作用.\n
+9.为了比武公平,大会统一了比赛的武器.玩家可以用qu <武器>来去自己需要\n
+  的武器,具体有什么武器,可以看舍身崖(/d/huashan/sheshen.c)中的字迹.\n
+10.玩家除了可以由系统自动抓到看台上去外,也可以自己在舍身崖\n
+   (/d/huashan/sheshen.c)用watch命令自己去,但平常这个命令是不开的,\n
+   比武时巫师要在舍身崖用biwu命令开放watch命令,比武结束,用cancel命令\n
+   关闭watch命令.\n
+11.两个组的群殴命令用group,说明如下：\n
+   group add1 <id> 把玩家增加到第一组\n
+   group add2 <id> 把玩家增加到第二组\n
+   group list 显示两个组的名单\n
+   group startrace 两个组开始群殴   \n"
+*/
+
+
+#define MAXNUMBER 20
+
+inherit NPC;
+#include <ansi.h>;
+
+mixed winer=0,fighter=0,fighter1=0;
+object winerroom,fighterroom,fighter1room;
+string *group1=({}),*group2=({});
+string *list=({});
+int over;
+
+int selectplayer(int);
+int seekplayer(mixed);
+int race();
+int bonus(object);
+int full(mixed);
+
+void create()
+{
+	set_name("公平子", ({ "gongpingzi", "zi", "gong" }) );
+	set("gender", "男性");
+	set("age", 35);
+	set("long",
+		"这是一位仙风道骨的中年道人，早年云游四方，性好任侠，公正无私。\n");
+	set("combat_exp",60000);
+        set("shen_type", 1);
+	set("attitude", "friendly");
+
+	set("apply/attack", 50);
+	set("apply/defense", 50);
+
+	set("max_kee", 800);
+	set("max_gin", 800);
+	set("max_force", 800);
+
+	set_skill("force", 80);
+	set_skill("unarmed", 80);
+	set_skill("sword",80);
+	set_skill("parry",80);
+	set_skill("dodge", 80);
+
+	set("no_get",1);
+
+	setup();
+
+        carry_object("/obj/cloth")->wear();
+        carry_object("/obj/weapon/changjian")->wield();
+}
+
+
+void init()
+{
+	add_action("do_zhaoji","zhaoji");
+	add_action("do_start","start");
+	add_action("do_queren","queren");
+	add_action("do_biwu","biwu");
+	add_action("do_add","add");
+	add_action("do_list","list");
+	add_action("do_retreat","retreat");
+	add_action("do_qu","qu");
+        add_action("do_halt", "halt");
+	add_action("do_study","study");
+	add_action("do_practice","practice");
+	add_action("do_update","update");
+	add_action("do_get","get");
+	add_action("do_play","play");
+	add_action("do_group","group");
+}
+
+int do_update(string arg)
+{
+	if( query("in_race") || query("group_race"))
+	{
+	write("比武期间不能在这update，如果真需要的话，可以先smash公平子，再update。\n");
+	return 1;
+	}
+	return 0;
+}
+
+int do_play(string arg)
+{
+	write("不准在这弹琴.\n");
+	return 1;
+}
+
+int do_get(string arg)
+{
+	if (wiz_level(this_player()) == 0 )
+	{
+		write("不许在这拿东西。\n");
+		return 1;
+	}
+	return 0;
+}
+
+int do_practice(string arg)
+{
+	if ( query("in_race") )
+	{
+		write("不能在这练武。\n");
+		return 1;
+	}
+	return 0;
+}
+
+int do_study(string arg)
+{
+	if ( query("in_race") )
+	{
+		write("这不是读书的地方。\n");
+		return 1;
+	}
+	return 0;
+}
+
+int do_group(string arg)
+{
+	if(!arg) return notify_fail("group startrace\ngroup list\ngroup add1 <id>\ngroup add2 <id>\n");
+
+	if(arg=="startrace")
+	{
+		int i,j;
+		object ob1,ob2;
+
+		if(!wizardp(this_player())) return notify_fail("只有巫师才能开始。\n");
+		command("chat 团体比赛开始。");
+		for(i=0;i<sizeof(group1);i++)
+		{
+			if( !ob1=find_player(group1[i]) ) continue;
+			if( !living(ob1) ) ob1->revive();
+			if(ob1->is_ghost()) ob1->reincarnate();
+			if(ob1->is_busy())  ob1->interrupt_me(ob1, "halt");
+			full(ob1);
+			if(!present(ob1,environment())) ob1->move(environment());
+
+			for(j=0;j<sizeof(group2);j++)
+			{
+				if( !ob2=find_player(group2[j]) ) continue;
+				if( !living(ob2) ) ob2->revive();
+				if(ob2->is_ghost()) ob2->reincarnate();
+				if(ob2->is_busy())  ob2->interrupt_me(ob2, "halt");
+				full(ob2);
+				if(!present(ob2,environment())) ob2->move(environment());
+
+				ob1->bihua_ob(ob2);
+				ob2->bihua_ob(ob1);
+			}
+		}
+		set("group_race",1);
+		remove_call_out("group_check");
+		call_out("group_check",1);
+		return 1;
+	}
+	if(arg=="list")
+	{
+		int i;
+
+		write("第一组的名单:\n");
+		for(i=0;i<sizeof(group1);i++) write(group1[i]+"\n");
+		write("\n第二组的名单:\n");
+		for(i=0;i<sizeof(group2);i++) write(group2[i]+"\n");
+		return 1;
+	}
+	if( sscanf(arg, "add1 %s", arg)==1 )
+	{
+		object ob;
+
+		if(wiz_level(this_player()) == 0) return notify_fail("只有巫师才能加名额。\n");
+		if(member_array(arg, group1)!=-1
+			|| member_array(arg, group2)!=-1)
+			return notify_fail("这个人已经参加比赛了。\n");
+		if( !(ob=find_player(arg)) ) return notify_fail("没这个人。\n");
+		group1 += ({arg});
+		command("chat "+ob->short()+"加入第一比赛组。");
+		return 1;
+	}
+	if( sscanf(arg, "add2 %s", arg)==1 )
+	{
+		object ob;
+
+		if(wiz_level(this_player()) == 0) return notify_fail("只有巫师才能加名额。\n");
+		if(member_array(arg, group1)!=-1
+			|| member_array(arg, group2)!=-1)
+			return notify_fail("这个人已经参加比赛了。\n");
+		if( !(ob=find_player(arg)) ) return notify_fail("没这个人。\n");
+		group2 += ({arg});
+		command("chat "+ob->short()+"加入第二比赛组。");
+		return 1;
+	}
+
+	return notify_fail("group startrace\ngroup list\ngroup add1 <id>\ngroup add2 <id>\n");
+}
+
+void group_check()
+{
+	object *ob;
+	int i,amount=0;
+
+	ob=all_inventory(environment());
+	ob=filter_array( ob, (: userp($1) :) );
+	for(i=0;i<sizeof(ob);i++)
+	{
+		if( !living(ob[i]) )
+		{
+			full(ob[i]);
+			ob[i]->revive();
+			ob[i]->remove_all_killer();
+			ob[i]->move("/d/huashan/sheshen");
+			command("chat "+ob[i]->short()+"被踢出擂台！");
+		}
+		if( !ob[i]->is_fighting() ) amount += 1;
+	}
+	if( amount==sizeof(ob) )
+	{
+		command("chat 团体比赛结束！");
+		for(i=0;i<sizeof(ob);i++)
+		{
+			if( !wiz_level(ob[i]) )
+			{
+				full(ob[i]);
+				ob[i]->remove_all_killer();
+			}
+		}
+		group1=({});
+		group2=({});
+		delete("group_race");
+		return;
+	}
+	call_out("group_check",1);
+	return;
+}
+
+int do_biwu(string arg)
+{
+	if(wizardp(this_player()))
+	{
+		set("biwu",1);
+		set("in_race",1);
+		list=({});
+		write("请先加入(add)比武名单，然后正式开始(start)。\n");
+		return 1;
+	}
+	return notify_fail("你无权举行比武！\n");
+}
+
+int do_zhaoji(string arg)
+{
+	object *ob,env,*watcher;
+	int i,j;
+	string *watchroom,str;
+
+	if ( wiz_level(this_player()) == 0 ) return notify_fail("你无权召集参加比武的人员！\n");
+	if ( query("in_race") )	return notify_fail("现在正在召开比武大会！\n");
+
+	command("chat 现在比武大会即将开始,马上集合！");
+
+	if( !arrayp(watchroom=environment()->query("watch_room"))
+		|| !sizeof(watchroom) )
+		return notify_fail("没有看台,没法比武。");
+
+	ob = users();
+	i=sizeof(ob);
+	env=environment();
+	j=0;
+	while(i-- )
+	{
+		reset_eval_cost();
+		if((int)ob[i]->query("env/biwu") && !wiz_level(ob[i]) )
+		{
+			if(ob[i]->is_ghost())
+			{
+				ob[i]->reincarnate();
+				tell_object(ob[i],"由于举行武林大会，你重现人间。\n");
+			}
+			while(1)
+			{
+				if(!find_object(watchroom[j])) load_object(watchroom[j]);
+				watcher=all_inventory(find_object(watchroom[j]));
+				watcher=filter_array( watcher, (: userp($1) :) );
+				if(sizeof(watcher)<MAXNUMBER) break;
+				j++;
+				if(j>(sizeof(watchroom)-1))
+					return notify_fail("看台不够。\n");
+			}
+			str=sprintf("你被分到%d号看台。\n",j);
+			tell_object(ob[i],str);
+			ob[i]->move(find_object(watchroom[j]),1);
+
+		}
+	}
+	command("chat 集合完毕！");
+	return 1;
+}
+
+int do_start(string arg)
+{
+	object obj,*ob;
+	int age1,age2,age,i;
+	string str;
+
+	if ( !wizardp(this_player()) ) return notify_fail("你无权举行比武！\n");
+	over=0;
+	environment()->set("no_fight",1);
+
+	if(!query("biwu"))
+	{
+		if(!arg || sscanf(arg, "from %d to %d",age1,age2)!=2 )
+			return notify_fail("start from <起始年龄> to <终止年龄>\n");
+		ob=users();
+		i=sizeof(ob);
+		list=({});
+		while(i--)
+		{
+			if((int)ob[i]->query("env/biwu") && !wiz_level(ob[i])
+				&& (age=ob[i]->query("age"))>=age1 && age<=age2 )
+				list+=({ob[i]->query("id")});
+		}
+	}
+
+	set("in_race",1);
+
+	if(!query("biwu"))
+		str=sprintf("现在%d到%d年龄组的比赛正式开始。",age1,age2);
+	else
+		str="现在比武正式开始。";
+	command("chat "+str);
+	if (selectplayer(0))
+	{
+		obj=find_player(winer);
+		if(query("biwu"))
+			command("chat 现在擂主是"+obj->query("name"));
+		else
+			command("chat 这个年龄组的擂主是"+obj->query("name"));
+	}
+	else
+	{
+		if(query("biwu"))
+		{
+			command("chat 比赛人数不够,取消比赛。");
+			command("chat 比武大会到此结束。");	
+		}
+		else
+		{
+			command("chat 这个年龄组人数不够,取消这个组的比赛。");
+			command("chat 这个年龄组的比武大会到此结束。");
+		}
+		delete("biwu");
+		delete("in_race");
+		return 1;
+	}
+	if(!selectplayer(1))
+	{
+		if(query("biwu"))
+		{
+			command("chat 比赛人数不够,取消比赛。");
+			command("chat 比武大会到此结束。");	
+		}
+		else
+		{
+			command("chat 这个年龄组人数不够,取消这个组的比赛。");
+			command("chat 这个年龄组的比武大会到此结束。");
+		}
+		delete("biwu");
+		delete("in_race");
+		return 1;
+	}
+	race();
+	return 1;
+}
+
+int race()
+{
+	object ob1,ob2,ob;
+	int org_armor;
+	
+	if(over)
+	{
+		if( stringp(winer) )
+		{
+			ob=find_player(winer);
+			full(ob);
+			if(query("biwu"))
+				command("chat 本次比赛的胜者是"+ob->short());
+			else
+				command("chat 这个年龄组的冠军是"+ob->short());	
+			bonus(ob);
+		}
+		if(query("biwu"))
+			command("chat 本次比武大会到此结束。");
+		else
+			command("chat 这个年龄组的比武大会到此结束。");
+		delete("biwu");
+		delete("in_race");
+		return 1;
+	}
+	fighter=fighter1;
+	fighterroom=fighter1room;
+	if(!selectplayer(1))
+	{
+		if(query("biwu"))
+			command("chat 本次比武大会即将结束。");
+		else
+			command("chat 这个年龄组的比武大会即将结束。");
+
+		over=1;
+	}
+
+	if(!find_player(winer) && !find_player(fighter) )
+	{
+		command("chat  "+winer+"和"+fighter+"都不知道哪去了。");
+		if (!selectplayer(1))
+		{
+			if(query("biwu"))
+				command("chat 本次比武大会到此结束。");
+			else
+				command("chat 这个年龄组的比武大会到此结束。");
+			delete("biwu");			
+			delete("in_race");
+			return 1;
+		}
+		race();
+		return 1;
+	}
+	if( !(ob1=find_player(winer)) )
+	{
+		command("chat " + winer + "不知哪去了。");
+		winer=find_player(fighter)->query("id");
+		winerroom=fighterroom;
+		race();
+		return 1;
+	}
+	if( !(ob2=find_player(fighter)) )
+	{
+		command("chat " + fighter + "不知哪去了。");
+		race();
+		return 1;
+	}
+
+	if( !living(ob1) ) ob1->revive();
+	if( !living(ob2) ) ob2->revive();
+	if(ob1->is_ghost()) ob1->reincarnate();
+	if(ob2->is_ghost()) ob2->reincarnate();
+
+	full(ob1);
+	full(ob2);
+	
+	//打完了,去掉原先加的防御
+	if( (org_armor = ob1->query_temp("apply/org_armor")) > 0 )
+	{
+		ob1->set_temp("apply/armor",org_armor);
+		ob1->delete_temp("apply/armor_vs_force");
+	}
+	if( (org_armor = ob2->query_temp("apply/org_armor")) > 0 )
+	{
+		ob2->set_temp("apply/armor",org_armor);
+		ob2->delete_temp("apply/armor_vs_force");
+	}
+
+	
+	if(!present(winer,environment())) ob1->move(environment());
+	if(!present(fighter,environment())) ob2->move(environment());
+
+	command("chat " + fighter 
+		+ "准备，你将向" + winer + "挑战！\n");
+	if(stringp(fighter1))
+		command("chat "+fighter1+"准备,下一个轮到你");
+	
+	set("queren",1);
+	return 1;
+}
+
+int do_queren()
+{
+	object ob1,ob2;
+	int org_armor;
+	
+	if ( !wizardp(this_player()) ) return notify_fail("你无权确认比武！\n");
+	if(!query("queren"))
+		return notify_fail("现在还没人上场，怎么比武？\n");
+	delete("queren");
+	command("chat 比武开始");
+	if(!find_player(winer) && !find_player(fighter) )
+	{
+		command("chat  "+winer+"和"+fighter+"都不知道哪去了。");
+		if (!selectplayer(1))
+		{
+			if(query("biwu"))
+				command("chat 本次比武大会到此结束。");
+			else
+				command("chat 这个年龄组的比武大会到此结束。");
+			delete("biwu");
+			delete("in_race");
+			return 1;
+		}
+		race();
+		return 1;
+	}
+	if( !(ob1=find_player(winer)) )
+	{
+		command("chat " + winer + "不知哪去了。");
+		winer=fighter;
+		winerroom=fighterroom;
+		race();
+		return 1;
+	}
+	if( !(ob2=find_player(fighter)) )
+	{
+		command("chat " + fighter + "不知哪去了。");
+		race();
+		return 1;
+	}
+
+	command("chat " + fighter 
+		+ "开始向" + winer + "挑战！\n");
+	remove_call_out("check");
+	call_out("check",1,ob1,ob2);
+
+        ob1->delete_temp("halted");
+       	ob2->delete_temp("halted");
+	ob1->delete_temp("be_defeated");
+	ob2->delete_temp("be_defeated");
+
+	if( !living(ob1) ) ob1->revive();
+	if( !living(ob2) ) ob2->revive();
+	if(ob1->is_ghost()) ob1->reincarnate();
+	if(ob2->is_ghost()) ob2->reincarnate();
+
+	if(!present(winer,environment())) ob1->move(environment());
+	if(!present(fighter,environment())) ob2->move(environment());
+	if(ob1->is_busy())  ob1->interrupt_me(ob1, "halt");
+	if(ob2->is_busy())  ob2->interrupt_me(ob2, "halt");
+
+	tell_object(ob1,"该上场了。\n");
+	tell_object(ob2,"该上场了。\n");
+
+	//减少一招灭的情况,armor(50,100)大概比较合理(经验值)
+	//但是只有当双方防御都是布衣的时候才加(穿布衣后防御armor=21)
+	if( (org_armor = ob1->query_temp("apply/armor")) < 22 ) 
+	{	
+		ob1->set_temp("apply/org_armor",org_armor);
+		ob1->add_temp("apply/armor_vs_force",100);
+		ob1->add_temp("apply/armor",50);
+	}
+	if( (org_armor = ob2->query_temp("apply/armor")) < 22 ) 
+	{	
+		ob2->set_temp("apply/org_armor",org_armor);
+		ob2->add_temp("apply/armor_vs_force",100);
+		ob2->add_temp("apply/armor",50);
+	}
+
+	
+	ob1->bihua_ob(ob2);
+	ob2->bihua_ob(ob1);
+
+	return 1;
+}
+
+int check(object ob1,object ob2)
+{
+	if(!objectp(ob1) && !objectp(ob2) )
+	{
+		command("chat  "+winer+"和"+fighter+"双双退线。");
+		if (!selectplayer(1))
+		{
+			if(query("biwu"))
+				command("chat 本次比武大会到此结束。");
+			else
+				command("chat 这个年龄组的比武大会到此结束。");
+			delete("biwu");
+			delete("in_race");
+			return 1;
+		}
+		race();
+		return 1;
+	}
+
+	if(!objectp(ob1))
+	{
+		command("chat " + winer + "退线了！\n");
+		ob2->remove_all_killer();
+		winer=fighter;
+		winerroom=fighterroom;
+		race();
+		return 1;
+	}
+	if(!objectp(ob2))
+	{
+		command("chat " + fighter + "退线了！\n");
+		ob1->remove_all_killer();
+		race();
+		return 1;
+	}
+
+	if( (ob1->is_killing() || ob1->is_fighting())
+	&&  (ob2->is_killing() || ob2->is_fighting())
+	&& present(ob1,environment()) && present(ob2,environment()) )
+	{
+		call_out("check",1,ob1,ob2);
+		return 1;
+	}
+
+        ob1->delete_temp("pending/fight");
+        ob2->delete_temp("pending/fight");
+	ob1->remove_all_killer();
+	ob2->remove_all_killer();
+
+	if ( !present(ob1, environment()) ) 
+	{
+		command("chat " + winer + "落荒而逃了！\n");
+		full(ob1);
+		ob1->move(winerroom);
+		winer=fighter;
+		winerroom=fighterroom;
+		race();
+		return 1;
+	}
+
+	if ( !present(ob2, environment()) ) 
+	{
+		command("chat " + fighter + "落荒而逃了！\n");
+		full(ob2);
+		ob2->move(fighterroom);
+		race();
+		return 1;
+	}
+           
+        if (ob1->query_temp("halted"))
+         {
+	       ob1->delete_temp("halted");
+               command("chat " + winer + "中途放弃比武！\n");
+		full(ob1);
+		ob1->move(winerroom);
+		winer=fighter;
+		winerroom=fighterroom;
+		race();
+                return 1;
+         }
+        if (ob2->query_temp("halted"))
+         {
+               ob2->delete_temp("halted");
+               command("chat " + fighter + "中途放弃比武！\n");
+		full(ob2);
+		ob2->move(fighterroom);
+		race();
+                return 1;
+         }
+
+	if (ob2->query_temp("be_defeated")) 
+	{
+		command("chat " + winer	+ "比武战胜" + fighter + "！\n");
+		full(ob2);
+		ob2->move(fighterroom);
+		ob2->delete_temp("be_defeated");
+		race();
+		return 1;
+	}
+	if ( ob1->query_temp("be_defeated") )
+	{
+		command("chat " + fighter + "比武战胜" + winer + "！\n");
+		full(ob1);
+		ob1->move(winerroom);
+		ob1->delete_temp("be_defeated");
+		winer=fighter;
+		winerroom=fighterroom;
+		race();
+		return 1;
+	}
+	race();
+	return 1;
+}
+
+int do_add(string arg)
+{
+	object ob;
+
+	if(!query("in_race")) return notify_fail("现在还没进行比武大会。\n");
+	if(!wizardp(this_player())) return notify_fail("只有巫师才能加名额。\n");
+	if(!arg ) return notify_fail("格式：add <某人>\n");
+	if(member_array(arg, list)!=-1) return notify_fail("这个人已经参加比赛了。\n");
+	if( !(ob=find_player(arg)) ) return notify_fail("没这个人。\n");
+	list+=({arg});
+	command("chat "+ob->query("name")+"加入比赛。");
+	return 1;
+}
+
+int do_list(string arg)
+{
+	string str;
+	int i;
+	if(!query("in_race")) return notify_fail("现在还没进行比武大会。\n");
+
+	str="剩下的比武名单如下:\n";
+	str+="---------------------------------------------------------------\n";
+	for(i=0;i<sizeof(list);i++)
+	{	
+		str+=sprintf("%-15s",list[i]);
+		if( !((i+1)%4) ) str+="\n";
+	}
+	str+="\n---------------------------------------------------------------\n";
+	str+=sprintf("共有%d个人。\n",sizeof(list));
+	write(str);
+	return 1;
+}
+
+int do_retreat(string arg)
+{
+	string id;
+	if(!query("in_race")) return notify_fail("现在还没进行比武大会。\n");
+	if( !wiz_level(this_player()) )
+	{
+		if(arg) id=arg;
+		else  id=this_player()->query("id");
+	}
+	else
+		id=this_player()->query("id");
+	if(member_array(id, list)==-1) return notify_fail(id+"本来就没参加比赛。\n");
+	list-=({id});
+	command("chat "+id+"退出比赛。");
+	return 1;
+}
+
+int do_qu(string arg)
+{
+	object ob,me=this_player();
+	if(!query("in_race")) return notify_fail("现在还没进行比武大会。\n");
+	if(me->query_temp("get_weapon") ) return notify_fail("你已经拿了一样了。\n");
+	if(arg=="sword")
+	{
+		if(ob=new("/obj/weapon/c_sword"))
+		{
+			ob->move(me);
+			if ( !wizardp(me) ) me->set_temp("get_weapon",1);
+			tell_object(me,"你从兵器架上取下一样武器。\n");
+		}
+		else
+			tell_object(me,"这种武器没了。\n");
+		return 1;
+	}
+	if(arg=="blade")
+	{
+		if(ob=new("/obj/weapon/c_blade"))
+		{
+			ob->move(me);
+			if ( !wizardp(me) ) me->set_temp("get_weapon",1);
+			tell_object(me,"你从兵器架上取下一样武器。\n");
+		}
+		else
+			tell_object(me,"这种武器没了。\n");
+		return 1;
+	}
+	if(arg=="whip")
+	{
+		if(ob=new("/obj/weapon/c_whip"))
+		{
+			ob->move(me);
+			if ( !wizardp(me) ) me->set_temp("get_weapon",1);
+			tell_object(me,"你从兵器架上取下一样武器。\n");
+		}
+		else
+			tell_object(me,"这种武器没了。\n");
+		return 1;
+	}
+	if(arg=="hammer")
+	{
+		if(ob=new("/obj/weapon/c_hammer"))
+		{
+			ob->move(me);
+			if ( !wizardp(me) ) me->set_temp("get_weapon",1);
+			tell_object(me,"你从兵器架上取下一样武器。\n");
+		}
+		else
+			tell_object(me,"这种武器没了。\n");
+		return 1;
+	}
+
+	if(arg=="spear")
+	{
+		if(ob=new("/obj/weapon/c_spear"))
+		{
+			ob->move(me);
+			if ( !wizardp(me) ) me->set_temp("get_weapon",1);
+			tell_object(me,"你从兵器架上取下一样武器。\n");
+		}
+		else
+			tell_object(me,"这种武器没了。\n");
+		return 1;
+	}
+	if(arg=="staff")
+	{
+		if(ob=new("/obj/weapon/c_staff"))
+		{
+			ob->move(me);
+			if ( !wizardp(me) ) me->set_temp("get_weapon",1);
+			tell_object(me,"你从兵器架上取下一样武器。\n");
+		}
+		else
+			tell_object(me,"这种武器没了。\n");
+		return 1;
+	}
+	if(arg=="gun")
+	{
+		if(ob=new("/obj/weapon/c_club"))
+		{
+			ob->move(me);
+			if ( !wizardp(me) ) me->set_temp("get_weapon",1);
+			tell_object(me,"你从兵器架上取下一样武器。\n");
+		}
+		else
+			tell_object(me,"这种武器没了。\n");
+		return 1;
+	}
+	if(arg=="ji")
+	{
+		if(ob=new("/obj/weapon/c_halberd.c"))
+		{
+			ob->move(me);
+			if ( !wizardp(me) ) me->set_temp("get_weapon",1);
+			tell_object(me,"你从兵器架上取下一样武器。\n");
+		}
+		else
+			tell_object(me,"这种武器没了。\n");
+		return 1;
+	}
+
+	if(arg=="dagger")
+	{
+		if(ob=new("/obj/weapon/c_dagger.c"))
+		{
+			ob->move(me);
+			if ( !wizardp(me) ) me->set_temp("get_weapon",1);
+			tell_object(me,"你从兵器架上取下一样武器。\n");
+		}
+		else
+			tell_object(me,"这种武器没了。\n");
+		return 1;
+	}
+	if(arg=="qin")
+	{
+		if(ob=new("/obj/weapon/c_qin.c"))
+		{
+			ob->move(me);
+			if ( !wizardp(me) ) me->set_temp("get_weapon",1);
+			tell_object(me,"你从兵器架上取下一样武器。\n");
+		}
+		else
+			tell_object(me,"这种武器没了。\n");
+		return 1;
+	}
+	if(arg=="dart")
+	{
+		if(ob=new("/obj/weapon/c_dart.c"))
+		{
+			ob->move(me);
+			if ( !wizardp(me) ) me->set_temp("get_weapon",1);
+			tell_object(me,"你从兵器架上取下一些飞镖。\n");
+		}
+		else
+			tell_object(me,"这种武器没了。\n");
+		return 1;
+	}
+
+	return notify_fail("找不到你要的。\n");
+}
+
+int do_halt()
+{
+	object me = this_player();
+
+	if( query("group_race") && !wizardp(me))
+	{
+		write(HIW"团体比赛期间，不能halt。\n"NOR);
+		return 1;
+	}
+
+	if (me->is_fighting() || me->is_killing())
+	{
+		me->set_temp("halted",1);
+		me->remove_all_killer();
+		message_vision(HIW"$N向後一跃，离开战圈罢手不斗了。\n"NOR, me);
+		return 1;
+	}
+
+	if( me->is_busy() )
+	{
+		me->interrupt_me(me, "halt");
+		write("ok。\n");
+		return 1;
+	}
+
+	return 1;
+}
+
+int selectplayer(int flag)
+{
+	mixed player;
+	object ob;
+
+	if(sizeof(list))
+		player=list[random(sizeof(list))];
+	else
+		player=0;
+	while(!seekplayer(player))
+	{
+		list-=({player});
+		if(!sizeof(list)) {player=0;break;}
+		player=list[random(sizeof(list))];
+	}
+	list-=({player});
+	if(!flag)
+	{
+		winer=player;
+		if(stringp(winer) && ob=find_player(winer)) winerroom=environment(ob);
+		if(sizeof(list))  return 1;
+		else  return 0;
+	}
+	if(flag)
+	{
+		fighter1=player;
+		if(stringp(player) && ob=find_player(fighter1)) fighter1room=environment(ob);
+		if(stringp(fighter1))  return 1;
+		else return 0;
+	}
+	return 0;
+}
+
+int seekplayer(mixed name)
+{
+	object ob;
+	if( stringp(name) && (ob=find_player(name)) && !ob->is_ghost())
+	{
+		return 1;
+	}
+	return 0;
+}
+
+int bonus(object ob)
+{
+	object obj;
+/*
+	if((obj=new("/d/shaolin/obj/puti-zi")))
+	{
+		obj->move(ob);
+		tell_object(ob,"你得到了奖励。\n");
+	}
+*/
+	return 1;
+}
+
+int full(mixed ob)
+{
+        string *conditions=({}),*list,arg;
+
+        int i;
+        string *gifts=({ "gin","kee","sen" });
+        string *gifts1=({"atman","force","mana"});
+
+	if(!objectp(ob)) return 0;
+    
+        for( i = 0; i < sizeof(gifts); i++ )
+        {
+        ob->set(gifts[i],ob->query("max_"+gifts[i]));
+        ob->set("eff_"+gifts[i],ob->query("max_"+gifts[i]));
+        }
+        for( i = 0; i < sizeof(gifts1); i++ )
+        {
+        ob->set(gifts1[i],2*ob->query("max_"+gifts1[i])-1);
+        }
+        ob->set("food",ob->max_food_capacity());
+        ob->set("water",ob->max_water_capacity());
+        list = get_dir("/daemon/condition/");
+        
+        i = sizeof(list);
+        while( i-- )
+        {
+                arg = list[i];
+                if( arg[strlen(arg)-8..strlen(arg)-3] == "poison" )
+                        conditions += ({arg[0..strlen(arg)-3]});
+        }
+
+        i = sizeof(conditions);
+        while(i--) 
+        {
+           if( ob->query_condition(conditions[i]) > 0 )
+                  ob->clear_condition(conditions[i]);
+                       
+        }
+        ob->clear_condition("threesmiles");//三笑逍遥散
+        ob->clear_condition("super_poisons");//不死不休
+        ob->clear_condition("zhang_qi");//瘴气
+        ob->clear_condition("iceshock");//意寒毒
+        ob->clear_condition("shengsifu");//生死符
+        ob->clear_condition("slumber_drug");//蒙汗药
+        
+        return 1;
+}
+
+
+int do_help(string arg)
+{
+	if( wiz_level(this_player()) == 0)
+		return 0;
+/*
+	write(helpstr);
+*/
+}

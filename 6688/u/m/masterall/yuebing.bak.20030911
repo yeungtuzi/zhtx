@@ -1,0 +1,70 @@
+//stone.c
+//by masterall
+
+#include <ansi.h>
+inherit ITEM;
+
+void create()
+{
+        set_name(HIY"月饼"NOR , ({ "yue bing" }) );
+        set_weight(600);
+        set("value",0);
+        set("long", HIY"一块包装华美的精致月饼，上面镶着几个大字“中秋快乐”。
+纵横天下II巫师工作组祝愿大家节日快乐，身体健康，心想事成，工作学习一切顺利！\n"NOR);
+        if( clonep() )
+                set_default_object(__FILE__);   
+                set("unit", "块");
+        
+}
+
+void init()
+{
+       add_action("do_eat","eat");
+}
+
+int do_eat()
+{
+         object me,ob;
+         int luck;
+         me = this_player();
+         ob = this_object();
+
+         luck = random(me->query("kar")*3+10);
+
+         if( ob->query("owner") != me )
+                return notify_fail("这块月饼不是你的，从哪里抢来的，这么不害臊！？\n"); 
+
+         message_vision(HIC"$N看着这块香甜可口的月饼早已按捺不住自己的食欲，三口两口就吃了下去，\n其味美香甜，已非凡间之物所能与其比肩。\n"NOR,me);
+
+         if( luck > 98 ){ 
+                     me->add("wlshw",100);
+         message("system",
+    HIC "【纵横天下】纵横天下工作组：恭喜"+me->name()+"，获得了此次节日的超级大奖，"+HIG"100点武林声望！\n" NOR,users() );
+        tell_object(me,HIG"你的武林声望增加了一百点，恭喜恭喜！\n"NOR);
+
+         }else if( luck > 80 && luck < 99){
+         message("system",
+    HIC "【纵横天下】纵横天下工作组：恭喜"+me->name()+"，获得了此次节日的特别大奖，"+HIG"500点最大内力！\n" NOR,users() );
+                     me->add("max_force",500); 
+        tell_object(me,HIG"你的最大内力增加了五百点，恭喜恭喜！\n"NOR);
+         }else if( luck > 60 && luck < 81){
+         message("system",
+    HIC "【纵横天下】纵横天下工作组：恭喜"+me->name()+"，获得了此次节日的大奖，\n"+HIG"二十万点战斗经验，五万点潜能！\n" NOR,users() );
+        tell_object(me,HIG"你的最大战斗经验增加了二十万点，潜能增加了五万点，恭喜恭喜！\n"NOR);
+                     me->add("combat_exp",200000); 
+                     me->add("potential",50000); 
+         }else if( luck > 40 && luck < 61){
+        tell_object(me,HIG"你的先天悟性增加了二点，先天体质增加了二点，恭喜恭喜！\n"NOR);
+                     me->add("int",2); 
+                     me->add("con",2); 
+         }else if( luck > 10 && luck < 41){
+        tell_object(me,HIG"你的最大战斗经验增加了五万点，潜能增加了二万点，恭喜！\n"NOR);
+                     me->add("combat_exp",50000); 
+                     me->add("potential",20000); 
+         }else {
+        tell_object(me,HIR"你吃月饼吃得太急，一下子噎着了,你什么奖励都没得到，真遗憾！！\n"NOR);
+         }
+       destruct(this_object());
+               return 1;
+
+}

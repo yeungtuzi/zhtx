@@ -1,0 +1,178 @@
+[Jul 30 18:47:24]u/l/lazypig/testest.c line 40: parse error
+[Jul 30 23:44:39]u/l/lazypig/xglove/xglove.c line 1: Missing leading " or < in #include
+[Jul 30 23:44:39]u/l/lazypig/xglove/xglove.c line 2: Missing leading " or < in #include
+[Jul 30 23:44:39]u/l/lazypig/xglove/xglove.c line 13: Undefined variable 'EDGED'
+[Jul 30 23:44:39]u/l/lazypig/xglove/xglove.c line 48: Undefined variable 'HIB'
+[Jul 30 23:44:39]u/l/lazypig/xglove/xglove.c line 48: parse error
+[Jul 30 23:48:59]u/l/lazypig/xglove/xglove.c line 1: Missing leading " or < in #include
+[Jul 30 23:49:03]u/l/lazypig/xglove/xglove.c line 1: Missing leading " or < in #include
+[Jul 30 23:54:01]u/l/lazypig/xglove/cl_glove.c line 1: Missing leading " or < in #include
+[Jul 30 23:54:01]u/l/lazypig/xglove/cl_glove.c line 2: Missing leading " or < in #include
+[Jul 30 23:54:01]u/l/lazypig/xglove/cl_glove.c line 1: Missing leading " or < in #include
+[Jul 30 23:54:01]u/l/lazypig/xglove/cl_glove.c line 2: Missing leading " or < in #include
+[Jul 30 23:54:01]u/l/lazypig/xglove/cl_glove.c line 13: Undefined variable 'EDGED'
+[Jul 30 23:54:01]u/l/lazypig/xglove/cl_glove.c line 48: Undefined variable 'HIB'
+[Jul 30 23:54:01]u/l/lazypig/xglove/cl_glove.c line 48: parse error
+[Aug  2 17:29:19]u/l/lazypig/dart.c line 44: Reserved type name unexpected.
+[Aug  2 17:29:19]u/l/lazypig/dart.c line 44: parse error
+[Aug  2 17:29:19]u/l/lazypig/dart.c line 63: Illegal LHS
+[Aug  2 17:29:19]u/l/lazypig/dart.c line 63: parse error
+[Aug  2 17:29:19]u/l/lazypig/dart.c line 73: Undefined variable 'arg'
+[Aug  2 17:29:19]u/l/lazypig/dart.c line 76: Illegal LHS
+[Aug  2 17:33:47]u/l/lazypig/dart.c line 137: parse error
+[Aug  2 17:33:47]u/l/lazypig/dart.c line 137: Illegal LHS
+[Aug  2 17:34:31]u/l/lazypig/wuyingdu.c line 110: parse error
+[Aug  2 17:34:31]u/l/lazypig/wuyingdu.c line 110: Illegal LHS
+[Aug  2 17:34:55]u/l/lazypig/wuyingdu.c line 110: parse error
+[Aug  2 17:34:55]u/l/lazypig/wuyingdu.c line 110: Illegal LHS
+[Aug  2 17:35:31]u/l/lazypig/wuyingdu.c line 111: parse error
+[Aug  2 17:35:31]u/l/lazypig/wuyingdu.c line 111: Illegal LHS
+[Aug  5 15:06:15]u/l/lazypig/dust.c line 28: Undefined variable 'me'
+[Aug  5 15:06:15]u/l/lazypig/dust.c line 28: Undefined variable 'HIR'
+[Aug  5 15:06:15]u/l/lazypig/dust.c line 28: parse error
+[Aug  5 15:08:19]u/l/lazypig/dust.c line 29: Undefined variable 'me'
+[Aug  5 19:30:15]u/l/lazypig/npc/pangban.c line 73: Wrong number of arguments to carry_rnd_equip
+    Expected: 2  Got: 1
+[Aug 10 21:29:38]u/l/lazypig/test.c line 35: Undefined variable 'me'
+[Aug 10 21:29:38]u/l/lazypig/test.c line 35: Undefined variable 'HIC'
+[Aug 10 21:29:38]u/l/lazypig/test.c line 35: parse error
+[Aug 10 21:29:38]u/l/lazypig/test.c line 44: Illegal LHS
+[Aug 10 21:29:38]u/l/lazypig/test.c line 45: parse error
+[Aug 12 15:33:55]u/l/lazypig/age2force.c line 17: Undefined variable 'm'
+[Aug 12 15:33:55]u/l/lazypig/age2force.c line 17: parse error
+[Aug 12 15:33:55]u/l/lazypig/age2force.c line 18: Illegal LHS
+[Aug 12 15:33:55]u/l/lazypig/age2force.c line 18: parse error
+[Aug 12 15:33:55]u/l/lazypig/age2force.c line 37: Illegal LHS
+[Aug 12 15:33:55]u/l/lazypig/age2force.c line 37: parse error
+[Aug 12 15:37:33]u/l/lazypig/age2force.c line 17: Undefined variable 'm'
+[Aug 12 15:37:33]u/l/lazypig/age2force.c line 17: parse error
+[Aug 12 15:37:33]u/l/lazypig/age2force.c line 18: Illegal LHS
+[Aug 12 15:37:33]u/l/lazypig/age2force.c line 18: parse error
+[Aug 12 15:37:33]u/l/lazypig/age2force.c line 37: Illegal LHS
+[Aug 12 15:37:33]u/l/lazypig/age2force.c line 37: parse error
+[Aug 13 20:53:42]u/l/lazypig/npc/mengchixing.c line 73: Undefined variable 'ob'
+[Aug 14 16:23:22]u/l/lazypig/workroom.c line 3: Illegal to redefine 'nomask' function "_query"
+[Aug 14 16:23:22]u/l/lazypig/workroom.c line 3: Illegal to redefine 'nomask' function "_delete"
+[Aug 14 16:23:22]u/l/lazypig/workroom.c line 3: Illegal to redefine 'nomask' function "_set"
+[Aug 15 20:09:43]u/l/lazypig/workroom.c line 7: parse error
+[Aug 15 20:09:49]u/l/lazypig/workroom.c line 7: parse error
+[Aug 15 20:10:39]u/l/lazypig/workroom.c line 7: parse error
+[Aug 15 20:10:47]u/l/lazypig/workroom.c line 7: parse error
+[Aug 15 20:13:03]u/l/lazypig/workroom.c line 7: parse error
+[Aug 15 20:14:05]u/l/lazypig/workroom.c line 8: parse error
+[Apr 29 15:18:17]/u/l/lazypig/resetg.c line 15: syntax error, unexpected L_IDENTIFIER
+  if( me->query_skill("force",1)>220) return notify_fail("你的内功心法等级太高,不合适重新分配�...
+                                                                                                                  ^
+[Apr 29 15:18:17]/u/l/lazypig/resetg.c line 15: Illegal character (hex e4) '�'
+  if( me->query_skill("force",1)>220) return notify_fail("你的内功心法等级太高,不合适重新分配�...
+                                                                                                                  ^
+[Apr 29 15:18:17]/u/l/lazypig/resetg.c line 15: Illegal character (hex bd) '�'
+  if( me->query_skill("force",1)>220) return notify_fail("你的内功心法等级太高,不合适重新分配�...
+                                                                                                                  ^
+[Apr 29 15:18:17]/u/l/lazypig/resetg.c line 15: Illegal character (hex a0) '�'
+  if( me->query_skill("force",1)>220) return notify_fail("你的内功心法等级太高,不合适重新分配�...
+                                                                                                                  ^
+[Apr 29 15:18:17]/u/l/lazypig/resetg.c line 15: Illegal character (hex e7) '�'
+  if( me->query_skill("force",1)>220) return notify_fail("你的内功心法等级太高,不合适重新分配�...
+                                                                                                                  ^
+[Apr 29 15:18:17]/u/l/lazypig/resetg.c line 15: Illegal character (hex 9a) '�'
+  if( me->query_skill("force",1)>220) return notify_fail("你的内功心法等级太高,不合适重新分配�...
+                                                                                                                  ^
+[Apr 29 15:18:17]/u/l/lazypig/age2force.c line 17: syntax error, unexpected L_IDENTIFIER
+  e->query_skill("force",1) / 2)
+   ^
+[Apr 29 15:18:17]/u/l/lazypig/age2force.c line 18: syntax error, unexpected ';'
+  start_force = me->query("max_force") ;
+                                               ^
+[Apr 29 15:18:17]/u/l/lazypig/age2force.c line 37: syntax error, unexpected ';'
+  my_age = me->query("mud_age")/86400;
+                                                   ^
+[Apr 29 15:18:17]/u/l/lazypig/age2force.c line 47: syntax error, unexpected ';'
+  eff_kee_2_force  = 10 * (me->query("max_kee")/25 + 1) ;   // 1 food = 10 h
+                                                                      ^
+[Apr 29 15:18:17]/u/l/lazypig/age2force.c line 49: syntax error, unexpected ';'
+  eff_force_2_kee  = me->query_skill("force")*eff_kee_2_force/100;
+                                                                               ^
+[Apr 29 15:18:17]/u/l/lazypig/age2force.c line 55: syntax error, unexpected ';'
+  ex_time      = (int) me->query("max_kee") / eff_kee_2_force  ;
+             auto_recover = 10 * ( start_...
+                                                                                                             ^
+[Apr 29 15:18:17]/u/l/lazypig/resetgift.c line 15: syntax error, unexpected L_IDENTIFIER
+  if( me->query_skill("force",1)>220) return notify_fail("你的内功心法等级太高,不合适重新分配�...
+                                                                                                                  ^
+[Apr 29 15:18:17]/u/l/lazypig/resetgift.c line 15: Illegal character (hex e4) '�'
+  if( me->query_skill("force",1)>220) return notify_fail("你的内功心法等级太高,不合适重新分配�...
+                                                                                                                  ^
+[Apr 29 15:18:17]/u/l/lazypig/resetgift.c line 15: Illegal character (hex bd) '�'
+  if( me->query_skill("force",1)>220) return notify_fail("你的内功心法等级太高,不合适重新分配�...
+                                                                                                                  ^
+[Apr 29 15:18:17]/u/l/lazypig/resetgift.c line 15: Illegal character (hex a0) '�'
+  if( me->query_skill("force",1)>220) return notify_fail("你的内功心法等级太高,不合适重新分配�...
+                                                                                                                  ^
+[Apr 29 15:18:17]/u/l/lazypig/resetgift.c line 15: Illegal character (hex e7) '�'
+  if( me->query_skill("force",1)>220) return notify_fail("你的内功心法等级太高,不合适重新分配�...
+                                                                                                                  ^
+[Apr 29 15:18:17]/u/l/lazypig/resetgift.c line 15: Illegal character (hex 9a) '�'
+  if( me->query_skill("force",1)>220) return notify_fail("你的内功心法等级太高,不合适重新分配�...
+                                                                                                                  ^
+[Apr 29 15:18:18]/u/l/lazypig/test2.c line 2: syntax error, unexpected L_IDENTIFIER, expecting L_ASSIGN or ';' or '(' or ','
+  a
+   ^
+[Apr 29 15:28:20]/u/l/lazypig/resetg.c line 15: syntax error, unexpected L_IDENTIFIER
+  if( me->query_skill("force",1)>220) return notify_fail("你的内功心法等级太高,不合适重新分配�...
+                                                                                                                  ^
+[Apr 29 15:28:20]/u/l/lazypig/resetg.c line 15: Illegal character (hex e4) '�'
+  if( me->query_skill("force",1)>220) return notify_fail("你的内功心法等级太高,不合适重新分配�...
+                                                                                                                  ^
+[Apr 29 15:28:20]/u/l/lazypig/resetg.c line 15: Illegal character (hex bd) '�'
+  if( me->query_skill("force",1)>220) return notify_fail("你的内功心法等级太高,不合适重新分配�...
+                                                                                                                  ^
+[Apr 29 15:28:20]/u/l/lazypig/resetg.c line 15: Illegal character (hex a0) '�'
+  if( me->query_skill("force",1)>220) return notify_fail("你的内功心法等级太高,不合适重新分配�...
+                                                                                                                  ^
+[Apr 29 15:28:20]/u/l/lazypig/resetg.c line 15: Illegal character (hex e7) '�'
+  if( me->query_skill("force",1)>220) return notify_fail("你的内功心法等级太高,不合适重新分配�...
+                                                                                                                  ^
+[Apr 29 15:28:20]/u/l/lazypig/resetg.c line 15: Illegal character (hex 9a) '�'
+  if( me->query_skill("force",1)>220) return notify_fail("你的内功心法等级太高,不合适重新分配�...
+                                                                                                                  ^
+[Apr 29 15:28:20]/u/l/lazypig/age2force.c line 17: syntax error, unexpected L_IDENTIFIER
+  e->query_skill("force",1) / 2)
+   ^
+[Apr 29 15:28:20]/u/l/lazypig/age2force.c line 18: syntax error, unexpected ';'
+  start_force = me->query("max_force") ;
+                                               ^
+[Apr 29 15:28:20]/u/l/lazypig/age2force.c line 37: syntax error, unexpected ';'
+  my_age = me->query("mud_age")/86400;
+                                                   ^
+[Apr 29 15:28:20]/u/l/lazypig/age2force.c line 47: syntax error, unexpected ';'
+  eff_kee_2_force  = 10 * (me->query("max_kee")/25 + 1) ;   // 1 food = 10 h
+                                                                      ^
+[Apr 29 15:28:20]/u/l/lazypig/age2force.c line 49: syntax error, unexpected ';'
+  eff_force_2_kee  = me->query_skill("force")*eff_kee_2_force/100;
+                                                                               ^
+[Apr 29 15:28:20]/u/l/lazypig/age2force.c line 55: syntax error, unexpected ';'
+  ex_time      = (int) me->query("max_kee") / eff_kee_2_force  ;
+             auto_recover = 10 * ( start_...
+                                                                                                             ^
+[Apr 29 15:28:20]/u/l/lazypig/resetgift.c line 15: syntax error, unexpected L_IDENTIFIER
+  if( me->query_skill("force",1)>220) return notify_fail("你的内功心法等级太高,不合适重新分配�...
+                                                                                                                  ^
+[Apr 29 15:28:20]/u/l/lazypig/resetgift.c line 15: Illegal character (hex e4) '�'
+  if( me->query_skill("force",1)>220) return notify_fail("你的内功心法等级太高,不合适重新分配�...
+                                                                                                                  ^
+[Apr 29 15:28:20]/u/l/lazypig/resetgift.c line 15: Illegal character (hex bd) '�'
+  if( me->query_skill("force",1)>220) return notify_fail("你的内功心法等级太高,不合适重新分配�...
+                                                                                                                  ^
+[Apr 29 15:28:20]/u/l/lazypig/resetgift.c line 15: Illegal character (hex a0) '�'
+  if( me->query_skill("force",1)>220) return notify_fail("你的内功心法等级太高,不合适重新分配�...
+                                                                                                                  ^
+[Apr 29 15:28:20]/u/l/lazypig/resetgift.c line 15: Illegal character (hex e7) '�'
+  if( me->query_skill("force",1)>220) return notify_fail("你的内功心法等级太高,不合适重新分配�...
+                                                                                                                  ^
+[Apr 29 15:28:20]/u/l/lazypig/resetgift.c line 15: Illegal character (hex 9a) '�'
+  if( me->query_skill("force",1)>220) return notify_fail("你的内功心法等级太高,不合适重新分配�...
+                                                                                                                  ^
+[Apr 29 15:28:21]/u/l/lazypig/test2.c line 2: syntax error, unexpected L_IDENTIFIER, expecting L_ASSIGN or ';' or '(' or ','
+  a
+   ^

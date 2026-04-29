@@ -9,10 +9,10 @@
 
 nosave object charge_target = 0;
 nosave object *enemy = ({});
-nosave string *killer = ({});
+nosave object *killer = ({});
 
 object *query_enemy() { return enemy; }
-string *query_killer() { return killer; }
+object *query_killer() { return killer; }
 object query_charge_target() { return charge_target; }
 
 // This function returns 1 if we are fighting anyone (or with ob)
@@ -27,7 +27,7 @@ varargs int is_fighting(object ob)
 varargs int is_killing(object ob)
 {
 	if( !ob ) return sizeof(killer) > 0;
-	return member_array(ob->query("id"), killer)!=-1;
+	return member_array(ob, killer)!=-1;
 }
 
 varargs int is_charging(object ob)
@@ -52,8 +52,8 @@ void fight_ob(object ob)
 //but not show the message.
 void bihua_ob(object ob)
 {
-	if( member_array(ob->query("id"), killer)==-1 )
-		killer += ({ ob->query("id") });
+	if( member_array(ob, killer)==-1 )
+		killer += ({ ob });
 	fight_ob(ob);
 }
 
@@ -62,8 +62,8 @@ void kill_ob(object ob)
 {
 	object *guards,me=this_object();
 
-	if( member_array(ob->query("id"), killer)==-1 )
-		killer += ({ ob->query("id") });
+	if( member_array(ob, killer)==-1 )
+		killer += ({ ob });
 
 	tell_object(ob, HIR "看起来" + me->name() + "想杀死你！\n" NOR);
 
@@ -225,7 +225,7 @@ int remove_enemy(object ob)
 int remove_killer(object ob)
 {
 	if( is_killing(ob) ) {
-		killer -= ({ ob->query("id") });
+		killer -= ({ ob });
 		remove_enemy(ob);
 		return 1;
 	}

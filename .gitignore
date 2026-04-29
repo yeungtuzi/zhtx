@@ -21,6 +21,13 @@
 # Runtime logs
 log/
 
+# Runtime-generated player data (recreated on first boot)
+6688/data/login/
+6688/data/user/
+6688/data/mail/
+6688/data/login.num
+6688/data/loginbak.num
+
 # IDE
 .vscode/
 

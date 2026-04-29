@@ -1,0 +1,91 @@
+// xiantian-zhenqi.c
+// by masterall
+
+#include <ansi.h>
+inherit SSERVER;
+
+//inherit F_CLEAN_UP;
+
+//void remove_effect(object me, int amount);
+
+int exert(object me, object target)
+{
+        int skill,amount,i,avf1,avf;
+
+        if( target && target != me ) return notify_fail("你只能用先天功来修炼先天真气。\n");
+
+        if( me->is_fighting() )return notify_fail("你无法在战斗中修炼先天真气。\n");
+
+        if(me->query("armor_vs_force")>999)
+          return notify_fail("你的先天真气已经修炼到最高级别了，无法继续提升了。\n");
+
+        skill = me->query_skill("xiantian-gong",1);
+        avf1=me->query("armor_vs_force");
+
+        if(skill<100){amount = 100;}
+        if(skill>99 && skill<150){amount = 200;}
+        if(skill>149 && skill<200){amount = 300;}
+        if(skill>199 && skill<220){amount = 400;}
+        if(skill>219 && skill<250){amount = 500;}
+        if(skill>249 && skill<280){amount = 600;}
+        if(skill>279 && skill<300){amount = 700;}
+        if(skill>299 && skill<350){amount = 800;}
+        if(skill>349){amount = 1000;}
+
+
+        if(avf1 >= amount)
+          return notify_fail("你现在的先天功已经修炼到瓶颈了，无法继续提升先天真气的造诣。\n");
+ 
+        if ( skill < 50 )
+                return notify_fail("你的先天功修为还不够，无法修炼先天真气。\n");
+
+        if( (int)me->query("force") < 2000 )     
+                return notify_fail("你的内力不够。\n");
+
+        me->set("force", 0);
+        me->add("max_force", -10);
+        me->add("armor_vs_force", 10); 
+
+        if(me->query("armor_vs_force")>amount){me->set("armor_vs_force", amount);}
+        avf=me->query("armor_vs_force");
+        if(avf<101){i = 1;}
+        if(avf>100 && avf<201){i = 2;}
+        if(avf>200 && avf<301){i = 3;}
+        if(avf>300 && avf<401){i = 4;}
+        if(avf>400 && avf<501){i = 5;}
+        if(avf>500 && avf<601){i = 6;}
+        if(avf>600 && avf<701){i = 7;}
+        if(avf>700 && avf<801){i = 8;}
+        if(avf>800){i = 9;}
+        me->set("xiantian-zhenqi",i);
+
+        call_out("telling_xiulian", 1, 0); 
+        me->start_busy(10); 
+        return 1;
+}
+
+void telling_xiulian(int i)
+{
+        string *msg = ({
+"$N静息凝神，调息内功，不断地将体内的真气凝聚起来～～～～～\n\n",
+"过了良久…………$N觉着丹田一股热流上涌…………\n\n",
+"顿时觉得自己有如脱胎换骨，四肢百骸一股说不出的畅快淋漓！\n\n",
+"但$N内功却也已经大为损耗，需要好好休息了！\n\n",
+
+});
+        int lv,avf;
+        object me=this_player();
+        lv=(int)me->query("xiantian-zhenqi");
+        avf=me->query("armor_vs_force");
+
+        
+        if( i >= sizeof(msg) ){
+                this_object()->delete_temp("telling");
+        tell_object(me,HIC"此刻你已经将先天真气修炼到"+HIR"第"+chinese_number(lv)+"重"+HIC"了！！\n\n你现在的防御指数"+HIW"Armor_vs_force"+HIC"已经提高到"+HIY"："+chinese_number(avf)+"点"+HIC"！\n"NOR);
+                return;
+        }
+        message_vision(HIG+msg[i]+NOR, me);
+        call_out("telling_xiulian", 1, i+1);
+        return;
+}
+

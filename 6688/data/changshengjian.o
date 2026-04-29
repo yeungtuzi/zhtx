@@ -1,0 +1,2 @@
+#/obj/changshengjian.c
+dbase (["rigidity":1000000,"name":"[32m长生剑[2;37;0m","no_sell":1,"weapon_prop":(["damage":250,]),"id":"changsheng sword","unpawnable":1,"actions":0,"unequip_msg":"[1;33m$N将手中的$n插入腰间的剑鞘。[2;37;0m","value":300000,"paper":1,"master":"logs","wield_msg":"[33m铮地一声,$N的手中已多了一把寒光闪闪的$n。[2;37;0m","material":"steel","flag":4,"skill_type":"sword","long":"这是长生剑客所用过的佩剑，据说剑中藏有一个大秘密。","unit":"把",])

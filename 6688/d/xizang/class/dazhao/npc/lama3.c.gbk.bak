@@ -1,0 +1,35 @@
+// /d/xizang/class/dazhao/npc/lama3.c
+
+inherit NPC;
+
+void create()
+{
+	set_name("»¤ËÂ²ØÄá", ({ "zhang ni", "ni"}) );
+	set("gender", "Å®ĞÔ" );
+	set("age", 20+random(10));
+	set("str", 20);
+	set("long", @LONG
+Ò»¸ö´óÕĞËÂµÄÅ®µÜ×Ó.£
+LONG
+);
+	set("attitude", "peaceful");
+
+        set("combat_exp", 600+random(40)*10);
+        create_family("´óÕĞËÂ", random(4)+33, "µÜ×Ó");
+        set_skill("unarmed", 50+random(10));
+        set_skill("bloodystrike", random(50)+20);
+        set_skill("force", 40);
+	map_skill("unarmed", "bloodystrike");
+	set_skill("iron-cloth", 40+random(10));
+        set("chat_chance", 20);
+        set("chat_msg", ({
+                (: random_move :),
+        }) );
+        set("inquiry", ([
+                "±¦²Ø": "ÄÇÖ»ÊÇÒ»¸ö´«Ëµ,Ã»ÓĞÈËÄÜÕÒµÃµ½.\n",
+                "´«Ëµ": "¾ÍÊÇÀ¥ÂØÖ®ĞæµÄ´«ËµÀ².\n",
+            "À¥ÂØÖ®Ğæ": "Õâ¸öÕâ¸ö....ÎÒÒ²Ëµ²»Çå³ş,Ò²ĞíÎÒÊ¦ĞÖÖªµÀ.\n",
+        ]) );
+	setup();
+        carry_object(__DIR__"obj/redcloth2")->wear();
+}

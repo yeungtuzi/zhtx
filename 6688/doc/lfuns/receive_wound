@@ -1,0 +1,35 @@
+    RECEIVE_WOUND(L)          LOCAL FUNCTIONS           RECEIVE_WOUND(L)
+ 
+    NAME
+        receive_wound() - causing permanent damages to the various 
+	    living status of the current object.
+ 
+    SYNOPSIS
+        varargs int receive_wound(string type, int damage, object who)
+ 
+    DESCRIPTION
+	this function is defined in /feature/damage.c, and inherited by
+	all living objects. it is used to deduct damage points from the
+	current living object's permanent value of different status. 
+	
+	type is a string containing the types of the damage, valid types
+	are gin, kee and sen. and the result is set within the eff_gin,
+	eff_kee and eff_sen property of the object.
+
+	damage is a positive integer indicating how much damage of that
+	type will be deducted from the living.
+
+	who is an object, indicating who causes this damage, if any. the
+	last_damage_from property of the current object will be set
+	accordingly.
+
+	the return value of this function is damage.
+
+    SEE ALSO
+	receive_damage(), receive_heal(), receive_curing()
+
+    AUTHOR
+        Annihilator@ES2
+
+    Eastern Stories 2.0                       Last Change: Sat  10-07-95
+ 

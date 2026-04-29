@@ -1,0 +1,31 @@
+# macOS
+.DS_Store
+
+# Shell / system files
+.bash_history
+.bash_logout
+.bash_profile
+.bashrc
+.screenrc
+.emacs
+.xauth
+.Xauthority
+
+# Claude Code
+.claude/
+
+# Build artifacts
+6688/binaries/
+*.core
+
+# Runtime logs
+log/
+
+# IDE
+.vscode/
+
+# Temp
+*.tmp
+*.swp
+*.swo
+*~

@@ -1,0 +1,26 @@
+// Room: /d/latemoon/latemoon8.c
+
+inherit ROOM;
+
+void create()
+{
+	set("short", "密室");
+	set("long", @LONG
+这是一个温暖舒适的现代小家，宽大明亮的客厅，琥珀色的窗帘，一丝
+暖暖的阳光透进来，是你感觉棒极了。东边是子陵的书房，放着一台
+奔腾机，也是红叶生气时，子陵的最好避难所。西边是红叶的天地
+红叶伤心时，给谁也不开门。北边是宽敞的寝室，也是子陵和红叶
+的安乐小窝。做客的朋友可是悠闲的躺在沙发上喝一杯红叶特
+做的喜茶。
+LONG
+	);
+	set("exits", ([ /* sizeof() == 1 */
+		"north" : "/d/latemoon/latemoon7",
+]));
+	set("item_desc", ([ /* sizeof() == 1 */
+		"north" : (: look_door,     "north" :),
+]));
+
+	setup();
+	replace_program(ROOM);
+}

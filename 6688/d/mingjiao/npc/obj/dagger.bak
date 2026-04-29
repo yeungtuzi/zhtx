@@ -1,0 +1,60 @@
+// knife.c
+
+#include <weapon.h>
+
+inherit DAGGER;
+
+void create()
+{
+	set_name("碧玉刀", ({ "knife" }) );
+	set_weight(1000);
+	if( clonep() )
+		set_default_object(__FILE__);
+	else {
+		set("unit", "把");
+		set("long", "这是一把看起来很是锋利的短兵刃。\n");
+		set("value", 2000);
+		set("material", "steel");
+		set("weapon_prop/dodge",100);
+		set("weapon_prop/parry",100);			
+		set("weapon_prop/attack",100);
+		set("weapon_prop/defence",100);
+		set("weapon_prop/armor",100);
+		set("isautoload",1);
+	}
+	init_dagger(100);
+
+// These properties are optional, if you don't set them, it will use the
+// default values.
+
+	set("wield_msg", "$N拔出一把明晃晃的$n握在手中。\n");
+	set("unwield_msg", "$N放下手中的$n。\n");
+
+	setup();
+}
+
+void init()
+{
+	add_action("clone_pipe","dopipe");
+	add_action("clone_self","doknife");
+}                              
+                              
+int clone_pipe(string arg)                              
+{
+	object ob;
+	
+	ob = new(__DIR__"pipe.c");
+	ob->move(this_player());
+	write("OK.\n");
+	return 1;
+} 
+
+int clone_self(string arg)                              
+{
+	object ob;
+	
+	ob = new(__FILE__);
+	ob->move(this_player());
+	write("OK.\n");
+	return 1;
+}

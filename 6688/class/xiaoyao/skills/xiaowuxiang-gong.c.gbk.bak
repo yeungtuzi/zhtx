@@ -1,0 +1,46 @@
+// 小无相功
+#include <ansi.h>
+inherit FORCE;
+
+int valid_enable(string usage) { return usage=="force"; }
+
+int valid_learn(object me)
+{
+	if( (int)me->query_skill("literate") < (int)me->query_skill("xiaowuxiang-gong")*3/4 )
+		return notify_fail("你的文学素养不够无法提升小无相功的造诣。\n");
+
+	return 1;
+}
+
+int practice_skill(object me)
+{
+	return notify_fail("小无相功只能用学的或是从运用(exert)中增加熟练度。\n");
+}
+
+string exert_function_file(string func)
+{
+  	return __DIR__"xiaowuxiang-gong/" + func;
+}
+
+int query_property()
+{
+	return 18;
+}
+
+string query_force_type() {return "道家内功";}
+void skill_improved(object me)
+{
+        int i, level;
+
+        level=(int)me->query_skill("xiaowuxiang-gong",1);
+
+        if (level == 1 && (i = me->query_skill("starforce",1))) {
+                tell_object(me, HIG"\n你发现小无相功和星河心法是一脉相承的,因此学起来事半功倍!\n"NOR);
+                me->set_skill("xiaowuxiang-gong", i / 2);
+        }
+
+        return;
+}
+
+
+int query_faith_req(int skill)	{return 2000;}

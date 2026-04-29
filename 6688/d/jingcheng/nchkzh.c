@@ -1,0 +1,46 @@
+// Room: /d/jingcheng/nchkzh.c
+// Made by: ysgl
+
+#include <ansi.h>
+inherit ROOM;
+
+void create()
+{
+        set("short", HIW"南城客栈"NOR);
+        set("long", @LONG
+这家客栈紧靠京城中心，所以生意非常兴隆。兼之价钱低廉，更
+是成了外地游客落脚的首选。露天摆了七八张桌子，三教九流人等
+在此进进出出，络绎不绝，几个跑堂的小二来来回回招待着四方来
+客。二楼上是客房，墙上挂着一个牌子(paizi)
+LONG
+        );
+        
+        set("item_desc", ([
+        "paizi" : "楼上雅间，每晚十两白银。\n",
+        ]));
+                
+        set("exits", ([ /* sizeof() == 2 */
+  "up" : __DIR__"nchkzh2",
+  "west" : __DIR__"ndj1",
+]));
+        set("objects", ([ /* sizeof() == 1 */
+//  __DIR__"npc/doctor" : 1,
+  __DIR__"npc/xiaoer1" : 1,
+]));
+        set("valid_startroom", 1);
+
+        setup();
+}
+
+int valid_leave(object me, string dir)
+{
+
+        if ( !me->query_temp("rent_paid") && dir == "up" )
+                return notify_fail("葛六白眼一翻道：怎么着，想白住啊！\n"NOR);
+
+        if ( me->query_temp("rent_paid") && dir == "west" )
+                return notify_fail("葛六笑脸说道：客官已经付了银子，怎么不住店就走了呢！旁人还以为小店伺候不周呢！\n"NOR);
+
+        return ::valid_leave(me, dir);
+}
+

@@ -1,0 +1,54 @@
+ 
+#include <ansi.h>
+ 
+inherit SSERVER;
+ 
+int exert(object me, object target)
+{
+	object *ob;
+	int i, skill, damage, ff;
+ 
+	if( !me->is_fighting() )
+		return notify_fail("「透骨针」只能在战斗中使用。\n");
+ 
+	if( (int)me->query("force") < 50 )
+		return notify_fail("你的内力不够。\n");
+ 
+    // added sen check, Elon, Sat  10-07-95
+ 
+	if( !target || target==me ) {
+		target = offensive_target(me);
+		if( !target) return notify_fail("你要对谁施展「透骨针」？\n");
+	}
+ 
+	if( !random(2) )
+    		me->start_busy(random(2));
+ 
+	skill = me->query_skill("force");
+ 
+	me->add("force", -20);
+	 
+	message_vision(
+		HIB "$N将纯阴内力聚为一线攻向$n！\n" NOR, me, target);
+	
+	if( random(target->query("combat_exp")) > ((int)me->query("combat_exp")+skill*skill/30*skill)/2 ) {
+		message_vision("$N识破了$n的用意，不慌不忙地躲了开去。\n", target, me);
+		return 1;
+	}
+ 
+	damage = me->query("max_force")/10 + me->query("force")/20 + (int)me->query("force_factor") * 2 
+			- target->query("max_force")/20 + target->query("force")/40 - target->query("force_factor")*2;
+	if( damage < 1 ) {
+		message_vision("但是$N体内真气鼓荡，将这股阴气尽数化解！\n", target, me);
+		return 1;
+	}
+ 
+	ff = target->query("force");
+	ff -= damage/3;
+	if( ff < 0 ) ff = 0;
+	target->set("force", ff);
+
+	message_vision("结果这一股至阴真气在$N体内循经脉迅捷无伦地转了一个周天，最后归于丹田！\n", target, me);
+ 	return 1;
+}
+ 

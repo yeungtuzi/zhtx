@@ -1,0 +1,182 @@
+/*六脉神剑: 少泽、少冲、少商、中冲、关冲、商阳*/
+
+#include <ansi.h>
+#include <combat.h>
+
+inherit SKILL;
+
+mapping *action = ({
+        ([      "name":                 "少泽剑",
+                "action":               "$N左手小指点出，伴着嗤地一声轻响，一招「"+HIG"少泽剑"NOR+"」刺向$n的$l",
+                "attack":               30,
+                "dodge":                10,
+                "parry":                10,
+                "force":                390,
+                "weapon":               "少泽剑气",
+                "damage_type":  "刺伤",
+                "post_action":  (: call_other,__FILE__,"hitweapon" :),
+        ]),
+        ([      "name":                 "少冲剑",
+                "action":               "$N右手小指一伸，一道凌厉无比的无形剑气破空直奔$n的$l，好一招精妙的「"+HIG"少冲剑"NOR+"」",
+                "attack":               30,
+                "dodge":                10,
+                "parry":                15,
+                "force":                400,
+                "weapon":               "少冲剑气",
+                "damage_type":  "刺伤",
+                "post_action":  (: call_other,__FILE__,"hitweapon" :),
+        ]),
+        ([      "name":                 "关冲剑",
+                "action":               "$N无名指一指，「嗤──」，一招「"+HIG"关冲剑"NOR+"」对着$n的$l的刺去",
+                "attack":               30,
+                "dodge":                5,
+                "parry":                0,
+                "force":                450,
+                "weapon":               "关冲剑气",
+                "damage_type":  "刺伤",
+                "post_action":  (: call_other,__FILE__,"hitweapon" :),
+        ]),
+        ([      "name":                 "中冲剑",
+                "action":               "$N中指一弹，「"+HIG"中冲剑"NOR+"」剑气挟石破天惊之势奔向$n的$l",
+                "attack":               30,
+                "dodge":                0,
+                "parry":                20,
+                "force":                420,
+                "weapon":               "中冲剑气",
+                "damage_type":  "刺伤",
+                "post_action":  (: call_other,__FILE__,"hitweapon" :),
+        ]),
+        ([      "name":                 "商阳剑",
+                "action":               "$N食指凌空一指，正是一招轻灵迅捷的「"+HIG"商阳剑"NOR+"」，刺向$n的$l",
+                "attack":               30,
+                "dodge":                20,
+                "parry":                30,
+                "force":                330,
+                "weapon":               "商阳剑气",
+                "damage_type":  "刺伤",
+                "post_action":  (: call_other,__FILE__,"hitweapon" :),
+        ]),
+        ([      "name":                 "少商剑",
+                "action":
+"$N大拇指一按，一招「"+HIG+"少商剑"NOR+"」，剑法大开大阖，气势宏伟，刺向$n的$l",
+                "attack":               30,
+                "dodge":                0,
+                "parry":                5,
+                "force":                440,
+                "weapon":               "少商剑气",
+                "damage_type":  "刺伤",
+                "post_action":  (: call_other,__FILE__,"hitweapon" :),
+        ]),
+});
+
+mapping *counterattack_action = ({
+        ([      "action":"$N手指一伸，嗤地一声轻响，一道无形剑气攻向$n的$l，迫得$n撤招回守。",
+                "damage_type":  "刺伤",
+                "weapon":       "无形剑气",
+                "force":        40,
+        ]),
+});
+
+mapping query_counterattack_action(object weapon)
+{return counterattack_action[random(sizeof(counterattack_action))];}
+
+int valid_learn(object me)
+{
+        if(me->query("max_force") < 1000)
+                return notify_fail("你的内力太低了，不能学六脉神剑．\n");
+        if( me->query_temp("weapon") || me->query_temp("secondary_weapon") )
+                return notify_fail("练六脉神剑必须空手。\n");
+        return 1;
+}
+
+int valid_enable(string usage)
+{
+        return usage=="finger";
+}
+
+int attack_ratio()
+{ 
+        object me = this_player();
+
+        if (me->query("liumai-shenjian") > 1 || me->query_condition("liumai-shenjian"))
+                return 50;
+        else    return 0;
+}
+
+mapping query_action(object me, object weapon)
+{
+        if (me->query("liumai-shenjian") > 1 || me->query_condition("liumai-shenjian"))
+                return action[random(sizeof(action))];
+        if (userp(me)) {
+                if (me->query("mud_age") < me->query("marks/liumai-shenjian") + 86400)
+                        return me->query("default_actions");
+                if (!random(30)) {
+                        me->apply_condition("liumai-shenjian", 180);
+                        return action[random(sizeof(action))];
+                }
+                message_vision(CYN"$N双手手指点点戳戳，不知道在搞什么名堂？！\n"NOR, me);
+                me->set("marks/liumai-shenjian", me->query("mud_age"));
+                return me->query("default_actions");
+        }
+        return me->query("default_actions");
+}
+
+int practice_skill(object me)
+{
+        if( (int)me->query("kee") < 30
+        ||  (int)me->query("sen") < 30
+        ||  (int)me->query("gin") < 30
+        ||  (int)me->query("force") < 110 )
+                return notify_fail("你的内力或精气神不够，没有办法练习六脉神剑。\n");
+        me->receive_damage("kee", 30);
+        me->add("force", -100);
+        write("你按著所学全身心地练了一遍六脉神剑。\n");
+        return 1;
+}
+
+void hitweapon(object me,object victim,object weapon,int damage)
+{
+        object ob;
+        int wap,wdp;
+
+        if(damage==RESULT_PARRY && (ob=victim->query_temp("weapon")))
+        {
+                wap=(int)me->query("force")/50+(int)me->query_str();
+                wdp=(int)ob->weight()/500+(int)ob->query("rigidity")+(int)victim->query_str();
+                wap=random(wap);
+                if(wap>2*wdp)
+                {
+                        message_vision(HIW"只听得铛的一声，$N手中的"+ob->name()+
+"已被$n的六脉神剑的剑气震飞！\n"NOR,victim,me);
+                        ob->unequip();
+                        ob->move(environment(victim));
+                        victim->reset_action();
+                }
+                else if(wap>wdp)
+                {
+                        message_vision(HIW"只听见铛铛铛数声，$N手中的"+ob->name()+
+"以被六脉神剑的剑气击成数截！\n"NOR,victim);
+                        ob->unequip();
+                        ob->move(environment(victim));
+                        ob->set("name","断掉的"+ob->query("name"));
+                        ob->set("value",(int)ob->query("value")/10);
+                        ob->set("weapon_prop",0);
+                        victim->reset_action();
+                }
+                else 
+                        message_vision(HIW"$N手中的"+ob->name()+
+"被六脉神剑的剑气一击之下，只觉右臂一阵酸麻．\n"NOR,victim);
+        }
+}
+mapping *query_actions() {return action;}
+
+// /daemon/condition/liumai-shenjian.c
+
+#include <login.h>
+
+int update_condition(object me, int duration)
+{
+	if (duration < 1) return 0;
+	me->apply_condition("liumai-shenjian", duration - 1);
+	return 1;
+}

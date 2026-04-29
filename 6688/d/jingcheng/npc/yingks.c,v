@@ -1,0 +1,721 @@
+head	1.2;
+access;
+symbols;
+locks
+	mudadm:1.2; strict;
+comment	@ * @;
+
+
+1.2
+date	2000.04.01.02.35.23;	author mudadm;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2000.03.31.13.05.35;	author mudadm;	state Exp;
+branches;
+next	;
+
+
+desc
+@orig
+@
+
+
+1.2
+log
+@overflow
+@
+text
+@//yingkaishan.c
+//created by kiss
+//changed by Tang
+//1998.6.16
+
+// by yeung 2000-3-26
+// 让宝物可能在NPC手里面.
+// 添加一个命令来强制宝物更新位置.
+// 增强一点稳定性.
+
+// by yeung 2000-3.29
+// 从目录文件调房间BUG实在太多了,不再采用这种方式.房间从已经load的房间中随机选择.
+// 修改奖励方式,增加连续完成挖宝任务的奖励....(宝物如果移动过就不算连续完成)
+// 做成除任务之外的另一种成长方式....尤其是对没事干的老玩家.
+// yin 现在可以存盘记下自己的状态
+// 宝物按照唯一序列编号.
+
+#include <ansi.h>
+inherit NPC;
+inherit F_SAVE;
+
+//经验奖励基数
+#define base_exp 10
+
+// 当有特殊奖励时各种奖励的基数.(*连续完成挖宝任务数为实际奖励,连续数<=50)
+
+string *bonus_desc =
+({
+	"内力瓶颈上升",
+	"获得武林声望",
+	"内力增加",
+	"师门信任度增加",
+	"综合评价增加",
+	"先天福缘成长",
+	"先天灵性成长",
+	"杀气增加",
+	"分得钱庄花红",
+	"内力增强",
+	"正气增加",
+});
+
+float *bonus_base =
+({
+	0.1,
+	0.1,
+	100.0,
+	10.0,
+	10.0,
+	0.02,
+	0.02,
+	10.0,   	
+	20000.0,
+	2.0,
+	20000.0,
+});
+
+// 各种特殊奖励的上限
+string *bonus_key =
+({
+	"max_force" ,
+	"wlsh" ,
+	"force" ,
+	"faith" ,
+	"score" ,
+	"kar"	,
+	"spi" 	,
+	"bellicosity" ,
+	"deposit" ,
+	"force_factor" ,
+	"shen" ,
+});
+
+int *bonus_limit =
+({
+	4000,
+	30,
+	10000,
+	10000,
+	10000,
+	50,
+	50,
+	10000,
+	50000000,
+	300,
+	80000000,
+});
+
+
+
+
+
+/*
+string *dir =({
+		"/d/road/",
+		"/d/wudang/",
+		"/d/wudang/taoyuan/",
+		"/d/shaolin/",
+		"/d/tangmen/",
+		"/d/latemoon/",
+		"/d/latemoon/upstar",
+		"/d/latemoon/room",
+		"/d/emei/",
+		"/d/emei/houshan/",
+		"/d/huashan/",
+		"/d/taishan/",
+		"/d/mingjiao/",
+		"/d/tieflag/",
+		"/d/choyin/",
+		"/d/chuenyu/",
+		"/d/cloud/",
+		"/d/hangzhou/",
+		"/d/suzhou/",
+		"/d/heimuya/",
+		"/d/quanzhen/",
+		"/d/taishan/",
+		"/d/taohua/",
+		"/d/xingxiu/",
+		"/d/chengdu",
+		});
+*/
+
+string *bonus = ({
+		"/d/shaolin/obj/wuji1",
+		"/d/shaolin/obj/wuji2",
+		"/d/shaolin/obj/wuji3",
+		"/d/xingxiu/npc/obj/xuelian",
+		"/d/snow/npc/obj/agaric",
+		"/d/jingcheng/npc/obj/gao",
+		"/d/village/npc/obj/sword_book",
+		"/d/taishan/obj/tongtiancao",
+		"/d/huashan/obj/zitanhua",
+		"/d/emei/houshan/npc/obj/renshen",
+		"/d/quanzhen/npc/obj/fengwmi",
+		});
+
+string treasure_move();
+void treasure_destruct();
+
+string query_save_file()
+{
+	return DATA_DIR"npc/yinkaishan";
+}
+
+void create()
+{
+      	if( !restore() )
+      	{
+	      	set("nickname", RED"当朝总管"NOR);
+	      	set("gender","男性");
+	      	set("age",40);
+	      	set("long",@@LONG
+他就是当朝总管，现在主持纵横天下的夺宝探险活动。
+LONG
+		    );
+		set("attitude","peaceful");
+		set("str",100);
+		set("int",100);
+		set("con",100);
+		set("cps",100);
+		set("combat_exp",20000000);
+		set("force",10000);
+		set("max_force",7000);
+		set("force_factor",100);
+		set_skill("dodge",500);
+		set_skill("parry",500);
+		set_skill("claw",500);		
+		set_skill("sword",500);
+		set_skill("fumo-jian",500);
+		set_skill("yingzhua-gong",500);
+		set_skill("unarmed",500);
+		set_skill("force",300); 
+		map_skill("sword","fumo-jian");
+		map_skill("claw","yingzhua-gong");
+		prepare_skill("claw","yingzhua-gong");
+		set("chat_chance",5);
+		set("chat_msg",({
+		      HIM"殷开山说道：“小兄弟到本官这里来有何贵干啊！”\n"NOR,
+		      HIM"殷开山说道：“欢迎参加夺宝探险 ！”\n"NOR,
+		      HIM"殷开山说道：“奖品很丰富的！”\n"NOR,
+		}));
+		set("task_serial",1);
+		save();
+	}
+      	set_name(HIB"殷开山"NOR, ({"yin kaishan","yin"}));
+	setup();
+	set_temp("apply/damage",500);
+	carry_object("/d/jingcheng/npc/obj/cloth2")->wear();
+	carry_object("/d/jingcheng/npc/obj/changjian")->wield();
+}
+
+int init()
+{
+	add_action("do_update","redistribute");
+	return ::init();
+}
+
+// 强制宝物重新分布.
+int do_update()
+{
+	string location;
+
+	object me = this_player(),*treasure,env;
+
+	if( !wiz_level(me) ) return 0;
+
+	location = "未知地点或者不存在";
+	treasure = children("/obj/example/stone.c");
+	if( sizeof(treasure)>1 )
+	{
+		env = environment(treasure[0]);
+		if( objectp(env) )
+			if( env->is_character() )
+			{
+				location = sprintf("/%O 的身上.",env);
+			}
+			else
+				location = sprintf("/%O - %s.",env,env->query("short"));
+	}
+
+	write(YEL"\n宝物原位置: "+location+"\n"NOR);
+
+	location = treasure_move();
+	if( !location )
+	{
+		write("宝物移动错误!重新生成宝物...\n");
+		treasure_destruct();
+		location = treasure_move();
+	}
+
+	location = "未知地点或者不存在";
+	treasure = children("/obj/example/stone.c");
+	if( sizeof(treasure)>1 )
+	{
+		env = environment(treasure[0]);
+		if( objectp(env) )
+			if( env->is_character() )
+			{
+				location = sprintf("/%O 的身上.",env);
+			}
+			else
+				location = sprintf("/%O - %s.",env,env->query("short"));
+	}
+
+	write(YEL"宝物现位置: "+location+"\n"NOR);
+	return 1;
+}
+
+int accept_fight(object ob)
+{
+	command("say 大家以和为贵，何必拚个你死我活呢？");
+	command("sigh");
+	command("kick "+ob->query("id"));
+	return 0;
+}
+
+int accept_object(object me, object ob)
+{
+	object *treasure,env,paper;
+	int i,k,bonus_amount;
+	string msg="Ok!\n";
+
+/*	if( wiz_level(me) )
+	{
+		command("say 啊,这怎么敢当,神仙大驾光临,请入内上座,何必和众生一般操劳.");
+		return 0;
+	}
+*/
+	if( ob->query("money_id") && ob->value() >= 20000 )
+	{
+		command("smile");
+
+		treasure = children("/obj/example/stone.c");
+		if( sizeof(treasure) < 2 )
+		{
+			//增加重试次数
+			msg=treasure_move();
+			if( !msg ) msg=treasure_move();
+			if( !msg ) msg=treasure_move();
+			if( !msg )	return 0;
+			apply_condition("treasure_move",100);
+		}
+
+		if( !query_condition("treasure_move") )
+			apply_condition("treasure_move",100);
+
+		command("say 欢迎这位" + RANK_D->query_respect(me) + "参加夺宝探险 ！");
+		if( !(paper=present("shui jing",me)) )
+		{
+			paper=new("/obj/toy/crystall");
+			paper->move(me);
+			message_vision("殷总管给$N一个水晶球。\n", me);
+			command("say 此物限时半日，逾时失效，切记切记！");
+		}
+
+		return 1;
+	}
+
+	if( base_name(ob) == "/obj/example/stone" )
+	{
+
+		i = random(100);
+
+		//是否连续完成?
+		if( ob->query("task_serial") == query("task_serial") && me->query("task/last_task_serial") == query("task_serial")-1 )
+                {
+				//最长连续完成50个,奖励*50.
+				if( me->query("task/task_count") < 50 )
+					 me->add("task/task_count",1);
+		}
+		else
+		{
+				 me->set("task/task_count",1);
+		}
+		me->set("task/last_task_serial", query("task_serial") );
+		destruct(ob);
+
+/*
+		if( i <10 )
+		{
+			me->add("combat_exp",400);
+			tell_object(me,"你的战斗经验增加了 400 。\n");
+			return 1;
+		}
+		if( i <20 && i >9 )
+		{
+			me->add("potential",40);
+			tell_object(me,"你的潜能增加了 40 。\n");
+			return 1;
+		}
+		if( i <30 && i >19 )
+		{
+			paper = new("obj/money/gold");
+			paper->set_amount(10);
+			paper->move(me);
+			tell_object(me,"你被奖励了 10 两黄金。\n");
+			return 1;
+		}
+*/
+// 发放奖励
+		//me->set("task/task_count",50);
+		if( i < 10 ) //特别奖励
+		{
+        		command("say 恭喜你!获得了我们的特别奖励!");
+			k = random(sizeof(bonus_key));
+			bonus_amount = to_int( bonus_base[k] * to_float(me->query("task/task_count")) );
+			message_vision(sprintf("$n大声宣布：$N获得此次夺宝探险的特别奖励 - %s %d 点!\n",bonus_desc[k],bonus_amount),me,this_object());
+			bonus_amount += me->query(bonus_key[k]);
+			if( bonus_amount > bonus_limit[k] )
+				bonus_amount = bonus_limit[k];
+			//write( sprintf("me->set(%s,%d)\n",bonus_key[k],bonus_amount));
+			me->set(bonus_key[k],bonus_amount);
+			me->save();
+			return 1;
+		}
+
+		if( i < 60 && i >= 10 ) //经验
+		{
+			tell_object(name()+"告诉你:恭喜!你被奖励了!\n",me);
+			k = base_exp * me->query("task/task_count");
+			k = random(k) + k/2;
+			tell_object(sprintf(" %d 点经验, %d 点潜能, 1 点综合评价。",k*5,k),me);
+			me->add("combat_exp",k*5);
+			me->add("potential",k);
+			if( (me->query("potential") - me->query("learned_points")) > 500 )
+				me->set("potential",me->query("learned_points")+500);
+			me->add("score",1);
+			me->save();
+			return 1;
+		}
+
+		switch( i )
+		{
+			case 98:
+				paper = new("/d/shaolin/obj/puti-zi");
+				message_vision("$n将一等奖奖品："+paper->query("name")+"交给$N！\n",me,this_object());
+				paper->move(me);
+				break;
+			case 97:
+			case 96:
+				paper = new("class/scholar/windspring");
+				message_vision("$n将二等奖奖品："+paper->query("name")+"交给$N！\n",me,this_object());
+				paper->move(me);
+				break;
+			case 95:
+			case 94:
+				paper = new("/class/fighter/dragon_armor");
+				message_vision("$n将二等奖奖品："+paper->query("name")+"交给$N！\n",me,this_object());
+				paper->move(me);
+				break;
+			case 93:
+			case 92:
+			case 91:
+			case 90:
+				paper = new("/class/taohua/obj/nineflower");
+				message_vision("$n将三等奖奖品："+paper->query("name")+"交给$N！\n",me,this_object());
+				paper->move(me);
+				break;
+			default:
+				paper = new(bonus[random(sizeof(bonus))]);
+				message_vision("$n将四等奖奖品："+paper->query("name")+"交给$N！\n",me,this_object());
+				paper->move(me);
+				break;
+		}
+		return 1;
+	}
+
+	return 0;
+}
+
+string treasure_move()
+{
+	object *treasure,tr,room,env,*allnpc, *allroom;
+	mixed *list;
+	int i,j,k,npc_flag;
+
+	// by yeung
+	// 宝物也可能在某个NPC身上
+	allnpc = filter_array(livings(),
+			(:
+				!userp($1) && !$1->is_fighting() && $1 != this_object() &&
+				objectp(environment($1)) &&
+				!environment($1)->query("sleep_room") &&
+				!environment($1)->query("no_fight") &&
+				strsrch(base_name(environment($1)),"/wizard/") == -1 &&
+				strsrch(base_name(environment($1)),"/death/") == -1
+			:)
+		 );
+
+	room = allnpc[ random(sizeof(allnpc)) ];
+	npc_flag = 1;
+/*
+	if( random(2) || !objectp(environment(room)) )
+	{
+		i = random(sizeof(dir));
+		list = get_dir(dir[i],-1);
+		j = random(sizeof(list));
+		k = sizeof(list[j][0]);
+		while( list[j][1] < 1 || list[j][0][k-2..k-1] != ".c" )
+		{
+			i = random(sizeof(dir));
+			list = get_dir(dir[i],-1);
+			j = random(sizeof(list));
+			k = sizeof(list[j][0]);
+		}
+		if( !(room = find_object(dir[i]+list[j][0])) )
+			room = load_object(dir[i]+list[j][0]);
+		npc_flag = 0;
+	}
+*/
+	// by YEUNG
+	//宝物可能在所有的房间,除了休息室,比武擂台看台,巫师房间,阴间
+	if( !random(3) )
+	{
+		allroom = objects(
+			(:
+				function_exists("create_door", $1) &&
+				!$1->query("sleep_room") &&
+				!$1->query("no_fight") &&
+				strsrch(base_name($1),"/wizard/") == -1 &&
+				(strsrch(base_name($1),"/d/") != -1 || strsrch(base_name($1),"/class/") != -1) &&
+				strsrch(base_name($1),"/death/") == -1
+			:)
+		);
+		room = allroom[ random(sizeof(allroom)) ];
+		npc_flag = 0;
+	}
+
+	//设定宝物序列号(玩家,自身,宝物)
+	add("task_serial",1);
+
+	treasure = children("/obj/example/stone.c");
+	if( sizeof(treasure)>1 )
+	{
+		treasure[0]->set("task_serial",query("task_serial"));
+		env = environment(treasure[0]);
+		if( !env )	treasure[0]->move(room);
+		else
+		{
+	        	if( !env->is_character() )
+				env->delete("no_fly");
+			else if( objectp(env = environment(env)) && !env->is_character() )
+				env->delete("no_fly");
+
+			treasure[0]->move(room);
+		}
+	}
+
+	else
+	{
+		tr = new("/obj/example/stone");
+		tr->set("task_serial",query("task_serial"));
+		tr->move(room);
+	}
+
+	command("sys 宝物移动了。\n");
+
+        // 不许直接飞过来挖宝
+	if( npc_flag )
+		environment(room)->set("no_fly",1);
+	else
+		room->set("no_fly",1);
+
+	save();
+	return "\n宝物现在在\n"+room->query("long")+"\n";
+
+}
+
+void treasure_destruct()
+{
+	object *treasure,env;
+
+	treasure = children("/obj/example/stone.c");
+
+	if( sizeof(treasure) < 2 )	return;
+
+	env = environment(treasure[0]);
+
+	if( !env ) destruct(treasure[0]);
+
+	return;
+}
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d11 7
+d20 1
+d22 71
+d120 1
+d139 5
+d146 6
+a151 5
+      set_name(HIB"殷开山"NOR, ({"yin kanshan","yin"}));
+      set("nickname", RED"当朝总管"NOR);
+      set("gender","男性");
+      set("age",40);
+      set("long",@@LONG
+d154 31
+a184 21
+    );
+	set("attitude","peaceful");
+	set("str",100);
+	set("int",100);
+	set("con",100);
+	set("cps",100);
+	set("combat_exp",20000000);
+	set("force",10000);
+	set("max_force",20000);
+	set("force_factor",100);
+	set_skill("dodge",500);
+	set_skill("parry",500);
+	set_skill("sword",500);
+	set_skill("unarmed",500);
+	set_skill("force",300);
+	set("chat_chance",5);
+	set("chat_msg",({
+      HIM"殷开山说道：“小兄弟到本官这里来有何贵干啊！”\n"NOR,
+      HIM"殷开山说道：“欢迎参加夺宝探险 ！”\n"NOR,
+      HIM"殷开山说道：“奖品很丰富的！”\n"NOR,
+	    }));
+d186 1
+a186 1
+
+d193 1
+a193 1
+	add_action("do_update","redistribute");	
+d201 1
+a201 1
+	
+a202 2
+	
+	if( !wiz_level(me) ) return 0;         
+d204 2
+d211 1
+a211 1
+		if( objectp(env) ) 
+d217 3
+a219 3
+				location = sprintf("/%O - %s.",env,env->query("short"));					
+	}                                                                                       
+	
+d226 3
+a228 3
+		treasure_destruct();	
+		location = treasure_move();			
+	}		
+d241 3
+a243 3
+				location = sprintf("/%O - %s.",env,env->query("short"));					
+	}                                                                                       
+	
+d245 1
+a245 1
+	return 1;				
+d249 1
+a249 1
+{   
+d252 1
+a252 1
+	command("kick"+ob->query("id"));
+d255 1
+a255 1
+ 
+d259 1
+a259 1
+	int i;
+d261 2
+a262 2
+	 
+	if( wiz_level(me) )
+d266 2
+a267 2
+	}                
+	
+d275 1
+d277 2
+d284 1
+a284 1
+			apply_condition("treasure_move",100);	
+d292 1
+a292 1
+			command("say 此物限时半日，逾时失效，切记切记！"); 
+d300 1
+a300 1
+		destruct(ob);
+d303 15
+d338 17
+d356 15
+a372 4
+			case 99:
+				me->add("wlshw",1);
+				message_vision("$N获得了此次夺宝探险的特等奖：1点武林声望！\n",me);
+				break;
+d412 1
+a412 1
+	object *treasure,tr,room,env,*allnpc;
+d417 11
+a427 2
+	// 宝物也可能在某个NPC身上	
+	allnpc = filter_array(livings(),(: !userp($1) && !$1->is_fighting() && $1 != this_object() :));
+d429 1
+a429 1
+	room = allnpc[ random(sizeof(allnpc)) ];		
+d431 1
+d446 1
+a446 1
+			room = load_object(dir[i]+list[j][0]);	
+d449 22
+a470 1
+	
+d474 1
+d477 6
+d484 2
+a485 9
+//		if( userp(env) )
+//			return "\n宝物现在在"+env->name()+"的身上！\n";
+        	
+        	if( !env->is_character() )
+			env->delete("no_fly");
+		else if( objectp(env = environment(env)) && !env->is_character() )
+			env->delete("no_fly");
+			
+		treasure[0]->move(room);
+d487 1
+a487 1
+	
+d491 1
+d495 1
+a495 1
+	command("sys 宝物移动了。\n");                   
+d499 1
+a499 1
+		environment(room)->set("no_fly",1);	
+a501 2
+	
+	return "\n宝物现在在\n"+room->query("long")+"\n";	
+d503 3
+d513 1
+a513 1
+	
+d515 1
+a515 1
+	
+d519 1
+a519 1
+		
+@

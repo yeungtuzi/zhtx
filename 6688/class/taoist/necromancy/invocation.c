@@ -1,0 +1,66 @@
+// invocation.c
+
+inherit SSERVER;
+
+int cast(object me, object target)
+{
+        object soldier,env;
+        int num,my_num;
+
+
+        if( !me->is_fighting() )
+                return notify_fail("只有战斗中才能召唤天将！\n");
+        
+        if( (int)me->query("mana") < 100 )
+                return notify_fail("你的法力不够了！\n");
+
+        if( (int)me->query("sen") < 60 )
+                return notify_fail("你的精神无法集中！\n");
+
+        num = me->query_skill("necromancy",1)/50+1;
+
+        if( me->query_temp("inv") >= num ) 
+                return notify_fail("以你目前的施法能力，只能召唤这么多天兵前来作战了！\n"); 
+
+
+        message_vision("$N喃喃地念了几句咒语。\n", me);
+
+        if( random(me->query("max_mana")) < 200 ) {
+                message("vision", "但是什麽也没有发生。\n", environment(me));
+                return 1;
+        }
+
+        seteuid(getuid());
+
+        while( num-- )
+        {
+
+                  if(me->query_skill("spells")>=200)
+                  { 
+                  soldier=new("/obj/npc/bird");
+                  }
+                  else{
+                  if( random(2)==1 )
+                  soldier = new("/obj/npc/heaven_soldier");
+                  else
+                  soldier = new("/obj/npc/hell_guard");
+                  }
+
+                  soldier->move(environment(me));
+                  soldier->invocation(me);
+
+
+                if( num == my_num )
+                {
+                        env = environment(me);
+                        me->move("/obj/misc/void",1);
+                        me->move(env,1);
+                }
+                me->add("mana",-100);
+                me->receive_damage("sen", 60);
+        }
+        me->start_busy(num);
+
+        return 1;
+}
+

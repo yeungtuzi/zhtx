@@ -1,0 +1,67 @@
+#/std/bboard.c
+dbase (["no_get":1,"location":"/d/temple/temple1","id":"board","board_id":"taoist_b","capacity":30,"name":"茅山派留言板","notes":({(["author":"独孤求和","title":"林鸡好好管管你的弟子","time":932045699,"msg":"再来乱杀zhang3f, 我找你算帐.
+",]),(["author":"挖宝专家","title":"茅山之我见","time":932125026,"msg":"小情圣(nihao) 聊天机器
+天虹(quiz) 人还不错，不过经常做任务,set no_tell,set mp_brief
+小龙儿（kaiz) offen robot
+飞鹰(aon) 功夫很面的时候，就美其名曰：归隐
+紫龙(aha) 寒夜斩(littleyd) 这断时间最热心的玩家
+",]),(["author":"君莫笑","title":"有也不给","time":932472188,"msg":"> 你现在的任务是寻『九花玉露丸』。
+puke master
+",]),(["author":"小情圣","title":"no title","time":936233562,"msg":"连回来看看, 心中感觉表达不出
+... sigh..
+",]),(["author":"小风扇","title":"shrug","time":936287188,"msg":"表达不出就是没感觉
+如此而已
+",]),(["author":"花韵","title":"nstar后无党无大侠","time":939220202,"msg":"",]),(["author":"花韵","title":"无党能杀别人的master,别派就不能杀zh3f","time":939220348,"msg":"puke
+",]),(["author":"田伯光","title":"大家多帮忙","time":940835214,"msg":"初来泥谭
+前辈多指教
+",]),(["author":"凌渡宇","title":"hi,大家好，我是茅山的新人，请多关照！","time":942050054,"msg":"刚来茅山不久，有很多都不懂，请各位师兄指教。
+",]),(["author":"柳随风","title":"我要挖宝了","time":943277390,"msg":"  大乘佛法 (buddhism)                      - 挥洒自如  99/    0
+纵跃闪躲之术 (dodge)                     - 无可匹敌 151/   39
+内功心法 (force)                         - 无可匹敌 150/21989;□谷衣心法 (gouyee)                        - 无可匹敌 150/  213
+读书识字 (literate)                      - 深不可测 200/11726
+法术 (magic)                             - 独具匠心 100/    0
+基本轻功 (move)                          - 已有小成  51/    0
+  丝竹之技 (music)                         - 马马虎虎  51/    0;□茅山道术 (necromancy)                    - 天人合一 150/29280
+拆招卸力之法 (parry)                     - 无可匹敌 150/    4
+奇门八卦 (qimen-bagua)                   - 深入浅出  70/    0;□青城步法 (qingcheng-steps)               - 卓然大家 131/23808
+咒术 (spells)                            - 醍瑚罐顶 150/  281
+基本剑术 (sword)                         - 卓然大家 130/    1
+道家心法 (taoism)                        - 见多识广 107/ 3691;□天师剑法 (taosword)                      - 无可匹敌 150/42768
+扑击格斗之技 (unarmed)                   - 旷古绝伦 126/ 3872
+
+hehe,功夫学完了,以后要挖宝
+如果wlshw>50 判大昭，能enchant 100多，在加个ring,hehe
+",]),(["author":"蓝天","title":"wuwuwu","time":945070941,"msg":"茅山的气变为100后,马上死了两次
+破logs
+",]),(["author":"渡大长老","title":"现在毛山的千万不要和林忌fight","time":945137384,"msg":"一下fight命令就要被开除了
+xixi
+fadai
+大家小心点
+",]),(["author":"扫把星","title":"茅山法术变弱了,wuwu","time":945394908,"msg":"真气人,enchant 38 还cast 大半天
+",]),(["author":"小当铺","title":"毛山没救了","time":945756211,"msg":"me 45
+气血都是100/100(100%),没法打架乐
+",]),(["author":"逍遥子","title":"xyz到次一游","time":952192204,"msg":"hehe
+",]),(["author":"飞黄腾达","title":"小情圣的武功如下:","time":953169797,"msg":"  纵跃闪躲之术 (dodge)                     - 无可匹敌 151/    0
+内功心法 (force)                         - 无可匹敌 150/    0;□谷衣心法 (gouyee)                        - 无可匹敌 150/    0
+读书识字 (literate)                      - 一代宗师 155/    0
+法术 (magic)                             - 独具匠心 100/    0
+丝竹之技 (music)                         - 司空见惯  21/    0;□茅山道术 (necromancy)                    - 天人合一 150/    0
+拆招卸力之法 (parry)                     - 无可匹敌 150/    0
+奇门八卦 (qimen-bagua)                   - 略识之无  40/    0;□青城步法 (qingcheng-steps)               - 卓然大家 131/    0
+咒术 (spells)                            - 醍瑚罐顶 150/    0
+基本剑术 (sword)                         - 已有小成  51/    0
+道家心法 (taoism)                        - 已有小成  78/    0;□天师剑法 (taosword)                      - 无可匹敌 150/    0
+扑击格斗之技 (unarmed)                   - 马马虎虎  32/    0
+",]),(["author":"飞黄腾达","title":"林忌的武功如下:","time":953169925,"msg":"  基本拳法 (cuff)                          - 驾轻就熟  70/    0
+纵跃闪躲之术 (dodge)                     - 略有大成 100/    0
+内功心法 (force)                         - 无可匹敌 150/    0
+谷衣心法 (gouyee)                        - 无可匹敌 150/    0
+读书识字 (literate)                      - 了然于胸  90/    0
+法术 (magic)                             - 独具匠心 100/    0
+基本轻功 (move)                          - 略有大成 100/    0;□茅山道术 (necromancy)                    - 天人合一 150/    0
+拆招卸力之法 (parry)                     - 卓然大家 130/    0;□青城步法 (qingcheng-steps)               - 略有大成 100/    0
+咒术 (spells)                            - 醍瑚罐顶 150/    0
+基本剑术 (sword)                         - 卓然大家 130/    0
+道家心法 (taoism)                        - 深不可测 200/    0;□天师剑法 (taosword)                      - 无可匹敌 150/    0
+",]),}),"long":"这是供茅山派弟子留言记事的留言板。
+",])

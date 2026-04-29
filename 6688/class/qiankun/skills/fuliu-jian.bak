@@ -1,0 +1,111 @@
+// fuliu-jian.c 回风拂柳剑
+//by masterall
+inherit SKILL;
+mapping *action = ({
+ ([     "action" : "$N轻歌曼舞，一招「清风袭月」，手中$w轻轻颤动，一剑剑点向$n的$l",
+        "force" : 40,
+        "dodge" : 20,
+        "parry" : 15,
+        "damage" : 20,
+         "lvl" : 0,
+        "damage_type" : "刺伤"
+ ]),
+ ([     "action" : "$N台首望天，右手$w使出一式「飘雪穿云」飘忽不定的刺向$n的$l",
+        "force" : 50,
+        "dodge" : 15,
+        "parry" : 15,
+        "attack": 10,
+        "damage" : 25,
+         "lvl" : 5,
+        "damage_type" : "刺伤"
+ ]),
+ ([     "action" : "$N一招「千峰竞秀」，手中$w轻颤，化出重重剑影，平平地向$n的$l刺去",
+        "force" : 60,
+        "dodge" : 15, 
+        "parry" : 15,
+        "attack": 15,
+        "damage" : 85,
+         "lvl" : 50,
+        "damage_type" : "刺伤"
+ ]),
+ ([     "action" : "$N使出「乌龙搅柱」，$w划出无数的光圈，随着身体的旋转划向$n的$l",
+        "force" : 80,
+        "dodge" : 25,
+        "parry" : 15,
+        "attack": 20,
+        "damage" : 100,
+         "lvl" : 100,
+        "damage_type" : "割伤"
+ ]),
+ ([     "action" : "$N左脚踏实，右脚虚点，一招「大雁啼沙」，右手$w带着一团剑花，逼向$n的$l",
+        "force" : 120, 
+        "dodge" : 15,
+        "attack": 25,
+        "parry" : 25,
+        "damage" : 150,
+         "lvl" : 150,
+        "damage_type" : "刺伤"
+ ]),
+ ([     "action" : "$N一招「进退游龙」，手中$w微颤，$w吞吐闪烁不定似退实进，刺向$n的$l",
+        "force" : 140,
+        "attack": 30,
+        "dodge" : 15,
+        "parry" : 25,
+        "damage" : 160,
+         "lvl" : 180,
+        "damage_type" : "刺伤"
+ ]),
+ ([     "action" : "$N一招「万流归宗」，手中$w化出的重重剑影合而为一，一气呵成地攻向$n的$l",
+        "force" : 150,
+        "dodge" : 30,
+        "parry" : 25,
+        "attack": 30,
+        "damage" : 170,
+        "unparryable": 20,
+         "lvl" : 200,
+        "damage_type" : "刺伤"
+ ]),
+ ([     "action" : "$N右腿微一点地，跃入半空，一招「天地鹤翔」，俯冲而下，剑尖直指$n的$l",
+        "force" : 160,
+        "dodge" : 35,
+        "attack": 40,
+        "damage" : 180,
+        "parry" : 35,
+        "unparryable": 30,
+         "lvl" : 220, 
+        "damage_type" : "刺伤"
+])
+});
+int valid_enable(string usage) { return (usage == "sword") || (usage == "parry"); }
+
+mapping query_action(object me, object weapon)
+{
+        int i, level;
+        level   = (int) me->query_skill("fuliu-jian",1);
+        for(i = sizeof(action); i > 0; i--)
+                if(level > action[i-1]["lvl"]) 
+                        return action[NewRandom(i, 20, level/5)];
+}
+int practice_skill(object me)
+{
+        object weapon;
+              if (!objectp(weapon = me->query_temp("weapon"))
+        || (string)weapon->query("skill_type") != "sword")
+                return notify_fail("你使用的武器不对。\n");
+        if ((int)me->query("kee") < 50)
+                return notify_fail("你的体力不够练回风拂柳剑法。\n");
+        me->receive_damage("kee", 30);
+        return 1;
+}
+string perform_action_file(string action)
+{
+        return __DIR__"fuliu-jian/" + action;
+}
+int counter_attack_ratio() {
+        return 50;
+}
+  
+int query_faith_req(int skill) {
+        return 10+10*skill;
+}
+

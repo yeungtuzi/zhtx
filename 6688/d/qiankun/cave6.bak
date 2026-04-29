@@ -1,0 +1,196 @@
+#include <ansi.h>
+inherit "/u/l/lazypig/room/qiankuncave.c";
+string *names=({
+        __DIR__"cave5",
+        __DIR__"cave1",
+        __DIR__"cave6",
+        __DIR__"cave7",
+} );
+void create()
+{
+        set("short", "洞穴");
+        set("long", @LONG
+山岩下秘洞，曲折深邃，有如诸葛武侯之八卦迷阵一般，幽谜繁复处尤有过之。
+越是深入越是阴湿黝暗，到后来竟已难见五指。但隐约好像有好多大铁箱子横七
+竖八的躺着。
+LONG
+        );
+set("item_desc", ([
+                "box": "一个碧磷磷的大箱子，也不知道是用什么做成的，上面没有锁，好像可以打开。\n",
+                        ]) );
+        setup();
+}
+void reset()  
+{
+        int i,j;
+        string temp;
+        ::reset();
+        set("haveweapon",1);
+        for (i=0;i<=3;i++)
+        {
+                j=random(4);
+                temp=names[j];
+            
+    names[j]=names[i];
+                names[i]=names[j];
+                names[i]=temp;
+        }
+        set("exits", ([
+                "north" : names[0],
+                "south" : names[1],
+                "east" : names[2],
+                "west" : names[3],
+        ]));
+}
+
+void init() 
+{
+        add_action("do_open","open");
+}
+int do_open(string arg)
+{ 
+  object me,weapon1,weapon2,weapon3,weapon4,weapon5,weapon6,weapon7,weapon8,weapon9,weapon0;
+  me=this_player();
+  weapon1=new("/d/qiankun/obj/weapon/anling");
+  weapon2=new("/d/qiankun/obj/weapon/yuzhuzhang");
+  weapon3=new("/d/qiankun/obj/weapon/dart");
+  weapon4=new("/d/qiankun/obj/weapon/fengquanjian");
+  weapon5=new("/d/qiankun/obj/weapon/heisuo");
+  weapon6=new("/d/qiankun/obj/weapon/shenghuoling");
+  weapon7=new("/d/qiankun/obj/weapon/tian
+dunshenjian");
+  weapon8=new("/d/qiankun/obj/weapon/xiaolou");
+  weapon9=new("/d/qiankun/obj/weapon/mobian");
+  weapon0=new("/d/qiankun/obj/weapon/zhenwujian");
+
+        if ( !arg || arg !="box")   return notify_fail("你要打开什么?\n");
+        if ( query("haveweapon") )
+   {
+    if ( (int)me->query("combat_exp") >4999999 )
+  {
+     if ( (int)me->query_skill("spells",1) >219 && random(5) > 3) 
+                {
+                        message_vision(HIC"\n$N试着摸索着箱子的缝隙，突然间....\n"NOR,me);
+                        message_vision(HIG"$N有一种如此熟悉亲切的感觉，难以名状,\n"NOR,me);
+                        message_vision(HIW"只见天地间一道雳闪，一件神物飞入了你的手中！\n"NOR,me);
+                        message_vision(HIY"$N心中一阵狂喜，原来这正是本派世代相传的神兵——暗灵！\n"NOR,me);
+                        weapon1->move(me);
+                        weapon1->set("owner", me);
+                        delete("haveweapon");
+                        return 1;
+                }
+     if ( (int)me->query_skill("dagou-bang",1) >199 && random(5) > 3)
+                {
+                        message_vision(HIC"\n$N试着摸索着箱子的缝隙，突然间....\n"NOR,me);
+                        message_vision(HIG"$N有一种如此熟悉亲切的感觉，难以名状,\n"NOR,me);
+                        message_vision(HIW"只见天地间一道雳闪，一件神物飞入了$N的手中！\n"NOR,me);
+                        message_vision(HIY"$N心中一阵狂喜，原来这正是本派世代相传的神兵——玉竹杖！\n"NOR,me);
+                        weapon2->move(me);
+                        weapon2->set("owner", me);
+                        delete("haveweapon");
+                        return 1;
+                }
+     if ( (int)me->query_skill("mantian-huayu",1) >199 && random(5) > 3 )
+
+                {
+                        message_vision(HIC"\n$N试着摸索着箱子的缝隙，突然间....\n"NOR,me);
+                        message_vision(HIG"$N有一种如此熟悉亲切的感觉，难以名状,\n"NOR,me);
+                        message_vision(HIW"只见天地间一道雳闪，一件神物飞入了你的手中！\n"NOR,me);
+                        message_vision(HIY"$N心中一阵狂喜，原来这正是本派世代相传的神兵——断魂砂！\n"NOR,me);
+                        weapon3->move(me);
+                        weapon3->set("owner", me);
+                        delete("haveweapon");
+                        return 1;
+                }
+     if ( (int)me->query_skill("mystsword",1) > 199 && random(5) > 3)
+                {
+                        message_vision(HIC"\n$N试着摸索着箱子的缝隙，突然间....\n"NOR,me);
+                        message_vision(HIG"$N有一种如此熟悉亲切的感觉，难以名状,\n"NOR,me);
+                        message_vision(HIW"只见天地间一道雳闪，一件神物飞入了你的手中！\n"NOR,me);
+                        message_vision(HIY"$N心中一阵狂喜，原来这正是本派世代相传的神兵——风泉之剑！\n"NOR,me);
+                        weapon4->move(me);
+                        weapon4->set("owner", me);
+                        delete("haveweapon");
+                        return 1;
+                }
+     if ( (int)me->query_skill("riyue-bian",1) >219 && random(5) > 3)
+                {
+                        message_vision(HIC"\n$N试着摸索着箱子的缝隙，突然间....\n"NOR,me);
+              
+          message_vision(HIG"$N有一种如此熟悉亲切的感觉，难以名状,\n"NOR,me);
+                        message_vision(HIW"只见天地间一道雳闪，一件神物飞入了你的手中！\n"NOR,me);
+                        message_vision(HIY"$N心中一阵狂喜，原来这正是本派世代相传的神兵——黑索！\n"NOR,me);
+                        weapon5->move(me);
+                        weapon5->set("owner", me);
+                        delete("haveweapon");
+                        return 1;
+                }
+     if ( (int)me->query_skill("shenghuo-shengong",1) >199 && random(5) > 3 )
+                {
+                        message_vision(HIC"\n$N试着摸索着箱子的缝隙，突然间....\n"NOR,me);
+                        message_vision(HIG"$N有一种如此熟悉亲切的感觉，难以名状,\n"NOR,me);
+                        message_vision(HIW"只见天地间一道雳闪，一件神物飞入了你的手中！\n"NOR,me);
+                        message_vision(HIY"$N心中一阵狂喜，原来这正是本派世代相传的神兵——圣火令！\n"NOR,me);
+                        weapon6->move(me);
+                        weapon6->set("owner", me);
+                        delete("haveweapon");
+                        return 1;
+                }
+     if ( (int)me->query_skill("tonggui-jian",1) >199 && random(5) > 3 )
+                { 
+                        message_vision(HIC"\n$N试着摸索着箱子的缝隙，突然间....\n"NOR,me);
+                        message_vision(HIG"$N有一种如此熟悉亲切的感觉，难以名状,\n"NOR,me);
+                        message_vision(HIW"只见天地间一道雳闪，一件神物飞入了你的手中！\n"NOR,me);
+                        message_vision(HIY"$N心中一阵狂喜，原来这正是本派世代相传的神兵——天遁神剑！\n"NOR,me);
+                        weapon7->move(me);
+                        weapon7->set("owner", me);
+                        delete("haveweapon");
+                        return 1;
+                } 
+     if ( (int)me->query_skill("fuliu-jian",1) > 199 && random(5) > 3)
+                {
+                        message_vision(HIC"\n$N试着摸索着箱子的缝隙，突然间....\n"NOR,me);
+                        message_vision(HIG"$N有一种如此熟悉亲切的感觉，难以名状,\n"NOR,me);
+                        message_vision(HIW"只见天地间一道雳闪，一件神物飞入了你的手中！\n"NOR,me);
+                        message_vision(HIY"$N心中一阵狂喜，原来这正是本派世代相传的神兵——小楼一夜听春雨！\n"NOR,me);
+                        weapon8->move(me);
+                        weapon8->set("owner", me);
+                        delete("haveweapon");
+                        return 1;
+                }
+     if ( (int)me->query_skill("snowwhip",1) > 199 && random(5) > 3)
+                {
+                        message_vision(HIC"\n$N试着摸索着箱子的缝隙，突然间....\n"NOR,me); 
+                        message_vision(HIG"$N有一种如此熟悉亲切的感觉，难以名状,\n"NOR,me);
+                        message_vision(HIW"只见天地间一道雳闪，一件神物飞入了你的手中！\n"NOR,me);
+                        message_vision(HIY"$N心中一阵狂喜，原来这正是本派世代相传的神兵——魔鞭翩珑！\n"NOR,me);
+                        weapon9->move(me);
+                        weapon9->set("owner", me);
+                        delete("haveweapon");
+                        return 1;
+                }
+     if ( (int)me->query_skill("taiji-jian",1) > 199 && random(5) > 3)
+                {
+                       message_vision(HIC"\n$N试着摸索着箱子的缝隙，突然间....\n"NOR,me);
+                       message_vision(HIG"$N有一种如此熟悉亲切的感觉，难以名状,\n"NOR,me);
+                       message_vision(HIW"只见天地间一道雳闪，一件神物飞入了你的手中！\n"NOR,me);
+                       message_vision(HIY"$N心中一阵狂喜，原来这正是本派世代相传的神兵——真武剑！\n"NOR,me);
+                       weapon0->move(me);
+                       weapon0->set("owner", me);
+                       delete("haveweapon");
+                       return 1;
+               }
+  message_vision(YEL"\n$N在箱子里摸索了半天，一无所获，只好悻悻而返....\n"NOR,me); 
+  message_vision(YEL"\n$N想起纵横大半生，至今仍一无所获，不由得意兴索然....\n"NOR,me); 
+  delete("haveweapon");
+  me->add("combat_exp", -10000);
+  return 1;
+       }
+    }else{ 
+      message_vision(HIW"\n箱子里突然崩出个鬼森森的骷髅头，$N大骇之下，只觉得气血不畅，眼前一黑...\n"NOR,me);
+      me->die();
+    }
+  write("箱子里空无一物，什么都没有。\n");  
+  return 1;
+}
+

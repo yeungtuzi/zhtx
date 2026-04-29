@@ -1,0 +1,108 @@
+//chaidao-shibalu.c 黎老汉柴刀十八路
+
+inherit SKILL;
+
+mapping *action = ({
+([      "action" : "$N一招[力劈古树]，凌厉地向$n的$1劈出一刀，刀身卷起一阵狂风。",
+        "force" : 20+random(10),
+        "dodge" : 5,
+        "damage" : 15,
+        "lvl" : 0,
+        "damage_type" : " 割伤"
+]),
+([      "action" : "$N向前跨上一步，一招[左右开弓]，刀交左手，$w迅捷无比地指向$n的$l。",
+        "force" : 20+random(15),
+        "dodge" : 10,
+        "damage" : 15+random(10),
+        "lvl" : 10,
+        "damage_type" : "割伤"
+]),
+([      "action" : "$N手中$w一动，一招[野树开花]，挽起数朵剑花，向$n的$l挥去。",
+        "force" : 30+random(10),
+        "dodge" : 15,
+        "damage" : 20+random(10),
+        "lvl" : 20,
+        "damage_type" : "割伤"
+]),
+([      "action" : "$N将手中$w舞成一片，一招[斩草除根]，横扫$n的$l",
+        "force" : 40+random(10),
+        "dodge" : 20,
+        "damage" : 20+random(10),
+        "lvl" : 30,
+        "damage_type" : "砍伤"
+]),
+([      "action" : "$N将手中的$w一摆，刀锋直向$n的$l划去。正是一招[柴公纳凉]。",
+        "force" : 60+random(10),
+        "dodge" : 20,
+        "damage" : 30+random(10),
+        "lvl" : 50,
+        "damage_type" : "砍伤"
+]),
+([      "action" : "$N身形急转，$w自下而上地劈向$n的$l，好一招[树底刨根]。",
+        "force" : 70+random(10),
+        "dodge" : 30,
+        "damage" : 30+random(10),
+        "lvl" : 70,
+        "damage_type" : "砍伤"
+]),
+([      "action" : "$N身形一动，欺到$n面前，$w交左手，一招[老丈问路]，右掌拍向$n的$l",
+        "force" : 80+random(10),
+        "dodge" : 40,
+        "damage" : 40+random(10),
+        "lvl" : 100,
+        "damage_type" : "瘀伤"
+]),
+([      "action" : "$N刀风虚扬，猛地飞起一脚，一招[柴公下山]，踢向$n的$l",
+        "force" : 90+random(10),
+        "dodge" : 40,
+        "damage" : 50+random(10),
+        "lvl" : 120,
+        "damage_type" : "瘀伤"
+]),
+([  "action" : "$N长啸一声，飞身悬空，$w中宫直进，刺向$n的$l，正是妙绝天下的[柴公出山]。",
+        "force" : 100+random(10),
+        "dodge" : 50,
+        "damage" : 60+random(10),
+        "lvl" : 160,
+        "damage_type" : "砍伤"
+]),
+});
+
+
+int valid_enable(string usage) { return (usage == "blade") ; }
+
+int valid_learn(object me)
+{
+       if ((int)me->query("max_force") < 30)
+                return notify_fail("你的内力不够。\n");
+        return 1;
+}
+
+mapping query_action(object me, object weapon)
+{
+        int i, level;
+        level = (int) me->query_skill("chaidao-shibalu", 1);
+        for(i = sizeof(action); i > 0; i--)
+                if(level > action[i-1]["lvl"])
+                          return action[NewRandom(i, 20, level/5)];
+
+}
+
+int practice_skill(object me)
+{
+        object weapon;
+
+        if (!objectp(weapon = me->query_temp("weapon"))
+        || (string)weapon->query("skill_type") != "blade")
+                return notify_fail("你使用的武器不对。\n");
+        if ((int)me->query("kee") < 30)
+                return notify_fail("你的体力不够练柴刀十八路！�\n");
+        me->receive_damage("kee", 10);
+        return 1;
+}
+
+string perform_action_file(string action)
+{
+        return __DIR__"chaidao-shibalu/" + action;
+}
+

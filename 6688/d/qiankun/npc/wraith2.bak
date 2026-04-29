@@ -1,0 +1,94 @@
+// wraith.c
+#include <ansi.h>
+inherit "/std/char/doomnpc";
+
+int is_ghost() { return 1; }
+
+void create()
+{
+        set_name(HIB"幽冥游神"NOR, ({ "wraith" }) );
+        set("long",
+"一个披头散发，浑身是血的厉鬼，正在这里飘来飘去。\n"
+"想不到乾坤教竟然可以控制鬼神来保护这个神秘的宝藏库。\n"
+     );
+        set("attitude", "friendly");
+        set("max_gin", 1500);
+        set("max_kee", 8000);                    
+        set("max_sen", 1500);
+        set("max_force",3000);
+        set("force",6000);
+        set("force_factor",200);
+        set("bellicosity",50);
+        set("cor",50);
+        set("cps",50);
+
+        set("chat_chance", 10);
+        set("chat_msg", ({
+                (:random_move():),
+           }) );
+
+        set("combat_exp",70000000);
+
+        set_skill("dodge", 300);
+        set_skill("fall-steps",300);
+        set_skill("parry", 300);
+        set_skill("move", 300);
+         set_skill("cuixin-zhang", 300);
+         set_skill("spicyclaw", 300);
+        set_skill("claw", 300);
+         set_skill("strike", 300);
+
+         set_skill("taiji-shengong", 300);
+         set_skill("force", 300);
+        map_skill("sword","fuliu-jian");
+        map_skill("parry","fuliu-jian");
+        map_skill("dodge","fall-steps");
+        map_skill("move","fall-steps");
+ 
+         map_skill("force", "taohua-force");
+         map_skill("dodge", "fall-steps");
+         map_skill("move", "fall-steps");
+        map_skill("strike", "cuixin-zhang");
+        map_skill("force", "taiji-shengong");
+         map_skill("parry", "cuixin-zhang");
+         map_skill("claw", "spicyclaw");
+
+         prepare_skill("claw", "spicyclaw");
+         prepare_skill("strike", "cuixin-zhang");
+
+        set_temp("apply/attack",100);
+        set_temp("apply/armor",100);
+        set_temp("apply/armor_vs_force",100);
+        set_temp("apply/damage",200);
+
+        set("chat_chance_combat",5);
+        set("chat_msg_combat", ({
+                "都..和..我..一..起..下..地..狱..吧...\n",
+        }) );
+
+        set("shen_type",-1);
+        set("shen",-1000000);
+        setup();
+         set_temp("apply/armor_vs_force",500); 
+         set_temp("apply/armor",500); 
+        carry_object("/d/qiankun/obj/jincanwang");
+        carry_object("/class/fighter/dragon_armor")->wear();
+        carry_object("/class/mingjiao/obj/goldpao")->wear();
+
+}
+
+void init()
+{
+        object ob = this_player();
+        
+        ::init();
+
+        if (interactive(ob) && ob->query("combat_exp")< 6000000)
+        {
+                remove_call_out("kill_ob");
+                call_out("kill_ob", 1, ob);  
+        }       
+}
+
+
+

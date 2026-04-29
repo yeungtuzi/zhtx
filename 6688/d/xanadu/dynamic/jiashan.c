@@ -1,0 +1,16 @@
+// 幽明山庄
+// by yeung. All rights reserved.
+
+inherit "/std/room/doom.c";
+
+void create()
+{
+	set("short", "假山");
+	set("long", @LONG
+	这是一座小小的假山，白石嶙峋,或如鬼怪,或如猛兽,纵横拱立,上面苔藓
+成斑,藤萝掩映,其中微露羊肠小径。
+LONG
+	);
+
+	setup();
+}

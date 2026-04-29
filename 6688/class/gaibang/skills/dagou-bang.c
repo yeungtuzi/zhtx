@@ -1,0 +1,196 @@
+//  kee/ dagou-bang.c
+// write by Xiang
+
+#include <combat.h>
+#include <ansi.h>
+
+inherit SKILL;
+
+mapping action1 =
+([
+                "action": "$N眼中射出一道青芒，手中$w使出「天下无狗」，攻势如疾风骤雨，向四面八方泼洒开去",
+                "dodge":-20,
+                "parry":-10,
+                "attack":30,
+                "force": 220,
+                "damage":200,
+                "damage_type": "挫伤",
+                "undodgeable": 30,
+                "post_action" : (: call_other, __FILE__, "post_action" :),
+]);
+
+mapping action2 =
+([
+                "action": "$N眼中射出一道青芒，手中$w使出「天下无狗」，攻势如疾风骤雨，向四面八方泼洒开去",
+                "dodge":-20,
+                "parry":-10,
+                "attack":30,
+                "force":200,
+                "damage": 180,
+                "damage_type": "挫伤",
+                "undodgeable": 30,
+]);
+
+void post_action(object me,object victim,object weapon,int damage)
+{
+        object *enemy;
+        int i;
+        
+        me->clean_up_enemy();
+        enemy = me->query_enemy();    
+        if( !arrayp(enemy) ) return;
+        
+        if( member_array(victim,enemy) != -1 )
+                enemy -= ({victim});
+        
+        i = sizeof(enemy);
+        while(i--)
+        {
+                if( enemy[i]->query("kee") < 1 ) continue;              
+                write("\n\n");
+                message_vision(HIG+me->query_temp("weapon")->name()+HIG"攻向$n!\n"NOR,me,enemy[i]);
+                COMBAT_D->do_attack(me,enemy[i],me->query_temp("weapon"),TYPE_SELFATTACK,action2);
+        }                       
+}
+
+mapping *action = ({
+([      "action": "$N使出一招「棒打双犬」，手中$w化作两道青光砸向$n的$l",
+        "attack":20,
+        "dodge": 20,
+        "parry": 20,
+        "force": 60,
+        "damage": 120,
+        "damage_type": "挫伤"
+]),
+([      "action": "$N手中$w左右晃动，一招「拨草寻蛇」向$n的$l攻去",
+        "attack":20,
+        "dodge": 20,
+        "parry": 20,
+        "force": 70,
+        "damage": 80,
+        "damage_type": "挫伤"
+]),
+([      "action": "$N举起$w，居高临下使一招「打草惊蛇」敲向$n的$l",
+        "attack":20,
+        "dodge": 20,
+        "parry": 20,
+        "force": 80,
+        "damage": 90,
+        "damage_type": "挫伤"
+]),
+([      "action": "$N施出「拨狗朝天」，$w由下往上向$n撩去",
+        "attack":20,
+        "dodge": 20,
+        "parry": 20,
+        "force": 90,
+        "damage": 100,
+        "damage_type": "挫伤"
+]),
+});
+
+int valid_enable(string usage) { return (usage == "staff") || (usage == "parry"); }
+
+int valid_learn(object me)
+{
+        if ((int)me->query("max_force") < 100)
+                return notify_fail("你的内力不够。\n");
+        return 1;
+}
+
+mapping query_action(object me, object weapon)
+{
+        if (random(me->query_skill("staff")) > 200 &&
+            me->query_skill("force") > 60 &&
+            me->query("force") > 100 &&
+            me->query("skill_mark/dagou-bang") 
+           ) 
+        {
+                return action1;
+        }
+        return action[random(sizeof(action))];
+}
+
+int practice_skill(object me)
+{
+        object weapon;
+
+        if (!objectp(weapon = me->query_temp("weapon"))
+        || (string)weapon->query("skill_type") != "staff")
+                return notify_fail("你使用的武器不对。\n");
+        if ((int)me->query("kee") < 50)
+                return notify_fail("你的体力不够练打狗棒法。\n");
+        me->receive_damage("kee", 40);
+        return 1;
+}
+
+string perform_action_file(string action)
+{
+        return __DIR__"dagou-bang/" + action;
+}
+
+string *parry_msg = ({
+        "$n一抖$v，手中的$v化作一条长虹，磕开了$N的$w。\n",
+        "$n挥舞$v，手中的$v化做漫天雪影，荡开了$N的$w。\n",
+        "$n手中的$v一抖，向$N的手腕削去。\n",
+        "$n将手中的$v舞得密不透风，封住了$N的攻势。\n",
+        "$n反手挥出$v，整个人消失在一团光芒之中。\n",
+});
+
+string *unarmed_parry_msg = ({
+        "$n猛击$N的面门，逼得$N中途撤回$w。\n",
+        "$n以守为攻，猛击$N的手腕。\n",
+        "$n左手轻轻一托$N$w，引偏了$N$w。\n",
+        "$n脚走阴阳，攻$N之必救。\n",
+        "$n左拳击下，右拳自保，将$N封于尺外。\n",
+        "$n双拳齐出，$N的功势入泥牛入海，消失得无影无踪。\n",
+});
+
+string query_parry_msg(object weapon)
+{
+        if( weapon )
+                return parry_msg[random(sizeof(parry_msg))];
+        else
+                return unarmed_parry_msg[random(sizeof(unarmed_parry_msg))];
+}
+
+/*
+mapping enable_req() {
+
+        return( ([
+                "force":"huntian-qigong",
+                "dodge":"xiaoyaoyou",
+        ]) );
+
+}
+
+mapping level_req(int level) {
+
+        return( ([
+                "huntian-qigong":10,
+                "xiaoyaoyou":30,
+        ]) );
+}
+*/
+
+mapping enable_req() {
+
+        if( this_player()->query_skill_mapped("force") == "huntian-qigong" )
+        return( ([ 
+                "force":"huntian-qigong",     
+        ]) );
+        else
+        return( ([ 
+                "force":"hunyuan-yiqi",   
+        ]) );
+
+}
+
+
+int query_faith_req(int skill) {
+        return skill*14+10;
+}
+
+string query_force_type() {
+        return("佛家内功");
+}
+

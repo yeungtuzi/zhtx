@@ -1,0 +1,4 @@
+#d/hua/npc/baby.c
+dbase (["kee":100,"mother":"none","eff_kee":100,"chat_msg_combat":({"孩子声斯力竭的哭着，你这残忍的家伙，怎么忍心下得去手噢!!!!
+",}),"father":"none","id":"baby","sen":100,"gin":100,"actions":,"race":"人类","eff_sen":100,"nodrop":1,"cps":30,"default_actions":,"chat_msg":({,"婴儿又哭闹了，准是尿布该换了…，唉，烦死人了。
+",}),"max_gin":100,"int":30,"spi":30,"age":0,"cor":30,"chat_chance_combat":15,"str":10,"max_kee":100,"kar":30,"chat_chance":15,"eff_gin":100,"con":21,"name":"婴儿","short":"婴儿(baby)","max_sen":100,"per":21,"long":"一个还在襁褓中的婴儿。",])

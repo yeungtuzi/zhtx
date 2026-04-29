@@ -1,0 +1,29 @@
+ 
+    register_relay_channel()  ES II (28 Nov 1995)  register_relay_channel()
+ 
+    NAME
+        register_relay_channel -- register an object for receiving 
+		channel message
+ 
+    SYNOPSIS
+        void register_relay_channel(string channel);
+ 
+    DESCRIPTION
+	by default, non-interactive objects will not be receiving channel
+	messages at all, in order for it to receive channel messages, the
+	object has to be registeered on the targeting channel's "listener
+	list".
+
+	register_relay_channel() puts the object that's calling this 
+	function into the "listener list", where channel is the name of
+	channel the object wishes to listen to.
+
+	if the said channel does not exist, it will be ignored.
+
+	this is used in conjunction with relay_channel().
+ 
+    SEE ALSO
+	relay_channel()
+ 
+    Page 1                                                  
+ 

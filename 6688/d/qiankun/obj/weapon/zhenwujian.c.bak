@@ -1,0 +1,158 @@
+//OBJ:/d/xueshan/npc/obj/xsword.c
+//By masterall for 真武剑
+
+#include <weapon.h>
+#include <ansi.h>
+inherit F_CONDITION;
+
+inherit F_AUTOLOAD;
+inherit SWORD;
+
+int query_autoload()
+{
+        return query("weapon_prop");
+}
+
+void create()
+{
+        set_name(HIG"真武剑"NOR, ({ "zhenwu jian", "jian" }) );
+        set_weight(1);
+        set("unpawnable",1);
+        set("no_drop",1);
+        if( clonep() )
+                set_default_object(__FILE__);
+        else {
+                set("unit", "把");
+                set("long",   "这是武当镇山之宝，剑身通体碧绿，寒气摄人魂魄。\n");
+                set("value", 0);
+                set("rigidity",1000000);
+                set("material", "steel");
+                set("wield_msg",
+                        YEL "铮地一声,$N的手中已多了一把斩妖除魔的$n。\n"NOR);
+                set("unequip_msg", HIY "$N将手中的$n插入腰间的剑鞘。\n"NOR);
+                set("weapon_prop/attack", 40);   
+                set("weapon_prop/parry", 75);   
+                set("weapon_prop/defense", 20);      
+        }
+    init_sword(300);
+       setup();
+}
+
+int wield()
+{
+       object me,ob;
+       me = this_player();
+       ob = this_object();
+        if( this_player()->query_skill("taiji-jian",1) < 200)
+        {
+                return notify_fail("你的太极剑等级太低了，用不了这件兵器。\n");
+        }
+        if( this_player()->query("combat_exp") < 5000000)
+        {
+                return notify_fail("你江湖经验太低了，不配拥有这柄剑。\n");
+        }
+        return ::wield();
+}
+
+mixed hit_ob(object me, object victim, int damage_bonus)
+{
+        me->add("force",me->query("force_factor"));
+}
+
+/*
+void init()
+{
+        add_action("do_jiedu","jiedu");     
+}
+
+int do_jiedu(object me, object target)
+{
+        string *conditions=({}),*list,arg;
+        int i;
+        int has_poison;
+        object ob;
+        ob=this_object();
+
+
+
+
+
+        if( !target )
+                target = me;
+        if( target != me)  return notify_fail("你只能用真武剑给自己解毒！\n");
+
+        if(!ob->query("equipped"))       return notify_fail("你必须装备真武剑才可以解毒！\n");                                                 
+        if( me->is_fighting() )
+               return notify_fail("战斗中解毒，找死呢啊！\n");
+
+        if( (int)me->query("force") < 50 ) 
+                return notify_fail("你的真气不够。\n");
+
+        if( (int)me->query("eff_kee") < (int)me->query("max_kee") / 2 )
+                return notify_fail("你已经受伤过重，只怕一运真气便有生命危险！\n");
+
+        if( (int)target->query("eff_kee") < (int)target->query("max_kee") / 5 )
+                return notify_fail( target->name() +
+                        "已经受伤过重，经受不起你的真气震荡！\n");
+        
+        if( target != me )
+                message_vision(
+                        HIG "$N将真武剑搭在$n的疮口上，发动体内的真气吸取$n身上的毒素....\n"NOR,me, target );
+        else
+                message_vision(
+                        HIG "$N将真武剑搭在自己的疮口上，发动体内的真气吸取身上的毒素...\n"NOR,me);
+
+        list = get_dir("/daemon/condition/");
+        
+        i = sizeof(list);
+        while( i-- )
+        {
+                arg = list[i];
+                if( arg[strlen(arg)-8..strlen(arg)-3] == "poison" )
+                        conditions += ({arg[0..strlen(arg)-3]});
+        }
+        
+        i = sizeof(conditions);
+        has_poison=0;
+        while(i--) 
+        {
+                if( target == me )
+                {
+                        if( (int)me->query("force") < 50 ) 
+                                return notify_fail("你的真气不够。\n");
+                        if( me->query_condition(conditions[i]) > 0 )
+                        {
+                                me->apply_condition(conditions[i],0);
+                                message_vision(HIG"过了不久，$N额头上冒出豆大的汗珠，从手指尖滴出一缕黑血，黑血渐渐由黑转红...\n"NOR,me);
+
+                                if( wizardp(me) )
+                                        message_vision("$N的"+conditions[i]+"被解啦。\n",me);
+                                me->add("force",-50);
+                                has_poison = 1;
+                        }
+                }
+                else
+                {
+                        if( (int)me->query("force") < 50 ) 
+                                return notify_fail("你的真气不够。\n");
+
+                        if( target->query_condition(conditions[i]) > 0 )
+                        {
+                                target->apply_condition(conditions[i],0);
+                                message_vision(HIG"真武剑不断的由绿转黑，再由黑转绿，"+HIC"\n$n的疮口冒出“嗤嗤”的白烟，不多一会，$n的脸上恢复了红润...\n"NOR,me,target);
+                                if( wizardp(me) )
+                                        message_vision("$n的"+conditions[i]+"被$N解啦。\n",me,target);
+                                me->add("force",-50);
+                                has_poison = 1;
+                        }
+                }       
+        }
+        
+        if(!has_poison) return notify_fail("毒素已吸净！\n");
+
+        write("Ok。\n");
+        return 1;
+
+}
+*/
+

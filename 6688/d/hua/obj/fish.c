@@ -1,0 +1,15 @@
+inherit ITEM;
+
+void create()
+{
+	set_name("大鲤鱼", ({"fish"}));
+	set_weight(80);
+	if( clonep() )
+		set_default_object(__FILE__);
+	else {
+		set("unit", "条");
+		set("value", 10);
+		set("long", "一条活蹦乱跳的大鲤鱼。\n");
+	}
+	setup();
+}

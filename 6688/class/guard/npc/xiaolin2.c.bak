@@ -1,0 +1,397 @@
+//by tlang with /include/globals.h and /adm/daemons/gtimed.c
+
+#include <ansi.h>
+#include <localtime.h>
+
+//#define CLASSDIR "/class/"
+#define TIME_TICK (time()*60)    
+#define HUNSWORD "/data/weapon/hsword/"
+#define HSWORDDIR "/d/xueshan/npc/obj/"
+//#define GTIME_D "/adm/daemons/gtimed.c"
+
+inherit NPC;
+
+//void check_time();
+//int midnight();
+//int make_yardmap(object);
+int accept_fight();
+int do_halt();
+int accept_object(object,object); 
+string ask_fairy();
+string ask_lucy();
+string ask_hsword();
+
+void create()
+{
+	set_name(GRN"小霖"NOR, ({ "xiao lin", "xiao"}) );
+	set("gender", "男性" );
+	set("age", 18+random(5));
+        set("long",
+		"他是逍遥大仙小霖的化身，正愉快地喝着酒。\n");
+	set("combat_exp", 2999999);
+	set("attitude", "friendly");
+	set("cor", 50);
+	set("per", 30);
+	set("int", 30);
+	set("con", 30);
+	set("str", 30);
+	set("cps", 30);
+	set("inquiry", ([
+	"警幻仙子" : (: ask_fairy :),
+	"fairy" : (: ask_fairy : ),
+	"露露" : (: ask_lucy : ),
+	"lucy" : (: ask_lucy : ),
+	"混世神剑" : (: ask_hsword :),
+	"hun sword" : (: ask_hsword :),
+	"hunsword" : (: ask_hsword :),
+	]));
+     
+	set("max_kee", 3000);
+	set("kee", 3000);   
+	set("max_atman",3000);
+	set("atman",3000);
+	set("max_force", 3000);
+	set("force", 5000);
+	set("force_factor", 200);
+	set("max_mana",3000);
+	set("mana",5000);
+	set("mana_factor", 50);
+	
+	set("chat_chance_combat", 40);
+        set("chat_msg_combat", ({
+                (: cast_spell, "invocation" :),
+                (: command("cast animate on corpse") :),
+                (: command("cast animate on corpse") :),
+        }) );
+		
+	set_skill("iron-cloth", 200);
+	set_skill("dodge", 220);
+	set_skill("unarmed", 200);
+	set_skill("spells",200);
+	set_skill("force", 200);
+	set_skill("fonxanforce", 200);
+	set_skill("taoism", 220);
+        set_skill("necromancy", 200);
+	map_skill("force","fonxanforce");
+	map_skill("spells","necromancy");
+
+	set("count",1);
+	set("trigger",1);
+	set("pills",1);
+//	set("can_clone",1);
+
+	setup();
+	carry_object("/d/suzhou/npc/obj/baishan.c")->wear();
+	carry_object("/d/suzhou/npc/obj/gangjian.c")->wield();
+}
+
+void init()
+{
+	add_action("do_destory","destory");
+//	add_action("pray_for_hsword","pray");
+}  
+//This is for 恢复经验。Begin here.
+string ask_fairy()
+{
+	object ob=this_player();
+
+	if(!ob->query("marks/wuji"))
+		return "谁让你来问我的？\n";
+	ob->delete("marks/wuji");
+	ob->set("marks/小霖", 1);
+	return "你到雪山上找胡斐打听消息即可。\n";
+}
+//End here.
+
+//This is for 帮助露露。Begin here.
+string ask_lucy()
+{
+	object ob=this_player();
+	
+	if(ob->query_temp("save_lucy/zhangji")!=3 )
+		return "谁叫你来问我的？我不知道。。。。pp\n";
+	if(ob->query("save_lucy/time")>=2)
+		return "你已经帮助过她两次了，还是算了吧。\n";
+
+	if(ob->query("combat_exp")<=100 || ob->query("age")<16 )
+		return "你刚出道，我不敢信任你。。。。。pp\n";
+
+	if(!ob->query_temp("save_lucy/wine") || !ob->query_temp("looking/wine") )
+	{
+		if(query("count")>1)
+			return "我已经叫人去给我拿酒了。。。。。。pp\n";
+		add("count",1);	
+		tell_object(ob,"。。。。。我想喝梨花酒，你能帮我弄一些来吗？\n");
+		ob->set_temp("looking/wine",1);
+			return "然后我来想想是否可以告诉你。\n";
+	}
+
+	if(!ob->query_temp("save_lucy/oldguy") )
+	{
+		if(query("trigger")>1)
+			return "你还是先去找我大哥吧。。。。。。pp\n";
+		add("trigger",1);
+		ob->set_temp("save_lucy/xiaolin",1);
+		tell_object(ob,"这事情还得征求我大哥的同意，他在黄龙洞，你自己去找他吧。\n");
+		return "我在这儿等你，要快喔。。。。pp\n";
+	}
+/*	if(!( room = find_object(__DIR__"huaxint2")) )
+        room = load_object(__DIR__"huaxint2");
+    	if(objectp(room))
+    	{*/
+	ob->set_temp("save_lucy/braver",1);
+	ob->delete_temp("save_lucy/wine");
+	ob->delete_temp("looking/wine");
+	ob->delete_temp("save_lucy/oldguy");
+	ob->delete_temp("save_lucy/xiaolin");
+	ob->delete_temp("save_lucy/lucy");
+	ob->delete_temp("save_lucy/zhangji");
+	environment(ob)->set("exits/up","/d/hangzhou/huaxint2");
+	command("tell "+ob->query("id")+" 你上去吧!\n");
+	tell_object(environment(ob),"小霖凌空一指，天上出现了一个亭子，一个出口连通到这儿。\n");
+		return "好自为之吧。。。。。\n";
+	
+//}	return "..pp\n";	
+}
+
+int accept_object(object who, object what)
+{
+	object obj;
+
+	if(userp(what) )
+		return notify_fail("小霖说道：“你竟然感拿玩家来送人？！再叫我遇上，小心我宰了你。”
+	说罢小霖又奸笑几声。\n");
+	if((string)what->query("id")=="lihua jiu" )
+		return notify_fail("梨花酒没有翡翠杯盛，也无味得紧。。。。pp\n");
+	if((string)what->query("id")=="feicui bei" )
+	{
+		if(query("pills")>1)
+			return notify_fail("我今天已经得到过酒了，等明天吧。\n");
+		if(!who->query_temp("looking/wine") )
+		{
+			command("say 我不随便要别人的东西的。。。。pp\n");
+				return notify_fail("说罢小霖对你摇摇手。\n");
+		}
+		if(who->query_temp("save_lucy/wine") )
+		{
+			command("papaya "+who->query("id"));
+				return notify_fail("你不是已经给过我了吗？\n");
+		}
+
+		if(!(string)what->query("drinkable") 
+|| what->query("drinkable")<5 )
+		{                             
+        	command("hehe "+who->query("id"));
+		command("say 你竟然敢拿没有装满梨花酒的翡翠杯来骗我？！\n");
+			return notify_fail("拿开。。。。\n");
+		}
+	
+	add("pills",1);
+  	command("smile " + who->query("id") );
+	command("say 现在你有什么就问我吧。。。。\n");
+	destruct(what);
+	who->set_temp("save_lucy/wine",1);       	
+		return 1;
+	}
+	command("thank "+who->query("id"));
+       	command("say 我不会随便要别人的东西。\n");
+		return notify_fail("说罢拍拍你的头。\n");
+}
+//End here.
+
+//This is for 创造混世神剑 and 销毁寒于三宝。Begin here.
+int do_destory(string arg)
+{
+	string file;
+	object obj,what;
+	object ob=this_player();
+	
+	if(!arg )
+		return notify_fail("你想销毁寒于三宝中的哪一种呀？毁错了我可不负责呀。\n");
+	if( arg!="lighting sword" && arg!="lighting blade" && arg!="lighting armor" )
+		return notify_fail("我只销毁寒于三宝。\n");
+	if( !objectp(obj = present(arg, ob)) )	
+		return notify_fail("你身上没有这样东西。\n");
+	if( userp(obj) )
+		return notify_fail("连人你也敢拿来？！哼！\n");
+	file = base_name(obj) + ".c";
+	if( !what = find_object(file) )
+	{
+		tell_object(ob,"虽然那东东的文件不在了，我还是把它毁掉了。\n");
+		destruct(obj);
+			return 1;
+	}
+	tell_object(ob,"好了，我把那东东毁掉了。\n");
+	destruct(obj);
+	rm(file);
+		return 1;
+}
+//End here.
+
+string ask_hsword()
+{
+	command("sigh");
+	return "这剑六十年出来一次，现在不是时候。\n";	
+}
+
+
+/*int pray_for_hsword()
+{
+	object obj,obj1,obj2,obj3;
+	object ob=this_player();
+	string newfile,filename,id;
+	string newsword,newblade,newarmor,sword,blade,armor;	
+	string xiaolin,xiaobak;	
+
+	
+	if(query("can_clone")<1 )
+	{
+		command("say 这次已经有人来过了，等六十年后再来吧。\n");
+			return 1;
+	}
+
+	if( !objectp( obj1=present("lighting sword",ob) )
+|| !objectp( obj2=present("lighting blade",ob) )
+|| !objectp( obj3=present("lighting armor",ob) )  )
+        {
+                tell_object(ob,"你没有找齐寒于三宝，祈祷也没有用的。\n");
+                        return 1;
+        }
+	
+	if( !obj1->query("status") || obj1->query("status")!="good" )
+	{
+		command("say 这把剑不是在混世神剑消失后得到的，不行呀！\n");
+		command("whisper "+ob->query("id")+" 如果觉得它累赘，可以让我销毁它。\n");	
+			return 1;
+	}
+	if( !obj2->query("status") || obj2->query("status")!="good" )
+	{
+		command("say 这把刀不是在混世神剑消失后得到的，不行呀！\n");
+		command("whisper "+ob->query("id")+" 如果觉得它累赘，可以让我销毁它。\n");	
+			return 1;
+	}
+	if( !obj3->query("status") || obj3->query("status")!="good" )
+	{
+		command("say 这件宝衣不是在混世神剑消失后得到的，不行呀！\n");
+		command("whisper "+ob->query("id")+" 如果觉得它累赘，可以让我销毁它。\n");	
+			return 1;
+	}
+
+	id=ob->query("id");
+	newfile = read_file("/class/guard/npc/obj/hsword.c");
+	newfile = replace_string( newfile, "no_owner", id);
+	filename = HUNSWORD+id+".c";
+	newsword = read_file("/d/xueshan/npc/obj/xsword.c");
+	sword = HSWORDDIR+"xsword.c";
+	newsword = replace_string( newsword, "good", "bad");
+	newblade = read_file("/d/xueshan/npc/obj/xblade.c");
+	blade = HSWORDDIR+"xblade.c";
+	newblade = replace_string( newblade, "good", "bad");	
+	newarmor = read_file("/d/xueshan/npc/obj/xarmor.c");
+	armor = HSWORDDIR+"xarmor.c";
+	newarmor = replace_string( newarmor, "good", "bad");
+	
+	xiaobak = "/class/guard/npc/xiaolin2.c.bak";
+	xiaolin = "/d/hangzhou/npc/xiaolin.c";
+	cp(xiaobak,xiaolin);	
+	
+	if(!write_file(filename, newfile,1) || !write_file(sword, newsword,1)
+ || !write_file(blade, newblade,1) || !write_file(armor, newarmor,1) )
+		return notify_fail("你没有写入这个文件的权力。\n");
+	command("say 东西找齐了，看我作法吧。\n");
+	message("sys", HIW"小霖披发仗剑，念起天魔大咒，四周荒野间顿时鬼哭狼嚎，
+天空上传来阵阵雷声：沉睡了千年的神诋呀......请予我诸神的力量，铸成这把神灵之剑。"NOR, users() );
+	command("nod");
+	command("行了，你可以保管这剑六十年，之后它就不属于你了。\n");
+	destruct(obj1);
+	destruct(obj2);
+	destruct(obj3);
+	add("can_clone",-1);
+	obj = new(filename);
+	obj->move(ob);
+		return 1;
+}
+*/
+
+
+
+
+//blocked by tlang for not finished.
+/*
+//added for celebrating 元宵节 by tlang
+//include void check();int midnight();int make_yardmap();
+void check()
+{
+	if( NATURE_D->game_time()!=GTIME_D->chinese_date(TIME_TICK))
+		{
+			command("say 时间还没有到啊。\n");
+			call_out("check",120);
+			command("say "+NATURE_D->game_time()+"距"
+				+GTIME_D->chinese_date(TIME_TICK)+
+				"，有一段时间差呢。\n");
+					return;
+		}
+	command("chat 生活在地狱中的人们，接受我的召唤，重会到人间吧。\n"); 
+	call_out("midnight",5);	
+}
+
+mapping yard_daemons=([]);  
+int midnight()
+{
+	object *ob,theob;
+        int i;
+
+	ob = users();
+	command("chat 元宵到了，大家回去过节吧。我来助大家回去。\n");
+	for(i=0; i<sizeof(ob); i++) {
+	        if( !environment(ob[i]) ) continue;
+        //        if( !ob[i]->qurey("class")) continue;
+		if( ob[i]->is_ghost() ) {
+		theob=ob[i];
+		theob->reincarnate();
+		call_out("make_yardmap",5, theob);
+		}
+	call_out("make_yardmap",5, ob[i]);	
+	}
+}
+
+int make_yardmap(object theob)
+{
+	int i,j,len;
+	string *classname,*yardname,name;
+
+	classname = get_dir(CLASSDIR);
+	i = sizeof(classname);
+	while(i--)
+	{
+		classname[i]=theob->query("class");
+		yardname=get_dir(CLASSDIR+classname[i]+"/yard/");
+		j=sizeof(yardname);
+		while(j--)
+		{
+			len=sizeof(yardname[j]);
+			if ( yardname[j][(len-2)..(len-1)]==".c" )
+			{
+				name=yardname[j][0..(len-3)];
+				yard_daemons[name]=CLASSDIR+classname[i]+"/yard/"+name;
+			}
+		}
+	}
+	theob->move(yard_daemons[name]);
+	call_out("check",600);
+		return 1;
+}                 
+*/
+int accept_fight()
+{       
+	command("shake");
+	call_out("do_halt",2);
+		return 1;            
+}
+
+int do_halt()
+{
+	command("halt");
+	command("sigh");
+}      
+

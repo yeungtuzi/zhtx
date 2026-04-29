@@ -1,0 +1,550 @@
+// damage.c
+
+#include <action.h>
+#include <ansi.h>
+#include <dbase.h>
+#include <login.h>
+#include <move.h>
+
+// manashield's effect( damage/mana )
+#define MANA_SHIELD_FACTOR (2)
+#define FORCE_SHIELD_FACTOR (8/5)
+#define SHIELD_FACTOR (1)
+
+
+void menpai_punish();
+
+int ghost = 0;
+
+int is_ghost() { return ghost; }
+
+varargs int receive_damage(string type, int damage, object who)
+{
+        int val;
+        int mana,atman,maxforce,jiuyang,xishu; 
+
+        if( damage < 0 ) error("F_DAMAGE: 伤害值为负值。\n");
+        if( type!="gin" && type!="kee" && type!="sen" )
+                error("F_DAMAGE: 伤害种类错误( 只能是 gin, kee, sen 其中之一 )。\n");
+
+        if( objectp(who) )
+        {
+                 set_temp("last_damage_from", who);
+                 if( query_temp("beat/"+who->query("id")) )
+                        add_temp("beat/"+who->query("id"),damage);
+                 else
+                        set_temp("beat/"+who->query("id"),damage);
+        }
+//add by yeung 
+//have mana-shield to save me?
+
+        if( wizardp(this_object()) && query("env/test_mana_shield") )
+                tell_object(this_object(),"damage before shield:"+damage+"\n");
+
+//如果有铁布衫护体,或者没有在enable necromancy
+//魔法盾牌不起作用      
+        if( type=="kee" && !query_temp("jiuyang-shield") && !query_temp("force-shield") && query_temp("manashield") && !this_object()->query_skill("iron-cloth") && this_object()->query_skill_mapped("spells")=="necromancy" )
+        { 
+                mana = query("mana");
+                if( damage )
+                        message_vision(MAG"$N全身周围光晕陡然间红光大盛，在伤害及体之前及时为$N挡去这致命一击！\n"NOR,this_object());
+                if( damage < mana*MANA_SHIELD_FACTOR )
+                {
+                        set("mana",mana - damage/MANA_SHIELD_FACTOR);
+                        damage = 1;
+                }
+                else
+                {
+                        set("mana",0);
+                        damage -= (mana-1)*MANA_SHIELD_FACTOR;                        
+                        delete_temp("manashield");
+                        set_temp("broke-shield", 1);
+                }       
+        }
+        if( type=="kee" && query_temp("yinyang-shield") && !query_temp("force-shield") && !query_temp("manashield") && !this_object()->query_skill("iron-cloth") )
+        { 
+                mana = query("force");
+                jiuyang = this_object()->query_skill("jiuyang-shengong", 1);
+                xishu = jiuyang*100/400;
+                if( damage )
+                        message_vision(HIG"$N体内真气攒动，"+HIB"至阴"+HIY"则阳"+HIG"，"+HIY"至阳"+HIB"则阴"+HIG"，这一击已在"+HIW"阴阳互济"+HIG"的漩涡中消于无形！\n"NOR,this_object());
+                if( damage < mana*xishu/100 )
+                {
+                        set("force",mana - damage*100/xishu);
+                        damage = damage/8;
+                }
+                else
+                {
+                        set("force",0);
+                        damage -= (mana-1)*xishu/100;                        
+                        delete_temp("yinyang-shield");
+                }       
+        }
+        if( wizardp(this_object()) && query("env/test_mana_shield") )
+                tell_object(this_object(),"damage after shield:"+damage+"\n");
+
+        val = (int)query(type) - damage;
+
+        if( val >= 0 ) set(type, val);
+        else set( type, -1 );
+         
+        set_heart_beat(1);
+
+        return damage;
+}
+
+varargs int receive_wound(string type, int damage, object who)
+{
+        int val,mana,atman,maxforce;
+
+        if( damage < 0 ) error("F_DAMAGE: 伤害值为负值。\n");
+        if( type!="gin" && type!="kee" && type!="sen" )
+                error("F_DAMAGE: 伤害种类错误( 只能是 gin, kee, sen 其中之一 )。\n");
+
+        if( objectp(who) ) set_temp("last_damage_from", who);
+
+//add by yeung 
+//have mana-shield to save me?
+        if( wizardp(this_object()) && query("env/test_mana_shield") )
+        
+        tell_object(this_object(),"wound before shield:"+damage+"\n");
+
+        if( type == "kee" && query_temp("manashield") && !this_object()->query_skill("iron-cloth") && this_object()->query_skill_mapped("spells")=="necromancy" )
+        {
+
+                mana = query("mana");
+
+                if( damage < mana*MANA_SHIELD_FACTOR )
+                {
+                        set("mana",mana - damage/MANA_SHIELD_FACTOR );
+                        damage = 0;
+                }
+                else
+                {
+                        set("mana",0);
+                        damage -= (mana-1)*MANA_SHIELD_FACTOR;
+                        delete_temp("manashield");
+                        set_temp("broke-shield", 1);
+                }       
+
+        }
+
+        //force shield
+        if( type=="kee" && query_temp("jiuyang-shield") && !query_temp("manashield") && !this_object
+()->query_skill("iron-cloth") && this_object()->query_skill_mapped("force")=="jiuyang-shengong" )
+        {
+                mana = query("force");
+                if( damage )
+                        message_vision(SKILL_D("jiuyang-shengong")->query_absorb_msg(),this_object()); 
+                if( damage < mana*FORCE_SHIELD_FACTOR )
+                {
+                        set("force",mana - damage/FORCE_SHIELD_FACTOR);
+                        damage = 1;
+                }
+                else
+                {
+                        set("force",0);
+                        damage -= (mana-1)*FORCE_SHIELD_FACTOR;
+                        delete_temp("jiuyang-shield");
+                        set_temp("broke-shield", 1);
+                }
+        }
+        //真元护体,适用于所有内功，但整体效果不如九阳shield
+        if( type=="kee" && query_temp("force-shield") && !query_temp("manashield") && !query_temp("jiuyang-shield") )
+        {
+                mana = query("force");
+                maxforce  = query("max_force");
+                if( damage )
+ 
+                switch(random(4)) 
+                {
+                        case 0: 
+                        message_vision(HIW"$N体内真气遇激而发，宛如一道无形的气壁瞬间护住了周身数大要穴！\n"NOR,this_object());
+                        break;  
+                        case 1: 
+                        message_vision(HIW"一道道白色的烟气从$N的头上升起，形成一股坚不可摧的能量场盘桓在$N的四周！\n"NOR,this_object());
+                        break;  
+                        case 2: 
+                        message_vision(HIW"澎湃的劲气从$N的丹田散发开来，顿时$N全身有如钢筋铁骨，居然烁烁闪着耀眼的光芒！\n"NOR,this_object());
+                        break;  
+                        case 3: 
+                        message_vision(HIW"$N心神一动，一道真气已然护住了自己最为薄弱的部位，瞬间破绽全无，强咬牙关，极力抵御！\n"NOR,this_object());
+                        break;  
+                }
+
+                if( damage < mana*SHIELD_FACTOR && mana > maxforce )
+                {
+                        set("force",mana - damage/SHIELD_FACTOR);
+                        damage = 1;
+                }
+                else
+                {
+                        set("force",mana - damage/SHIELD_FACTOR);
+           //           damage -= (mana-1)*SHIELD_FACTOR;
+                        message_vision(HIR"$N体内的真气已然油尽灯枯，身子摇摇晃晃，显然快要支撑不住了！！\n"NOR,this_object());
+                        delete_temp("force-shield");
+                        set_temp("broke-shield", 1);
+                }
+        }
+
+        if( wizardp(this_object()) && query("env/test_mana_shield") )
+                tell_object(this_object(),"wound after shield:"+damage+"\n");
+
+        val = (int)query("eff_" + type) - damage;
+
+        if( val >= 0 ) set("eff_" + type, val);
+        else {
+                set( "eff_" + type, -1 );
+                val = -1;
+        }
+ 
+        if( (int)query(type) > val ) set(type, val);
+
+        set_heart_beat(1);
+
+        return damage;
+}
+
+int receive_heal(string type, int heal)
+{
+        int val;
+
+
+        if( heal < 0 ) error("F_DAMAGE: 恢复值为负值。\n");
+        if( type!="gin" && type!="kee" && type!="sen" )
+                error("F_DAMAGE: 恢复种类错误( 只能是 gin, kee, sen 其中之一 )。\n");
+
+        val = (int)query(type) + heal;
+
+        if( val > (int)query("eff_" + type) ) set(type, (int)query("eff_" + type));
+        else set( type, val );
+
+        return heal;
+} 
+
+int receive_curing(string type, int heal)
+{
+        int max, val;
+
+        if( heal < 0 ) error("F_DAMAGE: 恢复值为负值。\n");
+        if( type!="gin" && type!="kee" && type!="sen" )
+                error("F_DAMAGE: 恢复种类错误( 只能是 gin, kee, sen 其中之一 )。\n");
+
+        val = (int)query("eff_" + type);
+        max = (int)query("max_" + type);
+
+        if( val + heal > max ) {
+                set("eff_" + type, max);
+                return max - val;
+        } else {
+                set( "eff_" + type, val + heal);
+                return heal;
+        }
+}
+
+void unconcious()
+{ 
+        object defeater;
+
+        if( !living(this_object()) ) return;
+        if( wizardp(this_object()) && query("env/immortal") ) return;
+
+        if( objectp(defeater = query_temp("last_damage_from")) )
+                COMBAT_D->winner_reward(defeater, this_object());
+
+        this_object()->remove_all_enemy();
+        message("system", HIR "\n你的眼前一黑，接著什麽也不知道了....\n\n" NOR,
+                this_object());
+        this_object()->disable_player(" <昏迷不醒>");
+        set("gin", 0);
+       
+ set("kee", 0);
+        set("sen", 0);
+        set_temp("block_msg/all", 1);
+        COMBAT_D->announce(this_object(), "unconcious");
+
+        call_out("revive", random(100 - query("con")) + 30);
+}
+
+varargs void revive(int quiet)
+{
+        remove_call_out("revive");
+        while( environment()->is_character() )
+                this_object()->move(environment(environment()));
+        this_object()->enable_player();
+/*  call move to re init all actions dao 971216 */
+        {
+                object ob=this_object();
+                object *inv;
+                int i;
+        
+                ob->move(environment(ob));
+                inv = all_inventory(ob);
+                i = sizeof(inv);
+                while(i--) {
+                        string status=inv[i]->query("equipped") ;
+                        inv[i]->move(ob);
+                        if( status == "worn" ) inv[i]->wear();
+                        else if (status == "wielded") inv[i]->wield();
+                }
+        }
+        if( !quiet ) {
+                COMBAT_D->announce(this_object(), "revive");
+                set_temp("block_msg/all", 0); 
+                message("system", HIY "\n慢慢地你终於又有了知觉....\n\n" NOR,
+                        this_object());
+        } else
+                set_temp("block_msg/all", 0);
+}
+
+//quiet means a "quiet" death, no rumor,no corpse,no message and must have a death_penalty
+varargs void die(int quiet)
+{
+        object corpse, killer, killer2, me=this_object();
+int i,tmp_pot,xiandan,bonze;
+        int high_bellicosity=0;
+        
+        string str;
+        xiandan=me->query_condition("xiandan_drug");
+        bonze=me->query_condition("bonze_drug");
+        if( !living(me) ) revive(1);
+        if( is_busy() ) interrupt_me(me, "death");
+        if( wizardp(me) && query("env/immortal") ) return;
+        if( environment()->creature_die(me) ) return;
+//如果在一个不死的房间里,则不会死
+tmp_pot = me->query("potential");
+        if( environment()->query("no_death") && userp(me) ) 
+        {
+                me->remove_all_killer(); 
+                all_inventory(environment())->remove_killer(me);
+                set("gin", 1);  set("eff_gin", 1);
+                set("kee", 1);  set("eff_kee", 1);
+                set("sen", 1);  set("eff_sen", 1);
+                set("mana",1);
+                set("force",1);
+                set("atman",1);
+                message("system", HIR "\n你被打晕了....\n\n" NOR,me);
+                me->disable_player(" <昏迷不醒>");
+                set_temp("block_msg/all", 1);
+                if(!quiet)COMBAT_D->announce(me, "unconcious");
+                remove_call_out("revive");
+                call_out("revive", random(100 - query("con")) + 30);
+                set_temp("be_defeated",1);
+                return;
+        }
+
+        //for menpai guard
+        me->menpai_punish();
+
+        // Clear all the conditions by death.
+        if( objectp(me->query_temp("last_damage_from")) || quiet)
+                me->clear_condition();   
+                me->apply_condition("xiandan_drug",xiandan);   
+                me->apply_condition("bonze_drug",bonze);   
+        if(me->query("bellicosity") > 50 ) 
+                high_bellicosity = 1;
+        
+
+        if ( me->query("cttask/get") )
+                {
+                        killer = me->query("cttask/killer");        
+                        killer2  = me->query_temp("last_damage_from"); 
+                        if ( killer == me->query_temp("last_damage_from") || killer == me->query_temp("last_opponent") || killer2->query("id") == "qiankun betrayer" );
+                             {
+                                me->set("eff_kee",me->query("max_kee"));
+                                me->set("eff_gin",me->query("max_gin"));
+                                me->set("eff_sen",me->query("max_sen"));
+                                me->set("kee",me->query("max_kee")/2);
+                                me->set("gin",me->query("max_gin")/2);
+                                me->set("sen",me->query("max_sen")/2);
+                                me->add("combat_exp",-10000);
+me->set("potential",(me->query("potential")+me->query("learned_points"))/2);
+                                me->delete("cttask/get");
+                                me->set("cttask/fail",1);
+                                str = me->name()+"被"+killer->name()+"杀死了，幸亏当地官兵救险才保住性命。";
+                                message("channel:rumor",HIM"【谣言】某人："+str+"\n"NOR,users());
+                                me->move("/d/chaoting/ysf");
+                                message_vision(HIY"官兵卸下$N，匆忙的走了。\n"NOR,me); 
+                                me->unconcious();
+                                return;
+                              }
+                 }
+        if(!quiet)
+        {
+                COMBAT_D->announce(me, "dead");
+                if( objectp(killer = query_temp("last_damage_from"))) 
+                {
+                        set_temp("my_killer", killer->query("id"));
+                        COMBAT_D->killer_reward(killer, me);
+                }
+
+                if( objectp(corpse = CHAR_D->make_corpse(me, killer)) )
+                        corpse->move(environment());
+        }
+        // a "quiet" death
+        else
+        {
+                me->set("bellicosity", 0);
+                me->add("combat_exp", -(int)me->query("combat_exp")*2/100);
+                me->add("shen", -(int)me->query("shen")*5/100);
+                me->add("tactic_exp", -(int)me->query("tactic_exp")*5/100); 
+                me->delete("guan");
+                me->delete("marks/帮派");
+                if( me->query("thief") )
+                        me->set("thief", (int)me->query("thief") / 2);
+                if( (int)me->query("potential") > (int)me->query("learned_points")
+                      && me->query("combat_exp") > 500000)
+{                        me->add("potential",
+                                ((int)me->query("learned_points") - (int)me->query("potential"))/2 );
+                if( (int)me->query("potential") > (int)me->query("learned_points"))
+                        me->add("potential",
+                                ((int)me->query("learned_points") - (int)me->query("potential"))/2 );
+}
+                me->new_death_penalty();                         
+                //戾气很大,其后如果出厉鬼可不得了
+                environment(me)->add("resource/apparition", 2000);                              
+        }       
+        me->remove_all_killer();
+        all_inventory(environment())->remove_killer(me);
+          if(me->query("combat_exp")<800000)me->set("potential",tmp_pot);
+
+        me->dismiss_team();
+        if( userp(me) ) {
+                int died_times; 
+
+                set("gin", 1);  set("eff_gin", 1);
+                set("kee", 1);  set("eff_kee", 1);
+                set("sen", 1);  set("eff_sen", 1);
+                ghost = 1;
+                set("mana",1);
+                set("force",1);
+                set("atman",1);
+
+                died_times=me->query("died_times")+1;
+                me->set("died_times",died_times);
+                if( !(died_times%10) && me->query("con")>5 ) me->add("con",-1);
+//              if(query("con")> 5) add("con",-1);
+                if( high_bellicosity ) 
+                        me->move("/d/death/deathhall");
+                else {  
+                        me->move(DEATH_ROOM);
+                        DEATH_ROOM->start_death(me);
+                }
+                        me->save();
+        } else
+                destruct(me);
+} 
+
+void reincarnate()
+{
+        ghost = 0;
+        set("eff_gin", query("max_gin"));
+        set("eff_kee", query("max_kee"));
+        set("eff_sen", query("max_sen"));
+        set("startroom",START_ROOM);
+}
+
+int max_food_capacity() { return query_weight() / 200; }
+
+int max_water_capacity() { return query_weight() / 200; }
+
+int heal_up()
+{
+        int update_flag, i;
+        mapping my;
+        int con_eff;
+
+        update_flag = 0;
+
+        my = query_entire_dbase(); 
+
+        if( my["water"] > 0 ) { my["water"] -= 1; update_flag++; }
+        if( my["food"] > 0 ) { my["food"] -= 1; update_flag++; }
+
+        // Let greedy guys pay for it.
+        if( over_encumbranced() && living(this_object()) ) {
+                int tire;
+
+                tire = ( query_encumbrance() - query_max_encumbrance() ) / 1000 + 1;
+                my["gin"] -= tire * 10;
+                my["kee"] -= tire * 20;
+                my["sen"] -= tire * 10;
+                tell_object( this_object(), HIR "你身上过重的负荷正大量消耗你的体力。" NOR );
+                return update_flag;
+        }
+
+        //先天体质根骨带来的恢复,随年龄的增加而放慢.
+        con_eff = (30-this_object()->query("age"))/4;
+        if( con_eff < 1 ) con_eff = 1;              
+        if( con_eff > 4 ) con_eff = 4;              
+        
+        if( this_object()->is_fighting() && con_eff == 1 ) return update_flag;  
+ 
+        if( my["water"] < 1 && userp(this_object()) ) return update_flag;
+                
+        my["gin"] += (my["con"] / 2 + my["atman"] / 20)*con_eff;
+        if( my["gin"] >= my["eff_gin"] ) {
+                my["gin"] = my["eff_gin"];
+                if( my["eff_gin"] < my["max_gin"] ) { my["eff_gin"] += my["con"] * con_eff / 10; update_flag++; }     
+                if( my["eff_gin"] > my["max_gin"] ) { my["eff_gin"] = my["max_gin"];}
+        } else update_flag++;
+
+        my["kee"] += (my["con"] / 2 + my["force"] / 20) * con_eff;
+        if( my["kee"] >= my["eff_kee"] ) {
+                my["kee"] = my["eff_kee"];
+                if( my["eff_kee"] < my["max_kee"] )     { my["eff_kee"] += my["con"] * con_eff / 10; update_flag++; }
+                if( my["eff_kee"] > my["max_kee"] ) { my["eff_kee"] = my["max_kee"];}
+        } else update_flag++;
+
+        my["sen"] += (my["con"] / 2 + my["mana"] / 20)*con_eff;
+        if( my["sen"] >= my["eff_sen"] ) {
+                my["sen"] = my["eff_sen"];
+                if( my["eff_sen"] < my["max_sen"] )     { my["eff_sen"] += my["con"] * con_eff / 10; update_flag++; }
+                if( my["eff_sen"] > my["max_sen"] ) { my["eff_sen"] = my["max_sen"];}
+        } else update_flag++;
+ 
+        if( my["food"] < 1 && userp(this_object()) ) return update_flag;
+
+        if( my["max_atman"] && my["atman"] < my["max_atman"] ) {
+                my["atman"] += (int)this_object()->query_skill("magic", 1) / 2;
+                if( my["atman"] > my["max_atman"] ) my["atman"] = my["max_atman"];
+                update_flag++;
+        }
+
+        if( my["max_force"] && my["force"] < my["max_force"] ) {
+                my["force"] += (int)this_object()->query_skill("force", 1) / 2;
+                if( my["force"] > my["max_force"] ) my["force"] = my["max_force"];
+                update_flag++;
+        }
+
+        if( my["max_mana"] && my["mana"] < my["max_mana"] ) {
+                my["mana"] += (int)this_object()->query_skill("spells", 1) / 2;
+                if( my["mana"] > my["max_mana"] ) my["mana"] = my["max_mana"];
+                update_flag++;
+        }
+
+        return update_flag;
+}
+ 
+//随时检查战斗中的健康状态
+//避免明明已经死了靠吃药活回来的状况
+void check_status()
+{
+        mapping my;
+
+        my = query_entire_dbase();
+
+        if( my["eff_kee"] < 0 || my
+["eff_sen"] < 0 || my["eff_gin"] < 0) {
+                        die();
+                        return;
+        }
+
+        // If we're dying or falling unconcious?
+        if( my["kee"] < 0 || my["sen"] < 0 || my["gin"] < 0 || my["force"]<0 || my["mana"]<0 || my["atman"]<0 ) 
+        {
+                if( !living(this_object()) ) die();
+                else unconcious();
+                return;
+        }
+} 

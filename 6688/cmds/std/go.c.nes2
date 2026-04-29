@@ -1,0 +1,199 @@
+// go.c
+#include <ansi.h>
+
+inherit F_CLEAN_UP;
+
+mapping default_dirs = ([
+	"north":		"北",
+	"south":		"南",
+	"east":			"东",
+	"west":			"西",
+	"northup":		"北边",
+	"southup":		"南边",
+	"eastup":		"东边",
+	"westup":		"西边",
+	"northdown":	"北边",
+	"southdown":	"南边",
+	"eastdown":		"东边",
+	"westdown":		"西边",
+	"northeast":	"东北",
+	"northwest":	"西北",
+	"southeast":	"东南",
+	"southwest":	"西南",
+	"up":			"上",
+	"down":			"下",
+	"out":			"外",
+]);
+
+void create() { seteuid(getuid()); }
+
+int main(object me, string arg)
+{
+	string dest, mout, min, dir;
+	object env, obj;
+	mapping exit;
+
+	if( !arg ) return notify_fail("你要往哪个方向走？\n");
+
+	if( me->over_encumbranced() )
+		return notify_fail("你的负荷过重，动弹不得。\n");
+
+	if( me->is_busy() )
+		return notify_fail("你的动作还没有完成，不能移动。\n");
+	
+	obj = environment(me);
+//	if ( obj->is_road()){
+	if(0) {
+	int water, food;
+	water = me->query("water");
+	food = me->query("food");
+	water -= (random(4)+ 1) * water / 10;
+	food -= (random(2)+ 1) * water / 10;
+	me->set("water", water);
+	me->set("food", food);
+
+        if( me->query_skill("move") >= 99)
+        {
+		me->receive_damage("gin", 5);
+                me->receive_damage("kee", 10);
+                me->receive_damage("sen", 5);
+		message_vision(HIG"$N施展轻功，脚步如飞...! \n"NOR, me);
+        }
+	else if ( me->query_skill("move") >= 89 && me->query_skill("move") < 99)
+	{
+		me->receive_damage("gin", 10);
+                me->receive_damage("kee", 15);
+                me->receive_damage("sen", 10);
+		message_vision(HIG"$N施展轻功，快步向前...! \n"NOR, me);
+	}
+        else if ( me->query_skill("move") >= 79 && me->query_skill("move") < 89)	{
+		me->receive_damage("gin", 15);
+                me->receive_damage("kee", 15);
+                me->receive_damage("sen", 15);
+		message_vision(HIG"$N施展轻功，大步向前...! \n"NOR, me);	
+	}
+	else if ( me->query_skill("move") >= 69 && me->query_skill("move") < 79)	{
+		me->receive_damage("gin", 15);
+                me->receive_damage("kee", 15);
+                me->receive_damage("sen", 15);
+		message_vision(HIG"$N施展轻功，身体轻多了...! \n"NOR, me);
+	}
+	else if ( me->query_skill("move") >= 59 && me->query_skill("move") < 69)
+	{
+		me->receive_damage("gin", 15);
+                me->receive_damage("kee", 20);
+                me->receive_damage("sen", 15);
+		message_vision(HIY"$N施展轻功，走的快多了...! \n"NOR, me);
+	}
+	else if ( me->query_skill("move") >= 49 && me->query_skill("move") < 59)
+	{
+		me->receive_damage("gin", 15);
+                me->receive_damage("kee", 20);
+                me->receive_damage("sen", 15);
+		message_vision(HIY"$N已可以施展轻功了...! \n"NOR, me);
+	}
+	else if ( me->query_skill("move") >= 39 && me->query_skill("move") < 49)
+	{
+		me->receive_damage("gin", 20);
+                me->receive_damage("kee", 20);
+                me->receive_damage("sen", 20);
+		message_vision(HIY"$N轻功好多了，施展起来还不熟练...! \n"NOR, me);
+	}
+	else if ( me->query_skill("move") >= 29 && me->query_skill("move") < 39)
+	{
+		me->receive_damage("gin", 20);
+                me->receive_damage("kee", 20);
+                me->receive_damage("sen", 20);
+		message_vision(HIY"$N轻功好多了，还不太会用...! \n"NOR, me);
+	}
+	else if ( me->query_skill("move") >= 19 && me->query_skill("move") < 29)
+	{
+		me->receive_damage("gin", 20);
+                me->receive_damage("kee", 20);
+                me->receive_damage("sen", 20);
+		message_vision(HIR"$N轻功较好...! \n"NOR, me);
+	}
+	else if ( me->query_skill("move") >= 9 && me->query_skill("move") < 19)
+	{
+		me->receive_damage("gin", 20);
+                me->receive_damage("kee", 30);
+                me->receive_damage("sen", 20);
+		message_vision(HIR"$N轻功较差...! \n"NOR, me);
+	}
+	else
+	{
+		me->receive_damage("gin", 20);
+		me->receive_damage("kee", 30);
+		me->receive_damage("sen", 20);
+                message_vision(HIR"$N轻功太差了，走起来很费劲...！\n"NOR, me);
+	}
+	}
+	env = environment(me);
+	if(!env) return notify_fail("你哪里也去不了。\n");
+
+	if( !mapp(exit = env->query("exits")) || undefinedp(exit[arg]) ) {
+		if( query_verb()=="go")
+			return notify_fail("这个方向没有出路。\n");
+		else
+			return 0;
+	}
+
+	dest = exit[arg];
+
+	if( !(obj = find_object(dest)) )
+		call_other(dest, "???");
+	if( !(obj = find_object(dest)) )
+		return notify_fail("无法移动。\n");
+
+	if( !env->valid_leave(me, arg) ) return 0;
+
+	if( !undefinedp(default_dirs[arg]) )
+		dir = default_dirs[arg];
+	else
+		dir = arg;
+
+	if( me->is_fighting() ) {
+		mout = "往" + dir + "落荒而逃了。\n";
+		min = "跌跌撞撞地跑了过来，模样有些狼狈。\n";
+	} else {
+		mout = "往" + dir + "离开。\n";
+		min = "走了过来。\n";
+	}
+
+	message( "vision", me->name() + mout, environment(me), ({me}) );
+	if( me->move(obj) ) {
+		me->remove_all_enemy();
+		message( "vision", me->name() + min, environment(me), ({me}) );
+		me->set_temp("pending", 0);
+		all_inventory(env)->follow_me(me, arg);
+		return 1;
+	}
+	
+	return 0;
+}
+
+void do_flee(object me)
+{
+	mapping exits;
+	string *directions;
+
+	if( !environment(me) || !living(me) ) return;
+	exits = environment(me)->query("exits");
+	if( !mapp(exits) || !sizeof(exits) ) return;
+	directions = keys(exits);
+	tell_object(me, "看来该找机会逃跑了...\n");
+	main(me, directions[random(sizeof(directions))]);
+}
+
+int help(object me)
+{
+	write(@HELP
+指令格式 : go <方向>
+ 
+让你往指定的方向移动。
+ 
+HELP
+    );
+    return 1;
+}
+

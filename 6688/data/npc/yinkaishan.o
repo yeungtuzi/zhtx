@@ -1,0 +1,8 @@
+#/obj/npc/yingks.c
+conditions (["treasure_move":19,])
+dbase (["potential":2,"vis":23,"wil":12,"msc":22,"elo":24,"spi":18,"fav":13,"kar":21,"per":21,"str":50,"con":50,"bln":18,"dex":19,"lea":10,"int":65,"cps":50,"cor":19,"max_sen":292,"default_actions":,"max_gin":268,"max_kee":2450,"actions":,"last_broken_sn":36752,"atman":0,"org_per":21,"shen_type":0,"task_serial":36765,"bellicosity":201,"startroom":"/d/jingcheng/zgf","cwf":"/d/jingcheng/zgf.c","yin_update_version":1,"login_time":3,"LastReadNews":212,"force":14000,"race":"人类","age":40,"max_force":7000,"max_age":320,"long":"他就是当朝总管，现在主持纵横天下的夺宝探险活动。","force_factor":100,"id":"yin kaishan","nickname":"[31m当朝总管[2;37;0m","gender":"男性","env":(["attack":50,]),"name":"[1;34m殷开山[2;37;0m","board_last_read":(["news_b":1069429031,]),"combat_exp":10628838,"MKS":1,"sen":292,"gin":268,"PKS":9,"kee":2450,"eff_sen":292,"eff_gin":268,"eff_kee":2450,"channels":({"new","chat","sys",}),"attitude":"peaceful","water":0,"disable_type":" <昏迷不醒>","chat_msg":({"[1;35m殷开山说道：“小兄弟到本官这里来有何贵干啊！”[2;37;0m","[1;35m殷开山说道：“欢迎参加夺宝探险 ！”[2;37;0m","[1;35m殷开山说道：“奖品很丰富的！”[2;37;0m",}),"food":0,"mana":0,"chat_chance":5,"last_accept_serial":36754,"MagicNum":22603,"shen":0,])
+skills (["dodge":500,"yingzhua-gong":500,"sword":500,"force":300,"parry":500,"unarmed":500,"fumo-jian":500,"claw":500,])
+learned (["dodge":19,"sword":2,"parry":8,])
+skill_map (["sword":"fumo-jian","claw":"yingzhua-gong",])
+skill_prepare (["claw":"yingzhua-gong",])
+bad_location ({"/d/jingcheng/tamgch",})

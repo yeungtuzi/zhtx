@@ -1,0 +1,73 @@
+#include <ansi.h>
+
+inherit NPC;
+
+void create()
+{
+	set_name("慕容复", ({ "murong fu", "murong", "fu"}));
+	set("nickname", "南慕容");
+	set("age", 31);
+	set("gender", "男性");
+	set("rank_info/respect", "慕容公子");
+	set("title", "姑苏慕容");
+	set("long", @LONG
+慕容复是现慕容世家的唯一传人，乃大燕之王孙后代，“以彼之道，还施彼
+身”，斗转星移之绝技响彻武林，与丐帮帮主乔峰并称「北乔峰，南慕容」。
+慕容复一生为复兴大燕而辗转奔波，只是复国之事谈何容易，至今一无所获。
+他双眉斜飞，冷峭高傲，实乃人中龙凤。
+LONG);
+	set("attitude", "peaceful");
+
+	set("str", 28);
+	set("dex", 30);
+	set("per", 30);
+	set("int", 35);
+	set("con", 30);
+	set("cor", 30);
+	set("cps", 30);
+	set("elo", 30);
+
+	set("max_kee", 3000);
+	set("max_sen", 900);
+	set("max_gin", 900);
+	set("max_force", 3000);
+	set("force", 6000);
+	set("force_factor", 150);
+
+	set("combat_exp", 2500000);
+	set("shen_type", -1);
+	set("shen", 30000);
+
+	set_temp("apply/armor", 60);
+	set_temp("apply/damage", 70);
+	set_temp("apply/armor_vs_force", 60);
+
+	set_skill("dodge", 200);
+	set_skill("move", 200);
+	set_skill("parry", 200);
+	set_skill("hand", 200);
+	set_skill("force", 200);
+	set_skill("literate", 190);
+	set_skill("qi", 170);
+	set_skill("music", 120);
+	set_skill("sword", 200);
+
+	set_skill("taohua-force", 200);
+	set_skill("yuxiao-jian", 200);
+	set_skill("lanhua-shou", 200);
+	set_skill("fall-steps", 200);
+	set_skill("douzhuanxingyi", 200);
+
+	map_skill("hand", "lanhua-shou");
+	map_skill("force", "taohua-force");
+	map_skill("dodge", "fall-steps");
+	map_skill("sword", "yuxiao-jian");
+	map_skill("parry", "douzhuanxingyi");
+	
+	prepare_skill("hand", "lanhua-shou");
+
+	setup();
+
+	carry_object(__DIR__"obj/longsword")->wield();
+	carry_object(__DIR__"obj/murong_cloth")->wear();
+}

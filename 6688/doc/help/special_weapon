@@ -1,0 +1,109 @@
+$HIG$━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NOR$
+$HIG$门派特殊武器$NOR$
+$HIG$━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NOR$
+
+
+步玄派：
+$HIC$风泉之剑$NOR$，加后天悟性,dodge,
+特殊效果：有一定几率打破对方的神。
+要求：200 mystsword
+
+少林： 
+$HIW$铁罗汉$NOR$:加attack,parry
+特殊效果：暂无
+要求：220 strike and cuff, 250 jingang-quan
+
+华山：
+$HIM$紫薇软剑$NOR$,加attack，dodge
+特殊效果:破对方气的上限
+要求：200 wind-sword
+
+古墓
+$BLK$玄铁重剑$NOR$，加attack，parry
+特殊效果：和对方对拼内力
+要求：220 玄铁剑法
+
+
+明教：
+$BLK$圣火令$NOR$：加attack,parry,speed
+特殊效果：夺取对方兵器
+要求：200 圣火神功
+
+$HIW$倚天剑$NOR$，加attack
+特殊效果,打断对方兵器,10%unparryable
+要求：200 essence-sword
+
+全真
+$HIC$天$HIY$ 遁$HIB$ 神$HIG$ 剑 $NOR$：加attack,parry
+特殊效果，打中对方有一定几率补自己kee的上限，100％封顶。
+要求：200 tonggui-jian
+
+乾坤教
+$HIM$小楼$BLK$一夜$HIG$听$HIB$风雨$NOR$:加attack,dodge
+特殊效果：可以打破对方气的上限。
+要求：200 fuliu-jian
+
+太监
+$HIM$绣花针$NOR$：加attack
+特殊效果：有一定几率伤害对方的精。
+要求：220 pixie-sword
+
+天邪
+$HIG$妖$HIB$刀$HIY$狗$HIR$屠$NOR$：加attack,胆识
+特殊效果：强力打破对方气的上限。
+要求：220 spring-blade
+
+丐帮：
+$HIG$玉竹杖$NOR$：加attack，dodge，speed
+特殊效果：会对对方的气造成额外伤害。
+要求：200 打狗棒法
+
+武当：
+$HIG$真武剑$NOR$：加attack,parry,defence
+特殊效果：对有邪气的对手造成额外伤害，如果对手有正气，则自己受伤，被武器反噬。
+要求：200 taiji-jian
+
+逍遥：
+$HIM$七$HIY$彩$HIC$宝石$HIR$戒指$NOR$:加attack,parry
+特殊效果：击中对方将对方的一部分内力变为自己的内力。
+要求：200 liumai-shenjian
+
+唐门：
+$HIB$断魂砂$NOR$：加attack，dodge
+特殊效果:催毒一次，另外还可以给对方下毒。
+要求：200 mantian-huayu
+
+日月神教：
+$HIW$混世$HIR$魔$HIC$剑$NOR$：加attack,parry
+特殊效果：击中对方减弱对方的armor和armor_vs_force,最多减到0。
+要求：200 mo-jian-jue
+
+茅山:
+$BLK$暗灵$NOR$：加后天灵性,spells
+特殊效果：效果同张天师的暗灵，另外击中对方可以伤害对方的精，以及给自己加mana。
+要求：220 spells
+
+晚月庄：
+$HIM$魔鞭翩珑$NOR$：加attack,dodge,后天魅力
+特殊效果：击中对方可以对方中火玫瑰毒并且毒发一次
+要求：200 snowwhip
+
+大招寺：
+$HIR$紫金$HIY$锤$NOR$：加attack,armor
+特殊效果：击中对方可以减弱对方的伤害力，最多减至0；
+要求：200 wuxinglun
+
+铁血大旗门：
+$HIW$铿锵$HIY$铁云$HIR$拳$NOR$：加attack,armor
+特殊效果：击中NPC可削减其Exp，击中玩家可以破其内力。
+要求：200 ill-quan
+
+注：
+1、所有特殊武器wield条件为达到相应skill等级，exp>5m。
+2、所有特殊武器属性同魔法物品属性。
+3、所有特殊武器均在乾坤教宝库里获得。
+4、上侠客岛拜师的必要条件之一为获得门派特殊武器。
+
+
+$HIG$━━━━━━━━━━━━━━━━━━━━━━━━━━@ZHTX2━━━$NOR$
+

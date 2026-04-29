@@ -1,0 +1,160 @@
+// master.c
+
+inherit NPC;
+inherit F_MASTER;
+inherit F_QUEST;
+inherit "/feature/challenge";
+
+void consider();
+
+void create()
+{
+	set_name("骆云舟", ({ "master scholar", "master", "scholar" }) );
+
+	set("gender", "男性");
+	set("age", 32);
+	set("long",
+		"骆云舟生於京城有名的武林世家，他的本名是骆建炎，但是因为生性喜爱\n"
+		"四处游荡，遂自号「云舟」，四处游山玩水，结交豪杰异人。数年前继承\n"
+		"其父骆易而成为步玄派的新任掌门，但是喜爱飘泊的个性仍然不改，令门\n"
+		"中耆宿头痛不已。\n" );
+
+	set("class", "scholar");
+	set("attitude", "peaceful");
+	create_family("步玄派", 7, "掌门人");
+
+	set("str", 30);
+	set("cor", 30);
+	set("int", 30);
+	set("cps", 30);
+	set("spi", 30);
+	set("no_get",1);
+
+	set("force", 8000);
+	set("max_force", 4000);
+	set("force_factor", 200);
+        set("max_gin",3000);
+        set("max_kee",5000);
+        set("max_sen",5000);
+	set("combat_exp", 5000000);
+	set("score", 2000000);
+
+	set("chat_chance_combat", 80);
+	set("chat_msg_combat", ({
+		(: perform_action, "dodge.mirror" :),
+		//(: exert_function, "recover" :),
+		(: perform_action, "dodge.hasten" :),
+	}) );
+
+	set_skill("finger", 80);
+	set_skill("sword", 180);
+	set_skill("force", 180);
+	set_skill("parry", 160);
+	set_skill("dodge", 200);
+	set_skill("move", 100);
+	set_skill("literate", 220);
+	set_skill("perception", 80);
+	set_skill("music", 100);
+//	set_skill("instruments", 70);
+
+	set_skill("mystforce", 200);
+	set_skill("mysterrier", 200);
+	set_skill("mystsword", 200);
+
+	map_skill("force", "mystforce");
+	map_skill("dodge", "mysterrier");
+	map_skill("move", "mysterrier");
+	map_skill("sword", "mystsword");
+
+	setup();
+	set_temp("apply/astral_vision",1);
+	set_temp("apply/defense",100);
+	carry_object(__DIR__"windspring")->wield();
+	carry_object("/obj/cloth")->wear();
+}
+
+int accept_learn(object me, string skill)
+{
+	if( (int)me->query_skill(skill, 1) > (int)me->query_skill("literate", 
+1) )
+	{
+		tell_object(me,"骆云舟对你专务杂学似乎不太满意，你最好多花一些功夫在读
+书上。\n");
+		return notify_fail("骆云舟对你专务杂学似乎不太满意，你最好多花一些功夫
+在读书上。\n");
+	}
+	return ::accept_learn(me, skill);
+}
+
+void attempt_apprentice(object me)
+{
+	command("hmm");
+	command("say " + RANK_D->query_respect(me) + "有心成为我步玄派的弟子，
+那再好不过了。\n");
+	command("recruit " + me->query("id"));
+}
+
+int recruit_apprentice(object ob)
+{
+	ob->set("class", "scholar");
+	return ::recruit_apprentice(ob);
+}
+
+void init()
+{
+   add_action("give_quest","quest");
+}
+
+/*void init()
+{
+	::init();
+        add_action("give_quest", "quest");
+}
+*/
+// if not allow quest ,then return 0
+//int valid_quest() {
+//	return 1;
+//}
+
+
+// check if bribe is valid
+int valid_bribe(object who,int val) {
+	message_vision( (this_object())->query("name")+"向$N一甩袍袖，说道： 什
+么，你想贿赂我吗？！\n",who);
+	return(0);
+}
+
+// called when not finish the task
+int quest_punish(object who) {
+	message_vision( (this_object())->query("name")+"向$N一甩袍袖，说道： 真
+笨，你好好学学功夫再要任务吧！\n" ,who);
+    who->set("quest",0);
+    return(0);
+}
+
+//不和纯的NPC对手战斗
+//自动charge玩家对手                    
+int chat()
+{
+	object *victims;
+	int flag,i;
+	
+	if( !is_fighting() ) return ::chat();
+	
+	clean_up_enemy();
+	flag = 0; 
+	victims=query_enemy();
+	i = sizeof(victims);
+	while(i--)
+	{
+                if( userp(victims[i]) )
+		{
+			charge_ob(victims[i]);
+			return ::chat();
+		}
+	}	                      
+        this_object()->remove_all_killer();
+	return ::chat();
+}
+	                    
+

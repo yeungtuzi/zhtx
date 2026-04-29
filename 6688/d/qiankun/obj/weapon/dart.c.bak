@@ -1,0 +1,155 @@
+// masterall
+// 断魂砂
+
+#include <weapon.h>
+#include <ansi.h>
+
+inherit THROWING;
+inherit F_AUTOLOAD;
+
+int query_autoload()
+{
+        return query("weapon_prop");
+}
+
+//:void attack_ob(object me,object victim,int ap);
+
+void create()
+{
+        set_name(HIB"断魂砂"NOR, ({ "duanhun sha", "sha" }) );
+        set("no_decrease",1);
+        set_weight(1);
+        set("no_sell",1);
+        set("no_paimai",1);
+        set("no_drop",1);
+        set("unpawnable",1);
+        if( clonep() )
+                set_default_object(__FILE__);
+        else {
+                set("long",     "这是蜀中唐门特制的暗器，只有在门派中辈份极高的门人才可以领到。\n这种毒砂此米粒还要小得多，虽然不能打远，可是一发出来就是黑蒙蒙的一大片，\n只要对方在一丈之内两丈方圆间，休想躲得开，只要挨着一粒，就必将腐烂入骨。\n");
+                set("value", 0);
+                set("base_unit","把");
+                set("material", "steel");
+                set("unit","把");
+        }
+        set("rigidity",500000);
+        set("weapon_prop/attack",40);
+        set("weapon_prop/dodge",60);
+        set("weapon_prop/damage",300);
+        set("poison/type","tm_poison");
+        set("poison/amount",3000);
+        set_amount(1);
+        init_throwing(20);
+        setup();
+}
+
+int wield()
+{
+       object me,ob;
+       me = this_player();
+       ob = this_object();
+        if( this_player()->query_skill("mantian-huayu",1) < 200)
+        {
+                return notify_fail("你的满天花雨等级太低了，用不了这件兵器。\n");
+        }
+        if( this_player()->query("combat_exp") < 5000000)
+        {
+                return notify_fail("你江湖经验太低了，不配拥有这件举世无双的暗器。\n");
+        }
+        return ::wield();
+}
+
+int query_unparryable(object me,object victim)
+{
+        object weap;
+      
+        return 80; 
+}
+
+int query_undodgeable(object me,object victim)
+{
+        object weap;
+      
+        return 80; 
+}
+
+void init()
+{
+        add_action("do_poison","poison");
+}
+
+int do_poison(string arg)
+{   
+        object me,you;
+        int i,j,level;          
+        string name,skill;
+        int pp,dp;
+
+        me=this_player();
+
+        if( environment(me)->query("no_poison") || environment(me)->query("sleep_room"))
+                return notify_fail("不许在这下毒!\n");
+
+        if( !arg)       return notify_fail("你要给谁下毒?\n");
+
+        if( arg==(string)this_player()->query("id") )
+                return notify_fail("不许服毒自杀!\n");
+                      
+        you = present(arg, environment(this_player()));
+
+        if( !objectp(you) )
+                return notify_fail("这里没有这个人。\n");           
+        if( !you->is_character() || you->is_corpse() )
+                return notify_fail("看清楚一点，那并不是活物。\n");
+                                   
+        name=you->query("name");
+
+        if( me->is_busy() )     return notify_fail("你正在忙别的，腾不出手来下毒。\n");
+
+        if ( !query_amount() )  return notify_fail("你已经没有毒药可下。\n"); 
+
+        skill=me->query_skill_mapped("force");
+
+        if( skill != "tangmen-xinfa" && skill != "sunv-xinfa")
+                return notify_fail("你的内功不对，不能下毒。\n");
+        if( me->query_skill(skill,1) < 20 )
+                return notify_fail("你的内功级别不够，下毒会伤着自己。\n");
+
+        if( me->query_skill("dugong",1) < 40 )
+                return notify_fail("你的毒功级别不够，下毒手段还不够高。\n");
+
+        // 防止采用这个pk,只对和自己战斗中的玩家有效 yeung
+        if( userp(you) && !me->is_fighting(you) ) 
+                return notify_fail("你不可以在这种情况下对玩家下毒。\n");
+
+        me->receive_damage("sen",10);
+        me->start_busy(1);
+        if( you->query("age")<=15 ) return notify_fail("对小孩子你也下毒，太没有人性啦。\n"); 
+        level = me->query_skill("dugong",1); //220max
+        level += me->query("int"); //220+59max
+        pp = level*level/2*level; //580万
+        //对方的防毒能力看经验和其自身的毒功
+      pp += me->query("combat_exp");
+        level = you->query_skill("dugong",1); //220max
+        dp = you->query("combat_exp");//368万max
+    if (dp > 30000000) dp = 30000000; //3000w max
+        dp += level*level/4*level; //266万max
+        //如果是自己唐门的人dugong 220,很难毒中也是应该的,不过现在还是有
+        //一半的概率
+
+        //这个才是random判断命中应该用的算法,现在random用的太滥了.
+        if( random(pp+dp)<pp )
+        {
+                level=me->query_skill("dugong",1);
+                you->apply_condition("tm_poison", (level)/10 + 1 
+                        + you->query_condition("tm_poison"));
+                tell_object(me,"你成功地在"+name+"身上下毒。\n");
+                return 1;
+        }
+        message_vision("$N下毒时被$n发现，事情败露。\n",me,you);
+        me->kill_ob(you);
+        you->kill_ob(me);
+        return 1;
+}
+
+

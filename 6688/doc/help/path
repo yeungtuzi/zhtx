@@ -1,0 +1,207 @@
+$HIG$━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+纵横天下详细路径帮助
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NOR$
+
+
+$HIY$━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+东北地区
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NOR$
+
+$HIC$$HIC$start:$NOR$$NOR$开封黄河北岸
+$HIG$end:$NOR$雪亭镇
+$HIW$n;n;n;n;ne;ne;n;ne;n;#7 ne;n;nw
+$HIY$se;s;#7 sw;s;sw;s;sw;sw;s;s;s;s;y
+
+$HIC$start:$NOR$开封黄河北岸
+$HIG$end:$NOR$幽明山庄入口枫林小栈
+$HIW$n;n;n;n;ne;ne;n;ne;n;#7 ne;n;n;#4 ne;#4 n;nw
+$HIY$se;#4 s;#4 sw;s;s;#7 sw;s;sw;s;sw;sw;s;s;s;s;y
+
+$HIC$start:$NOR$开封黄河北岸
+$HIG$end:$NOR$魔域入口
+$HIW$n;n;n;n;ne;ne;n;ne;n;#7 ne;n;n;#4 ne;#5 w;n
+$HIY$s;#5 e;#4 sw;s;s;#7 sw;s;sw;s;sw;sw;s;s;s;s;y
+
+$HIC$start:$NOR$顺升客栈
+$HIG$end:$NOR$黑木崖
+$HIW$e;nw;w;nw;w;w;swim;#13 swim west;w;nw;nu;nu;nu;n;n;c;n;nu;wu;nu;nu;nu;nu;#6 {chushi;n};chushi
+$HIY$#6 s;#4 sd;wd;sd;s;s;s;sd;sd;sd;se;e;swim;swim east;e;e;se;e;se;w
+
+$HIY$━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+中原地区
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NOR$
+
+$HIC$start:$NOR$京城广场
+$HIG$end:$NOR$少林寺
+$HIW$#18 e;nu;nu;wu;nu;nu;nu;e;eu;nu;nu;nu;n;knock gate;n;n;nu;n
+$HIY$s;sd;s;open gate;s;s;sd;sd;sd;wd;w;sd;sd;sd;ed;sd;sd;#18 w
+
+$HIC$start:$NOR$京城广场
+$HIG$end:$NOR$华山老君沟
+$HIW$#8 e;s;s;sw;su;su;e;eu
+$HIY$wd;w;nd;nd;ne;n;n;#8 w
+
+$HIC$start:$NOR$京城广场
+$HIG$end:$NOR$开封黄河南渡口
+$HIW$#8 e;t;#13 e;n;n;y
+$HIY$s;s;#13 w;t;#8 w
+
+$HIC$start:$NOR$京城广场
+$HIG$end:$NOR$全真派王重阳
+$HIW$#7 s;su;sw;su;e;nu;nw;nu;nu;n;n;n;n;n;w;w;s
+$HIY$n;e;e;s;s;s;s;s;sd;sd;se;sd;w;nd;ne;nd;#7 n
+
+$HIC$start:$NOR$京城广场
+$HIG$end:$NOR$徐州长江北渡口
+$HIW$#8 e;t;#13 e;e;se;e;e;e;s;s;se;se;s;y
+$HIY$n;nw;nw;n;n;w;w;w;nw;w;#13 w;t;#8 w
+
+$HIC$start:$NOR$京城广场
+$HIG$end:$NOR$徐州武昌长江北渡口
+$HIW$#8 e;t;#13 e;#7 s;y
+$HIY$#7 n;#13 w;t;#8 w
+
+$HIC$start:$NOR$京城广场
+$HIG$end:$NOR$兰州黄河南渡口
+$HIW$#8 w;nw;nw;n;y
+$HIY$s;se;se;#7 e
+
+$HIC$start:$NOR$京城广场
+$HIG$end:$NOR$成都北门
+$HIW$#6 w;sw;sw;sw;s;s;#4 sw
+$HIY$#4 ne;n;n;#3 ne;#6 e
+
+$HIC$start:$NOR$京城广场
+$HIG$end:$NOR$武当山
+$HIW$#15 e;s;se;sw;s;s;w;nw;nw;wu;wu;nu;nu;nu;nu
+$HIY$sd;sd;sd;sd;ed;ed;se;se;e;n;n;ne;nw;n;#15 w
+
+$HIC$start:$NOR$京城广场
+$HIG$end:$NOR$乾坤教
+$HIW$#15 e;s;se;sw;s;s;ne;nu;nu;wu;nu;n
+$HIY$s;sd;ed;sd;wd;sd;sw;n;n;ne;nw;n;#15 w
+
+$HIC$start:$NOR$京城广场
+$HIG$end:$NOR$镭鼓山
+$HIW$#15 e;sw;e;eu;nu;wu;su;s;s
+$HIY$n;n;nd;ed;sd;wd;w;ne;#15 w
+
+$HIC$start:$NOR$京城广场
+$HIG$end:$NOR$绮云镇
+$HIW$#13 e;xixi;#9 e;se;e;e;e;n;n;ne;n;n;n;y
+$HIY$s;s;s;sw;s;s;w;w;w;nw;#14 w;t;#8 w
+
+$HIC$start:$NOR$成都北门
+$HIG$end:$NOR$唐门
+$HIW$s;s;w;w;w;sw;w;n;n;n;n
+$HIY$s;s;s;s;e;ne;e;e;e;n;n
+
+$HIC$start:$NOR$成都北门
+$HIG$end:$NOR$茅山
+$HIW$s;s;s;s;se;se;se;ne;#4 nu;#2 climb up;#7 n;knock door
+$HIY$#7 s;#2 climb down;#4 sd;sw;#3 nw;n;n;n;n
+
+$HIC$start:$NOR$成都北门
+$HIG$end:$NOR$青城
+$HIW$nw;nw;w;su;su;s;w;wu
+$HIY$ed;e;n;nd;nd;e;se;se
+
+$HIC$start:$NOR$成都北门
+$HIG$end:$NOR$峨嵋
+$HIW$s;s;s;s;#4 sw;w;nw;n;nu;nu;n;e;eu;nu;nu;eu
+$HIY$wd;sd;sd;wd;w;s;sd;sd;s;se;e;#4 ne;n;n;n;n
+
+
+$HIY$━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+长江以南区域
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NOR$
+
+$HIC$start:$NOR$武昌长江南渡口
+$HIG$end:$NOR$乔阴县南门广场
+$HIW$s;s;sw;sw;w;w;#6 s;e;e;e;eu;ed;#5 e;s;s;s
+$HIY$n;n;n;#5 w;wu;wd;w;w;w;#6 n;e;e;ne;ne;n;n;y
+
+$HIC$start:$NOR$武昌长江南渡口
+$HIG$end:$NOR$水烟阁正厅
+$HIW$s;s;sw;sw;w;w;#8 s;eu;n;n;n;n
+$HIY$s;s;s;s;wd;#8 n;e;e;ne;ne;n;n;y
+
+$HIC$start:$NOR$武昌长江南渡口
+$HIG$end:$NOR$晚月庄前庭
+$HIW$s;s;sw;sw;w;w;#12 s;ne;se;e;se;s;sw;enter
+$HIY$out;ne;n;nw;w;nw;sw;#12 n;e;e;ne;ne;n;n;y
+
+$HIC$start:$NOR$武昌长江南渡口
+$HIG$end:$NOR$福州
+$HIW$s;s;sw;sw;w;w;#6 s;e;e;e;eu;ed;#5 e;s;s;s;w;w;w;s;s;se;se;se;se;e;se;s;s;s;s
+$HIY$n;n;n;n;nw;w;nw;nw;nw;nw;n;n;e;e;e;n;n;n;#5 w;wu;wd;w;w;w;#6 n;e;e;ne;ne;n;n;y
+
+$HIC$start:$NOR$武昌长江南渡口
+$HIG$end:$NOR$桃花岛
+$HIW$s;s;sw;sw;w;w;#6 s;e;e;e;eu;ed;#5 e;s;s;s;w;w;w;s;s;se;se;se;se;s;s;e;e;enter;boating
+$HIY$w;w;n;n;nw;w;nw;nw;nw;nw;n;n;e;e;e;n;n;n;#5 w;wu;wd;w;w;w;#6 n;e;e;ne;ne;n;n;y
+
+$HIC$start:$NOR$武昌长江南渡口
+$HIG$end:$NOR$灵蛇岛
+$HIW$s;s;sw;sw;w;w;#6 s;e;e;e;eu;ed;#5 
+
+e;s;s;s;w;w;w;s;s;se;se;se;se;e;se;s;s;s;s;s;s;s;sw;s;s;enter;give 1 gold to laoda
+$HIY$n;n;e;n;n;n;n;n;n;n;nw;w;nw;nw;nw;nw;n;n;e;e;e;n;n;n;#5 w;wu;wd;w;w;w;#6 n;e;e;ne;ne;n;n;y
+
+$HIC$start:$NOR$乔阴县南门广场
+$HIG$end:$NOR$苏州城中心
+$HIW$#7 n;ne;ne;ne;n;n;n;n;n;n;nw;#7 e;#7 n;nw;#4 n
+#4 s;se;#7 s;#7 w;se;s;s;s;s;s;s;sw;sw;sw;#7 s
+
+$HIC$start:$NOR$金陵长江南岸
+$HIG$end:$NOR$苏州城中心
+$HIW$s;se;se;#8 e
+$HIY$#8 w;nw;nw;n;y
+
+$HIY$━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+西北区域
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NOR$
+
+$HIC$start:$NOR$兰州黄河北渡口
+$HIG$end:$NOR$西夏城南门广场
+$HIW$#6 nw;n;n;n;n
+$HIY$#4 s;#6 se;y
+
+$HIC$start:$NOR$兰州黄河北渡口
+$HIG$end:$NOR$星宿派
+$HIW$w;w;w;nw;sw;sw;sw;wu
+$HIY$ed;ne;ne;ne;se;e;e;e;y
+
+$HIC$start:$NOR$兰州黄河北渡口
+$HIG$end:$NOR$天山灵鹫宫
+$HIW$w;w;w;nw;w;w;w;sw;nw;nw;nu;nu;nu
+$HIY$sd;sd;sd;se;se;ne;e;e;e;se;e;e;e;y
+
+$HIC$start:$NOR$兰州黄河北渡口
+$HIG$end:$NOR$明教光明顶
+$HIW$w;w;w;nw;w;w;w;sw;s;s;ne;n;w;n;w;n;w;n;w;w;w;w;e;sw;pushaside 
+
+grass;n;n;n;e;e;e;e;n;n;n;n;s;w;w;w;w;open door;w;w;w;w;u;e;s;e;n;n;se
+$HIY$s;s;#6 sd;s;#3 sd;ed;ed;e;e;e;e;s;e;s;e;s;e;s;sw;n;n;ne;e;e;e;se;e;e;e;y
+
+$HIC$start:$NOR$兰州黄河北渡口
+$HIG$end:$NOR$拉萨城
+$HIW$w;w;w;nw;w;w;w;sw;s;s;s;sw;sw;su;#5 sd;s;#6 w
+$HIY$#6 e;n;#5 nu;nd;ne;ne;n;n;n;ne;e;e;e;se;e;e;e;y
+
+$HIC$start:$NOR$西夏城南门广场
+$HIG$end:$NOR$青凤阁内书房
+$HIW$n;n;n;enter;#6 n;enter;#5 n;w;w;s;s;enter;#9 w;enter;w
+$HIY$e;out;#9 e;out;n;n;e;e;#5 s;out;#6 s;out;s;s;s$NOR$
+
+
+注：
+1、路径中y=yell fastboat;fastboat
+2、在渡船中上岸的时候设置trigger：
+#trigger 艄公说“到啦，上岸吧”，随即把一块踏脚板搭上堤岸。 out
+3、亮白色的路径表示的是从起点到终点的路径，亮黄色表示的是从终点返回起点的路径。
+
+
+
+$HIG$━━━━━━━━━━━━━━━━━━━━━━━━━━@ZHTX2━━━$NOR$
+

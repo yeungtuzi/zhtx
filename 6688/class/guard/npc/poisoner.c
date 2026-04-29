@@ -1,0 +1,174 @@
+//poisoner.c
+//by tlang for clone cells to poison players 
+
+#include <ansi.h>
+#include <localtime.h>
+
+//#define FIRST_D "/class/guard/firstt.c"
+//#define SECOND_D "/class/guard/secondt.c"
+#define TIME_TICK (time()*60)  
+
+inherit NPC;
+inherit F_UNIQUE;
+
+void checking();
+int do_clone_a();
+int do_clone_b();
+void kill_ob(object);
+void accept_fight();
+void init();
+void kick_ob(string);
+
+string *start_loc = ({
+        "/d/snow/inn",
+//This below is canceld for testing.
+        "/d/guanwai/inn",
+        "/d/cloud/tearoom",
+        "/d/jingcheng/jiuguan",
+	"/d/yueyang/kedian",
+	"/d/suzhou/kezhan",
+});
+
+void create()
+{
+	set_name( "瘟神", ({ "wen shen", "cell"}) );
+	set("long","释放可怕的病毒的东西，好怕人呀！\n");
+	set("race", "人类");
+	set("startroom","/d/suzhou/kezhan");
+
+	set("max_kee",3000);
+	set("max_mana",1000);
+	set("max_atman",1000);
+	set("combat_exp",100+random(1000000));
+	set("chat_chance", 15);
+	set("chat_msg", ({
+		(: random_move :),
+	}) );
+	set("chat_chance_combat", 5);
+	set("chat_msg_combat", ({
+		(: do_clone_a :),
+		(: do_clone_b :),
+	}) );
+	set("age", 14+random(50));
+	set("str", 25);
+	set("con", 25);
+	set("per", 10);
+		
+	set_skill("unarmed", 1+random(100));
+	set_skill("dodge", 1+random(100));
+	set_skill("force", 1+random(100));
+	set_skill("parry", 1+random(100));
+	
+	setup();
+	carry_object("/d/suzhou/npc/obj/cloth")->wear();
+	call_out("checking",1);
+	call_out("dest",800);
+//This line below is for testing
+//	call_out("do_clone_a",1);
+}
+
+void checking()
+{
+	if( NATURE_D->game_time()==GTIME_D->chinese_date_first(TIME_TICK))
+		{
+			command("hehe");
+			call_out("do_clone_a",5);
+				return;
+		}
+	if( NATURE_D->game_time()==GTIME_D->chinese_date_second(TIME_TICK))
+		{
+			command("hehe");
+			call_out("do_clone_b",5);
+				return;
+		}
+	command("sigh");
+	call_out("checking",890); 
+}
+
+int do_clone_a()
+{
+	object obj;
+	string startroom;
+
+	obj=new("/class/guard/npc/cell.c");
+	startroom = start_loc[random(sizeof(start_loc))];
+	command("grin");
+	obj->move(startroom);	
+}
+
+int do_clone_b()
+{
+	object obj;
+	string startroom;
+
+	obj=new("/class/guard/npc/cell2.c");
+	startroom = start_loc[random(sizeof(start_loc))];
+	command("grin");
+	obj->move(startroom);	
+}
+
+void kill_ob(object ob)
+{
+	command("kick "+ob->query("id"));
+	command("grin "+ob->query("id"));
+	switch(random(2)){
+		case 0:
+			command("knife "+ob->query("id"));
+			break;
+		case 1:
+			command("killair "+ob->query("id"));
+		}	
+	command("bye "+ob->query("id"));
+	random_move();
+}
+
+void accept_fight()
+{
+	object ob=this_player();
+	object me=this_object();
+	int obexp,myexp;
+
+	obexp=ob->query("combat_exp");
+	myexp=me->query("combat_exp");
+	if( obexp>=myexp*1/2 )
+	{
+		command("shake "+ob->query("id"));
+		switch(random(2)){
+		case 0:
+		command("taste "+ob->query("id"));
+		break;
+		case 1:
+		command("heng "+ob->query("id"));
+		break;
+		}		
+		return;
+	}
+	command("nod "+ob->query("id"));
+	fight_ob(ob);
+}
+
+void init()
+{
+	::init();
+	add_action("do_kick","kick");
+}
+
+void do_kick(string arg)
+{
+	object ob=this_player();
+
+	if(arg!="wen shen")
+	{
+		command("xixi "+ob->query("id"));	
+			return;
+	}
+	command("hehe "+ob->query("id"));
+	command("chat "+ob->query("name")+"这破人居然敢踢我!\n"); 
+	command("kick "+ob->query("id"));
+}
+
+int dest()
+{
+	destruct(this_object());
+		return 1;
+}

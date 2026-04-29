@@ -1,0 +1,109 @@
+//yitianjian.c
+#include <weapon.h>
+#include <ansi.h>
+
+inherit SWORD;
+inherit F_UNIQUE;
+
+void create()
+{
+    set_name("倚天剑", ({ "yitian jian", "yitian","jian" }) );
+    set_weight(20000);
+        if( clonep() )
+                set_default_object(__FILE__);
+        else {
+                set("unit", "柄");
+                set("value", 50000);
+                set("material", "iron");
+                set("rigidity",500000);
+                set("long", "这是天下第一利器，有“倚天不出，谁与争锋”之说。\n");
+                set("wield_msg","直如矫龙吞水，长虹冠日一般，$n已在$N手中，天地为之变色。\n");
+                set("unwield_msg", "$N将$n插回腰间，华光顿敛，天地间只闻龙鸣。\n");
+        }
+        init_sword(250);
+        setup();
+}
+
+// just for fun
+// 如果张无忌被弹掉了剑,立刻拣起来
+void init()
+{
+        object wuji;
+        
+        if( !objectp(wuji=present("zhang wuji",environment())) ) return;
+        call_out("do_msg",1,wuji);
+        move(wuji);
+        wield();
+}
+
+void do_msg(object wuji)
+{
+        message_vision("$N拣起一柄倚天剑。\n",wuji);
+}
+
+mixed hit_ob(object me, object victim, int damage_bonus)
+{
+        object weap;
+        int    wap,wdp;
+        string weap_name;
+
+        if(victim == me) return;
+        if( objectp(weap = victim->query_temp("weapon")) )
+        {
+
+                wap = weight() / 500
+                        + query("rigidity")
+                        + me->query("str")*me->query_str();
+
+                wdp = (int)weap->weight() / 500
+                        + (int)weap->query("rigidity")
+                        + (int)victim->query("str")*victim->query_str();
+
+                if(  random(wap) > wdp )
+                {
+                        weap_name = weap->query("name");
+                        weap->unequip();
+                        weap->move(environment(victim));
+                        weap->set("name", "断掉的" + weap->query("name"));
+                        weap->set("value", 0);
+                        weap->set("weapon_prop", 0);
+                        weap->set("long", weap->query("long")+"可是，现在却已经断为两截，不知道还有什么用处。\n");
+                        victim->reset_action();
+                        return "只听见「擦」地一声轻响，$n手中的" + weap_name
+                                + "已经被锋锐无伦的倚天剑削成两段！\n";
+                }
+                                
+        }
+}
+
+//这个函数是用来设置兵器的特殊效果的.
+//比如这把剑就是难以parry的,会被削断兵器.
+//只有某些技能(taiji-jian,taiji-quan)或者
+//特殊物品(tulong-blade,shenghuo-ling...)
+//可以parry
+int query_unparryable(object me,object victim)
+{
+        object weap;
+        
+        if( victim->query_skill_mapped("parry") == "taiji-jian" )
+                return 10; //正常parry
+        if( victim->query_skill_mapped("parry") == "taiji-quan" )               
+                return 10; //正常parry
+        if( objectp(weap = victim->query_temp("weapon")) && weap->query("rigidity") > query("rigidity") )
+                return 10; //正常parry
+        
+        return 100;  //普通技能或兵器10%的可parry机率
+}
+
+/*
+int wield()
+{
+        if( this_player()->query("family/family_name") != "明教"
+         && this_player()->query("family/family_name") != "乾坤教"
+         && this_player()->query("wlshw") <100 )
+                return notify_fail("你既不是明教弟子,又和峨嵋派素无渊源，在武林中还没什么地位，如何使得这柄天下无双的宝剑？\n");
+        if( this_player()->query("str") < 50 )
+                return notify_fail("你的臂力不够，拿不动这么重的宝剑，小心砸着脚。\n");
+        return ::wield();
+}
+*/

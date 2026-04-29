@@ -1,0 +1,197 @@
+// /class/guard/npc/wisdomer.c
+//with teller.c for telling some secrets to players by tlang
+//wisdomer.c
+
+#include <ansi.h>
+inherit NPC;
+#include <message.h>
+
+int do_talk(string arg);
+void make_talk(object who, int stage);
+void go_come();
+int dest();
+
+string *make_msg = ({
+    YEL "一会儿里面传来两个人的说话声。\n\n" NOR,
+    YEL "似乎是一个人在问别人什么问题。\n\n" NOR,       
+    YEL "你仔细一听，却又什么也听不见。\n\n" NOR,
+    YEL "后来似乎一个人很高兴，哈哈大笑了几声。\n\n" NOR,
+    YEL "笑声特别怪异，你觉得耳熟，一下又想不起在哪儿见过。\n\n" NOR,
+});
+                         
+void create()
+{
+	set_name(YEL"盲眼老儿"NOR, ({"mangyan laoer", "wisdomer"}) );
+	set("long", "据说他只有他能和当今世界之大智大通之人说话，从而知道
+	各种秘密。\n");
+	set("per", 10+random(10));
+	set("int", 30);
+	set("str", 10+random(10));
+	set("gender", "男性");
+	set("age", 80+random(20));
+	set("combat_exp", 10000+random(1000000));
+	set("max_kee", 3000);
+	set("max_mana", 1500);
+	set("max_atman",1500);
+
+	set("chat_chance_combat",60);
+	set("chat_msg_combat", ({
+		(: random_move :),
+	}));
+
+	
+	set("count", 1);
+	add("gold", 1);
+	setup();
+	carry_object("/d/suzhou/npc/obj/cloth2")->wear();
+	call_out("dest",800);
+}
+
+void init()
+{       
+	object ob=this_player();
+
+        ::init();
+       	add_action("do_talk","talk");
+	remove_call_out("greeting");
+	call_out("greeting",5,ob);
+}      
+
+void greeting(object ob) 
+{       
+        if( !ob || environment(ob) != environment() )
+		return;
+	else if(!ob->query("my_leader") )
+	{
+		command("hi "+ob->query("id"));
+			return;
+	}
+        command("smile "+ob->query("id"));
+}                                   
+
+int accept_object(object who, object ob)
+{
+	if( query("count")<1 )
+	{	
+		command("sigh "+who->query("id"));
+		command("say 今天我已经收过别人的东西了。等下次吧。\n");	
+			return 0;
+	}
+	if(ob->value() <5000)
+	{
+		command("heng "+who->query("id"));
+		command("太便宜了吧。\n");
+			return 0;
+	}
+	destruct(ob);
+	command("say 带我到杭州城外的山洞去吧。\n");
+	who->set("my_leader",1);
+	this_object()->set_leader(who);
+	add("count", -1);
+		return 1;
+}
+
+int do_talk(string arg)
+{
+	object ob=this_player();
+	object me=this_object();
+		
+	if(!arg || arg!=me->query("id") )
+	{
+		command("kick "+ob->query("id"));
+		command("say 我眼睛瞎，你也瞎啊？连说话对象都看不清。\n");
+			return 0;
+	}
+	if(!ob->query("my_leader") )
+	{
+		command("hehe "+ob->query("id"));
+		command("say 总的有点代价吧？\n");
+			return 0;
+	}
+	if(ob->query("my_leader") && !environment(ob)->query("my_target") )
+	{
+		command("kick "+ob->query("id"));
+		command("say 你欺负我眼瞎是不是？还没到呢。\n");
+			return 0;
+	}
+	me->set_leader(0);	
+	command("nod "+ob->query("id"));
+	command("say 你在外面等一会儿。\n");
+        	command("west");
+	remove_call_out("make_talk");
+	call_out("make_talk",1,this_player(),0);	
+		return 1;
+}
+
+void make_talk(object who, int stage)
+{                       
+        tell_object(who, make_msg[stage]);
+        
+        if( ++stage < sizeof(make_msg) ) {
+                call_out( "make_talk", 3, who, stage );
+                return;
+        } 
+	tell_object(who, YEL "里面的谈话终于完了!\n" NOR);
+	remove_call_out("go_come");
+	call_out("go_come", 2);
+}
+                  
+void go_come()
+{
+	string secret;
+
+	secret=secret_msg[random(sizeof(secret_msg))];
+	command("east");
+	if(this_player()->query("my_leader") ) 
+	{
+		command("pat "+this_player()->query("id"));
+
+//replaced by another part followed.
+/*		switch(random(4))
+		{
+		case 0:
+		command("whisper " + this_player()->query("id") + " 听说\n
+过诸葛先生吗？要见他需要一张老虎皮，拿着这东西进入宁王府，在大观园西部的\n
+石林中找到白雕，给它虎皮，然后它会给你一只羽毛。接着你到园子东部的荷塘，\n
+下到水中，用羽毛撩撩守门的鳗鱼的鼻孔，它就会让你进去的。\n");	
+	    	break;
+		case 1:
+		command("whisper " + this_player()->query("id") + " 知道黛\n
+玉吗？八月十五晚上你不妨到潇湘馆外面去看看，看能发现什么？\n");
+		break;
+		case 2:
+		command("whisper " + this_player()->query("id") + " 知道段\n
+家的少爷段玉吗？当你经验较高时，和它说说话，说不准会有意外的收获。 \n");
+		break;
+		case 3:
+		command("whisper " + this_player()->query("id") + " 知道怎\n
+么恢复做手术掉的经验吗？如果不知道，不防到西湖上听听舞姬说些什么。\n");
+		break;
+		default:
+		command("whisper " + this_player()->query("id") + " 听说过\n
+宁王府每月十五的诗会吗？还有每年元宵前夕的灯谜大会？你不防去看看。\n");
+		break;
+		}
+*/
+//this part replace the canceled part.
+		//command("say "+secret+"\n");
+		command("whisper "+ this_player()->query("id") + secret +" \n");
+	        this_player()->delete("my_leader");
+		command("bye "+this_player()->query("id"));
+		command("west");
+		call_out("dest",5);
+	  		return;
+	}
+	command("chat 再见了。");
+	call_out("dest",5);
+}
+
+int dest()
+{
+	command("bye");
+	destruct(this_object());
+}
+
+	
+
+	

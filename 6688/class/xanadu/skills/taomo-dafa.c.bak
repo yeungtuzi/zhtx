@@ -1,0 +1,126 @@
+// 道心种魔大法
+// force/spells/magic/cuff/parry/dodge
+// taomo-dafa.c
+#include <ansi.h>
+
+inherit FORCE;
+
+mapping *action = ({
+([	
+	"action" : GRN"$N负於背後的手分了开来，左手握拳，缓缓转身，一拳向$n击去。\n"
+			"$N的动作慢至极点，但偏偏$n却知道他这一拳的速度实不逊於闪电"NOR,
+	"force" : 600,
+	"dodge" : 100,
+	"parry" : 100,
+	"damage": 600,
+	"damage_type" : "瘀伤"
+]),
+([	"action": BLU"$N似魔神由地狱冒出来般在前方升起，一拳往$n击来，变幻无穷，似缓实快"NOR,
+	"attack":		100,
+	"damage":		700,
+	"dodge":		100,
+	"parry":		100,
+	"force":		700,
+	"damage_type":	"瘀伤"
+]),                                
+([	
+	"action": MAG"$n忽地发觉周围的一切都消失了，天地间只剩下了$n和$N，而後者正一拳向$n击来\n"
+		"$N似若在极远处，但又像近在眼前。前前後後无数股力道，把$n往不同方向拖拉撕扯"NOR,
+	"dodge":		100,
+	"force":		800,
+	"parry":		100,
+	"attack":		100,
+	"damage":		800,
+	"damage_type":	"瘀伤"
+]),
+
+([      
+	"action" : RED"$N嘴角逸出笑意，看也不看$n，提脚轻踢。 这一脚初时迅捷无伦，到了中途却变得缓\n"
+		      "慢如蜗牛上树，那种速度上的突然改变，只是看一眼便使人既不能相信，又难过得想发疯"NOR,
+        "damage" : 1000,
+        "dodge" : 120,
+	"parry" : 120,
+	"attack": 120,
+        "force":  1000,
+        "damage_type" : "瘀伤"
+]),             
+
+});
+
+string *parry_msg = ({
+	"$n全身袍服无风自动，披风向上卷起，黑发飞扬下，双脚轻按地面，竟缓缓离地升起，就像站在个升离地面的无形座子上一般。\n",
+	"$n双手轻拍，一道强劲无匹的真气如箭电射$N，迫得$N转攻为守。\n",
+	"$n伸手轻轻搭在$N全力击来的$w上，$N顿觉虚虚荡荡，所有力量忽然无影无踪。\n",
+});
+
+string query_parry_msg(object weapon)
+{
+        return parry_msg[random(sizeof(parry_msg))];
+}
+
+mapping query_action(object me, object weapon)
+{
+	return action[random(sizeof(action))];
+}
+
+int counter_attack_ratio()
+{
+	return 100;
+}                 
+
+int attack_ratio()
+{	
+	return 100;
+}
+
+string *dodge_msg = ({
+	"$n的身形突然消失在$N面前，但是随即又从$N身后现出！\n",
+});
+
+string query_dodge_msg(string limb)
+{
+	return dodge_msg[random(sizeof(dodge_msg))];
+}
+
+
+int valid_enable(string usage) { return (usage == "force" || usage == "spells" || usage == "magic" || usage == "cuff" || usage == "parry" || usage == "dodge"); }
+
+int valid_learn(object me)
+// need more limit here
+{
+	return notify_fail("道心种魔大法不能学。\n");
+}
+
+int practice_skill(object me)
+{
+	return notify_fail("道心种魔大法不能练。\n");
+}
+
+string exert_function_file(string func)
+{
+	return __DIR__"taomo-dafa/" + func;
+
+}
+
+string query_force_type() {
+	return "调和内功"; //可以和任何内功类型相容
+}
+
+string cast_spell_file(string spell)
+{
+	return __DIR__"taomo-dafa/" + spell;
+}
+
+string scribe_spell_file(string spell)
+{
+	return __DIR__"taomo-dafa/" + spell;
+}
+                                            
+string conjure_magic_file(string spell)
+{
+	return __DIR__"taomo-dafa/" + spell;
+}
+int npc_only() {
+
+	return 1;
+}

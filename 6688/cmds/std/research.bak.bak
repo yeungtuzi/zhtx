@@ -1,0 +1,220 @@
+// learn.c
+
+#include <skill.h>
+#include <ansi.h>
+
+inherit F_CLEAN_UP;
+
+
+void create() { seteuid(getuid()); }
+int check_base_skill(object,string);
+
+int main(object me, string arg)
+{
+        string skill, teacher, master, *ski, *sname, *mapped;
+        object ob;
+        int master_skill, my_skill, gin_cost,point;
+        mapping res,map,lrn;
+        int i;
+                
+        res = me->query("research");
+        if( !mapp(res) )
+        {       
+                res = ([]);
+                me->set("research",res);
+        }
+        ski = keys(res);
+        if( !arrayp(ski) ) ski = ({});
+
+        if(!arg) 
+        {
+                if( !mapp(res) || !sizeof(res) ) 
+                        return notify_fail("你现在没有正在研习的技能。\n");
+                else
+                {
+                        sname  = sort_array(ski , (: strcmp :) );
+                        map = me->query_skill_map();
+                        if( mapp(map) ) mapped = values(map);
+                        if( !mapped ) mapped = ({});
+                  
+                        i = sizeof(sname);
+                        load_object("/cmds/usr/skills");
+                        printf("你目前总共正在研习%d门技能：\n",i);
+                        for(i=0; i<sizeof(sname); i++) {
+                                printf("%s%-40s" NOR " - %-10s %3d/%5d\n",
+                                        (member_array(sname[i], mapped)==-1? "  ": "□"),
+                                        to_chinese(sname[i]) + " (" + sname[i] + ")",
+                                        "/cmds/usr/skills"->skill_level(SKILL_D(sname[i])->type(), me->query_skill(sname[i],1),sname[i]),
+                                        me->query_skill(sname[i],1), 
+                                        (int)res[sname[i]]
+                                );
+                        }
+
+
+                }
+                return 1;
+        }
+        if( arg == "none")
+        {
+                me->delete("research");
+                write("你放弃了继续研习所有武功。\n");
+                return 1;
+        }
+        
+        if(sscanf(arg, "%s with %d", skill,point)==2 )
+        {
+                if(point <= 0 ) return notify_fail("你不是开玩笑吧.\n");
+                if( point > ((int)me->query("potential")-(int)me->query("learned_points")) )
+                        return notify_fail("你没有这么多的潜能。\n");
+        }
+        else if(sscanf(arg, "%s", skill)==1 )
+        {
+                if( (int)me->query("learned_points") >= (int)me->query("potential") )
+                        return notify_fail("你的潜能已经发挥到极限了，没有办法再成长了。\n");
+                 point=1;
+        }
+        else  return notify_fail("请用 help research 查看其用法。\n");
+
+        if( me->is_busy() ) return notify_fail("你现在没有空！\n");
+ 
+        if( me->is_fighting() )
+                return notify_fail("临阵磨枪？来不及啦。\n");
+
+        if( ! me->query_skill(skill, 1) )
+                return notify_fail("这项技能你恐怕必须找别人学了。\n");
+
+        my_skill = me->query_skill(skill, 1);
+        if( my_skill < 160 )
+                return notify_fail("这项技能你还理解的不够深刻。\n");
+        if( !me->query("renkuang_winner"))
+                return notify_fail("你尚未经过足够的江湖厉练，不能自行研习武功，具体请察看 help experience。\n");
+        if( my_skill >= 250 && my_skill < 300 )
+                return notify_fail("您这项技能所处的级别不能自行研习，请去找宗师学习。\n");
+        if( my_skill >= 300 && !me->query("pangban_winner"))
+                return notify_fail("你尚未经过足够的江湖厉练，不能自行研习武功，具体请察看 help experience。\n");
+        if( my_skill >= 300 && me->query("combat_exp") < 12800000)
+                return notify_fail("你的武学经验不足。\n");
+        if( my_skill >= 400 )
+                return notify_fail("这项技能你已经不能再学了。\n");
+        if( (string)SKILL_D(skill)->type()!="martial" )
+                return notify_fail("你的实战经验对于这项技能没有太大的帮助。\n");
+        if( (string)SKILL_D(skill)->invalid_research() )
+                return notify_fail("这门功夫不能自行研究。\n");
+                        
+        if( sizeof(ski) > me->query("spi")/3 && member_array(skill,ski)==-1 )
+                return notify_fail("你的灵性不够了。\n");
+
+        notify_fail("依你目前的能力，没有办法学习这种技能。\n");
+        if( !SKILL_D(skill)->valid_learn(me) ) return 0;
+        if( !check_base_skill(me,skill) ) return 0;
+
+        gin_cost = 4 * 150 / (int)me->query("int");
+
+        if(me->query("gin") < gin_cost*point )
+                point = me->query("gin")/gin_cost;
+        gin_cost *= point;
+
+        if( (int)me->query("learned_points") >= (int)me->query("potential") )
+                return notify_fail("你的潜能已经发挥到极限了，没有办法再成长了。\n");
+        if(!(int)me->query("env/message_brief"))
+                printf("你冥神苦思有关「%s」的疑问。\n", to_chinese(skill));
+
+        if( point>0 ) {
+                if( (string)SKILL_D(skill)->type()=="martial"
+                &&      my_skill * my_skill * my_skill *2/5 > (int)me->query("combat_exp") ) {
+                        printf("也许是缺乏实战经验，你总是无法体会更加高深的技巧。\n" );
+                } else {        
+                        me->add("learned_points", point);
+                        if( member_array(skill,ski)==-1 )
+                                res[skill] = point*(1+random(me->query("int")+me->query_skill("literate")/5)/10);
+                        else
+                                res[skill] += point*(1+random(me->query("int")+me->query_skill("literate")/5)/10);
+                        if( (int)res[skill] > (me->query_skill(skill,1)+1)*(me->query_skill(skill,1)+1) )
+                        {
+                                if( skill=="force" && me->query("max_force") > 10 ) 
+                                        me->add("max_force",-10);
+                                if( skill=="spells" && me->query("max_mana") > 10 )
+                                        me->add("max_mana",-10);
+                                if( skill=="magic" && me->query("max_atman") > 10 )
+                                        me->add("max_atman",-10);
+
+                               me->improve_skill(skill,res[skill]);
+//                   res[skill] = 1;
+                                res[skill] = 1;
+                        }
+                        me->receive_damage("gin", gin_cost );
+                }
+        } else {
+                write("你今天太累了，结果什麽也没有学到。\n");
+        }
+
+        return 1;
+}
+
+mapping basic_types = ([
+        "axe"   :       "斧法",
+        "dugong":      "毒功",
+        "unarmed":      "拳脚",
+        "sword":        "剑法",
+        "blade":        "刀法",
+        "hook":         "钩法",
+        "hammer":       "锤法",
+        "spear":        "枪法",
+        "halberd":      "戟法",
+        "fork":         "叉法",
+        "stick":        "棍法",
+        "club":         "棍法",
+        "staff":        "杖法",
+        "throwing":     "暗器",
+        "force":        "内功",
+        "parry":        "招架",
+        "dodge":        "轻功",
+        "magic":        "法术",
+        "spells":       "咒文",
+        "move":         "行动",
+        "array":        "阵法",
+        "whip":         "鞭法",
+        "finger":       "指法",
+        "hand":         "手法",
+        "cuff":         "拳法",
+        "claw":         "爪法",
+        "strike":       "掌法",
+        "iron-cloth":   "铁布衫",
+]);
+        
+int check_base_skill(object me, string skill)
+{
+        string *bs;
+        int i;
+        
+        bs = keys(basic_types);
+        if( member_array(skill,bs) != -1 )
+        // we can always research basic skills
+                return 1;
+        // we can only research an adv skill after we mastered basic one
+        i = sizeof(bs);
+        while(i--)
+        {
+                if( SKILL_D(skill)->valid_enable(bs[i]) && me->query_skill(bs[i],1) <= me->query_skill(skill,1) )
+                {
+                        tell_object(me,"你的"+basic_types[bs[i]]+"不够纯熟，无法研习更高深的技能。\n");
+                        return 0;
+                }       
+        }       
+        return 1;
+}
+
+int help(object me)
+{
+        write(@HELP
+指令格式 : 
+research
+research skill_name
+research skill_name with points
+research none
+其他相关指令 : practice、study
+HELP
+        );
+        return 1;
+}
+

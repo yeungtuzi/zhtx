@@ -1,0 +1,8 @@
+□ 战斗系统 
+
+□ 战斗力
+
+   即格斗战的攻击命中率值中, 只和人物本身相关的部份。
+   Depend on:
+       □ 所使用的技能等级, change called in set_skill(), improve_skill()
+       □ 实战经验, combat_exp

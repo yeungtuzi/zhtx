@@ -1,0 +1,48 @@
+//Create by dongsw@zhtx2
+
+mapping default_dirs = ([
+        "up"          :        "上方",
+        "down"        :        "下方",
+        "enter"       :        "里边",
+        "out"         :        "外边",
+        "north"       :        "北方",
+        "south"       :        "南方",
+        "east"        :        "东方",
+        "west"        :        "西方",
+        "northup"     :        "北边",
+        "southup"     :        "南边",
+        "eastup"      :        "东边",
+        "westup"      :        "西边",
+        "northdown"   :        "北边",
+        "southdown"   :        "南边",
+        "eastdown"    :        "东边",
+        "westdown"    :        "西边",
+        "northeast"   :        "东北方",
+        "northwest"   :        "西北方",
+        "southeast"   :        "东南方",
+        "southwest"   :        "西南方",
+]);
+
+mapping opposite_dirs = ([
+        "up"          :        "下方",
+        "down"        :        "上方",
+        "enter"       :        "外边",
+        "out"         :        "里边",
+        "north"       :        "南方",
+        "south"       :        "北方",
+        "east"        :        "西方",
+        "west"        :        "东方",
+        "northup"     :        "南边",
+        "southup"     :        "北边",
+        "eastup"      :        "西边",
+        "westup"      :        "东边",
+        "northdown"   :        "南边",
+        "southdown"   :        "北边",
+        "eastdown"    :        "西边",
+        "westdown"    :        "东边",
+        "northeast"   :        "西南方",
+        "northwest"   :        "东南方",
+        "southeast"   :        "西北方",
+        "southwest"   :        "东北方",
+]);
+

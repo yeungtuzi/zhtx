@@ -1,0 +1,33 @@
+//by tlang
+
+#include <room.h>
+#include <ansi.h>
+inherit ROOM;
+
+void create()
+{
+        set("short", "五云山");
+	set("long", @LONG
+	这是南宋民族英雄岳飞的祀庙.坐落在湖畔的栖霞岭下.庙貌庄严巍峨.在庙门前立着几蹲
+铁像,正是当年害死岳飞的奸臣戾妇王俊,秦绘夫妇等的塑像,只见铁像上面脏兮兮的,看来是游人们
+的杰作了.
+LONG
+        );
+        set("exits", ([
+	"westup"  : __DIR__"h_wyshan2", 
+	"northeast" __DIR__"h_hroad2",
+	 ]) );
+	
+        setup();
+}
+
+int valid_leave(object ob,string dir)
+{
+	if(dir=="westup")
+	{
+		if(random(4)<2)
+			return notify_fail("你往前走着，两边的景色没有什么变化。\n");
+		return 1;
+	}
+	return 1;
+}

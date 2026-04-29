@@ -1,0 +1,126 @@
+// ouyang.c 欧阳克
+//by masterall
+//2003.6.30 
+ 
+#include <ansi.h>
+void consider();
+ 
+inherit "/std/char/doomnpc";
+ 
+ 
+void consider();
+ 
+void create()
+{
+        set_name("欧阳克", ({ "ouyang ke", "ke"}) );
+ 
+        set("nickname",  HIB "毒手摧花" NOR);
+        set("title", HIW "白驼山庄"+HIM"少主" NOR);
+        create_family("步玄派", 8, "八代弟子");
+        set("gender", "男性");
+        set("age", 20);
+        set("long",
+             "他是白驼山庄的少主欧阳克。\n"
+             "自从他被杨康所害之后，被司空晓风从奄奄一息中救起。\n"
+             "派他到这里来看守乾坤教宝库。\n"
+             "这种声名狼藉的武林败类居然还在乾坤教有了一席之地，真让人匪夷所思。\n" 
+        );
+        set("attitude", "aggressive");
+        set("shen_type", -1);
+        set("shen",-3000000);
+        set("str", 80);
+        set("con", 20);
+        set("int", 50);
+        set("elo", 40);
+        set("dex", 20);
+        set("per", 30);
+        set("cor", 50);
+        set("cps", 50);
+ 
+        set("force", 6000);
+        set("max_force", 3000);
+        set("force_factor", 250);
+        set("max_kee", 10000);
+        set("max_gin", 2000);
+        set("max_sen", 2000);
+ 
+        set("combat_exp", 50000000);
+        set("score", 20000);
+         set("chat_chance_combat", 100);
+         set("chat_msg_combat", ({
+                (: perform_action,"move.hasten" :),
+                 (: consider :)
+         }) );
+ 
+         set_skill("force", 200);
+         set_skill("dodge", 300);
+         set_skill("lingboweibu", 300);
+         set_skill("xingxiu-duzhang",300);
+         set_skill("strike",200);
+         set_skill("parry", 200);
+         set_skill("literate", 200);
+         set_skill("taohua-force", 200);
+         set_skill("fushi-dugong", 250);
+         set_skill("dugong", 250);
+         set_skill("flattering", 400);
+         set_skill("mysterrier", 200);
+         set_skill("move", 200);
+         map_skill("move", "mysterrier");
+         map_skill("force", "taohua-force");
+         map_skill("parry", "xingxiu-duzhang");
+         map_skill("strike", "xingxiu-duzhang");
+         map_skill("dugong", "fushi-dugong");
+         map_skill("dodge", "lingboweibu");
+         prepare_skill("strike", "xingxiu-duzhang");
+
+ 
+ 
+         setup();
+         set_temp("apply/armor_vs_force",150);
+         set_temp("apply/armor",150);
+         set_temp("apply/attack",100);
+         add_money("gold", 50);
+        carry_object("/d/qiankun/obj/nineflower");
+        if(random(10)>2) carry_rnd_equip(4,5);          
+}
+ 
+void consider()
+{
+        object *enemy,target;
+        string *allid,eff_id;
+        enemy = query_enemy() - ({ 0 });
+        target = enemy[random(sizeof(enemy))];
+        eff_id = target->query("id");
+        allid = target->query_temp("apply/id"); 
+        if( arrayp(allid) )
+        {
+                allid -= ({ 0 });
+                if( sizeof(allid) )
+                        eff_id = allid[sizeof(allid)-1];        
+        }
+//      command("say xixi,"+eff_id);    
+        command("flatter "+ eff_id );
+} 
+void die()
+{
+        mapping victims;
+        string *vic;
+        int i;
+        object player;
+
+        victims = query_temp("beat");
+        if( !mapp(victims) || !sizeof(victims) ) return ::die();
+        vic = keys(victims);
+        i = sizeof(vic);
+        while(i--)
+        {
+                if( userp(player=find_player(vic[i])) && present(player,environment()) )
+                {
+                        tell_object(player,HIC"由于你成功的铲除了欧阳克这个武林败类，你受到了奖励！\n"NOR); 
+               if(random(10)>4){   player->add("wlshw",1);}
+                }
+        }                       
+        ::die();
+
+}
+

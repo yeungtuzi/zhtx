@@ -1,0 +1,2 @@
+#/std/bboard.c
+dbase (["long":"这是一个供人留言记事的留言板。","board_id":"common_a","no_get":1,"capacity":30,"id":"board","notes":({(["title":"第一个到这个荒凉之地","time":987000723,"author":"不明飞行物","msg":"公元2001年4月11日23点。不明飞行物降临大招。考察了一番满意而去不明飞行物就是原大招元老今晚打老虎(tiger)，一年以前，tiger 把八识神通练到极至利用drife sense 进行了太空遨游。一年回来，发现一切都发生了很大的改变据说是一个叫做ghost 的巫师使用了法术，改变了这个世界。",]),}),"name":"一般用途留言板","location":"/d/xizang/inn",])

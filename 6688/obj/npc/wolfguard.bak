@@ -1,0 +1,96 @@
+// /obj/npc/wolfguard.c
+
+#include <ansi.h>
+
+inherit NPC;
+
+void create()
+{
+	set_name(HIY"疾风之狼"NOR, ({ "wolf guard", "wolf", "guard"}));
+	set("long", "一只通体银白的巨狼,看上去十分凶猛.\n");
+	set("race", "野兽");
+	set("limbs", ({ "头部", "身体", "尾巴", "前爪", "后爪" }) );
+	set("verbs", ({ "bite" , "claw" }) );
+/*
+	set("kee", 1000);
+	set("max_kee", 1000);
+	set("sen", 1000);
+	set("max_sen", 1000);
+	set("gin", 1000);
+	set("max_in", 1000);
+*/
+
+	set("str",50+random(50));
+	set("attitude","heroism");
+	set_skill("dodge", 200+random(100));
+	set("combat_exp",40000+400*random(100));
+	set("bellicosity",10);
+	set_temp("apply/attack",60);
+	set_temp("apply/armor",40);
+        setup();
+}
+
+void set_level(int i)
+{
+	set_skill("dodge", 100+random(150)+i);
+	set_skill("parry", 100+random(150)+i);
+	set_temp("apply/attack", 10+random(50)+i);
+	set_temp("apply/armor", 10+random(50)+i*2);
+	set("combat_exp",40000+random(3000)*i);
+	set("bellicosity",1+random(10)*i);
+	set("kee", 500+random(30)*i);
+        set("max_kee", 500+random(30)*i);
+        set("eff_kee", 500+random(30)*i);
+        set("eff_gin", 500+random(30)*i);
+        set("eff_sen", 500+random(30)*i);
+        set("kee", 500+random(30)*i);
+        set("gin", 500+random(30)*i);
+        set("sen", 500+random(30)*i);
+        set("max_sen", 500+random(30)*i);
+        set("max_gin", 500+random(30)*i);
+	set("force", 1500+random(50)*i);
+	set("max_force", 1500+random(50)*i);
+	set("mana", 1500+random(50)*i);
+	set("max_mana", 1500+random(50)*i);
+	set("atman", 1500+random(50)*i);
+	set("max_atman", 1500+random(50)*i);
+
+	::setup();
+}
+
+void invocation(object who)
+{
+	int i;
+	object *enemy;
+	message("vision",HIC
+		"忽然一阵寒风卷着雪花扑面而来,一只巨狼自风雪之中冲出!\n" NOR,
+		environment(), this_object() );
+	enemy = who->query_enemy();
+	i = sizeof(enemy);
+	while(i--) {
+                if( enemy[i] && living(enemy[i]) ) {
+                        kill_ob(enemy[i]);
+               	if( userp(enemy[i]) ) enemy[i]->fight_ob(this_object());
+                        else enemy[i]->kill_ob(this_object());
+                }
+        }
+        set_leader(who);
+	message_vision("$N替$n挡住了所有的攻击!\n", this_object(), who);
+	who->remove_all_killer();
+}
+
+int heal_up()
+{
+        if( environment() && !is_fighting() ) {
+                call_out("leave", 1);
+                return 1;
+        }
+        return ::heal_up() + 1;
+}
+
+void leave()
+{
+        message("vision",HIC "一阵狂风过后,巨狼消失得无影无踪\n" NOR,
+                environment(),this_object() );
+        destruct(this_object());
+}

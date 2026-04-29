@@ -1,0 +1,24 @@
+// Room: /d/waterfog/fwese.c
+
+inherit ROOM;
+
+void create()
+{
+        set("short", "西侧厅");
+        set("long", @LONG
+这里是水烟阁西侧厅的二楼，由於侧厅是挑高建筑，因此这里只有
+一条约七、八尺宽的走道连接楼梯与往东的门。
+LONG
+        );
+        set("exits", ([ /* sizeof() == 4 */
+  "east" : "/d/waterfog/fcenter",
+  "down" : "/d/waterfog/fwest2",  
+]));
+        set("outdoors", "snow");
+        set("objects", ([
+             "/d/waterfog/npc/redguard":2
+             ]) );
+   
+        setup();
+        replace_program(ROOM);
+}

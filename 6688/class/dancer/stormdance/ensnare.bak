@@ -1,0 +1,136 @@
+//ensnare.c
+//for latemoon storm-dance
+//yeung 1998/11/16                                 
+
+#include <ansi.h>
+#include <combat.h>
+
+inherit F_SSERVER;
+
+string *seduce_msg = ({
+	HIG"\n$N舞步方急，突然回眸向$n淡淡一笑，似嗔似喜，顿时百媚横生。\n",
+	HIG"\n$N绕$n轻盈地转了个圈，如云长发伴随一阵香风舞动，直如洛神凌波。\n",
+        HIG"\n$N步法一变，身如雨燕掠波，落地后急速转动，裙裾已轻轻飘起...\n",
+});
+
+string *response_succeed = ({
+	HIC"$n被$N绝世容光所摄，自惭形秽之余，早已心醉神迷，\n",
+	HIC"$n表情呆滞，一双眼睛死死盯住$N，显然已经色授魂予了，\n",
+	HIC"$n张开双臂，向$N娇躯迎去，竟然忘记了防御和攻击，\n",
+});
+
+string *response_fail = ({
+	HIY"可是$n心如止水，对眼前的一切似乎视而不见，\n",
+	HIY"$n略一凝神，早已识破$N用意，\n",
+	HIY"$n默运玄功，慧心坚忍不动如大地，反而在$N舞姿中寻找破绽，\n",
+});                
+
+string *my_response_succeed = ({
+	HIG"$N轻轻地一声冷笑，趁机发动攻击！\n"NOR,
+	HIG"$N低低地骂了一声：色鬼！趁$n迷醉之际竟解下腰间丝带缠住$n！\n"NOR,
+	HIG"$N心下暗怒，秀眉一轩，向$n发动全力一击！\n"NOR,
+});                
+
+string *my_response_fail = ({
+	HIR"$N见此计不售，只吓得花容暗淡，惊慌之中一时手足无措！\n"NOR,
+});                
+
+int perform(object me, object target)
+{
+        string msg;
+        int skill,mine,yours,i;
+
+	if( !me->is_fighting() )
+		return notify_fail("「回风舞雪」只能在战斗中使用。\n");
+
+	if( (int)me->query("force") < 500 )
+		return notify_fail("你的内力不够。\n");
+
+	skill = (int)me->query_skill("stormdance",1);
+        //by Yeung 2000-10-14
+        skill *= 2;
+
+	if( skill < 50 )
+		return notify_fail("你的七宝天岚舞等级不够，小心自取其辱。\n");
+
+	if( (int)me->query_per() < 40)
+		return notify_fail("你容貌普通，只怕会自取其辱。\n");		
+
+	if( !target || target==me ) {
+		target = offensive_target(me);
+		if( !objectp(target) ) return notify_fail("你要对谁施展「回风舞雪」？\n");
+	}
+	
+	if( target->query("gender") == "女性") 
+		return notify_fail("你们同为女儿身，相煎何太急？\n");
+
+	if( target->query("race") != "人类")
+		return notify_fail("对方连人都不是，你媚眼白做啦。\n");
+   
+        me->add("force",-75);
+
+	msg = seduce_msg[random(3)];
+
+	mine  = skill/5 + me->query_per(); //200 stormdance 会略多于 100
+	yours = target->query_cps()*2; //enforce 以后大概到45-50再*2，和尚可以到130左右,到最后基本相当
+      yours += target->query_kar();
+
+	if( target->query("class") == "bonze") //和尚可能定力精深，也可能对色相加倍敏感
+	{
+		if( random(target->query_kar()) < 5 ) 
+			mine += (target->query("age") - 14);
+		else
+			mine  -= (target->query("age") - 14); //受年龄影响。年纪大了或者更沉着，或者更..
+	}
+
+	//武当最讲究泰山崩于前而色不变，不容易受影响。
+
+	if( target->query_skill_mapped("force") == "taiji-shengong")
+      	mine -= target->query_skill("taiji-shengong",1)/10; //I changed it weaker.from /5 -> /10
+
+        if( random(mine) > yours/4) // perform succeeds
+	{
+		msg += response_succeed[random(3)];
+		switch(random(3))   //可以造成不同的影响，增加变化
+		{
+			case 0:	   //进行连续攻击
+				msg += my_response_succeed[0];
+				message_vision(msg,me,target);
+				for(i=0;i<(skill/60+1);i++)
+				{
+					if( !target || (environment(target) != environment(me)))
+					{	
+						message_vision(CYN "$N的身形转了几转，倏地停住了脚步。\n" NOR, me);
+						break;                                                              
+					}
+				        COMBAT_D->do_attack(me, target, me->query_temp("weapon"),TYPE_QUICK);
+				}
+				break;                        
+			case 1:    //对方busy
+				msg += my_response_succeed[1];
+				message_vision(msg,me,target);				
+				target->start_busy(skill/60+1);
+				break;
+			case 2:    //会心一击
+				msg += my_response_succeed[2];
+				message_vision(msg,me,target);				
+			        me->add_temp("apply/attack",skill/4);
+			        me->add_temp("apply/damage",skill/2);				
+			        COMBAT_D->do_attack(me, target, me->query_temp("weapon"),TYPE_QUICK);
+			        me->add_temp("apply/attack",-skill/4);
+			        me->add_temp("apply/damage",-skill/2);				
+		}                                            
+		//攻击完毕
+		me->start_busy(1+random(2));
+		return 1;
+	}
+	else    //fail
+	{                
+		msg += response_fail[random(3)];
+		msg += my_response_fail[0];
+		message_vision(msg,me,target);                                                              
+                me->start_busy(1+random(2));
+
+		return 1;
+	}
+}

@@ -1,0 +1,62 @@
+inherit NPC;
+inherit F_VENDOR;
+
+void create()
+{
+	object ob;
+	set_name("ÀÏ°åÄĞÈË", ({ "husband", "man" }) );
+	set("gender", "ÄĞĞÔ" );
+	set("age", 42);
+	set("combat_exp", 50000);
+	set_skill("dodge",150);
+	set_skill("throwing", 100);
+	set("attitude", "friendly");
+	setup();
+	ob = carry_object("/d/hua/obj/dart");
+	ob->set_amount(100);
+	ob->wield();
+}
+
+void init()
+{
+	object ob;
+	::init();
+	if (interactive(ob=this_player()) && !is_fighting()) {
+		remove_call_out("greeting");
+		call_out("greeting",1,ob);
+	}
+}
+
+void greeting(object ob)
+{
+	if (!ob || environment(ob) != environment()) return;
+	say("ÀÏ°åÄĞÈËËµµÀ£ººóÉ½³£ÓĞÀÏ»¢³öÀ´ÉËÈË¡£Ó¢ĞÛÒªÊÇÄÜÎªÃñ³ıº¦, \n»òÊÇ´ÓºÓïµöÌõ½ğÀğÓãÀ´, ÄÇ¼¸¸öĞ¡Ç®Ò²¾ÍÃâÁË!\n");
+}
+
+int accept_object(object who, object ob)
+{
+	if (!ob->value()) {
+		if (ob->name() == "ËÀ»¢") {
+			command("nod");
+			message_vision("$NÄÜÎªÃñ³ıº¦, ÕæÓ¢ĞÛÒ²! \n", who);
+			if (who->query("marks/µã²Ë"))
+				who->delete("marks/µã²ËË");
+			return 1;
+		}
+		if (ob->name() == "½ğÀğÓã") {
+			command("nod");
+			message_vision("$NÄÜµöµ½Ç§Äêº±¼ûµÄ½ğÀğÓã, ±ØÊÇÓĞÔµÖ®ÈË! \n", who);
+			if (who->query("marks/µã²Ë"))
+				who->delete("marks/µã²Ë");
+			return 1;
+		}
+		else {
+			write("ÀÏ°åÄĞÈËÒ¡Ò¡Í·Ëµ£ºÎÒ¶ÔÕâĞ©²»¸ĞĞËÈ¤¡£\n");
+			return 0;
+		}
+	}
+	else {
+		tell_object(who, "Äã°ÑÇ®½»¸øµêĞ¡¶ş¾ÍĞĞÁË¡£\n");
+		return 0;
+	}
+}

@@ -1,0 +1,116 @@
+// quit.c
+
+#include <command.h>
+
+inherit F_DBASE;
+inherit F_CLEAN_UP;
+
+void create() 
+{
+	seteuid(getuid());
+	set("name", "离线指令");
+	set("id", "quit");
+}
+
+int main(object me, string arg)
+{
+	int i;
+	object *inv, link_ob,ob;
+	string *pk_id;
+	if( !objectp(environment(me)) )
+	{
+		me->move("/d/snow/inn");
+		me->set("startroom","/d/snow/inn");
+		tell_object(me,"你的档案似乎出了点问题,下次进入的时候,会从这里连线开始.\n");
+	}
+
+        if( me->is_busy() ) {
+                me->interrupt_me(me, "halt");
+                write("Ok.\n");
+                return 1;
+        }
+	if( raw_wiz_level(me) && me->query_temp("supervision") )
+	{
+		seteuid(getuid());
+		me->enable_player();
+		write("你恢复了普通用户身份。\n");
+		me->delete_temp("supervision");
+		return 1;
+	}		
+	if( !wiz_level(me) && me->query_condition("quit_delay") && !me->query_temp("netdead") )
+	{
+        if( me->query("combat_exp") > 50000 )
+		return notify_fail("你尚有俗务未了,此刻还不能离开这个世界.\n");
+	}
+	if( !wizardp(me) && !me->query_temp("netdead") ) {
+		inv = all_inventory(me);
+		for(i=0; i<sizeof(inv); i++)
+                          if( !inv[i]->query_autoload() && !me->query("doing"))
+				DROP_CMD->do_drop(me, inv[i]);
+	}
+
+	link_ob = me->query_temp("link_ob");
+
+	// We might be called on a link_dead player, so check this.
+	if( link_ob ) {
+
+		// Are we possessing in others body ?
+		if( link_ob->is_character() ) {
+			write("你的魂魄回到" + link_ob->name(1) + "的身上。\n");
+			exec(link_ob, me);
+			link_ob->setup();
+			return 1;
+		}
+
+		link_ob->set("last_on", time());
+		link_ob->set("last_from", query_ip_name(me));
+		link_ob->save();
+//		link_ob->save_back();
+		destruct(link_ob);
+	}
+
+
+        if (me->query("doing"))
+        {
+                if (! interactive(me))
+                        return 1;
+
+                write("你暂时离线，人物不退出...\n");
+                message("vision", me->name() + "离线了。\n",
+                                  environment(me), ({ me }));
+                me->save();
+                link_ob = new(LOGIN_OB);
+                exec(link_ob, me);
+                destruct(link_ob);
+                return 1;
+        }
+	write("欢迎下次再来！\n");
+	message("system", me->name() + "离开游戏。\n", environment(me), me);
+
+	CHANNEL_D->do_channel(this_object(), "sys",
+		me->name() + "离开游戏了。");
+
+	me->remove_all_enemy();
+	pk_id=me->query_temp("pk_id");
+	for(i=0;i<sizeof(pk_id);i++)
+		if(ob=find_player(pk_id[i])) ob->remove_killer(me);
+	me->dismiss_team();
+	reset_eval_cost();
+	me->save();
+	reset_eval_cost();
+//        me->save_back();
+	destruct(me);
+
+	return 1;
+}
+
+int help(object me)
+{
+	write(@HELP
+指令格式 : quit
+
+当你想暂时离开时, 可利用此一指令。
+HELP
+    );
+    return 1;
+}

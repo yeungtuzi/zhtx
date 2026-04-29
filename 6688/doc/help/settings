@@ -1,0 +1,93 @@
+$HIG$━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NOR$
+$HIG$环境变数$NOR$
+$HIG$━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NOR$
+
+你可以用 $HIY$set$NOR$ 指令设定一些有用的环境变数，这些变数也会随著你的人
+物被储存下来，如果有不需要的环境变数，也可以用 $HIY$unset$NOR$ 删除。详细
+的使用方法请看 $HIY$help set$NOR$ 及 $HIY$help unset$NOR$。
+
+以下是目前有用的环境变数：
+
+ $HIY$brief$NOR$          $HIW$<任何非零的值>$NOR$
+ 
+ 设定移动时只看所在地简短的名称，如果您的网路速度不是很快，或者
+ 是对区域已经十分熟悉，建议您打开 brief模式以减轻网路负担。
+
+ $HIY$wimpy$NOR$       $HIW$<百分比>$NOR$
+ 
+ 当您的精气神低於这个百分比时就会自动找机会逃命。
+
+ $HIY$no_teach$NOR$    $HIW$<任何非零的值>$NOR$
+ 
+ 设定你现在不教你的徒弟技能，由於教徒弟要花费一些精神。
+
+ $HIY$no_accept$NOR$   $HIW$<任何非零的值>$NOR$
+ 
+ 设定你现在不接受别人 give 的物品。
+
+ $HIY$combat_brief$NOR$          $HIW$0,1,2,3,4$NOR$
+ 
+ 简化自己打架的信息(数值越高，信息越少)。
+
+ $HIY$others_combat_brief$NOR$   $HIW$0,1,2,3,4$NOR$
+ 
+ 简化别人打架的信息(数值越高，信息越少)。
+
+ $HIY$message_brief$NOR$          $HIW$1$NOR$
+ 
+ 屏蔽掉自己一些平常显示的信息。
+
+ $HIY$others_message_brief$NOR$   $HIW$1$NOR$
+ 
+ 屏蔽掉别人一些平常显示的信息。
+ 
+ $HIY$line_num_brief$NOR$         $HIW$1$NOR$
+ 
+ 在您查看帮助或者文件时，如果不喜欢每行前面的行号，可以设置这个
+ 屏蔽行号。
+
+$HIG$━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NOR$
+$HIG$巫师环境变数$NOR$
+$HIG$━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NOR$
+
+ $HIY$immortal$NOR$     $HIW$<anything>$NOR$
+ 
+ 设定自己成为不死之身，当状态达到昏迷或死亡时数值会停在 -1。
+
+ $HIY$invisibility$NOR$ $HIW$<number>$NOR$
+ 
+ 设定隐形的程度。 0 - 10
+
+ $HIY$msg_home$NOR$     $HIW$<anything>$NOR$
+ 
+ 设定当自己打 home 回家时显示的讯息。
+
+ $HIY$msg_min$NOR$      $HIW$<anything>$NOR$
+ 
+ 设定当使用 goto 到达某处时, 别人所看到的讯息。
+
+ $HIY$msg_mout$NOR$     $HIW$<anything>$NOR$
+ 
+ 设定当使用 goto 离开时, 原来房间里的人所看到的讯息。
+
+ $HIY$msg_clone$NOR$    $HIW$<anything>$NOR$
+ 
+ 设定当 clone NPC 或 OBJ 时所显示的讯息。
+ $n 表示你所 clone 的物件的名字。
+
+ $HIY$msg_dest$NOR$     $HIW$<anything>$NOR$
+ 
+ 设定当 dest NPC 或 OBJ 时所显示的讯息。
+ 但如果该 OBJ 是存在於自己身上时则不会有讯息。
+
+ $HIY$combat verbose $NOR$
+ 
+ 设定战斗中是否要显示数字方面的资料。
+ 
+ $HIY$trace_error$NOR$   $HIW$<yes/no>$NOR$
+ 
+ 显示 trace error
+
+$HIG$━━━━━━━━━━━━━━━━━━━━━━━━━━@ZHTX2━━━$NOR$
+
+

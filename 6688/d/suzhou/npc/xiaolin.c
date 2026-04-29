@@ -1,0 +1,200 @@
+//NPC:/d/hangzhou/npc/xiaolin.c 
+//by dwolf   
+//97.11.4
+//modified by tlang with /include/globals.h and /adm/daemons/gtime.c
+
+#include <ansi.h>
+#include <localtime.h>
+
+#define CLASSDIR "/class/"
+#define TIME_TICK (time()*60)    
+//#define GTIME_D "/u/t/tlang/gtime.c"
+
+inherit NPC;
+//inherit "/adm/daemons/gtime.c";
+
+void heal();
+void check();
+int midnight();
+int make_yardmap(object);
+int accept_fight();
+int do_halt();
+int accept_object(object,object); 
+string ask_fairy();
+
+void create()
+{
+	set_name(GRN"小霖"NOR, ({ "xiao lin", "xiao"}) );
+	set("gender", "男性" );
+	set("age", 18);
+        set("long",
+		"他是逍遥大仙小霖的化身，正愉快地喝着酒。\n");
+	set("combat_exp", 2999999);
+	set("attitude", "friendly");
+	set("per", 30);
+	set("int", 100);
+	set("con", 30);
+	set("str", 30);
+	set("cps", 30);
+	set("inquiry", ([
+	"警幻仙子" : (: ask_fairy :),
+	]));
+     
+	set("max_kee", 3000);
+	set("kee", 3000);   
+	set("max_atman",3000);
+	set("atman",3000);
+	set("max_force", 3000);
+	set("force", 5000);
+	set("force_factor", 200);
+	set("max_mana",3000);
+	set("mana",5000);
+	set("mana_factor", 50);
+	
+	set("chat_chance", 100);
+        set("chat_msg", ({
+                (: heal :),
+        }));	
+
+	set("chat_chance_combat", 50);
+        set("chat_msg_combat", ({
+                (: cast_spell, "invocation" :),
+                (: command("cast animate on corpse") :),
+                (: command("cast animate on corpse") :),
+        }) );
+		
+	set_skill("iron-cloth", 200);
+	set_skill("dodge", 220);
+	set_skill("unarmed", 200);
+	set_skill("spells",200);
+	set_skill("force", 200);
+	set_skill("taiji-shengong", 200);
+	set_skill("taoism", 220);
+        set_skill("necromancy", 200);
+	map_skill("force", "taiji-shengong");
+	map_skill("spells","necromancy");
+
+	setup();
+	carry_object("/d/suzhou/npc/obj/cloth2.c")->wear();
+	call_out("check",1);
+}  
+
+string ask_fairy()
+{
+	object me;
+	me=this_player();
+
+	if(!me->query("marks/wuji"))
+		return "谁让你来问我的？\n";
+	me->delete("marks/wuji");
+	me->set("marks/小霖", 1);
+	return "你到雪山上找胡斐打听消息即可。\n";
+}
+
+//added for celebrating 元宵节 by tlang
+//include void check();int midnight();int make_yardmap();
+void check()
+{
+	if( NATURE_D->game_time()!=GTIME_D->chinese_date(TIME_TICK))
+		{
+			command("say 时间还没有到啊。\n");
+			call_out("check",120);
+			command("say "+NATURE_D->game_time()+"距"
+				+GTIME_D->chinese_date(TIME_TICK)+
+				"，有一段时间差呢。\n");
+					return;
+		}
+	command("chat 生活在地狱中的人们，接受我的召唤，重会到人间吧。\n"); 
+	call_out("midnight",5);	
+}
+
+mapping yard_daemons=([]);  
+int midnight()
+{
+	object *ob,theob;
+        int i;
+
+	ob = users();
+	command("chat 元宵到了，大家回去过节吧。我来助大家回去。\n");
+	for(i=0; i<sizeof(ob); i++) {
+	        if( !environment(ob[i]) ) continue;
+        //        if( !ob[i]->qurey("class")) continue;
+		if( ob[i]->is_ghost() ) {
+		theob=ob[i];
+		theob->reincarnate();
+		call_out("make_yardmap",5, theob);
+		}
+	call_out("make_yardmap",5, ob[i]);	
+	}
+}
+
+int make_yardmap(object theob)
+{
+	int i,j,len;
+	string *classname,*yardname,name;
+
+	classname = get_dir(CLASSDIR);
+	i = sizeof(classname);
+	while(i--)
+	{
+		classname[i]=theob->query("class");
+		yardname=get_dir(CLASSDIR+classname[i]+"/yard/");
+		j=sizeof(yardname);
+		while(j--)
+		{
+			len=sizeof(yardname[j]);
+			if ( yardname[j][(len-2)..(len-1)]==".c" )
+			{
+				name=yardname[j][0..(len-3)];
+				yard_daemons[name]=CLASSDIR+classname[i]+"/yard/"+name;
+			}
+		}
+	}
+	theob->move(yard_daemons[name]);
+	call_out("check",600);
+		return 1;
+}                 
+
+int accept_fight()
+{       
+	command("shake");
+	call_out("do_halt",2);
+		return 1;            
+}
+
+int do_halt()
+{
+	command("halt");
+	command("sigh");
+}      
+
+int accept_object(object who, object what)
+{                              
+        command("say 是你给我东东吗？谢谢了。");
+        command("thank " + who->query("id") );
+        destruct(what);
+	        return 1;
+}
+
+void heal()
+{
+        object ob=this_object();
+
+        if (ob->query("eff_kee") < ob->query("max_kee"))
+        {
+                command("exert heal");
+                command("enforce 20");
+                return;
+        }
+
+        if (ob->query("kee") < ob->query("eff_kee"))
+        {
+                command("exert recover");
+                return;
+        }
+
+        if (ob->query("gin") < ob->query("eff_gin"))
+                command("exert regenerate");
+
+        return;
+}

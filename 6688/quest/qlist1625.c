@@ -1,0 +1,306 @@
+#include <ansi.h>
+inherit SKILL;
+
+mapping *quest = ({
+	([	"quest":	"袭人",
+		"quest_type":	"杀",
+		"exp_bonus":	20,
+		"shen_type":	0,
+	]),
+	([	"quest":	"钢剑",
+		"quest_type":	"寻",
+		"exp_bonus":	20,
+		"shen_type":	0,
+	]),
+	([	"quest":	"铜哨",
+		"quest_type":	"寻",
+		"exp_bonus":	20,
+		"shen_type":	0,
+	]),
+	([	"quest":	"烧饭僧",
+		"quest_type":	"杀",
+		"exp_bonus":	20,
+		"shen_type":	1,
+	]),
+
+	([	"quest":	"腰带",
+		"quest_type":	"寻",
+		"exp_bonus":	20,
+		"shen_type":	0,
+	]),
+
+	([	"quest":	"青纱裙",
+		"quest_type":	"寻",
+		"exp_bonus":	20,
+		"shen_type":	0,
+	]),
+
+	([	"quest":	"[33m客人[2;37;0m",
+		"quest_type":	"杀",
+		"exp_bonus":	20,
+		"shen_type":	0,
+	]),
+
+	([	"quest":	"[33m男主人[2;37;0m",
+		"quest_type":	"杀",
+		"exp_bonus":	20,
+		"shen_type":	1,
+	]),
+
+	([	"quest":	"[33m女主人[2;37;0m",
+		"quest_type":	"杀",
+		"exp_bonus":	20,
+		"shen_type":	1,
+	]),
+
+	([	"quest":	"[33m秀才[2;37;0m",
+		"quest_type":	"杀",
+		"exp_bonus":	20,
+		"shen_type":	1,
+	]),
+
+	([	"quest":	"小园工",
+		"quest_type":	"杀",
+		"exp_bonus":	20,
+		"shen_type":	-1,
+	]),
+
+	([	"quest":	"裁缝",
+		"quest_type":	"杀",
+		"exp_bonus":	20,
+		"shen_type":	-1,
+	]),
+
+	([	"quest":	"量衣尺",
+		"quest_type":	"寻",
+		"exp_bonus":	20,
+		"shen_type":	-1,
+	]),
+
+	([	"quest":	"裁衣剪",
+		"quest_type":	"寻",
+		"exp_bonus":	20,
+		"shen_type":	-1,
+	]),
+
+	([	"quest":	"园工剪",
+		"quest_type":	"寻",
+		"exp_bonus":	20,
+		"shen_type":	-1,
+	]),
+
+	([	"quest":	"芳绫",
+		"quest_type":	"杀",
+		"exp_bonus":	20,
+		"shen_type":	0,
+	]),
+
+	([	"quest":	"绵裙",
+		"quest_type":	"寻",
+		"exp_bonus":	20,
+		"shen_type":	0,
+	]),
+
+
+	([	"quest":	"贾老实",
+		"quest_type":	"杀",
+		"exp_bonus":	20,
+		"shen_type":	0,
+	]),
+
+	([	"quest":	"神父",
+		"quest_type":	"杀",
+		"exp_bonus":	20,
+		"shen_type":	0,
+	]),
+
+	([	"quest":	"酸秀才",
+		"quest_type":	"杀",
+		"exp_bonus":	20,
+		"shen_type":	0,
+	]),
+
+	([	"quest":	"旅客",
+		"quest_type":	"杀",
+		"exp_bonus":	20,
+		"shen_type":	0,
+	]),
+
+	([	"quest":	"杜宽",
+		"quest_type":	"杀",
+		"exp_bonus":	20,
+		"shen_type":	0,
+	]),
+
+	([	"quest":	"大蟑螂",
+		"quest_type":	"杀",
+		"exp_bonus":	20,
+		"shen_type":	0,
+	]),
+
+	([	"quest":	"流氓",
+		"quest_type":	"杀",
+		"exp_bonus":	20,
+		"shen_type":	-1,
+	]),
+
+	([	"quest":	"金项链",
+		"quest_type":	"寻",
+		"exp_bonus":	20,
+		"shen_type":	1,
+	]),
+
+	([	"quest":	"[1;37m迎凤[2;37;0m",
+		"quest_type":	"杀",
+		"exp_bonus":	20,
+		"shen_type":	1,
+	]),
+
+	([	"quest":	"飞贼",
+		"quest_type":	"杀",
+		"exp_bonus":	20,
+		"shen_type":	-1,
+	]),
+
+
+	([	"quest":	"夜行衣",
+		"quest_type":	"寻",
+		"exp_bonus":	20,
+		"shen_type":	-1,
+	]),
+
+	([	"quest":	"园工",
+		"quest_type":	"杀",
+		"exp_bonus":	20,
+		"shen_type":	-1,
+	]),
+
+	([	"quest":	"唐梅",
+		"quest_type":	"杀",
+		"exp_bonus":	20,
+		"shen_type":	-1,
+	]),
+
+	([	"quest":	"鹿清笃",
+		"quest_type":	"杀",
+		"exp_bonus":	20,
+		"shen_type":	0,
+	]),
+
+	([	"quest":	"老者",
+		"quest_type":	"杀",
+		"exp_bonus":	20,
+		"shen_type":	1,
+	]),
+
+	([	"quest":	"全真道袍",
+		"quest_type":	"寻",
+		"exp_bonus":	20,
+		"shen_type":	0,
+	]),
+
+	([	"quest":	"大剪刀",
+		"quest_type":	"寻",
+		"exp_bonus":	20,
+		"shen_type":	1,
+	]),
+
+	([	"quest":	"大蟑螂",
+		"quest_type":	"杀",
+		"exp_bonus":	20,
+		"shen_type":	0,
+	]),
+
+	([	"quest":	"道童",
+		"quest_type":	"杀",
+		"exp_bonus":	20,
+		"shen_type":	0,
+	]),
+
+	([	"quest":	"烧火道士",
+		"quest_type":	"杀",
+		"exp_bonus":	20,
+		"shen_type":	0,
+	]),
+	([	"quest":	"屠夫",
+		"quest_type":	"杀",
+		"exp_bonus":	20,
+		"shen_type":	0,
+	]),
+	([	"quest":	"程老板",
+		"quest_type":	"杀",
+		"exp_bonus":	20,
+		"shen_type":	1,
+	]),
+
+	([	"quest":	"渔家少年",
+		"quest_type":	"杀",
+		"exp_bonus":	20,
+		"shen_type":	0,
+	]),
+
+	([	"quest":	"[30m游人[2;37;0m",
+		"quest_type":	"杀",
+		"exp_bonus":	20,
+		"shen_type":	0,
+	]),
+
+	([	"quest":	"[1;36m女仆[2;37;0m",
+		"quest_type":	"杀",
+		"exp_bonus":	20,
+		"shen_type":	-1,
+	]),
+
+	([	"quest":	"[1;35m牛崽衣[2;37;0m",
+		"quest_type":	"寻",
+		"exp_bonus":	20,
+		"shen_type":	1,
+	]),
+
+	([	"quest":	"丽妃",
+		"quest_type":	"杀",
+		"exp_bonus":	20,
+		"shen_type":	1,
+	]),
+
+	([	"quest":	"[35m丫鬟[2;37;0m",
+		"quest_type":	"杀",
+		"exp_bonus":	20,
+		"shen_type":	1,
+	]),
+
+});
+
+mapping quest_one =
+        ([      "quest":        "烤鸡腿",
+                "quest_type":   "寻",
+                "exp_bonus":    20,
+                "shen_type":    0,
+        ]);
+
+mapping query_quest()
+{
+        object room;
+
+        if( random(5) )
+        {
+                room = "/adm/daemons/dynamicd"->get_random_room_npc();
+                if( objectp(room) )
+                {
+                        if( room->is_character() )
+                        {
+                                quest_one["quest"] = room->query("name");
+                                quest_one["quest_type"] = "寻人";
+                        }
+                        else
+                        {
+                                quest_one["quest"] = room->query("short");
+                                quest_one["quest_type"] = "探路";
+                        }
+                        quest_one["exact"] = base_name(room);
+                        return quest_one;
+                }
+        }
+        else
+                return quest[random(sizeof(quest))];
+}

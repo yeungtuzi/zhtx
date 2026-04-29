@@ -1,0 +1,292 @@
+// xianglong-zhang.c
+
+inherit SKILL;
+#include <combat.h>
+#include <ansi.h>
+
+mapping *action = ({
+([      "action": "$N双掌平平提到胸前，神色沉重的缓缓施出「亢龙有悔」推向$n的$l",
+        "dodge": -3,
+        "parry": 25,
+        "attack": 20,
+        "force": 800,
+        "unparryable": 10,
+        "undodgeable": 10,
+        "damage_type": "瘀伤"
+]),
+([      "action": "$N突然身形飞起，双掌居高临下一招「飞龙在天」拍向$n的$l",
+        "dodge": -10,
+        "parry": 20,
+        "attack": 20,
+        "force": 380,
+        "damage_type": "瘀伤"
+]),
+([      "action": "$N右掌一招「见龙在田」，迅捷无比地劈向$n的$l",
+        "dodge": 5,
+        "parry": 10,
+        "attack": 20,
+        "force": 320,
+        "damage_type": "瘀伤"
+]),
+([      "action": "$N双掌施出一招「鸿渐于陆」，隐隐带着风声拍向$n的$l",
+        "dodge": 5,
+        "parry": 15,
+        "attack": 20,
+        "force": 300,
+        "damage_type": "瘀伤"
+]),
+([      "action": "$N左掌聚成拳状，右掌一招「潜龙勿用」缓缓推向$n的$l",
+        "dodge": 10,
+        "parry": 20,
+        "attack": 20,
+        "force": 300,
+        "damage_type": "瘀伤"
+]),
+([      "action": "$N施出一招「利涉大川」，右掌插腰，左掌劈向$n的$l",
+        "dodge": 10,
+        "parry": 20,
+        "attack": 20,
+        "force": 350,
+        "damage_type": "瘀伤"
+]),
+([      "action": "$N使出「突如其来」，右掌从不可能的角度向$n的$l推出",
+        "dodge": 0,
+        "parry": 20,
+        "attack": 20,
+        "force": 300,
+        "damage_type": "瘀伤"
+]),
+([      "action": "$N大吼一声，双掌使出「震惊百里」，不顾一切般击向$n",
+        "dodge": -5,
+        "parry": 20,
+        "attack": 20,
+        "force": 400,
+        "damage_type": "瘀伤"
+]),
+([      "action": "$N使出「或跃在渊」，向$n的$l连拍数掌",
+        "dodge": 12,
+        "parry": 20,
+        "attack": 20,
+        "force": 330,
+        "damage_type": "瘀伤"
+]),
+([      "action": "$N身形滑动，双掌使一招「双龙取水」一前一后按向$n的$l",
+        "dodge": 10,
+        "parry": 20,
+        "attack": 20,
+        "force": 400,
+        "damage_type": "瘀伤"
+]),
+([      "action": "$N使出「鱼跃于渊」，身形飞起，双掌并在一起向$n的$l劈下",
+        "dodge": 8,
+        "parry": 20,
+        "attack": 20,
+        "force": 350,
+        "damage_type": "瘀伤"
+]),
+([      "action": "$N双掌立起，使出「时乘六龙」向$n连砍六下",
+        "dodge": -2,
+        "parry": 30,
+        "attack": 20,
+        "force": 370,
+        "damage_type": "瘀伤"
+]),
+([      "action": "$N使出「密云不雨」，左掌封住$n的退路，右掌斜斜地劈向$l",
+        "dodge": -15,
+        "parry": 20,
+        "attack": 20,
+        "force": 320,
+        "damage_type": "瘀伤"
+]),
+([      "action": "$N使出「损则有孚」，双掌软绵绵地拍向$n的$l",
+        "dodge": 5,
+        "parry": 10,
+        "attack": 20,
+        "force": 450,
+        "damage_type": "瘀伤"
+]),
+([      "action": "$N脚下一转，突然欺到$n身前，一招「龙战于野」拍向$n的$l",
+        "dodge": -20,
+        "parry": 40,
+        "attack": 20,
+        "force": 430,
+        "damage_type": "瘀伤"
+]),
+([      "action": "$N门户大开，一招「履霜冰至」向$n的$l劈去",
+        "dodge": -15,
+        "parry": 10,
+        "attack": 20,
+        "force": 420,
+        "damage_type": "瘀伤"
+]),
+([      "action": "$N使出「羝羊触蕃」，双掌由下往上击向$n的$l",
+        "dodge": -15,
+        "parry": 30,
+        "attack": 20,
+        "force": 400,
+        "damage_type": "瘀伤"
+]),
+([      "action": "$N左掌护胸，右掌使一招「神龙摆尾」上下晃动着击向$n的$l",
+        "dodge": 20,
+        "parry": 20,
+        "attack": 20,
+        "force": 420,
+        "damage_type": "瘀伤"
+]),
+});
+
+
+mapping op_action =
+([      
+        "action" : "$N不待敌人抽招换式，随手一记「空明拳」中的「落花拈叶」，双拳无形无定，骤然击向$n的前胸！\n",
+        "force" : 600,
+        "parry" : 30,
+        "attack": 30,
+        "unparryable": 30,
+        "damage_type" : "瘀伤"
+]);
+
+int valid_enable(string usage) { return usage=="strike" ||  usage=="parry"; }
+
+int valid_combine(string combo) { return combo=="shexing-shou"; }
+
+
+
+int valid_learn(object me)
+{
+        if (me->query_temp("weapon") || me->query_temp("secondary_weapon"))
+                return notify_fail("练降龙十八掌必须空手。\n");
+        if ((int)me->query_skill("huntian-qigong", 1) < 20)
+                return notify_fail("你的混天气功火候不够，无法练降龙十八掌。\n");
+        if ((int)me->query_skill("huntian-qigong", 1) < (int)me->query_skill("xianglong-zhang", 1) && (int)me->query_skill("huntian-qigong", 1) < 150)
+                return notify_fail("你的混天气功火候不够，无法领悟降龙十把掌的霸道招术。\n");
+        if ((int)me->query("max_force") < 100)
+                return notify_fail("你的内力太弱，无法练降龙十八掌。\n");
+        return 1;
+}
+
+mapping query_action(object me, object weapon)
+{
+        int i, level;
+        object victim;
+        
+        level = (int) me->query_skill("xianglong-zhang", 1);
+        if( level > 120 && me->query_temp("skill_mark/hubo") )
+        {
+                        me->set_temp("skill_mark/hubo",1);
+                        me->clean_up_enemy();
+                        victim = me->select_opponent();
+                        if( objectp(victim) )  
+                        {
+                                message_vision(op_action["action"],me,victim);
+                                COMBAT_D->do_attack(me,victim,me->query_temp("weapon"),TYPE_SELFATTACK,op_action);
+                        }
+        }
+        
+        return action[random(sizeof(action))];
+        
+}
+
+/*
+mapping query_action(object me, object weapon)
+{
+        return action[random(sizeof(action))];
+}*/
+
+int practice_skill(object me)
+{
+        if ((int)me->query("kee") < 40)
+                return notify_fail("你的体力太低了。\n");
+        if ((int)me->query("force") < 10)
+                return notify_fail("你的内力不够练降龙十八掌。\n");
+        if ((int)me->query_skill("huntian-qigong", 1) < (int)me->query_skill("xianglong-zhang", 1) && (int)me->query_skill("huntian-qigong", 1) < 150)
+                return notify_fail("你的混天气功火候不够，无法领悟降龙十把掌的霸道招术。\n");
+        me->receive_damage("kee", 30);
+        me->add("force", -5);
+        return 1;
+}
+string perform_action_file(string action)
+{
+        return __DIR__"xianglong-zhang/" + action;
+}
+
+string *parry_msg = ({
+        "$n一抖$v，手中的$v化作一条长虹，磕开了$N的$w。\n",
+        "$n挥舞$v，手中的$v化做漫天雪影，荡开了$N的$w。\n",
+        "$n手中的$v一抖，向$N的手腕削去。\n",
+        "$n将手中的$v舞得密不透风，封住了$N的攻势。\n",
+        "$n反手挥出$v，整个人消失在一团光芒之中。\n",
+});
+
+string *unarmed_parry_msg = ({
+        "$n化掌为刀，急切$N的手腕。\n"
+        "$n双掌交错，「啪」的一声将$N的$w夹在双掌之间。\n",
+        "$n双掌一划，引偏了$N的$w。\n",
+        "$n步走七星，虚空拍出十三掌，逼得$N撤招自保。\n",
+        "$n化掌为指，反点$N的周身要穴。\n",
+});
+
+string query_parry_msg(object weapon)
+{
+        if( weapon )
+                return parry_msg[random(sizeof(parry_msg))];
+        else
+                return unarmed_parry_msg[random(sizeof(unarmed_parry_msg))];
+}
+
+/*
+mapping enable_req() {
+
+        return( ([
+                "force":"huntian-qigong",
+        ]) );
+
+}
+*/
+mapping enable_req() {
+
+        if( this_player()->query_skill_mapped("force") == "huntian-qigong" )
+        return( ([ 
+                "force":"huntian-qigong",     
+        ]) );
+        else
+        return( ([ 
+                "force":"hunyuan-yiqi",   
+        ]) );
+
+}
+
+
+mapping level_req(int level) {
+
+        return( ([
+                "huntian-qigong":30,
+        ]) );
+}
+
+int query_faith_req(int skill) {
+        return skill*10+10;
+}
+mixed hit_ob(object me, object victim, int damage_bonus)
+{
+        int     s;
+        string msg;
+
+        s = me->query_skill("xianglong-zhang",1);
+        if( random(s) > 100 && !victim->is_busy() )
+        {
+                message_vision(HIY"$N屏息凝神，气走丹田，过百穴，一股排山倒海的掌力向$n发出！\n"NOR,me,victim);
+                if( random(me->query("force")*2) > (int)victim->query("force") ) {
+                msg = HIR"$n觉得$N的内劲一浪接着一浪，自己的真气实在无法承受和抵御，“哇”的一声吐出一口鲜血！\n" NOR;
+                victim->receive_wound("kee", random(s)/2 );
+                victim->add("force",-s);
+                } else {
+                        msg = HIG"可是$n向后疾退数丈，避开了$N凶猛的掌力。\n" NOR;
+                        me->start_busy(random(2));
+                }
+                message_vision(msg, me, victim);
+        }
+        return damage_bonus;
+}
+
+

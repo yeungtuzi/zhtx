@@ -1,0 +1,256 @@
+//Created by dongsw 
+//include black_wushi.c
+ 
+#include <ansi.h>
+ 
+inherit NPC;
+inherit "/ldg/std/rnd_skilld.c";
+inherit "/ldg/std/rnd_named.c";
+inherit "/quest/killer/paths.c";
+ 
+#define LESS_SKILLS_LV 10 + random(10);
+#define TOTAL_VALID_ROOM_N 2390  //this have to be manually updated, flyaway
+//read total valid room file to calculate this maybe too large to maintain memory
+#define VALID_ROOM_FILE "/quest/roomlog"   //room log path, flyaway
+ 
+void random_skills();
+void set_hp(object me);
+string ask_move();
+ 
+void create()
+{
+        set_name(rnd_name(random(2)), ({"qiankun jiaotu", "killer"}));
+        set("title", "乾坤教徒");
+        set("long",
+        "这是一名乾坤教的弟子，看起来身手不凡。\n"
+        );
+        set("nickname", "忠于乾坤，逍遥轩辕");
+        set("gender", random(2) ? "男性" : "女性");
+        
+        set("age", 20+random(30));
+
+        set("str", 25+random(10));
+        set("dex", 25+random(10));
+        set("int", 25+random(10));
+        set("con", 25+random(10));
+
+        set("score", 1);
+        set("chat_chance", 5);
+        set("chat_msg", ({
+             (: random_move :)
+        }) );
+        set_temp("apply/armor",100+random(100));
+        set_temp("apply/damage",30+random(50));
+        random_skills();
+        call_out("destroy_me", 960, this_object());     
+        set("inquiry", ([
+            "乾坤教" : (: ask_move :),
+        ]));
+        setup();
+        carry_object("/obj/cloth/tiejia")->wear();
+}
+
+int accept_fight(object me)
+{
+        command("shake");
+        command("say 我有要事在身，哪里有工夫理你？");
+        write("\n");
+        
+        return 0;
+}
+
+void heart_beat()
+{
+        object killer = this_object();
+        ::heart_beat();
+
+        /*if ( !is_fighting() && query("eff_kee") >= query("max_kee") / 2
+                && query("eff_kee") <  query("max_kee") )
+                command("exert heal");
+*/
+        if (query("kee") < query("eff_kee") - 10)
+                command("exert recover");
+
+        if (query("gin") < query("eff_gin") - 10)
+                command("exert regenerate");
+
+        if (query("sen") < query("eff_sen") - 10)
+                command("exert refresh");
+}
+void random_skills()
+{
+        string rforce_skill, rdodge_skill, *rweapon_skill, weapon_skill_type, *skills_name;
+        mapping weapon_skill, skills;
+        object me = this_player();
+        int i, max_lv, t;
+        
+        skills = me->query_skills();
+        skills_name = keys(skills);
+        
+        for (i=0;i<sizeof(keys(skills));i++)
+        {
+                if (SKILL_D(keys(skills)[i])->type() == "knowledge")
+                skills_name -= ({keys(skills)[i]});
+        }
+        
+        if (!skills) skills = ([]);
+        
+        for ( i = 0; i < sizeof(skills_name); i++)
+        {
+                if ((int)skills[skills_name[i]] > max_lv) max_lv = (int)skills[skills_name[i]];
+        }
+        
+        max_lv = max_lv - LESS_SKILLS_LV;
+        
+        set_skill("force", max_lv);
+        set_skill("parry", max_lv);
+        set_skill("dodge", max_lv);
+        rforce_skill = rnd_force();
+        weapon_skill = rnd_weapon_skill();
+        rdodge_skill = rnd_dodge();
+        rweapon_skill = keys(weapon_skill);
+        weapon_skill_type = weapon_skill[rweapon_skill[0]];
+        
+        set_skill(rforce_skill, max_lv);
+        set_skill(rdodge_skill, max_lv);
+        set_skill(rweapon_skill[0], max_lv);
+        set_skill(weapon_skill_type, max_lv);
+                
+        map_skill("force", rforce_skill);
+        map_skill("dodge", rdodge_skill);
+        map_skill("move", rdodge_skill);
+        map_skill(weapon_skill_type, rweapon_skill[0]);
+        map_skill("parry", rweapon_skill[0]);
+        
+        if(weapon_skill_type=="cuff"||weapon_skill_type=="claw"||weapon_skill_type=="strike")
+                prepare_skill(weapon_skill_type,rweapon_skill[0]);
+        if(weapon_skill_type=="sword") carry_object("/obj/weapon/longsword")->wield();
+        else if(weapon_skill_type=="blade") carry_object("/obj/weapon/gangdao")->wield();
+        else if(weapon_skill_type=="staff") carry_object("/obj/weapon/staff")->wield();
+        else if(weapon_skill_type=="spear") carry_object("/obj/weapon/spear")->wield();
+        else if(weapon_skill_type=="whip") carry_object("/obj/weapon/whip")->wield();
+        
+}
+
+
+int random_place(object me)
+{
+        int i, j, k;
+        object place, ob = me->query("fighter");
+        string *filepath;
+        mixed* file, exit;
+        string roompath;
+        string *roompaths;
+        filepath = keys(paths);
+        if( !sizeof(filepath) ) return 0;
+
+        for(k=0;k<10;k++) {
+                roompath=read_file(VALID_ROOM_FILE, random(TOTAL_VALID_ROOM_N)+1,1);
+                roompaths=explode(roompath,"\n");
+                if (!roompath) continue;
+                i=0;
+        while(i<sizeof(filepath) && (strsrch(roompath,filepath[i])==-1)) i++;
+        if (i>=sizeof(filepath)) continue;  //not found
+            place = load_object(roompaths[0]);
+          if(!place || place->query("no_fight") || place->query("no_magic") || place->query("sleep_room") ||
+                                !(exit = place->query("exits")) || sizeof(exit) < 1)
+                                continue;
+         me->move(place);
+         message_vision("$N走了过来。\n", me);
+         me->set("place_name",values(paths)[i]);
+         return 1;
+         }   //10 times loop to tolorate repeating finding suitable room, else this function fail
+    return 0;
+}
+
+string invocation(object killer)
+{
+        object env;
+        string position;
+
+        set_hp(this_player());
+
+        if(!random_place(killer))
+        {
+                killer->move("/d/jingcheng/zhq" + ( 1 + random(9) ) );
+                killer->set("place_name","京城");
+                message_vision("$N走了过来。\n", killer);
+        }
+
+        env = environment(killer);
+        position = "在「" + killer->query("place_name") + "」地面的「" + env->query("short");
+        return position;
+}
+
+void set_hp(object me)
+{
+        int max_kee, max_gin, max_sen, maximum_force, exp;
+
+        max_kee = me->query("max_kee");
+        max_gin = me->query("max_gin");
+        max_sen = me->query("max_sen");
+        maximum_force = me->query("max_force");
+        exp = me->query("combat_exp");
+
+        set("force_factor", 80);
+        set("max_kee", max_kee*4/5);
+        set("eff_kee", max_kee*4/5);
+        set("max_gin", max_gin*4/5);
+        set("eff_gin", max_gin*4/5);
+        set("max_sen", max_sen*4/5);
+        set("eff_sen", max_sen*4/5);
+        set("sen", max_sen*4/5);
+        set("kee", max_kee*4/5);
+        set("gin", max_gin*4/5);
+        set("max_force", maximum_force*8/9);
+        set("force",maximum_force*16/9);
+        set("combat_exp", exp-exp*1/20-random(exp*1/20));
+        set_temp("apply/armor", 150);
+        set_temp("apply/damage", 20);
+}
+
+void die()
+{
+        object ob = this_object(), killer = ob->query_temp("last_damage_from");
+        mapping quest = killer->query("quest");
+        
+        if (quest && ob->query("owner") == killer && quest["special_quest"] == 1)
+        {
+                killer->set("over_time",time());
+                message_vision(CYN"\n$N喊道：老子虽然死了，但是我相信教主一定会给我报仇的！\n"NOR,ob);
+        } else{
+                message_vision(HIR"\n$N喊道：没事你管得哪门子闲事，我们教主一定不会放过你的！\n"NOR,ob);
+                tell_object(killer,HIR"由于你在江湖中无事生非，给别人带来不必要的麻烦，你受到了惩罚！\n"NOR);
+                killer->add("potential",-5000);
+                killer->add("combat_exp", -50000);              }
+        
+        ::die();
+}
+
+//this function is for the killer in the no_fight room
+//so can ask fight about 乾坤教 to make the killer random move
+string ask_move()
+{
+    object player, room;
+    mapping exits;
+    string  *dirs;
+
+    player = this_player();
+    if (query("owner") == player) {
+        room = environment(this_object());
+        exits = room->query("exits");
+        dirs = keys(exits);
+        command("go "+dirs[random(sizeof(dirs))]);
+        return "你想知道乾坤教？跟我来，这边谈！";
+    }else {
+        return "你是谁？我不认识你！";
+    }
+}
+
+void destroy_me(object ob) 
+{ 
+        message_vision("$N急急忙忙的离开了。\n",ob);
+        destruct(ob);
+}
+
+

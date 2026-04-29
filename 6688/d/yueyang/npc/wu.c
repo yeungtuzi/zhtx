@@ -1,0 +1,217 @@
+// npc: /d/city/npc/gcd.c
+// Jay 5/15/96
+
+inherit NPC;
+inherit F_SSERVER;
+#include <ansi.h>
+void checkmoney( object me,object ob);
+void consider();
+
+
+void create()
+{
+        set("gender", "男性" );
+        set_name("吴天德", ({ "wu tiande", "wu"}) );
+        set("title", CYN "税官" NOR);
+        set("age", 42);
+        set("long",
+            "吴天德是武林中的税官，只要看见有人钱多就要收个人调节税。\n");
+
+        set("str", 24);
+        set("dex", 25);
+        set("shen_type", 1);
+
+
+        set("jiali", 100);
+        set_skill("force", 140);
+        set_skill("taiji-shengong", 100);
+        set_skill("dodge", 100);
+        set_skill("tiyunzong", 100);
+        set_skill("sword", 100);
+        set_skill("taiji-jian", 100);
+        set_skill("parry", 100);
+
+        map_skill("force", "taiji-shengong");
+        map_skill("dodge", "tiyunzong");
+        map_skill("sword", "taiji-jian");
+        map_skill("parry", "taiji-jian");
+
+        set_temp("apply/defense", 100);
+        set_temp("apply/damage", 100);
+        set_temp("apply/armor", 100);
+
+        set("chat_chance_combat", 100);
+        set("chat_msg_combat", ({
+                (: consider :),
+        }) );
+        set("combat_exp",100000);
+
+        set("max_qi", 500);
+        set("max_jing", 100);
+        set("neili", 2000);
+        set("max_neili", 2000);
+
+        set("attitude", "friendly");
+        set("inquiry", ([
+            "name" : "我乃税官吴天德是也。",
+       	]) );
+
+        set("chat_chance", 100);
+        set("chat_msg", ({
+               (: random_move :)
+        }) );
+        set("qmoney",0);
+        setup();
+
+       carry_object("/clone/weapon/changjian")->wield();
+}
+
+void init()
+     {
+        object me, ob;
+        ob = this_player();
+        me = this_object();
+
+        ::init();
+        if (interactive(ob)&&(me->query("qmoney")<1)) {
+          checkmoney(me,ob);
+        }
+}
+
+int qrich(object who)
+{
+ 	int i;
+  	object mob;
+  	int gc,sc;
+  	i=0;
+  	if (mob = present("gold_money", who)) {
+    		gc = mob->query_amount();
+    		i=gc*10000 +i;
+   	}
+  	if (mob = present("sliver_money",who)) {
+    		gc= mob->query_amount();
+    		i=gc*100 +i;
+ 	}
+  	if (mob=present("coin_money",who)) {
+    		gc= mob->query_amount();
+    		i=gc +i;
+   	}
+  	if (mob=present("thousand-cash",who))  {
+    		gc= mob->query_amount();
+    		i=gc*100000 +i;
+   	}
+  	gc=who->query("balance");
+  	i=gc*9/10+i;
+  	return(i);
+}
+
+void querymoney(object me,object ob)
+{ 
+	int mm;
+  	if (!interactive(ob)) return;
+  	me->add("qmoney",1);
+  	mm=query("qmoney");
+  	if (mm<10) {
+    		tell_object(ob,GRN"吴天德说：你那么富，钱肯定花不完了，不如我来帮你!\n"NOR);
+   	} else  if (mm<20) {
+    		tell_object(ob,GRN"吴天德说：我说过的话可是要算数的!\n"NOR);
+  	} else  if (mm<30) {
+    		tell_object(ob,GRN"吴天德说：快点！少给我罗嗦!\n"NOR);
+   	} else  if (mm<40) {
+    		tell_object(ob,GRN"吴天德说：快点！否则我就不客气了!\n"NOR);
+   	} else  if (mm<50) {
+    		tell_object(ob,GRN"吴天德有点不耐烦：你真是个守财奴!\n"NOR);
+   	} else  if (mm<60) {
+    		tell_object(ob,GRN"吴天德有点不耐烦：你想把这些钱带到棺材里？\n"NOR);
+   	} else  if (mm<70) {
+    		tell_object(ob,GRN"吴天德不耐烦了：我警告你，快点！否则我就不客气了!\n"NOR);
+   	} else  {
+    		tell_object(ob,GRN"吴天德怒道：我再给你最后一些机会，快点！\n"NOR);
+   	}
+  	if (mm>150) {
+     		remove_call_out("kill_ob");
+     		call_out("kill_ob", 1, ob);
+     		ob->set("qmoney",0);
+   	}
+
+}
+
+object me1,ob1,obj1;
+
+void checkmoney(object me,object ob)
+{ 
+	int amount;
+  	amount =qrich(ob);
+    	if (amount>1500000) {
+       		me1=me;
+       		ob1=ob;
+
+      		me->set("qmoney",1);
+      		me->set("amount",amount);
+      		me->set("chat_chance",50 );
+      		me->set_leader(ob);
+		ob->set_temp("rich", 1);
+		obj1=ob;
+      		me->delete("chat_msg");
+      		me->set("chat_msg", ({
+               		(:querymoney(me1,ob1):)
+        	}) );
+      		tell_object(ob,GRN"吴天德对你说：我看你有点为富不仁，快把你的钱交出来!!\n");
+      		tell_object(ob,GRN"              可别想蒙我！老实点!\n"NOR);
+	}
+    	return ;
+}
+
+int accept_object(object who, object ob)
+{ 
+	object me ;
+    	int i;
+  	me=this_object();
+  	if (ob->query("money_id")) {
+      		i=ob->value();
+      		me->add("amount",-i);
+      		call_out("destroy", 1, ob);
+      		if (me->query("amount")>1500000) {
+          		tell_object(who,HIG"吴天德怒道：还有！身上的，银行里的！\n"NOR);
+        	} else {
+          		tell_object(who,GRN"吴天德说：这还差不多！\n"NOR);
+          		tell_object(who,GRN"吴天德显得十分高兴。\n"NOR);
+          		tell_object(who,GRN"吴天德说：下次再见，嘿嘿！\n"NOR);
+
+		        me->set("qmoney",0);
+          		me->set_leader(0);
+			who->delete_temp("rich");
+          		me->set("chat_chance",100);
+          		me->set("chat_msg", ({
+                		(: random_move :)
+           		}) );
+
+        	}
+		return 1;
+  		} else {
+    			tell_object(who,HIG"吴天德怒道：别拿这些东西来蒙我!\n"NOR);
+   			return 0;
+
+		}
+}
+
+void destroy(object ob)
+{
+        destruct(ob);
+        return;
+}
+
+
+void consider()
+{
+        command("exert powerup");
+        command("perform sword.chan");
+        return;
+}
+
+void die()
+{
+        message_vision("\n$N死了。\n", this_object());
+	obj1->delete_temp("rich");
+        destruct(this_object());
+}

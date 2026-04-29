@@ -1,0 +1,507 @@
+// paimaishi.c
+// written by tang
+
+#include <ansi.h>
+
+inherit NPC;
+
+mixed id = ({
+	"","","","","","","","","","","","","","","","",
+	"","","","","","","","","","","","","","","","",
+	});
+mixed name = ({
+	"","","","","","","","","","","","","","","","",
+	"","","","","","","","","","","","","","","","",
+	});
+mixed price = ({
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+	});
+mixed type = ({
+	"","","","","","","","","","","","","","","","",
+	"","","","","","","","","","","","","","","","",
+	});
+mixed master = ({
+	"","","","","","","","","","","","","","","","",
+	"","","","","","","","","","","","","","","","",
+	});
+		
+mixed object_deposit = ({
+	"","","","","","","","","","","","","","","","",
+	"","","","","","","","","","","","","","","","",
+	"","","","","","","","","","","","","","","","",
+	"","","","","","","","","","","","","","","","",
+	});
+mixed master_deposit = ({
+	"","","","","","","","","","","","","","","","",
+	"","","","","","","","","","","","","","","","",
+	"","","","","","","","","","","","","","","","",
+	"","","","","","","","","","","","","","","","",
+	});
+
+
+int add_list(string,string,int,string,string);
+void start_paimai(int);
+void check_paimai(int);
+void report_paimai(object,int,int);
+int deposit_list(string,string);
+
+void create()
+{
+	set_name("唐天", ({ "paimai shi","shi","paimai" }) );
+        set("title",HIR"唐记拍卖行首席拍卖师"NOR);
+	set("nickname", RED"纵横天下第一锤"NOR);
+	set("gender", "男性");
+	set("age", 30);
+	set("long", "他本是纵横天下的巫师之一，现在改行作拍卖师拉，
+每天都站在这里拍卖房间、矿山、作坊、种植园等等，赚了不少钱。\n");		
+
+	set("attitude", "peaceful");
+
+	set("str", 100 + random(16));
+	set("cps", 55 + random(16));
+	set("int", 55 + random(16));
+	set("cor", 55 + random(16));
+	set("con", 55 + random(16));
+	set("spi", 55 + random(16));
+	set("per", 55 + random(16));
+	set("kar", 55 + random(16));
+                                        
+	set("kee",2000);
+        set("max_kee", 2000);
+	set("gin",1000);
+        set("max_gin", 1000);
+	set("sen",1000);
+	set("max_sen", 1000);
+	set("atman", 100);
+	set("max_atman", 100);
+	set("mana", 100);
+	set("max_mana", 100);
+
+	set("force", 3000);
+	set("max_force", 3000);
+	set("force_factor", 50);
+
+	set("combat_exp", 5000000);
+	set("score", 90000);
+
+	set_skill("force", 180);
+	set_skill("sword", 180);
+	set_skill("throwing", 200);
+	set_skill("parry", 180);
+	set_skill("dodge", 180);                            
+	set_skill("move", 180);
+	set_skill("strike",100);
+	set_skill("dugong", 200);
+	set_skill("literate", 100);
+
+	set_skill("tangmen-xinfa", 180);
+	set_skill("tangshi-jian", 180);
+	set_skill("mantian-huayu", 200);
+	set_skill("taxue-wuhen", 180);
+	set_skill("tangmen-duzhang",100);
+
+	map_skill("dodge", "taxue-wuhen");
+	map_skill("move", "taxue-wuhen");
+	map_skill("force", "tangmen-xinfa");
+	map_skill("sword", "tangshi-jian");
+	map_skill("parry", "tangshi-jian");   
+	map_skill("strike", "tangmen-duzhang");
+	map_skill("throwing", "mantian-huayu");
+
+	prepare_skill("strike","tangmen-duzhang");
+
+	set_temp("apply/defense", 100);
+       	set("chat_chance", 5);
+       
+	set("chat_msg", ({
+"唐天微微一笑，说道：「各位英雄侠女有什么好东西的话，可以交给我进行拍卖。」\n",
+"唐天说道：「如果想知道有什么东西拍卖，你可以使用 paimailist ! 」\n",
+"「如果你要拍卖东西的话，可以 paimai sth with number。」，唐天说。\n",
+"如果我不在京城广场的话，可以用 bid 0 call 我! \n",
+"如果你要参与竞拍，你可以使用 bid <number> 呀，不然我怎么知道。\n"
+       }) );
+
+	setup();
+
+	set("no_clean_up",1);
+
+       	carry_object("/obj/weapon/gangjian")->wield();
+       	carry_object("/d/tangmen/obj/jinyi")->wear();
+
+	remove_call_out("start_paimai");
+	call_out("start_paimai",2,0);
+}
+
+void init()
+{
+	add_action("do_update","update");
+	add_action("do_paimai","paimai");
+	add_action("do_list","paimailist");
+	add_action("do_qu","qu");
+}
+
+int do_update(string arg)
+{
+	if( query("on_paimai") )
+	{
+		write("正在拍卖。\n");
+		return 1;
+	}
+	
+	return 0;
+}
+
+void start_paimai(int i)
+{
+	string msg;
+
+	if( id[i] != "" )
+	{
+		set("num",i);
+		set("on_paimai",1);
+		delete("decide");
+		set("new_host"," ");
+
+		set("value",price[i]);
+		set("old_host", master[i]);
+	
+		if( master[i] == "" )	
+			msg=type[i]+"，时限 30－60 分钟！";
+		else	msg=type[i];
+
+		CHANNEL_D->do_channel(this_object(), "bid",
+			sprintf("下面开始拍卖%s的%s底价%s两银子！\n",
+			name[i],msg,chinese_number(price[i])));
+
+		remove_call_out("check_paimai");
+		call_out("check_paimai",15,i);
+	}
+	else
+	{
+		i = (i+1) % 32;
+		if( i == query("pp") )	
+		{
+			set("num",i);
+			set("on_paimai",0);
+//			CHANNEL_D->do_channel(this_object(),"bid",
+//				sprintf("本次拍卖圆满结束！\n"));
+//			destruct(this_object());
+			return;
+		}
+
+		set("num",i);
+		remove_call_out("start_paimai");
+		call_out("start_paimai",1,i);
+	}
+	return;
+}
+
+void check_paimai(int i)
+{
+	object old_host,new_host,obj;
+
+	add("decide",1);
+	CHANNEL_D->do_channel(this_object(), "bid",
+		sprintf("%s:%s出价%s两银子，第%s次！\n", name[i],
+		query("new_host"),chinese_number(query("value")),chinese_number(query("decide"))));
+
+	if( query("decide") > 2 )
+	{
+		if( query("old_host") == "" )	old_host=this_object();
+		else 	old_host=find_player(master[i]);
+
+		if( query("new_host") == " " )	new_host=this_object();
+		else 	new_host=find_player(query("new_host"));
+
+		if( find_player(query("new_host")) )
+		{
+			if( new_host->query("deposit") < query("value")*105 )
+			{
+				CHANNEL_D->do_channel(this_object(), "bid",
+					sprintf("%s拍卖作弊，将入狱 10 分钟！\n", 
+					query("new_host")));
+				if( userp(new_host) )
+				{
+					new_host->apply_condition("bronze_jail",25);
+					new_host->move("/d/wizard/jianyu");
+				}
+				
+				if( find_player(master[i]) )
+				{
+					tell_object(old_host,"对不起，你的"+name[i]+"没有卖掉！\n");
+					tell_object(old_host,HIR"请 十分钟 内到京城广场来取你的"+name[i]+"，欢迎下次再来！\n"NOR);
+					deposit_list(id[i],master[i]);
+				}
+			
+			}
+
+			else
+			{
+				CHANNEL_D->do_channel(this_object(), "bid",
+					sprintf(HIR"成交，%s出价%s两银子买进%s的%s"NOR, 
+					query("new_host"),chinese_number(query("value")),name[i],type[i]));
+				new_host->add("deposit",-query("value")*105);
+				tell_object(new_host,"你取得了"+name[i]+"的"+type[i]+"。\n");
+
+				if( !(obj=find_object(id[i])) )
+				{
+					if( master[i] != "" )
+					{
+//						obj=new(id[i]);
+//						obj->move(new_host);
+						tell_object(new_host,HIR"请 十分钟 内到京城广场来取你的"+name[i]+"，欢迎下次再来！\n"NOR);
+						deposit_list(id[i],query("new_host"));
+					}
+					else
+					{
+						obj=clone_object(id[i]);
+						obj->set("host",query("new_host"));
+						obj->set("time",120+random(80));
+						obj->report();
+					}
+				}
+				else
+				{
+					if( master[i] != ""  )
+					{
+//						obj=new(id[i]);
+//						obj->move(new_host);
+						tell_object(new_host,HIR"请 十分钟 内到京城广场来取你的"+name[i]+"，欢迎下次再来！\n"NOR);
+						deposit_list(id[i],query("new_host"));
+					}
+					else
+					{
+						obj->set("host",query("new_host"));
+						obj->set("time",120+random(80));
+						obj->report();
+					}
+				}
+
+				if( find_player(master[i]) )
+				{
+					tell_object(old_host,"你的"+name[i]+"卖了"+chinese_number(query("value"))+"两银子！\n");
+					tell_object(old_host,"扣除5%的拍卖费，其余的给你，欢迎下次再来！\n");
+					MONEY_D->pay_player(old_host,query("value")*95);
+				}
+
+			}
+		}
+		else
+		{
+			set("forbid",query("new_host"));
+			if( query("new_host") != " " )
+				CHANNEL_D->do_channel(this_object(), "bid",
+					sprintf("%s拍卖作弊，将受到惩罚！\n", 
+					query("new_host")));
+			if( find_player(master[i]) )
+			{
+				tell_object(old_host,"对不起，你的"+name[i]+"没有卖掉！\n");
+				tell_object(old_host,HIR"请 十分钟 内到京城广场来取你的"+name[i]+"，欢迎下次再来！\n"NOR);
+				deposit_list(id[i],master[i]);
+			}
+
+		}
+
+		i = (i+1) % 32;
+		if( i == query("pp") )	
+		{
+			set("num",i);
+			set("on_paimai",0);
+//			CHANNEL_D->do_channel(this_object(),"bid",sprintf("本次拍卖圆满结束！\n"));
+//			destruct(this_object());
+			return;
+		}
+
+		set("num",i);
+		remove_call_out("start_paimai");
+		call_out("start_paimai",1,i);
+		return;
+	}
+	remove_call_out("check_paimai");
+	call_out("check_paimai",15,i);
+
+	return;
+}
+
+void report_paimai(object who,int value,int i)
+{
+	delete("decide");
+	set("new_host",who->query("id"));
+	set("value",value);
+	set("num",i);
+
+	CHANNEL_D->do_channel(this_object(), "bid",
+		sprintf("%d,%s出价%s两银子购买%s的%s！\n", value,
+		query("new_host"),chinese_number(value),name[i],type[i]));
+
+	remove_call_out("check_paimai");
+	call_out("check_paimai",15,i);
+	return;
+}
+
+int add_list(string ename,string cname,int value,string right,string host)
+{
+	int i,n;
+
+	i=query("num");
+	n=query("pp");
+
+	if( (n+1) % 32 == i )	return 0;
+
+	else
+	{
+		if( right == "所有权" )	right +="！\n";
+
+		id[n] = ename;
+		name[n] = cname;
+		price[n] = value;
+		type[n] = right;
+		master[n] = host;
+		n = (n+1) % 32;
+		set("pp",n);
+
+		return 1;
+	}
+}
+
+int do_paimai(string arg)
+{
+	string str,str1,str2;
+	int i;
+	object who,ob;
+
+	if( !arg || sscanf(arg,"%s with %d",str,i) != 2 )
+		return notify_fail("使用 paimai <物品> with <价钱>\n");
+
+	who=this_player();
+
+	ob=present(str,who);
+	
+	if( !ob )	return notify_fail("你没有这个物品。\n");
+
+	//changed by yeung
+	//佛门的东西不许卖
+        if( ob->query("shaolin") ) 
+           return notify_fail("这是佛门的东西，我可不敢拍卖，真是罪过！\n");
+
+	if( !wizardp(who) && (!(ob->query("value")) || ob->query("no_get") || ob->query("no_drop") || ob->query("no_paimai") || ob->query("unpawnable") || ob->query("no_sell")) )
+			return notify_fail("这不能卖！\n");
+
+//	printf("%d\n",ob->query("no_paimai"));
+
+	if (ob->query("money_id"))
+		return notify_fail("钱不允许拍卖！\n");
+
+	str1 = base_name(ob);
+	
+	str2 = ob->query("name");
+
+     	if( i < 1 )
+		return notify_fail("本拍卖师不拍卖这么便宜的东西。\n");
+
+	if( i > ob->query("value") )
+		return notify_fail("你要价太高，会卖不出去的。\n");
+
+	//changed by yeung
+	// 每次手续费至少 1 GOLD
+	switch( MONEY_D->player_pay(who,(i>10000?i:10000)) )
+	{
+		case 0:
+			return notify_fail("你的钱不够手续费！”\n");
+		case 2:
+			return notify_fail("唐泰宗说道：“您的黄金不够了，银票又没人找得开。”\n");
+		default:
+			;
+	}
+
+	if( !(add_list(str1,str2,i,"所有权",who->query("id"))) )
+	{
+		tell_object(who,"对不起，现在需要拍卖的东西太多，你等一下再来吧！\n");
+		tell_object(who," 1% 的手续费还给你。\n");
+		MONEY_D->pay_player(who,i);
+		return 1;
+	}
+
+	//destruct(ob);
+	ob->move("/std/room/hockshop");
+
+	tell_object(who,"收取 1% 的手续费。\n");
+
+	CHANNEL_D->do_channel(this_object(), "bid",
+		sprintf(CYN"有人提交"NOR+str2+CYN"进行拍卖。\n"NOR));
+
+	message_vision("$N提交"+str2+"进行拍卖。\n",who);
+
+	if( !(query("on_paimai")) )
+	{
+		remove_call_out("start_paimai");
+		call_out("start_paimai",5,query("num"));
+	}
+	return 1;
+}
+
+int do_list(string arg)
+{
+	int i,n,m;
+	string msg;
+
+	i = query("num");
+	n = query("pp");
+
+	if( !(query("on_paimai")) )
+		return notify_fail("现在没有在拍卖！\n");	
+
+	if( n == i )
+		return notify_fail("现在没有物品需要拍卖！\n");
+
+	if( n < i )	n += 32 - i;
+	else 	n -= i;
+
+	write("有下列物品进行拍卖：\n");
+	for( m=0;m<n;m++ )
+	{
+		msg = sprintf("%s  底价：%d 两银子\n",
+			name[(i+m)%32],price[(i+m)%32]);
+		tell_object(this_player(),msg);
+	}
+
+	return 1;
+}
+
+int deposit_list(mixed arg,string ename)
+{
+	int i;
+
+	object_deposit[query("num_deposit")] = arg;
+	master_deposit[query("num_deposit")] = ename;
+	i = query("num_deposit");
+	i = (i + 1) % 64;
+	set("num_deposit",i);
+	return 1;
+}
+
+int do_qu(string arg)
+{
+	int i;
+	object me,obj;
+	
+	me = this_player();
+
+	for( i=0;i<64;i++ )
+	{
+		if( master_deposit[i] == me->query("id") )
+		{
+			if( stringp(object_deposit[i]) )
+				obj = new(object_deposit[i]);
+			else if( objectp(object_deposit[i]) )
+				obj = object_deposit[i];
+
+			obj->move(me);
+			tell_object(me,"这是你要的东西。\n");
+			object_deposit[i]="";
+			master_deposit[i]=" ";
+		}
+	}
+	return 1;
+}

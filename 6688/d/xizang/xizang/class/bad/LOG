@@ -1,0 +1,225 @@
+goto /d/xizang/valley
+绝崖下 - /d/xizang/valley
+    这里是万丈深渊的底部,看上去象是一处死地,四面峭壁如削,寸草不生.除了
+几只飞鸟从空中掠过,周围死气沉沉,全无生机.迎面一块大石(stone)上似乎端坐
+着一个红色身影(figure),不知是人是鬼.
+    太阳正高挂在西方的天空中。
+    这里没有任何明显的出路。
+  三残喇嘛 赤松(Chi song)
+> l figure
+这人形容枯瘦,死多活少,只有一双眼睛偶尔转动一下,表示他还活着.
+> l chi song
+赤松本是班禅大师的首徒,可是被人陷害,双足齐断,困于谷中.
+他看起来约五十多岁。
+你才十四岁就要看吗,你什么也不懂呀.
+他看起来气血充盈，并没有受伤。
+他身上带著：
+  □大红僧袍(Cloth)
+> ask chi song about pig
+你向赤松打听有关『pig』的消息。
+赤松摇摇头，说道：没听说过。
+> ask chi song about 报仇
+你向赤松打听有关『报仇』的消息。
+赤松说道：由此往南不远便是恶人谷,杀尽那里的恶人,就算为我复仇了.
+
+> ask song about 恶人
+你向赤松打听有关『恶人』的消息。
+赤松说道：赤松上下打量了你一眼,说道:你的功夫太差,还是别去送死了.
+
+> goto /x赤松说道：谁能替我伸冤报仇,我愿将全身功夫相授!
+i
+              
+> 
+> call me->set("combat_exp赤松说道：谁能替我伸冤报仇,我愿将全身功夫相授!
+", 10000000)
+obj/user#16 ("毁灭者")->set("combat_exp", 10000000) = 10000000
+> ask song about 恶人谷
+你向赤松打听有关『恶人谷』的消息。
+赤松拨开巨石上的藤蔓,露出一个洞口.
+赤松说道：赤松上下打量了你一眼,说道:去吧!
+
+> su
+洞口 - /d/xizang/class/bad/entrance
+    这里是一个阴森森的洞口,一股劲风呼啸而来,吹得人头发四处乱飘,让人
+有些犹豫里面是否住着鬼怪.
+    太阳正高挂在西方的天空中。
+    这里明显的出口是 southdown 和 northdown。
+> sd
+小径 - /d/xizang/class/bad/path0
+    这里是巨岩缝隙间一条弯弯曲曲的小径,仅可容一人侧身勉强而行.
+    太阳正高挂在西方的天空中。
+    这里明显的出口是 southwest 和 northup。
+> sw
+小径 - /d/xizang/class/bad/path1
+    这里是一条弯弯曲曲的小径,南边是个开阔的峡谷,暖风送来阵阵花香,东北边
+是嶙峋的巨石,小径渐行渐窄,没入石丛中.
+    太阳正高挂在西方的天空中。
+    这里明显的出口是 south 和 northeast。
+> s
+谷口 - /d/xizang/class/bad/gate
+    这里就是传说中有去无回的恶人谷,很难相信它竟是个暖风轻拂,鲜花盛开的
+人间仙境.北边一条弯弯曲曲的小径通往群山中,西边有座简朴但是十分整齐干净
+的草庐,东边就是谷内了,一块大石(rock)立在路边,上书"恶人谷"三个血红大字.
+    太阳正高挂在西方的天空中。
+    这里明显的出口是 east、west 和 north。
+> l rock
+大石一角还有四个小字:[擅入者死]
+> l west
+草庐 - /d/xizang/class/bad/grass_h
+    这里是一座简朴但是十分整齐干净的草庐,住着白道江湖三位侠女.她们可能
+算是最早来找十大恶人麻烦的白道人士了.几次试闯失败后,她们知道恶人谷中机
+关密布,一时苦无良策,只好在谷外结庐暂居,等待时机.对于有志一闯恶人谷的江
+湖豪客,她们时常也会提供一些武器粮食的帮助,或代为保存一时用不上的行李物
+品.
+    这里唯一的出口是 east。
+  桃花岛小仙女 小巫仙(Gadzooks)
+  武当女真人 绾绾(Waner)
+  华山大师姐 花云(Easts)
+> > w
+草庐 - /d/xizang/class/bad/grass_h
+    这里是一座简朴但是十分整齐干净的草庐,住着白道江湖三位侠女.她们可能
+算是最早来找十大恶人麻烦的白道人士了.几次试闯失败后,她们知道恶人谷中机
+关密布,一时苦无良策,只好在谷外结庐暂居,等待时机.对于有志一闯恶人谷的江
+湖豪客,她们时常也会提供一些武器粮食的帮助,或代为保存一时用不上的行李物
+品.
+    这里唯一的出口是 east。
+  桃花岛小仙女 小巫仙(Gadzooks)
+  武当女真人 绾绾(Waner)
+  华山大师姐 花云(Easts)
+> > kiss gadzooks
+你在小巫仙的额头上吻了一下
+> > kok waner
+Bill Gates said: bad command or filename...
+> kick waner
+你对着绾绾一脚踢了过去。
+> ysis easts
+Bill Gates said: bad command or filename...
+> sister easts
+你对花云行了个礼，说道：“花云姐姐好！”
+> e
+谷口 - /d/xizang/class/bad/gate
+    这里就是传说中有去无回的恶人谷,很难相信它竟是个暖风轻拂,鲜花盛开的
+人间仙境.北边一条弯弯曲曲的小径通往群山中,西边有座简朴但是十分整齐干净
+的草庐,东边就是谷内了,一块大石(rock)立在路边,上书"恶人谷"三个血红大字.
+    一轮火红的夕阳正徘徊在西方的地平线上。
+    这里明显的出口是 east、west 和 north。
+> e
+谷内 - /d/xizang/class/bad/enter
+    这里是恶人谷内,一条长长的石板街往东延伸,西边是出谷的方向.两旁野花盛
+开,一股芬芳扑鼻而来.
+    一轮火红的夕阳正徘徊在西方的地平线上。
+    这里明显的出口是 east 和 west。
+> e
+石板街 - /d/xizang/class/bad/road1
+    这是一条青石板铺成的街道,两旁是整齐的石砌小屋,东边街道一直延伸出
+很远,西边是繁花盛开的谷中平地.四外远处群山环抱,连绵不绝.
+    一轮火红的夕阳正徘徊在西方的地平线上。
+    这里明显的出口是 east、west、south 和 north。
+> n
+小屋 - /d/xizang/class/bad/house1
+    这里是一座简陋的石砌小屋,没什么陈设.
+    这里唯一的出口是 south。
+  杀人魔 王林(Wang lin)
+> s
+石板街 - /d/xizang/class/bad/road1
+    这是一条青石板铺成的街道,两旁是整齐的石砌小屋,东边街道一直延伸出
+很远,西边是繁花盛开的谷中平地.四外远处群山环抱,连绵不绝.
+    一轮火红的夕阳正徘徊在西方的地平线上。
+    这里明显的出口是 east、west、south 和 north。
+> s
+F_SKILL: No such skill (floodspeak)
+program: feature/skill.c, object: d/xizang/class/bad/npc/lsj, file: /feature/skill.c:18
+夜晚降临了。
+e
+石板街 - /d/xizang/class/bad/road2
+    这是一条青石板铺成的街道,北边有块凸起的山岩(rock),南边似乎是家店铺,街
+道往东西两边延伸.四外远处群山环抱,连绵不绝.
+    夜幕笼罩著大地。
+    这里明显的出口是 east、west 和 south。
+> s
+黑店 - /d/xizang/class/bad/b_shop
+    这里看起来象是个杂货店,不过既在恶人谷中,当然必是一家黑店了
+    这里唯一的出口是 north。
+  黑店老板娘 小雨点(Kouga)
+> n
+石板街 - /d/xizang/class/bad/road2
+    这是一条青石板铺成的街道,北边有块凸起的山岩(rock),南边似乎是家店铺,街
+道往东西两边延伸.四外远处群山环抱,连绵不绝.
+    夜幕笼罩著大地。
+    这里明显的出口是 east、west 和 south。
+> e
+石板街 - /d/xizang/class/bad/road3
+    这是一条青石板铺成的街道,南北两边各有一家店铺,街道往东延伸出很远,西
+边是个转角.四外远处群山环抱,连绵不绝.
+    夜幕笼罩著大地。
+    这里明显的出口是 east、west、south 和 north。
+> s
+酒铺 - /d/xizang/class/bad/w_shop
+    这里是一家酒铺,除了卖酒菜以外,后院也可供住宿,不过敢住在这里的人也实在
+没有几个.
+    这里明显的出口是 east、south 和 north。
+  百战剑狂 侠客(Yak)
+> 你说道：kiss yak
+F_SKILL: No such skill (sowrd)
+program: feature/skill.c, object: d/xizang/class/bad/npc/poi, file: /feature/skill.c:18
+石板街 - /d/xizang/class/bad/road3
+    这是一条青石板铺成的街道,南北两边各有一家店铺,街道往东延伸出很远,西
+边是个转角.四外远处群山环抱,连绵不绝.
+    夜幕笼罩著大地。
+    这里明显的出口是 east、west、south 和 north。
+> n
+药铺 - /d/xizang/class/bad/m_shop
+    这里是一家药铺,卖的是毒药还是补药就没有人知道了,当然最大的可能是二者
+兼而有之
+    这里唯一的出口是 south。
+  毒魔女 唐话(Emote)
+> 
+e石板街 - /d/xizang/class/bad/road3
+    这是一条青石板铺成的街道,南北两边各有一家店铺,街道往东延伸出很远,西
+边是个转角.四外远处群山环抱,连绵不绝.
+    夜幕笼罩著大地。
+    这里明显的出口是 east、west、south 和 north。
+> 
+石板街转角 - /d/xizang/class/bad/road4
+    青石板铺成的街道在这里转而向南,北边和东边各是一座石砌小屋,南边不远是
+座高大的石屋,像是个祠堂.四外远处群山环抱,连绵不绝.
+    夜幕笼罩著大地。
+    这里明显的出口是 east、west、south 和 north。
+> n
+小屋 - /d/xizang/class/bad/house3
+    这里是一座简陋的石砌小屋,没什么陈设.
+    这里唯一的出口是 south。
+> e
+小屋 - /d/xizang/class/bad/house4
+    这里是一座简陋的石砌小屋,没什么陈设.
+    这里唯一的出口是 west。
+  鬼诸葛 寒夜斩(Littleyd)
+> s
+石板街 - /d/xizang/class/bad/road6
+    这是一条青石板铺成的街道,北边不远是个转角,西边是街角那家酒铺的后院,东边
+有座石砌小屋,南边高耸的大屋便是十大恶人聚会议事的唯我独尊堂
+    夜幕笼罩著大地。
+    这里明显的出口是 east、west、south 和 north。
+> e
+小屋 - /d/xizang/class/bad/house5
+    这里是一座简陋的石砌小屋,没什么陈设.
+    这里唯一的出口是 west。
+  铁血变态 流星雨(Logs)
+> s
+这个方向没有出路。
+> w
+石板街 - /d/xizang/class/bad/road6
+    这是一条青石板铺成的街道,北边不远是个转角,西边是街角那家酒铺的后院,东边
+有座石砌小屋,南边高耸的大屋便是十大恶人聚会议事的唯我独尊堂
+    夜幕低垂，满天繁星。
+    这里明显的出口是 east、west、south 和 north。
+> s
+F_SKILL: No such skill (onlyme)
+program: feature/skill.c, object: d/xizang/class/bad/npc/dao, file: /feature/skill.c:18
+s
+唯我独尊堂 - /d/xizang/class/bad/hall
+    这就是十大恶人议事的唯我独尊堂,虽然陈设简陋,但是屋宇高大,气度不凡.尽
+管说是议事之用,堂名却叫作唯我独尊,显然除了这里的主人道可道, 其他人只怕
+也没多少说话的机会.
+    这里唯一的出口是 north。
+

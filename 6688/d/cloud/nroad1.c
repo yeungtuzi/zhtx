@@ -1,0 +1,23 @@
+// Room: /u/cloud/nroad1.c
+
+inherit ROOM;
+
+void create()
+{
+        set("short", "东市场");
+        set("long", @LONG
+这里是绮云镇的东市场，北面是药店，东面是兵器店。
+LONG
+        );
+        set("exits", ([ /* sizeof() == 4 */
+  "west" : __DIR__"nwroad3",
+  "north" : __DIR__"drugstore",
+  "south" : __DIR__"nroad2",
+  "east" : __DIR__"weapony",
+]));
+        set("outdoors", "cloud");
+
+        setup();
+        replace_program(ROOM);
+}
+

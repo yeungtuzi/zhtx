@@ -1,0 +1,492 @@
+// updated by dongsw@zhtx2 2002.8
+
+inherit NPC;
+inherit "/ldg/std/rnd_named.c";
+inherit "/ldg/std/rnd_nickd.c";
+inherit __DIR__"paths.c";
+
+#include <ansi.h>
+#define TOTAL_VALID_ROOM_N 2390  //this have to be manually updated, flyaway
+//read total valid room file to calculate this maybe too large to maintain memory
+#define VALID_ROOM_FILE "/quest/roomlog"   //room log path, flyaway
+
+void set_skills();
+void set_hp(object me, int lv);
+string ask_move();
+int random_place(object me);
+
+void create()
+{
+        set_name(rnd_name(random(2)), ({"killer"}));
+        set("nickname", HIW"  " + rnd_nick(random(2)) + "  "NOR);
+        set("gender", random(2) ? "男性" : "女性");
+        set("age", 20 + random(10));
+        set("str", 60); 
+        set("food", 999);
+        set("water", 999);
+        set_weight(30000);
+        set("no_steal", 1);
+        set("taskkiller", 1);
+        set("chat_chance", 5);
+        set("chat_msg", ({
+             (: random_move :)
+        }) );
+        set("inquiry", ([
+            "乾坤教" : (: ask_move :),
+        ]));
+        setup();
+}
+
+int random_place(object me)
+{
+        int i, j, k;
+        object place, ob = me->query("fighter");
+        string *filepath;
+        mixed* file, exit;
+        string roompath;
+        string *roompaths;
+        filepath = keys(paths);
+        if( !sizeof(filepath) ) return 0; 
+
+        for(k=0;k<10;k++) {
+                roompath=read_file(VALID_ROOM_FILE, random(TOTAL_VALID_ROOM_N)+1,1);
+                roompaths=explode(roompath,"\n");
+                if (!roompath) continue;
+                i=0;
+        while(i<sizeof(filepath) && (strsrch(roompath,filepath[i])==-1)) i++;
+        if (i>=sizeof(filepath)) continue;  //not found
+            place = load_object(roompaths[0]);
+          if(!place || place->query("no_fight") || place->query("no_magic") || place->query("sleep_room") ||
+                                !(exit = place->query("exits")) || sizeof(exit) < 1)
+                                continue;
+         me->move(place);
+         message_vision("$N走了过来。\n", me);
+         me->set("place_name",values(paths)[i]);
+         return 1;
+         }   //10 times loop to tolorate repeating finding suitable room, else this function fail
+    return 0;
+}
+
+void set_skills(){}
+
+string invocation(object me, int lv) 
+{
+        object killer, env;
+        string position;
+
+        killer = this_object();
+
+        set_hp(me, lv);
+        set_skills();
+
+        if(!random_place(killer))
+        {
+                killer->move("/d/jingcheng/zhq" + ( 1 + random(9) ) );
+                killer->set("place_name","京城");
+                message_vision("$N走了过来。\n", killer);
+                //write(chinese_number(sizeof("/quest/roomlog")));
+        }
+
+        env = environment(killer);
+        position = killer->name()+"在" + killer->query("place_name");
+        return position;
+}
+
+void set_hp(object me, int lv) 
+{
+        int max_kee, max_gin, max_sen, skill_force, maximum_force, exp;
+
+        max_kee = me->query("max_kee");
+        max_gin = me->query("max_gin");
+        max_sen = me->query("max_sen");
+        skill_force = query_skill("force");
+        maximum_force = me->query("max_force");
+        exp = me->query("combat_exp");
+
+        set("max_force", skill_force * 10);
+        set("force", skill_force * 20);
+        set("force_factor", 200);
+
+        if (lv==1)
+           {
+                set("max_kee", max_kee*3/2);
+                set("eff_kee", max_kee*3/2);
+                set("max_gin", max_gin*3/2);
+                set("eff_gin", max_gin*3/2);
+                set("max_sen", max_sen*3/2);
+                set("eff_sen", max_sen*3/2);
+                set("sen", max_sen*3/2); 
+                set("kee", max_kee*3/2);
+                set("gin", max_gin*3/2);
+                set("max_force", maximum_force*3/2);
+                set("force",maximum_force*3);
+                set("combat_exp", exp+exp*1/20+random(exp*1/20));
+                set_temp("apply/armor", 100);
+                set_temp("apply/damage", 50);
+           }
+
+        else if (lv==2)
+           {
+                set("max_kee", max_kee*2);
+                set("eff_kee", max_kee*2);
+                set("max_gin", max_gin*2);
+                set("eff_gin", max_gin*2);
+                set("max_sen", max_sen*2);
+                set("eff_sen", max_sen*2);
+                set("sen", max_sen*2);
+                set("kee", max_kee*2);
+                set("gin", max_gin*2);
+                set("max_force", maximum_force*2);
+                set("force",maximum_force*4);
+                set("combat_exp", exp+exp*1/15+random(exp*1/15)); 
+                set_temp("apply/armor",150);
+                set_temp("apply/damage", 80);
+           }
+
+           else
+           {
+                set("max_kee", max_kee*3);
+                set("eff_kee", max_kee*3);
+                set("max_gin", max_gin*3);
+                set("eff_gin", max_gin*3);
+                set("max_sen", max_sen*3);
+                set("eff_sen", max_sen*3);
+                set("sen", max_sen*3);
+                set("kee", max_kee*3);
+                set("gin", max_gin*3);
+                set("max_force", maximum_force*5/2);
+                set("force",maximum_force*5);
+                set("combat_exp", exp+exp*1/10+random(exp*1/10));
+                set_temp("apply/armor", 200);
+                set_temp("apply/damage", 100);
+           }
+}
+ 
+object owner() {return query("owner");}
+
+int accept_fight(object ob)
+{
+        object me = this_object();
+        object obj = me->query("renzhi");
+        if (ob != owner()) return notify_fail(CYN + me->name() + "说道：你是什么人？想死吗？\n"NOR);
+        else
+        {
+                if ( query("var") != "战胜" )
+                {
+                        command("say 想死吗？我成全你！");
+                        me->kill_ob(ob);
+                        if ( query("var") == "救人") me->kill_ob(obj);
+                        return 1;
+                }
+                else
+                {
+                        command("say 在下来领教阁下的高招！");
+                        return 1;
+                }
+        }
+} 
+
+void init ()
+{
+        ::init ();
+        add_action("do_persuade", "quanshuo");
+        add_action("do_kill", "kill");
+        add_action("do_quanjia", "quanjia");
+        add_action("do_hit", "hit");
+}
+
+
+void heart_beat()
+{
+        object killer = this_object();
+        ::heart_beat();
+
+        if ( !is_fighting() && query("eff_kee") >= query("max_kee") / 2
+                && query("eff_kee") <  query("max_kee") )
+                command("exert heal");
+
+        if (query("kee") < query("eff_kee") - 10)
+                command("exert recover");
+
+
+        if (query("gin") < query("eff_gin") - 10) 
+                command("exert regenerate");
+
+        if (query("sen") < query("eff_sen") - 10)
+                command("exert refresh");
+
+        if ( !owner() || owner()->query("cttask/fail") )
+                destruct(killer);
+}
+
+int do_kill(string arg)
+{
+        object me = this_player(), ob, obj;
+
+        if (!arg ) return notify_fail("你要杀谁？\n");
+
+        ob = present(arg, environment(me));
+        obj = ob->query("renzhi");
+
+        if (!ob)   return notify_fail("你要杀谁？\n");
+        if (me->query("cttask/var") == "救人"  &&  query("var") == "救人"
+        && ob->query("owner") == me)
+        {
+                message_vision(HIR"\n$N叫到：既然你们不让老子活，老子也要拉一个陪葬的。" 
+                "\n\n看起来$N想杀死$n！\n" + GRN"$n叫到：壮士救我！\n\n"NOR, ob, obj);
+                ob->kill_ob(obj);
+        }
+}
+int do_hit(string arg)
+{
+        object me = this_player(), ob, obj;
+
+        if (!arg ) return notify_fail("你要攻击谁？\n");
+
+        ob = present(arg, environment(me));
+        obj = ob->query("renzhi");
+
+        if (!ob)   return notify_fail("你要攻击谁？\n");
+        if (me->query("cttask/var") == "救人"  &&  query("var") == "救人"
+        && ob->query("owner") == me)
+        {
+                message_vision(HIR"\n$N叫到：既然你们不让老子活，老子也要拉一个陪葬的。" 
+                "\n\n看起来$N想杀死$n！\n" + GRN"$n叫到：壮士救我！\n\n"NOR, ob, obj);
+                ob->kill_ob(obj);
+        }
+}
+
+
+int do_persuade(string arg)
+{
+        object me =this_player();
+        object ob;
+        int killer_max_kee, killer_eff_kee;
+
+        if(!arg) return notify_fail("你要劝谁？\n");
+        ob = present(arg, environment(me));
+
+        if (!ob) return notify_fail("你要劝谁？\n");
+
+        if (me->query("cttask/var") != "规劝"  || ob->query("var") != "规劝") return 0;
+
+        if (me->is_busy()) return notify_fail("你正忙着呢。\n");
+
+        message_vision(CYN"\n$N说到：浪子回头金不换，这位兄台，现在回头还来的及。\n\n"NOR, me);
+
+        if ( !living(ob) )   return notify_fail(ob->name()+"正在昏迷中，如何能听你劝解？\n"); 
+
+        if ( me != ob->query("owner") || !ob->is_fighting(me) )
+                return notify_fail(CYN + ob->name() + "说道：你罗嗦些什么，快滚开。\n"NOR);
+
+        killer_max_kee = ob->query("max_kee");
+        killer_eff_kee = ob->query("eff_kee");
+
+        if ( killer_eff_kee * 100 / killer_max_kee < 15 || random(me->query("elo")) > 27)
+//加入口才作用1/15的几率会直接成功masterall
+        {
+                command("say 有道理，在下从此退隐江湖，不在沾惹是非了。");
+                me->set("cttask/end_time",time());
+                me->delete("cttask/get");
+                me->set("cttask/done", 1);
+                destruct(ob);
+                return 1;
+        }
+        else if ( killer_eff_kee * 100 / killer_max_kee < 20 )
+        {
+                command("say 你给我去死，我才不信你的鬼话。");
+                me->start_busy( 1 + random(3) );
+                return 1;
+        }
+        else 
+        {
+                me->start_busy(2);
+                return notify_fail(WHT + ob->name() + "忙于战斗，没有听清楚你说的是什么。\n"NOR);
+        }
+}
+
+void die()
+{
+        object me = owner(), ob = this_object(), fighter;
+        object obj = present("ren zhi", environment(me));
+
+//        message_vision(HIR"\n$N喊道：老子虽然死了，但是我相信教主一定会给我报仇的！\n"NOR,ob);
+
+        if (me->query("cttask/var") == "救人"  &&  query("var") == "救人"
+                && obj && obj->query("owner_player") == me)
+        {
+                obj->set_leader(me);
+                message_vision(CYN"\n$N说道：多谢壮士救命之恩，请壮士快带我回去吧。\n"NOR, obj);
+        }
+
+        if (me->query("cttask/var") == "灭口"  &&  query("var") == "灭口")
+        {
+                me->set("cttask/end_time", time()); 
+                me->delete("cttask/get");
+                me->set("cttask/done", 1);
+        }
+        else if(me->query("cttask/var") == "劝架"  &&  query("var") == "劝架")
+        {
+                fighter = ob->query("fighter");
+                if(fighter)
+                {
+                        message_vision(CYN"\n$N说到：多谢壮士相助！告辞！\n"NOR, fighter);
+                        destruct(fighter);
+                }
+                me->delete("cttask/get");
+                me->set("cttask/fail", 1);
+        }
+        else if(me->query("cttask/var") == "废武"  &&  query("var") == "废武")
+        {
+
+                     message_vision(HIW"\n$N知其大限将至，但仍紧要牙关死地反击，招式居然更加凌厉凶猛！”\n\n"NOR, ob, me);
+                     ob->revive();
+                     "/cmds/imm/full"->main(ob,"");
+                     ob->add_temp("apply/damage",100);
+                     ob->add_temp("apply/attack",20);
+                     return;
+        }
+        else if(me->query("cttask/var") == "规劝"  &&  query("var") == "规劝")
+        {
+
+                     message_vision(HIB"\n$N虽知忠言逆耳，但生平在世，只有别人看他的脸色行事，何时顺从过他人！\n随即“哈哈”一声狂笑，豪气顿生，一番疾风暴雨般的攻势又向$n压了过来！\n\n"NOR, ob, me);
+                     ob->revive();
+                     "/cmds/imm/full"->main(ob,"");
+                     ob->add_temp("apply/damage",100);
+                     ob->add_temp("apply/attack",20);
+                     return;
+        }
+        else if(me->query("cttask/var") == "活捉"  &&  query("var") == "活捉")
+        {
+
+                     message_vision(HIG"\n$N一贯在江湖上行走，自然晓得六扇门中的厉害，心下盘算如果落入这帮道貌岸然的朝廷鹰犬手中，\n那必然是生不如死，与其这样，还不如奋战到底也不负恩师当年受业之恩！\n\n"NOR, ob, me);
+                     ob->revive();
+                     "/cmds/imm/full"->main(ob,"");
+                     ob->add_temp("apply/damage",100);
+                     ob->add_temp("apply/attack",20);
+                     return;
+        }
+        message_vision(HIR"\n$N喊道：老子虽然死了，但是我相信教主一定会给我报仇的！\n"NOR,ob);
+        ::die();
+}
+
+void destruct_ob (object ob)
+{
+  destruct (ob);
+}
+
+void kill_ob (object ob) 
+{
+          object me = this_object();
+
+          if (me->query("lv") > 1) me->set_leader(ob);
+
+          ::kill_ob(ob);
+}
+
+int do_quanjia(string arg)
+{
+        object me = this_player();
+        object ob, obj;
+
+        if(!arg) return notify_fail("你要劝谁？\n");
+
+        ob = present(arg, environment(me));
+        obj = ob->query("fighter");
+
+        if (!ob) return notify_fail("你要劝谁？\n");
+
+        if ( me->query("cttask/var") != "劝架"  || ob->query("var") != "劝架") return 0;
+
+        if ( me->is_busy()) return notify_fail("你正忙着呢。\n"); 
+
+        message_vision(CYN"\n$N对$n说到：这位壮士，既然人家已经翻然省悟，请不要在相逼了吧。\n\n"NOR, me, ob);
+
+        if ( !living(ob) )   return notify_fail(ob->name() + "正在昏迷中，如何能听你劝？\n");
+
+        if ( me != ob->query("owner") || !ob->is_fighting() )
+        {
+                message_vision(CYN"$N说道：你罗嗦些什么，快滚开。\n"NOR, ob);
+                return 1;
+        }
+
+//        if ( me->query("elo") > 29 || me->query("per") > 29 || random(5) == 1 )
+//     现在per和elo都很高，这个判定没用了，劝架的任务等于白送，改改公式
+        if ( random(me->query("elo")) > 25 || random(me->query("per")) > 30 || random(8) == 1 )
+        {
+                message_vision(HIG"$N说道：既然如此，我可以暂时罢手，但教主不会放过他的！告辞！\n"NOR, ob);
+                ob->remove_all_enemy();
+                obj->remove_all_enemy();
+                me->set("cttask/end_time", time());
+                me->delete("cttask/get");
+                me->set("cttask/done", 1);
+                call_out("destroy_obj", 1, obj, ob);
+                return 1; 
+        }
+        else if ( me->query("elo") > 10 && random(4) < 1 && !me->is_fighting(ob) )
+        {
+                message_vision(CYN"$N说道：这是我们神教内部的事，别人不便插手！\n"NOR, ob);
+                me->start_busy(3);
+                return 1;
+        }
+        else if ( random(3) < 1 && !me->is_fighting(ob) )
+        {
+                message_vision(HIR"$N说到：你唠叨些什么？既然被你看见了，你就和这个叛徒一起去见阎老五吧！\n"NOR, ob);
+                ob->kill_ob(me);
+                if (random(obj->query("int")) < 50)
+                {
+                        message_vision(HIR"\n$N说道：你不用装慈悲了，我知道你们是一路的，我和你们拼了！\n"NOR, obj);
+                        obj->kill_ob(me);
+                }
+                me->start_busy(2);
+                return 1;
+        }
+        else
+        {
+                message_vision(HIR"$N说到：快滚，不然老子连你一块宰！\n"NOR, ob);
+                me->start_busy(4); 
+                return 1;
+        }
+
+}
+
+
+void destroy_obj(object obj,object ob)
+{
+        object me = obj->query("owner");
+
+        if(!me->is_fighting(obj))
+        {
+                obj->command("bow");
+                message_vision(YEL"\n$N说道：多谢壮士相助，将来必有重谢！再会！\n"NOR, obj);
+        }
+        else
+        {
+                obj->command("heng");
+                message_vision(RED"\n$N说道：没有这么便宜的事，这一定是你们的诡计！\n"NOR, obj);
+        }
+
+        destruct(obj);
+        destruct(ob); 
+}
+
+//this function is for the killer in the no_fight room 
+//so can ask fight about 乾坤教 to make the killer random move
+string ask_move()
+{
+    object player, room;
+    mapping exits;
+    string  *dirs;
+
+    player = this_player();
+    if (query("owner") == player) {
+        room = environment(this_object());
+        exits = room->query("exits");
+        dirs = keys(exits);
+        command("go "+dirs[random(sizeof(dirs))]);
+        return "你想知道乾坤教？跟我来，这边谈！";
+    }else {
+        return "你是谁？我不认识你！";
+    }
+}
+

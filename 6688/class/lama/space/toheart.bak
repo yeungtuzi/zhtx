@@ -1,0 +1,53 @@
+// /daemon/class/lama/space/toheart.c
+// force move
+//
+#include <ansi.h>
+inherit F_CLEAN_UP;
+inherit SSERVER;
+mapping outs;
+object got_target;
+
+int conjure(object me, object target)
+{
+        if( wizardp(me) )return notify_fail("巫师限制使用此法术!\n");
+	if( me->is_fighting() ) return notify_fail("拜托,先打完这架再说!\n");
+	if( me->query("atman") < 15)
+		return notify_fail("你的灵力不够！\n");
+	if( me->query_skill("space",1) < 10)
+		return notify_fail("你的天外神识水平不够,无法施展传心术.\n");
+	if( !target || target==me ) 
+		return notify_fail("你麻烦不麻烦啊?不会用go?!\n");
+	if( !living(target)) return notify_fail("这家伙已经不能走路了.\n");
+	if( !mapp(outs=environment(target)->query("exits")))
+		return notify_fail("这家伙哪里也去不了.\n");
+	if((int)target->query("combat_exp")>(int)me->query("combat_exp")*10)
+		return notify_fail("少惹这种家伙为妙.\n");
+	if(target->query("hold_position") && !me->can_seduce(target))
+		return notify_fail("人家不吃这一套.\n");
+	got_target=target;
+	write("去哪里?");
+	input_to( (: call_other, __FILE__, "select_path", me:));
+	return 1;
+}
+
+void select_path(object me, string path)
+{
+	string* exit;
+	if( !path || path=="" ) {
+                write("中止施法。\n");
+                return;
+        }
+	exit=keys(outs);
+	if(member_array(path, exit)==-1)
+		write("没这个方向.\n");
+	if( me->is_fighting() ) {write("拜托,先打完这架再说!\n"); return;}
+        if( me->query("atman") < 15) { write("你的灵力不够！\n"); return;}		
+	me->add("atman", -15);
+	if(!objectp(got_target)||!living(got_target)) {
+		write("施法失败.\n");
+		return;
+	}
+	tell_object(got_target, "有人让你往"+path+"走一步\n");
+	got_target->move(outs[path]);
+	return;
+}

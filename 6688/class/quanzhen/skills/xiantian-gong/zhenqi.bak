@@ -1,0 +1,83 @@
+// xiantian-zhenqi.c
+// by yeung
+
+#include <ansi.h>
+
+inherit F_CLEAN_UP;
+
+void remove_effect(object me, int amount);
+
+int exert(object me, object target)
+{
+        int skill,amount,i;
+
+        if( target && target != me ) return notify_fail("你只能用先天功来加强自身的防护效果。\n");
+
+        if( (int)me->query_temp("zhenqi") ) return notify_fail("你已经在运功中了。\n");
+
+        skill = me->query_skill("xiantian-gong",1);
+        if(skill<100){
+        amount = skill/25+me->query("max_force")/50;
+        i=1; 
+        }
+        if(skill>99 && skill<150){
+        amount = skill/20+me->query("max_force")/40;
+        i=2; 
+        }
+        if(skill>149 && skill<200){
+        amount = skill/15+me->query("max_force")/30;
+        i=3; 
+        }
+        if(skill>199 && skill<220){
+        amount = skill/10+me->query("max_force")/20;
+        i=4; 
+        }
+        if(skill>219 && skill<250){
+        amount = skill/5+me->query("max_force")/10;
+        i=5; 
+        }
+        if(skill>249 && skill<280){
+        amount = skill+me->query("max_force")/9;
+        i=6; 
+        }
+        if(skill>279 && skill<300){
+        amount = skill*2+me->query("max_force")/8;
+        i=7; 
+        }
+        if(skill>299 && skill<350){
+        amount = skill*3+me->query("max_force")/7;
+        i=8; 
+        }
+        if(skill>349){
+        amount = skill*5+me->query("max_force")/5;
+        i=9; 
+        }
+ 
+        if ( skill < 50 )
+                return notify_fail("你的先天功修为还不够，无法运用先天真气。\n");
+        if( (int)me->query("force") < 2000 )     
+                return notify_fail("你的内力不够。\n");
+
+        message_vision(HIY"$N将体内的真气逐渐凝聚，已渐渐修炼出"+HIR"第"+chinese_number(i)+"重"+HIY"先天护体真气！！\n\n"+HIG"顿时觉得自己有如脱胎换骨，四肢百骸一股说不出的畅快淋漓！！！\n\n"NOR,me);
+
+        me->add("force", -1000);
+       amount = amount/2;
+        me->add_temp("apply/armor", amount); 
+        me->add_temp("apply/armor_vs_force", amount); 
+        me->set_temp("zhenqi",1);
+
+        me->start_call_out( (: call_other, __FILE__, "remove_effect", me, amount :), skill);
+
+        if( me->is_fighting() ) me->start_busy(3);
+
+        return 1;
+}
+
+void remove_effect(object me, int amount)
+{
+        me->add_temp("apply/armor", -amount); 
+        me->add_temp("apply/armor_vs_force", - amount);
+        me->delete_temp("zhenqi");
+        tell_object(me, HIC"你的先天真气运行完毕，内力重新归于丹田。\n"NOR);
+}
+

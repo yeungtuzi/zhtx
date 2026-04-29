@@ -1,0 +1,16 @@
+where:radom:command
+%s:%d:%s
+
+/d/hangzhou/chting
+0
+west
+
+/d/hangzhou/midong
+0
+east
+
+/d/hangzhou/chting
+0
+say ok
+
+

@@ -1,0 +1,88 @@
+#std/bboard.c
+dbase (["notes":({(["msg":"as title.....:)
+","time":815372886,"author":"天行者","title":"我第一 ..",]),(["msg":"□倒乱七星步法 (chaos-steps)               - 深不可测 100/    0
+  纵跃闪躲之术 (dodge)                     - 登峰造极  80/    0
+  封山派内功 (fonxanforce)                 - 神乎其技  60/    0□□封山剑法 (fonxansword)                   - 深不可测 150/    0
+  读书识字 (literate)                      - 了然於胸  60/    0□□柳家拳法 (liuh-ken)                      - 神乎其技  60/    0
+  拆招卸力之法 (parry)                     - 深不可测 120/    0
+  灵蛛剑阵 (spider-array)                  - 登峰造极  85/    0
+  基本剑术 (sword)                         - 深不可测 150/    0
+  扑击格斗之技 (unarmed)                   - 驾轻就熟  40/    0
+","author":"孟波","time":815604824,"title":"skills master..",]),(["msg":"........
+","time":816233951,"author":"雪山狐","title":"灵蛛剑阵",]),(["msg":"","author":"乱世小淫刀","time":816309125,"title":".",]),(["msg":"hmmmm.
+","author":"一休禅师","time":816312187,"title":"hmmmmm",]),(["msg":"灵蛛剑阵, 天下无敌!
+","time":816574515,"author":"之乎","title":"谈笑有鸿儒,往来无白丁",]),(["msg":"","author":"妖刀","time":817120776,"title":"封山剑法 无敌呀!!!!!!",]),(["msg":"  封山派内功 (fonxanforce)                 - 神乎其技  60/    0
+master's fonxanforce seem not enable yet...
+","time":817140463,"author":"路痴","title":"about master ..",]),(["msg":"□倒乱七星步法 (chaos-steps)               - 深不可测 100/    0
+  纵跃闪躲之术 (dodge)                     - 登峰造极  80/    0
+  封山派内功 (fonxanforce)                 - 神乎其技  60/    0
+□封山剑法 (fonxansword)                   - 深不可测 150/    0
+  内功心法 (force)                         - 驾轻就熟  40/    0
+  读书识字 (literate)                      - 了然於胸  60/    0
+□柳家拳法 (liuh-ken)                      - 神乎其技  60/    0
+  拆招卸力之法 (parry)                     - 深不可测 120/    0
+  灵蛛剑阵 (spider-array)                  - 登峰造极  85/    0
+  基本剑术 (sword)                         - 深不可测 150/    0
+","author":"云","time":817274894,"title":"柳淳风",]),(["msg":"       百日练拳，千日练剑，万日练封山剑:P
+      祝你们练无敌剑法，练的愉快，and..
+      Yours master...我想他的内力是不会改了
+      Enjoey Yourself.........
+					你们不太认识的小巫
+						       Tnn
+","time":817356464,"author":"托佛尼亚","title":"封山剑法",]),(["msg":"为什么不能在大陆建一个mirror site?这里太慢了!!!
+","author":"残月","time":817789243,"title":"奇怪?",]),(["msg":"hehe, 41!
+","time":819511231,"author":"之乎","title":"你的「读书识字」进步了！",]),(["msg":"□倒乱七星步法 (chaos-steps)               - 粗通皮毛  14/   45
+a跃闪躲之术 (dodge)                     - 粗通皮毛  19/  124
+□封山派内□(fonxanforce) - 驾轻就熟  45/    0
+□封山剑法 (fonxansword)                   - 马马虎虎  36/ 1353
+内奶□k (force)                         - 驾轻就熟  41/  267
+
+","author":"者也","time":822268572,"title":"一天的成果",]),(["msg":"
+
+
+
+
+
+
+读书识字 (literate)                      - 心领神会  50/ 1364
+□柳家拳法 (liuh-ken)                      - 初学乍练   2/    7
+法术 (magic)                             - 初窥门径  17/  133
+基本轻□(move) - 出类拔萃  51/    0
+拆招卸力之法 (parry)                     - 粗通皮毛  18/  335
+","author":"者也","time":822268858,"title":"cont.13",]),(["msg":"基本刀法 (blade)                         - 驾轻就熟  41/    0
+□倒乱七星步法 (chaos-steps)               - 驾轻就熟  43/ 1551
+a跃闪躲之术 (dodge)                     - 驾轻就熟  45/ 1346
+□封山派内□(fonxanforce) - 神乎其技  60/    0
+□封山剑法 (fonxansword)                   - 出类拔萃  51/  935
+内奶□k (force)                         - 驾轻就熟  41/  730
+读书识字 (literate)                      - 心领神会  51/    0
+□柳家拳法 (liuh-ken)                      - 初学乍练   2/    7
+法术 (magic)                             - 略知一二  21/    0
+基本轻□(move) - 出类拔萃  51/    0
+□茅山道术 (necromancy)                    - 马马虎虎  30/    0
+拆招卸力之法 (parry)                     - 半生不熟  25/  407
+咒术 (spells)                            - 已有小成  41/  376
+基本剑术 (sword)                         - 出类拔萃  53/ 1024
+天师正道 (taoism)                        - 初窥门径  14/    0
+扑击格斗之技 (unarmed)                   - 驾轻就熟  40/    1
+","time":823585061,"author":"者也","title":"sorry, 3d4h",]),(["msg":"云瑭n音喝道：                                                  
+~1爑�/爑0爑P
+  大乘佛法 (buddhism)                      - 深不可测 106/    0
+  天邪神功 (celestial)                     - 深不可测 228/  431
+  天邪神掌 (celestrike)                    - 深不可测 259/   79
+  诵经 (chanting)                          - 深不可测 145/    0
+  白云杖法 (cloudstaff)                    - 深不可测 109/    0
+  纵跃闪躲之术 (dodge)                     - 深不可测 2556/  432
+□八识神通 (essencemagic)                  - 深不可测 102/    0
+  封山剑法 (fonxansword)                   - 深不可测 285/    2
+  内功心法 (force)                         - 深不可测 13637/   49
+  谷衣心法 (gouyee)                        - 深不可测 139/    0
+  基本□法 (hammer)                        - 深不可测 150/  751
+  鸣琴鼓瑟、奏乐之技 (instruments)         - 深不可测 126/    0
+","author":"风云","time":824447165,"title":"16",]),(["msg":"鸭子功(duckforce)                   -  深不可测 1000/1000
+","time":825956081,"author":"鸭","title":"0 h",]),(["msg":".......
+","author":"庞斑","time":827477830,"title":"庞斑到此一游.......",]),(["msg":"封山剑法不全.
+","time":829572554,"author":"老夏","title":"天",]),(["msg":"","author":"李寻欢","time":829638761,"title":"-是不全，北美的就不全
+",]),(["msg":"从靠铁匠铺的街上望东走会出编译错耶
+","time":831432992,"author":"老夏","title":"21",]),}),"id":"board","capacity":30,"board_id":"swordsman_b","location":"/d/snow/schoolhall","name":"剑士留言板","no_get":1,"long":"这是供剑士们留言记事的留言板。
+",])

@@ -1,0 +1,62 @@
+// lengruoshuang
+// by yeung
+
+#include "ansi.h"
+
+inherit NPC;
+inherit F_MASTER;
+inherit F_QUEST;
+
+void create()
+{
+    set_name("冷若霜", ({ "leng ruoshuang","leng", }));
+	set("long",
+        "她是一位美艳动人的女子，可是一张俏丽的面庞上却从来看不到笑容。\n"
+        "虽然很多人私下对她很有好感，可她从来不对任何人假以辞色。\n"
+	);
+
+	set("title","明教""地字门门主");
+
+	set("gender", "女性");
+	set("attitude", "friendly");
+
+	set("age", 22);
+	set("shen_type", 1);
+	set("str", 20);
+	set("int", 20);
+	set("con", 20);
+	set("dex", 20);
+	set("per", 30);
+	set("max_kee", 450);
+	set("max_gin", 300);
+	set("force", 600);
+	set("max_force", 600);
+	set("forca_factor", 50);
+	set("combat_exp", 50000);
+	set("score", 100);
+
+	set_skill("force", 70);
+	set_skill("moni-xinfa", 70);
+	set_skill("dodge", 70);
+	set_skill("yueying-wubu", 70);
+	set_skill("hand", 68);
+	set_skill("zhemei-shou", 68);
+	set_skill("parry", 70);
+	set_skill("sword", 70);
+	set_skill("xiaoyao-jian", 70);
+
+	map_skill("force", "moni-xinfa");
+	map_skill("dodge", "yueying-wubu");
+	map_skill("hand", "zhemei-shou");
+	map_skill("parry", "xiaoyao-jian");
+	map_skill("sword", "xiaoyao-jian");
+	prepare_skill("strike", "moni-strike");
+	create_family("明教",37,"弟子");
+
+	setup();
+
+	carry_object(__DIR__"obj/thin_sword")->wield();
+
+}
+
+#include "menzhu.h"

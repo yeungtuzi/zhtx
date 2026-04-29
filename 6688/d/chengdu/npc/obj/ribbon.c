@@ -1,0 +1,24 @@
+// ribbon.c
+
+#include <ansi.h>
+#include <armor.h>
+
+inherit HEAD;
+
+void create()
+{
+	set_name( HIW "飘逸头巾" NOR, ({ "ribbon" }) );
+	set_weight(200);
+	if( clonep() )
+		set_default_object(__FILE__);
+	else {
+		set("unit", "条");
+		set("value", 4000);
+		set("material", "cloth");
+		set("armor_prop/armor", 10);
+		set("armor_prop/dodge", 5);
+		set("wear_msg", "$N将$n拿出穿在身上。\n");
+	}
+
+	setup();
+}

@@ -1,0 +1,125 @@
+//ensnare.c
+//for latemoon storm-dance
+//yeung 1998/11/16                                 
+
+#include <ansi.h>
+#include <combat.h>
+
+inherit F_SSERVER;
+ 
+
+int perform(object me, object target)
+{
+        int skill,mine,yours,i;
+        object ob,weapon;
+
+        if( !me->is_fighting() )
+                return notify_fail("「迎风一刀斩」只能在战斗中使用。\n");
+
+        if( (int)me->query("force") < 500 )
+                return notify_fail("你的内力不够。\n");
+
+        skill = (int)me->query_skill("spring-blade",1);
+        skill *= 2;
+
+        if( skill < 200 )
+                return notify_fail("你的春风快意刀等级不够。\n");
+
+        if( (int)me->query("wil") < 25)
+                return notify_fail("你意志力低弱，怎么敢以血祭刀？\n");   
+
+        if (!objectp(ob = present("yaodao goutu",me) ) )
+                return notify_fail("你还没有得到妖刀狗屠，如何使用「迎风一刀斩」。\n");  
+
+        if( !objectp( weapon = me->query_temp("weapon")) || weapon->query("skill_type")!="blade" )
+                return notify_fail("「迎风一刀斩」必须手中有刀。\n");
+        
+        if( me->query_skill_mapped("blade") != "spring-blade" )
+                return notify_fail("只有春风快意刀才可以使用「迎风一刀斩」。\n");
+
+        if( me->query_skill_mapped("parry") != "spring-blade" )
+                return notify_fail("只有春风快意刀才可以使用「迎风一刀斩」。\n");
+
+      
+        if( !target || target==me ) {
+                target = offensive_target(me);
+                if( !objectp(target) ) return notify_fail("你要用「迎风一刀斩」砍谁？\n");
+        }
+        
+        if( target->query("race") != "人类")
+                return notify_fail("对方连人都不是，你的血会白放的。\n");
+   
+        me->add("force",-500);
+
+message_vision(HIC "$N的眼神突然间变得极为凌厉，二目射出逼人的杀气......\n$N一咬牙，将"+HIG"妖"+HIB"刀"+HIY"狗"+HIR"屠"+HIC"搭在自己的左臂上，\n"+HIR"“呲”的一声划出一道深及见骨的伤口，顿时殷红的鲜血喷泉般疾射而出！\n"NOR, me, target);
+
+//        me->add("eff_kee",-800*me->query("force_factor")/skill);
+
+        mine  = skill/5 + 2*(int)me->query_wil(); 
+    yours = target->query_cps()*2; //enforce 以后大概到45-50再*2，和尚可以到130左右,到最后基本相当
+      yours += target->query_kar();
+
+        if( target->query("class") == "bonze") //和尚可能定力精深，也可能对色相加倍敏感
+        {
+                if( random(target->query_kar()) < 5 ) 
+                        mine += (target->query("age") - 14);
+                else
+            mine  -= (target->query("age") - 14); //受年龄影响。年纪大了或者更沉着，或者更..
+        }
+
+        if( target->query("gender") == "女性") 
+        mine += 2*me->query_wil()-target->query_wil();
+        //女子一般都比较害怕这个，所以成功率高点 
+
+        if( target->query_skill_mapped("force") == "iceforce")
+        yours -= target->query_skill("iceforce",1)/5; //专门吓唬晚月的小丫头
+
+        if( target->query_skill_mapped("force") == "taiji-shengong")
+        yours -= target->query_skill("tianmo-dafa",1)/3; //给武当找个怨家
+
+        if( target->query_skill_mapped("force") == "moni-xinfa")
+        yours -= target->query_skill("moni-xinfa",1)/5; //让明教的美眉也受点罪
+        if( target->query("id") == "buzhi huowu" ) mine = mine/10;
+        if( target->query("id") == "long xiang" ) mine = mine/10;
+
+        if( random(mine) > yours/4) // perform succeeds
+        {
+                switch(random(2))   //可以造成不同的影响，增加变化
+                {
+                        case 0:    //进行连续攻击
+message_vision(HIY"\n就在$n被目前惨烈的景象吓得目瞪口呆之时，\n被鲜血染红的"+HIR"妖刀狗屠"+HIY"已然迎风而至！！\n" NOR, me, target);
+                                me->delete("skill_mark/spring-blade");
+                                for(i=0;i<(skill/60+1);i++)
+                                {
+                                        if( !target || (environment(target) != environment(me)))
+                                        {       
+                                                message_vision(HIG "$N剑眉一竖，背刀而立，冷冷的一笑。\n" NOR, me);
+                                                break;                                                              
+                                        }
+                                        COMBAT_D->do_attack(me, target, me->query_temp("weapon"),TYPE_QUICK);
+                                }
+                                me->set("skill_mark/spring-blade",1);
+                                break;                        
+                        case 1:    //对方busy
+message_vision(HIG"\n$n被眼前的惨状吓得肝胆剧裂，就好像那一刀是砍在自己身上，\n手中的兵刃“呛啷”一声掉在了地上，一时间竟忘了防御和攻击！！\n" NOR, me, target);                        
+                target->start_busy(skill/60+1);
+                if( target->query_temp("weapon") ) {        
+                ob = target->query_temp("weapon");
+                ob->unequip();
+                ob->move(environment(target));
+                }
+                                break;
+                                               
+                }                                            
+                //攻击完毕
+                me->start_busy(1+random(2));
+                return 1;
+        }
+        else    //fail
+        {                
+message_vision(HIC"\n$n气定神闲，丝毫不为所动，却从$N自残之身时寻出破绽，趁势发动进攻！\n" NOR, me, target);                                                           
+                me->start_busy(1+random(2));
+
+                return 1;
+        }
+}

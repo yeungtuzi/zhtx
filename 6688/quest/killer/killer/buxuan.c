@@ -1,0 +1,48 @@
+#include "skillslv.h"
+
+inherit "quest/killer/killer.c";
+
+void set_skills()
+{
+        ::set_skills();
+
+        create_family("步玄派", 8, "弟子");
+        set("chat_chance_combat", 80);
+        set("chat_msg_combat", ({
+                (: perform_action, "dodge.hasten" :),
+        }) );
+
+        set_skill("finger", LV);
+        set_skill("sword", LV);
+        set_skill("force", LV);
+        set_skill("parry", LV);
+        set_skill("dodge", LV);
+        set_skill("move", LV);
+        set_skill("perception", LV);
+        set_skill("music", LV);
+
+        set_skill("mystforce", LV);
+        set_skill("mysterrier", LV);
+        set_skill("mystsword", LV);
+        set_skill("perception", LV);
+
+        map_skill("force", "mystforce");
+        map_skill("dodge", "mysterrier");
+        map_skill("move", "mysterrier");
+        map_skill("sword", "mystsword");
+        map_skill("parry", "mystsword");
+
+        set_temp("apply/astral_vision",1);
+        carry_object("/class/scholar/windspring2")->wield();
+//        carry_object("/obj/weapon/sword")->wield();
+        carry_object("/obj/cloth")->wear();
+}
+
+
+void heart_beat() {
+   if (!query_temp("hasten") && is_fighting())
+      command("perform dodge.hasten");
+      ::heart_beat();
+}
+
+

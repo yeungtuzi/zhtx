@@ -1,0 +1,114 @@
+// ninth.c 「九宫连环」
+// written by dongsw 2002
+
+#include <ansi.h>
+
+inherit F_SSERVER;
+
+void remove_effect(object me);
+
+int perform(object me, object target)
+{
+        int skill, i;
+        object weapon;
+
+        if( !target ) target = offensive_target(me);
+
+        if( !me->is_fighting() )
+                return notify_fail("「九宫连环」只能在战斗中使用。\n");
+        
+        if( me->query("family/family_name") != "武当派")
+                return notify_fail("你不是武当正宗弟子，不会使用武当绝技！\n");
+
+        if( me->query("faith") < 1500 )
+                return notify_fail("你的门忠不够，不能使用「九宫连环」。\n");
+
+        if( (int)me->query("force") < 500)
+                return notify_fail("你的内力不够。\n");
+        
+        if( (int)me->query_temp("skill_mark/wudang_ninth") )
+                return notify_fail("你刚刚催动过「九宫连环」，真气周转不上，歇歇在用吧。\n");
+        
+        if( (int)me->query_temp("pfm/wudang_chan") )
+                return notify_fail("你正在使用「缠」字诀，与「九宫连环」剑意相反不能同时催动！。\n");  
+        
+        if( !objectp( weapon = me->query_temp("weapon")) || weapon->query("skill_type")!="sword" )
+                return notify_fail("「九宫连环」必须手中有剑。\n");
+        
+        if( me->query_skill_mapped("sword") != "taiji-jian" )
+                return notify_fail("只有太极剑法才可以使用「九宫连环」。\n");
+
+           if( me->is_busy() )
+                     return notify_fail("你正忙着呢。\n");
+        skill = (int)me->query_skill("sword",1) + (int)me->query_skill("taiji-jian",1);
+        me->add("force", -500);
+        me->set_temp("skill_mark/wudang_ninth",1);
+        message_vision(
+                HIG "$N突地自清啸一声，剑光一引，左足前踏，“云垅乍现”，刷地一剑，青蓝的剑光随即穿出！\n" NOR, me);
+
+        if(skill > 350 && target)
+        {
+                me->add_temp("apply/attack", skill/15);
+                if(target)
+                for(i=0;i<3;i++)
+                {
+                        if(target)
+                        {
+                                message_vision(CYN"\n剑光闪闪！剑意纵横!"NOR,me);
+                                COMBAT_D->do_attack(me,target, me->query_temp("weapon"),0);
+                        }
+                }
+        }
+        
+        if(skill > 400 && target)
+        {
+                message_vision(HIR"\n$N竞借着这一招之势，变守为攻，以攻为守。\n"NOR,me);
+                me->add_temp("apply/attack", skill/10);
+                if(target)
+                for(i=0;i<3;i++)
+                {
+                        if(target)
+                        {
+                                message_vision(CYN"\n剑光闪闪！剑意纵横!"NOR,me);
+                                COMBAT_D->do_attack(me,target, me->query_temp("weapon"),0);
+                        }
+                }
+        }
+        else
+        {
+                me->add_temp("apply/attack", -skill/15);
+        }
+        
+        if(skill > 450 && target)
+        {
+                message_vision(HIC"\n$N出剑源源如泉，抽撤连环，连环不绝，正是武当剑派名震天下的“九宫连环”。\n"NOR,me);
+        
+                me->add_temp("apply/attack", skill/5);
+                for(i=0;i<3;i++)
+                {
+                        if(target)
+                        {
+                                message_vision(CYN"\n剑光闪闪！剑意纵横!"NOR,me);
+                                COMBAT_D->do_attack(me,target, me->query_temp("weapon"),0);
+                        }
+                }
+                me->add_temp("apply/attack", -skill*11/30);
+        }
+        else
+        {
+                me->add_temp("apply/attack", -skill/6);
+        }
+        me->start_busy(3);
+        
+        me->start_call_out( (: call_other, __FILE__, "remove_effect", me :), skill/20);
+
+        return 1;
+}
+
+void remove_effect(object me)
+{
+        me->delete_temp("skill_mark/wudang_ninth");
+        tell_object(me, "你感觉体内真气充实，看来又可以使用「九宫连环」了。\n");
+}
+
+

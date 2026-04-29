@@ -1,0 +1,111 @@
+// Room: /d/gumu/ceshi.c 
+ 
+inherit ROOM;
+#include <ansi.h>
+ 
+void create() 
+{ 
+        set("short", "古墓侧室");
+        set("long", @LONG
+       这里是古墓派侧室，四周都是石壁，异常的黑暗，一张寒玉床(bed)  
+，还有一条细绳(string)悬在空中，好不怪异。 
+LONG
+        );
+	set("no_fight", 1);        
+	set("no_magic", 1);
+        set("sleep_room", 1);
+        set("max_sleeper",3);
+        set("item_desc", ([ /* sizeof() == 2 */
+  "bed" : "这是一块极地寒玉雕成的床，室内的阵阵寒意就是从床上发出的。 
+不知你敢不敢在上面睡(sleep)\n",
+  "string" : "一条纤细的绳子横悬在室内，难道是凉衣服用的不成？ 
+",
+]));
+       
+        set(
+        	"exits", ([ /* sizeof() == 3 */
+   		"south" : "/d/gumu/zoudao2.c",
+	]));
+
+        set("no_clean_up", 0);
+        
+ 
+    
+
+}
+void init()
+{      
+        add_action("do_sleep", "sleep");
+}
+int do_sleep(string arg)
+{
+	  object me;
+       me = this_player();
+    if (arg != "bed" ) { write("你要睡在哪里?\n"); return 1;}
+    if(query("max_sleeper")<=0) {write("已经有人睡在这里了，你等一会儿吧!\n"); return 1;}
+if( (int)me->query_skill("yunu-xinfa",1)<20)
+    	{
+            write("你玉女心法不够。不能睡寒玉床\n");
+	return 1;
+	}
+if( (int)me->query("max_force")<20)
+    	{
+            write("你内力不够，不能睡寒玉床。\n");
+                return 1;
+	}
+ if( me->is_busy() )
+  return notify_fail("你上一个动作还没有完成呢。\n");  
+ 
+ else
+	{
+		message_vision("$N睡在寒玉床上，感到阵阵寒气传来，不得不运内力抵御. 渐渐地，$N睡着了。\n", me);
+ 		me->start_busy(20); 
+		me->set("no_get", 1);	
+		me->set("no_get_from", 1);	
+		me->disable_player("<睡梦中>");
+
+  		call_out("end",20,me);
+  		add("max_sleeper",-1);
+ 		return 1;	
+ 	}
+
+}
+void end(object me)
+{
+  	int i,limit;
+	
+	i=2*((int)me->query("kee"));
+    	me->set_temp("block_msg/all",0);
+	me->enable_player();    	
+	me->add("kee",-((int)me->query("kee")/2));
+ 	me->add("force",i);
+	message_vision("$N一觉醒来，舒舒服服的活动了一下筋骨.\n",me);
+	message_vision("$N感到体内内力四方游动，在抵御寒气的过程中有所增强！\n",me);
+
+        /*  call move to re init all actions dao 971216 */
+        {
+                object * inv;
+
+        me->move(__FILE__);
+        inv = all_inventory(me);
+                i = sizeof(inv);
+                while(i--) {
+                        string status=inv[i]->query("equipped") ;
+                        inv[i]->move(me);
+                        if( status == "worn" ) inv[i]->wear();
+                }
+        }
+
+	limit = (me->query_skill("force",1)*5+me->query_skill("force"))*2;      
+	if( limit > 1000 ) limit = 1000;	
+	if ((int)me->query("force")>2*(int)me->query("max_force") && me->query("max_force")<limit )
+	{
+		me->add("max_force",1);
+		me->set("force",(int)me->query("max_force"));
+ 		message_vision(HIW"$N的内力增加了!!!\n"NOR,me);
+ 	}
+	add("max_sleeper",1);
+	me->delete("no_get");	
+	me->delete("no_get_from");	 
+  	set("have_sleep",0); 
+}

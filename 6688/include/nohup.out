@@ -1,0 +1,471 @@
+using config file: /home/mudadm/newmud/config.new
+----------------------------------------------------------------------------
+纵横天下 (MudOS v21.7) starting up on AIX - Sat Jun 28 17:16:26 1997
+
+
+Connected to address server on localhost port 4000
+]simul_efun loaded successfully.
+
+Loading preloaded files ...
+Initializations complete.
+
+Accepting connections on port 1997.
+]"open/d/dao/Welcome" ]1 lines 14 bytes
+执行时段错误: *call_other() couldn't find object
+程式: cmds/std/go.c:144
+物件: cmds/std/go
+执行时段错误: *call_other() couldn't find object
+程式: cmds/std/go.c:144
+物件: cmds/std/go
+执行时段错误: *call_other() couldn't find object
+程式: cmds/std/go.c:144
+物件: cmds/std/go
+][1;34m【系统】南(June)：断线了。
+[2;37;0m执行时段错误: *call_other() couldn't find object
+程式: cmds/std/go.c:144
+物件: cmds/std/go
+执行时段错误: *call_other() couldn't find object
+程式: cmds/std/go.c:144
+物件: cmds/std/go
+执行时段错误: *call_other() couldn't find object
+程式: cmds/std/go.c:144
+物件: cmds/std/go
+执行时段错误: *call_other() couldn't find object
+程式: cmds/std/go.c:144
+物件: cmds/std/go
+执行时段错误: *call_other() couldn't find object
+程式: cmds/std/go.c:144
+物件: cmds/std/go
+执行时段错误: *call_other() couldn't find object
+程式: cmds/std/go.c:144
+物件: cmds/std/go
+执行时段错误: *call_other() couldn't find object
+程式: cmds/std/go.c:144
+物件: cmds/std/go
+执行时段错误: *call_other() couldn't find object
+程式: cmds/std/go.c:144
+物件: cmds/std/go
+执行时段错误: *call_other() couldn't find object
+程式: cmds/std/go.c:144
+物件: cmds/std/go
+执行时段错误: *call_other() couldn't find object
+程式: cmds/std/go.c:144
+物件: cmds/std/go
+执行时段错误: *call_other() couldn't find object
+程式: cmds/std/go.c:144
+物件: cmds/std/go
+执行时段错误: *call_other() couldn't find object
+程式: cmds/std/go.c:144
+物件: cmds/std/go
+执行时段错误: *call_other() couldn't find object
+程式: cmds/std/go.c:144
+物件: cmds/std/go
+执行时段错误: *call_other() couldn't find object
+程式: cmds/std/go.c:144
+物件: cmds/std/go
+执行时段错误: F_SKILL: No such skill (gou)
+程式: feature/skill.c:17
+物件: d/heimuya/npc/jiao_zhong1 ("赵国")
+执行时段错误: F_SKILL: No such skill (mo-zhang-jue)
+程式: feature/skill.c:17
+物件: d/heimuya/npc/power ("老板")
+执行时段错误: *call_other() couldn't find object
+程式: cmds/std/go.c:144
+物件: cmds/std/go
+执行时段错误: *call_other() couldn't find object
+程式: cmds/std/go.c:144
+物件: cmds/std/go
+执行时段错误: *call_other() couldn't find object
+程式: cmds/std/go.c:144
+物件: cmds/std/go
+执行时段错误: *call_other() couldn't find object
+程式: cmds/std/go.c:144
+物件: cmds/std/go
+执行时段错误: *call_other() couldn't find object
+程式: cmds/std/go.c:144
+物件: cmds/std/go
+执行时段错误: *call_other() couldn't find object
+程式: cmds/std/go.c:144
+物件: cmds/std/go
+执行时段错误: *call_other() couldn't find object
+程式: cmds/std/go.c:144
+物件: cmds/std/go
+执行时段错误: F_SKILL: No such skill (mo-zhang-jue)
+程式: feature/skill.c:17
+物件: d/heimuya/npc/power#135 ("老板")
+函数呼叫回溯:
+reset()                   std/room.c:62
+make_inventory()          std/room.c:20
+create()                  d/heimuya/npc/power.c:23
+set_skill()               feature/skill.c:17
+执行时段错误: F_SKILL: No such skill (mo-dao-jue)
+程式: feature/skill.c:17
+物件: d/heimuya/npc/jiao_zhong1 ("陈进万")
+函数呼叫回溯:
+reset()                   d/heimuya/yidao4.c:63
+reset()                   std/room.c:73
+make_inventory()          std/room.c:20
+create()                  d/heimuya/npc/jiao_zhong1.c:58
+set_skill()               feature/skill.c:17
+执行时段错误: F_SKILL: No such skill (mo-zhang-jue)
+程式: feature/skill.c:17
+物件: d/heimuya/npc/power#136 ("老板")
+函数呼叫回溯:
+reset()                   std/room.c:62
+make_inventory()          std/room.c:20
+create()                  d/heimuya/npc/power.c:23
+set_skill()               feature/skill.c:17
+执行时段错误: F_SKILL: No such skill (qian)
+程式: feature/skill.c:17
+物件: d/heimuya/npc/jiao_zhong1 ("陈良孝")
+函数呼叫回溯:
+reset()                   d/heimuya/yidao4.c:63
+reset()                   std/room.c:73
+make_inventory()          std/room.c:20
+create()                  d/heimuya/npc/jiao_zhong1.c:101
+set_skill()               feature/skill.c:17
+]"u/j/june/a.c" ]1 lines 5 bytes
+<catch 模式>: 
+执行时段错误: *Error in loading object '/u/j/june/edit/guo'
+程式: cmds/wiz/clone.c:26
+物件: cmds/wiz/clone
+执行时段错误: F_SKILL: No such skill (mo-zhang-jue)
+程式: feature/skill.c:17
+物件: d/heimuya/npc/power#181 ("老板")
+函数呼叫回溯:
+reset()                   std/room.c:62
+make_inventory()          std/room.c:20
+create()                  d/heimuya/npc/power.c:23
+set_skill()               feature/skill.c:17
+执行时段错误: F_SKILL: No such skill (mo-dao-jue)
+程式: feature/skill.c:17
+物件: d/heimuya/npc/jiao_zhong1 ("王俊俊")
+函数呼叫回溯:
+reset()                   d/heimuya/yidao4.c:63
+reset()                   std/room.c:73
+make_inventory()          std/room.c:20
+create()                  d/heimuya/npc/jiao_zhong1.c:58
+set_skill()               feature/skill.c:17
+执行时段错误: *call_other() couldn't find object
+程式: cmds/std/go.c:144
+物件: cmds/std/go
+执行时段错误: *call_other() couldn't find object
+程式: cmds/std/go.c:144
+物件: cmds/std/go
+执行时段错误: *call_other() couldn't find object
+程式: cmds/std/go.c:144
+物件: cmds/std/go
+执行时段错误: *call_other() couldn't find object
+程式: cmds/std/go.c:144
+物件: cmds/std/go
+执行时段错误: *call_other() couldn't find object
+程式: cmds/std/go.c:144
+物件: cmds/std/go
+执行时段错误: *call_other() couldn't find object
+程式: cmds/std/go.c:144
+物件: cmds/std/go
+执行时段错误: *call_other() couldn't find object
+程式: cmds/std/go.c:144
+物件: cmds/std/go
+执行时段错误: F_SKILL: No such skill (spear)
+程式: feature/skill.c:17
+物件: d/heimuya/npc/shaogong ("稍公")
+执行时段错误: *Error in loading object '/d/heimuya/npc/shangguanyun'
+程式: std/room.c:20
+物件: d/heimuya/qlt1
+执行时段错误: *Error in loading object '/d/heimuya/npc/jiao_zhong'
+程式: std/room.c:20
+物件: d/heimuya/dingfeng6
+执行时段错误: *Error in loading object '/d/heimuya/npc/jiao_zhong'
+程式: std/room.c:20
+物件: d/heimuya/dingfeng4
+执行时段错误: *Error in loading object '/d/heimuya/npc/jiao_zhong'
+程式: std/room.c:20
+物件: d/heimuya/dingfeng3
+执行时段错误: *Error in loading object '/d/heimuya/npc/jiao_zhong'
+程式: std/room.c:20
+物件: d/heimuya/dingfeng1
+<catch 模式>: 
+执行时段错误: F_SKILL: No such skill (tianmo-dafa)
+程式: feature/skill.c:17
+物件: d/heimuya/npc/master ("上官云")
+<catch 模式>: 
+执行时段错误: F_SKILL: No such skill (tianmo-dafa)
+程式: feature/skill.c:17
+物件: d/heimuya/npc/master#242 ("上官云")
+<catch 模式>: 
+执行时段错误: F_SKILL: No such skill (mo-zhang-jue)
+程式: feature/skill.c:17
+物件: d/heimuya/npc/power#243 ("老板")
+执行时段错误: F_SKILL: No such skill (mo-zhang-jue)
+程式: feature/skill.c:17
+物件: d/heimuya/npc/power#254 ("老板")
+函数呼叫回溯:
+reset()                   std/room.c:62
+make_inventory()          std/room.c:20
+create()                  d/heimuya/npc/power.c:23
+set_skill()               feature/skill.c:17
+执行时段错误: F_SKILL: No such skill (qian)
+程式: feature/skill.c:17
+物件: d/heimuya/npc/jiao_zhong1 ("郑福满")
+函数呼叫回溯:
+reset()                   d/heimuya/yidao4.c:63
+reset()                   std/room.c:73
+make_inventory()          std/room.c:20
+create()                  d/heimuya/npc/jiao_zhong1.c:101
+set_skill()               feature/skill.c:17
+执行时段错误: *call_other() couldn't find object
+程式: cmds/std/go.c:144
+物件: cmds/std/go
+执行时段错误: *call_other() couldn't find object
+程式: cmds/std/go.c:144
+物件: cmds/std/go
+执行时段错误: *call_other() couldn't find object
+程式: cmds/std/go.c:144
+物件: cmds/std/go
+<catch 模式>: 
+执行时段错误: *Error in loading object '/d/snow/inn'
+程式: cmds/wiz/update.c:58
+物件: cmds/wiz/update
+执行时段错误: *call_other() couldn't find object
+程式: cmds/std/go.c:144
+物件: cmds/std/go
+执行时段错误: *Error in loading object '/d/heimuya/npc/jiao_zhong'
+程式: std/room.c:20
+物件: d/heimuya/dingfeng1
+函数呼叫回溯:
+reset()                   std/room.c:73
+make_inventory()          std/room.c:20
+执行时段错误: *Error in loading object '/d/heimuya/npc/jiao_zhong'
+程式: std/room.c:20
+物件: d/heimuya/dingfeng4
+函数呼叫回溯:
+reset()                   std/room.c:73
+make_inventory()          std/room.c:20
+执行时段错误: *Error in loading object '/d/heimuya/npc/shangguanyun'
+程式: std/room.c:20
+物件: d/heimuya/qlt1
+函数呼叫回溯:
+reset()                   std/room.c:62
+make_inventory()          std/room.c:20
+执行时段错误: F_SKILL: No such skill (spear)
+程式: feature/skill.c:17
+物件: d/heimuya/npc/shaogong#266 ("稍公")
+函数呼叫回溯:
+reset()                   std/room.c:62
+make_inventory()          std/room.c:20
+create()                  d/heimuya/npc/shaogong.c:34
+set_skill()               feature/skill.c:17
+执行时段错误: *Error in loading object '/d/heimuya/npc/jiao_zhong'
+程式: std/room.c:20
+物件: d/heimuya/dingfeng3
+函数呼叫回溯:
+reset()                   std/room.c:73
+make_inventory()          std/room.c:20
+执行时段错误: *Error in loading object '/d/heimuya/npc/jiao_zhong'
+程式: std/room.c:20
+物件: d/heimuya/dingfeng6
+函数呼叫回溯:
+reset()                   std/room.c:73
+make_inventory()          std/room.c:20
+执行时段错误: F_SKILL: No such skill (mo-zhang-jue)
+程式: feature/skill.c:17
+物件: d/heimuya/npc/power#288 ("老板")
+函数呼叫回溯:
+reset()                   std/room.c:62
+make_inventory()          std/room.c:20
+create()                  d/heimuya/npc/power.c:23
+set_skill()               feature/skill.c:17
+执行时段错误: F_SKILL: No such skill (mo-dao-jue)
+程式: feature/skill.c:17
+物件: d/heimuya/npc/jiao_zhong1 ("穆益良")
+函数呼叫回溯:
+reset()                   d/heimuya/yidao4.c:63
+reset()                   std/room.c:73
+make_inventory()          std/room.c:20
+create()                  d/heimuya/npc/jiao_zhong1.c:58
+set_skill()               feature/skill.c:17
+执行时段错误: *Error in loading object '/d/heimuya/npc/jiao_zhong'
+程式: std/room.c:20
+物件: d/heimuya/dingfeng1
+函数呼叫回溯:
+reset()                   std/room.c:73
+make_inventory()          std/room.c:20
+执行时段错误: *Error in loading object '/d/heimuya/npc/jiao_zhong'
+程式: std/room.c:20
+物件: d/heimuya/dingfeng4
+函数呼叫回溯:
+reset()                   std/room.c:73
+make_inventory()          std/room.c:20
+执行时段错误: *Error in loading object '/d/heimuya/npc/shangguanyun'
+程式: std/room.c:20
+物件: d/heimuya/qlt1
+函数呼叫回溯:
+reset()                   std/room.c:62
+make_inventory()          std/room.c:20
+执行时段错误: F_SKILL: No such skill (spear)
+程式: feature/skill.c:17
+物件: d/heimuya/npc/shaogong#303 ("稍公")
+函数呼叫回溯:
+reset()                   std/room.c:62
+make_inventory()          std/room.c:20
+create()                  d/heimuya/npc/shaogong.c:34
+set_skill()               feature/skill.c:17
+执行时段错误: *call_other() couldn't find object
+程式: cmds/std/go.c:144
+物件: cmds/std/go
+执行时段错误: *call_other() couldn't find object
+程式: cmds/std/go.c:144
+物件: cmds/std/go
+执行时段错误: *call_other() couldn't find object
+程式: cmds/std/go.c:144
+物件: cmds/std/go
+执行时段错误: *call_other() couldn't find object
+程式: cmds/std/go.c:144
+物件: cmds/std/go
+执行时段错误: *call_other() couldn't find object
+程式: cmds/std/go.c:144
+物件: cmds/std/go
+执行时段错误: *call_other() couldn't find object
+程式: cmds/std/go.c:144
+物件: cmds/std/go
+执行时段错误: *call_other() couldn't find object
+程式: cmds/std/go.c:144
+物件: cmds/std/go
+执行时段错误: *call_other() couldn't find object
+程式: cmds/std/go.c:144
+物件: cmds/std/go
+执行时段错误: *call_other() couldn't find object
+程式: cmds/std/look.c:201
+物件: cmds/std/look
+执行时段错误: *Error in loading object '/d/heimuya/npc/jiao_zhong'
+程式: std/room.c:20
+物件: d/heimuya/dingfeng3
+函数呼叫回溯:
+reset()                   std/room.c:73
+make_inventory()          std/room.c:20
+执行时段错误: *Error in loading object '/d/heimuya/npc/jiao_zhong'
+程式: std/room.c:20
+物件: d/heimuya/dingfeng6
+函数呼叫回溯:
+reset()                   std/room.c:73
+make_inventory()          std/room.c:20
+执行时段错误: F_SKILL: No such skill (mo-zhang-jue)
+程式: feature/skill.c:17
+物件: d/heimuya/npc/power#339 ("老板")
+函数呼叫回溯:
+reset()                   std/room.c:62
+make_inventory()          std/room.c:20
+create()                  d/heimuya/npc/power.c:23
+set_skill()               feature/skill.c:17
+执行时段错误: F_SKILL: No such skill (mo-cha-jue)
+程式: feature/skill.c:17
+物件: d/heimuya/npc/jiao_zhong1 ("张富彦")
+函数呼叫回溯:
+reset()                   d/heimuya/yidao4.c:63
+reset()                   std/room.c:73
+make_inventory()          std/room.c:20
+create()                  d/heimuya/npc/jiao_zhong1.c:94
+set_skill()               feature/skill.c:17
+]LONG
+]LONG
+]        );
+执行时段错误: *Printable strings limited to length of 8192.
+程式: feature/message.c:42
+物件: obj/user/user#165 ("柳残阳")
+执行时段错误: *Printable strings limited to length of 8192.
+程式: feature/message.c:42
+物件: obj/user/user#165 ("柳残阳")
+执行时段错误: *Printable strings limited to length of 8192.
+程式: feature/message.c:42
+物件: obj/user/user#165 ("柳残阳")
+执行时段错误: *Printable strings limited to length of 8192.
+程式: feature/message.c:42
+物件: obj/user/user#165 ("柳残阳")
+执行时段错误: *Printable strings limited to length of 8192.
+程式: feature/message.c:42
+物件: obj/user/user#165 ("柳残阳")
+执行时段错误: *Error in loading object '/d/heimuya/npc/jiao_zhong'
+程式: std/room.c:20
+物件: d/heimuya/dingfeng1
+函数呼叫回溯:
+reset()                   std/room.c:73
+make_inventory()          std/room.c:20
+执行时段错误: *Error in loading object '/d/heimuya/npc/jiao_zhong'
+程式: std/room.c:20
+物件: d/heimuya/dingfeng4
+函数呼叫回溯:
+reset()                   std/room.c:73
+make_inventory()          std/room.c:20
+执行时段错误: *Error in loading object '/d/heimuya/npc/shangguanyun'
+程式: std/room.c:20
+物件: d/heimuya/qlt1
+函数呼叫回溯:
+reset()                   std/room.c:62
+make_inventory()          std/room.c:20
+执行时段错误: F_SKILL: No such skill (spear)
+程式: feature/skill.c:17
+物件: d/heimuya/npc/shaogong#405 ("稍公")
+函数呼叫回溯:
+reset()                   std/room.c:62
+make_inventory()          std/room.c:20
+create()                  d/heimuya/npc/shaogong.c:34
+set_skill()               feature/skill.c:17
+]"open/yuer/cloth.c" ]301 lines 8094 bytes
+<catch 模式>: 
+执行时段错误: *Error in loading object '/u/j/june/edit/guo'
+程式: cmds/wiz/clone.c:26
+物件: cmds/wiz/clone
+执行时段错误: 你(thir)不能摧毁其他的使用者。
+程式: feature/move.c:111
+物件: obj/user/user#286 ("忧伤的小叶")
+执行时段错误: *Error in loading object '/d/heimuya/npc/jiao_zhong'
+程式: std/room.c:20
+物件: d/heimuya/dingfeng3
+函数呼叫回溯:
+reset()                   std/room.c:73
+make_inventory()          std/room.c:20
+执行时段错误: *Error in loading object '/d/heimuya/npc/jiao_zhong'
+程式: std/room.c:20
+物件: d/heimuya/dingfeng6
+函数呼叫回溯:
+reset()                   std/room.c:73
+make_inventory()          std/room.c:20
+执行时段错误: F_SKILL: No such skill (mo-zhang-jue)
+程式: feature/skill.c:17
+物件: d/heimuya/npc/power#456 ("老板")
+函数呼叫回溯:
+reset()                   std/room.c:62
+make_inventory()          std/room.c:20
+create()                  d/heimuya/npc/power.c:23
+set_skill()               feature/skill.c:17
+执行时段错误: F_SKILL: No such skill (mo-chui-jue)
+程式: feature/skill.c:17
+物件: d/heimuya/npc/jiao_zhong1 ("钱忠盛")
+函数呼叫回溯:
+reset()                   d/heimuya/yidao4.c:63
+reset()                   std/room.c:73
+make_inventory()          std/room.c:20
+create()                  d/heimuya/npc/jiao_zhong1.c:79
+set_skill()               feature/skill.c:17
+执行时段错误: *Owner (/obj/board/wizard_j) of function pointer is destructed.
+程式: feature/edit.c:14
+物件: obj/user/user#277 ("完颜萍")
+执行时段错误: *Bad argument 3 to replace_string()
+Expected: string Got: 0.
+程式: adm/daemons/emoted.c:95
+物件: adm/daemons/emoted
+执行时段错误: *Bad argument 3 to replace_string()
+Expected: string Got: 0.
+程式: adm/daemons/emoted.c:95
+物件: adm/daemons/emoted
+执行时段错误: *Bad argument 3 to replace_string()
+Expected: string Got: 0.
+程式: adm/daemons/emoted.c:95
+物件: adm/daemons/emoted
+执行时段错误: *Bad argument 3 to replace_string()
+Expected: string Got: 0.
+程式: adm/daemons/emoted.c:95
+物件: adm/daemons/emoted
+closed external ports
+Initializing internal tables....

@@ -1,0 +1,185 @@
+// judge.c
+
+#include <login.h>
+#include <ansi.h>
+
+inherit NPC;
+
+int in_ask, answer;
+object env;
+
+void create()
+{
+	set_name("审判官", ({ "judge" }) );
+	set("short", "专门对付机器人的" HIY "审判官" NOR "(judge)" );
+	set("long",
+		"这是一位审查玩家是否是机器人的审判官，你必须答对(answer)他三个问题才能\n"
+		"脱离他的掌握。\n");
+
+	set("gender", "男性");
+	set("age", 40);
+
+	set("str", 100);
+	set("int", 100);
+	set("cor", 100);
+
+	set("combat_exp", 9000000);
+	set("score", 0);
+
+	set_temp("apply/attack", 200);
+	set_temp("apply/damage", 500);
+
+	setup();
+
+	in_ask = 0;
+}
+
+void init()
+{
+	::init();
+	if( !query_heart_beat(this_object()) ) set_heart_beat(1);
+	add_action("do_answer", "answer");
+        env=environment();
+}
+
+int catch_tell(string arg)
+{
+     object obj,room;
+     object judge_obj;
+     obj=this_player();
+     judge_obj=find_object("/d/wiz/npc/judge");
+     if(!judge_obj)
+        {  printf("cant find judge_obj");
+           return -1;
+        }
+//    obj->move("/d/wiz/entrance");
+       message_vision(HIY"忽然一阵闪光罩住了$N,不见了。\n"NOR,obj);
+        room = load_object("/d/wiz/courthouse");
+        obj->move(room);
+    message_vision( CYN "$N说道：" + "你不能输入这么多命令!" + "\n" NOR, judge_obj);
+    obj->set_temp("last_location", base_name(environment(obj)));
+
+    obj->start_busy(200);
+
+
+}
+
+void chat()
+{
+	int a, b, c;
+	string oper;
+	
+	if( in_ask || random(20) > 10 ) return;
+	delete_temp("wrong");
+	a = random(100) + 1;
+	b = random(100) + 1;
+	switch(random(5)) {
+		case 0: 
+			answer = a + b;
+			oper = chinese_number(a) + "加上" + chinese_number(b)+ "等於多少？";
+			break;
+		case 1: 
+			answer = a - b;
+			oper = chinese_number(a) + "减去" + chinese_number(b)+ "等於多少？";
+			break;
+		case 2: 
+			if( a * b < 200 ) {
+				answer = a * b;
+				oper = chinese_number(a) + "乘上" + chinese_number(b)+ "等於多少？";
+			} else {
+				answer = (a * b) % 10;
+				oper = chinese_number(a) + "乘上" + chinese_number(b)+ "，个位数等於多少？";
+			}
+			break;
+		case 3: 
+			answer = a % b;
+			oper = chinese_number(a) + "除以" + chinese_number(b)+ "馀於多少？";
+			break;
+		case 4:
+			oper = chinese_number(a) + "和" + chinese_number(b)+ "的最大公因数是多少？";
+			if( b < a ) { c = b; b = a; a = c; }
+			while( a > 1 && b%a > 1 ) {
+				c = a;
+				a = b%a;
+				b = c;
+			}
+			answer = b%a == 1 ? 1 : a;
+			break;
+	}
+	command("say " + oper + "，请在二十秒内作答(answer)。");
+	in_ask = 1;
+	call_out("say_answer", 20);
+}
+
+void say_answer()
+{
+        object *ob,me,room;
+        int i;
+        me=find_object("/d/wiz/npc/judge");
+	command("say 这麽简单都不会？答案等於" + chinese_number(answer) + "。");
+//        command("say me:" + me->query("id"));
+	in_ask = 0;	
+        if (env ){
+          ob = all_inventory(env);
+//          command("say hehe 1");
+         }
+//         else  command("say hehe" );
+//	command("say hehe" + chinese_number(sizeof(ob)) + "。");
+        for(i=0; i<sizeof(ob); i++) {
+//                command("say ob" + i +":"+ ob[i]->query("id"));
+                if( !living(ob[i]) || ob[i]==me || wizardp(ob[i])) continue;
+                ob[i]->add_temp("wrong",1);
+                if( ob[i]->query_temp("wrong") > 10 ) {
+                      command("say " + ob[i]->name() + "你一定是个机器人，去死吧。\n");
+                      ob[i]->receive_damage("kee", 100, ob[i]);
+                      ob[i]->delete_temp("wrong");
+                      ob[i]->delete_temp("robot_check");
+                      ob[i]->die();
+                   }
+         }
+
+}
+
+int do_answer(string arg)
+{
+	string s;
+	int ans;
+
+	if( !in_ask ) return notify_fail("你必须等下一题。\n");
+	if( !arg ) return notify_fail("请你回答一个数字。\n");
+
+	message_vision( CYN "$N答道：" + arg + "\n" NOR, this_player());
+	
+	if( sscanf(arg, "%d", ans)==1 ) {
+		if( ans==answer ) {
+			this_player()->add_temp("robot_check", 1);
+			command("say 答对了！");
+			command("pat " + this_player()->query("id") );
+			remove_call_out("say_answer");
+			in_ask = 0;
+			if( this_player()->query_temp("robot_check") >= 3 ) {
+				command("say 很好，你看起来不像机器人，你可以走了。\n");
+                                this_player()->start_busy(1);
+				if( stringp(s = this_player()->query_temp("old_startroom")) )
+					this_player()->set("startroom", s);
+				this_player()->delete_temp("robot_check");
+                                this_player()->delete_temp("wrong");
+				if( stringp(s = this_player()->query_temp("old_location")) )
+					this_player()->move(s);
+				else
+					this_player()->move(START_ROOM);
+			}
+		} else {
+			command("say 错！");
+			this_player()->add_temp("wrong", 1);
+			if( this_player()->query_temp("wrong") > 10 ) {
+				command("say " + this_player()->name() + ",你在给我乱猜啊，去死吧。\n");
+				this_player()->receive_damage("kee", 100, this_object());
+                                this_player()->delete_temp("wrong");
+                                this_player()->delete_temp("robot_check");
+				this_player()->die();
+			}
+		}
+	}
+	return 1;
+}

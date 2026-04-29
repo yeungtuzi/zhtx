@@ -1,0 +1,35 @@
+// bank.c
+
+inherit BANK;
+
+void create()
+{
+	set("short", "安记钱庄");
+	set("long", @LONG
+这是一间素来以公平信用著称的钱庄，钱庄的老板还是个曾经中过
+举人的读书人，你可以看到钱庄里里外外都打扫得乾乾净净，一个胖胖
+的中年人坐在柜台後面，柜台上放著一块牌子(sign)，往东是通往雪亭
+镇大街的大门。
+LONG
+	);
+	set("exits", ([ /* sizeof() == 1 */
+  "east" : __DIR__"mstreet1",
+]));
+
+        set("objects", ([
+                __DIR__"npc/annihir.c": 1 ]) );
+
+
+	set("item_desc", ([
+		"sign": @TEXT
+这里是钱庄，目前我们提供的服务有：
+
+convert     兑换钱币。
+deposit     存钱。你最多可存十万两银子。
+withdraw    提款。
+balance     查询自己目前的存款数。
+
+TEXT
+	]) );
+	setup();
+}

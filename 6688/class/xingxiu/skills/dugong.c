@@ -1,0 +1,3 @@
+// dugong.c
+
+inherit SKILL;

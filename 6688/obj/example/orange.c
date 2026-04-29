@@ -1,0 +1,68 @@
+// /obj/example/orange.c
+
+#include <weapon.h>
+
+inherit THROWING;
+//inherit F_FOOD;
+
+void create()
+{
+	set_name("甜蜜橘", ({ "orange", "ju", "jv", "mijv" }) );
+	set_weight(350);
+	if( clonep() )
+		set_default_object(__FILE__);
+	else {
+		set("long", "一个金黄色的,可爱的甜蜜橘.\n");
+		set("unit", "个");
+                set("base_unit", "个");
+                set("base_weight", 150);
+                set("base_value", 200);
+		set("value",400);
+		set("food_remaining", 1);
+		set("food_supply", 10);
+                set("water_supply", 10);
+		set("material", "bone");
+	}
+        set_amount(1);
+        init_throwing(7);
+	setup();
+}
+
+void init()
+{
+        if( this_player()==environment() )
+                add_action("do_eat", "eat");
+}
+
+int do_eat(string arg)
+{
+        if( !arg || arg != "orange")  return notify_fail("你要吃什么呢? \n");
+                if( query_amount() <1 ) return 0;
+        if( !this_object()->id(arg) ) return 0;
+        if( this_player()->is_busy() )
+                return notify_fail("你上一个动作还没有完成.\n");
+        if( !query("food_remaining") )
+                return notify_fail( name() + "已经没什么好吃的了.\n");
+        if( (int)this_player()->query("food") >= 
+(int)this_player()->max_food_capacity() )
+                return notify_fail("你已经吃太饱了,再也塞不下任何东西了.\n");
+        this_player()->add("food", query("food_supply"));
+if (query("water_supply")) this_player()->add("water", query("water_supply"));
+        if( this_player()->is_fighting() ) this_player()->start_busy(2);
+
+        // This allows customization of drinking effect.
+        if( query("eat_func") ) return 1;
+
+        set("value", 0);
+        add("food_remaining", -1);
+        if( !query("food_remaining") ) {
+  message_vision(
+"$N拿起甜蜜橘,仔细地剥掉皮,一瓣一瓣送进嘴里.\n",this_player());
+        add_amount(-1);
+
+        } else 
+  message_vision(
+"$N拿起甜蜜橘,仔细地剥掉皮,一瓣一瓣送进嘴里.\n",this_player());
+        return 1;
+}
+

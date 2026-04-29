@@ -1,0 +1,144 @@
+// stone.c
+#include <ansi.h>
+inherit ITEM;
+
+string *id1 = ({
+                "mh",
+                "tw",
+                "jj",
+                "qx",
+                "xl",
+                "yh",
+                "fd",
+                "tbh",
+                "lj",
+                "xy",
+                "lh",
+                "fc",
+                "zy",
+                "yc",
+                "hby",
+                "zy",
+		}); 
+
+string *id2 = ({
+		"dsd",
+		"bxd",
+		"yss",
+		"sld",
+		"fhw",
+		"cys",
+		"bl",
+		"hs",
+		"rsn",
+		"fx",
+		"qp",
+		"yd",
+		"tz",
+		"zzg",
+		"wh",
+		"ftc",
+		}); 
+		
+string *name1 = ({    				
+	     RED"梅花",
+	     CYN"天王",    
+	     BLU"九久",    
+	     HIW"怯邪",    
+	     MAG"降龙",    
+	     HIR"银红",    
+	     HIG"枫丹",    
+	     HIC"唐伯虎",    
+	     HIB"蓝晶",    
+	     HIW"象牙",    
+	     BLK"六合",    
+	     HIG"翡翠",    
+	     HIM"紫烟",    
+	     HIW"御赐",    
+	     HIW"汉白玉",    
+	     HIM"紫玉", 
+	     });
+	
+string *name2 = ({
+		"点舌丹"NOR,
+		"补心丹"NOR,
+		"元神散"NOR,
+		"守灵丹"NOR,
+		"伏虎丸"NOR,
+		"蝉翼纱"NOR,
+		"白露"NOR,
+		"画扇"NOR,
+		"瑞兽纽"NOR,
+		"佛像"NOR,
+		"琴谱"NOR,
+		"玉笛"NOR,
+		"天珠"NOR,
+		"珍珠冠"NOR,
+		"卧虎"NOR,
+		"凤头钗"NOR,
+		});
+
+void create()
+{
+	int i,j;
+	i = random(sizeof(name1));
+	j = random(sizeof(name1));
+	set_name(name1[i]+name2[j], ({id1[i]+id2[j]}) );
+	set_weight(1);
+        if( clonep() )
+                set_default_object(__FILE__);
+	else
+	{
+		set("unit", "个");
+		set("long", "这就是传说中宝物，看起来不象吧！\n");
+		set("value", 10000);
+		set("unique",1);
+		set("no_shown",1);
+		set("no_drop",1);   
+		set("no_get",1);
+        	set("unpawnable", 1);
+	}
+	setup();
+
+}
+
+void init()
+{
+	add_action("do_give","give");	
+}	
+
+int do_give(string arg)
+{
+        string target,item;
+        object who,me = this_player();
+        
+        if(!arg) return 0;        
+
+        if( sscanf(arg, "%s to %s", item, target)==2
+        || sscanf(arg, "%s %s", target, item)==2 );
+        else return 0;    
+        
+        if(!id(item)) return 0;
+         
+        if(!objectp(who = present(target, environment(me))) || !living(who))
+                return 0;
+        
+	if( !userp(who) && who->query("id") =="yin kaishan" )
+	{
+		set("no_drop",0);	
+		set("no_give",0);
+	}
+        
+	return 0;
+}	
+
+
+//防止大米帮挖宝扛尸体回去
+varargs int move(mixed dest, int silently)
+{
+	if( objectp(dest) && dest->is_corpse() )
+		dest->set_weight(20000000);
+	return ::move(dest,silently);	
+}
+
+	

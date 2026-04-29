@@ -1,0 +1,98 @@
+// /obj/npc/vulture.c
+
+#include <ansi.h>
+
+inherit NPC;
+
+void create()
+{
+        set_name(HIC"护法灵鹫"NOR, ({ "vulture guard", "vulture", "guard"}));
+        set("long", "一只双翅张开长达丈二的黑色大兀鹰,看上去十分凶猛.\n");
+        set("race", "野兽");
+        set("limbs", ({ "头部", "身体", "尾巴", "左翼", "右翼", "爪子" }) );
+        set("verbs", ({ "poke" , "claw" }) );
+/*
+        set("kee", 1000);
+        set("max_kee", 1000);
+        set("sen", 1000);
+        set("max_sen", 1000);
+        set("gin", 1000);
+        set("max_in", 1000);
+*/
+
+        set("str",50+random(50));
+        set("attitude","heroism");
+        set_skill("dodge", 200+random(100));
+        set("combat_exp",40000+400*random(100));
+        set("bellicosity",10);
+        set_temp("apply/attack",60);
+        set_temp("apply/armor",40);
+        setup();
+}
+
+void set_level(int i)
+{
+        int ran;
+        ran=100+random(10)*i;
+        set_skill("dodge", 1+random(50)+i);
+        set_skill("parry", 1+random(50)+i);
+        set_temp("apply/attack", 1+random(10)+i/2);
+        set_temp("apply/armor", 1+random(10)+i);
+        set("combat_exp",4000+random(1000)*i);
+        set("bellicosity",1+random(10)*i);
+        set("kee", ran);
+        set("max_kee", ran);
+        set("eff_kee", ran);
+        set("eff_gin", ran);
+        set("eff_sen", ran);
+        set("sen", ran);
+        set("max_sen", ran);
+        set("gin", ran);
+        set("max_gin", ran);
+        set("force", 500+random(20)*i);
+        set("max_force", 500+random(20)*i);
+        set("mana", 500+random(20)*i);
+        set("max_mana", 500+random(20)*i);
+        set("atman", 500+random(20)*i);
+        set("max_atman", 500+random(20)*i);
+
+        ::setup();
+}
+
+void invocation(object who)
+{
+        int i;
+        object *enemy;
+        message("vision",
+                HIC"忽然天边卷起一阵狂风,一只大鸟自天而降!\n" NOR,
+                environment(), this_object() );
+        enemy = who->query_enemy();
+        i = sizeof(enemy);
+        while(i--) {
+                if( enemy[i] && living(enemy[i]) ) {
+                        kill_ob(enemy[i]);
+                if( userp(enemy[i]) ) enemy[i]->fight_ob(this_object());
+                        else enemy[i]->kill_ob(this_object());
+                }
+        }
+        set_leader(who);
+        message_vision("$N替$n挡住了所有的攻击!\n", this_object(), who);
+        who->remove_all_killer();
+}
+
+int heal_up()
+{
+        if( environment() && !is_fighting() ) {
+                call_out("leave", 1);
+                return 1;
+        }
+        return ::heal_up() + 1;
+}
+
+void leave()
+{
+        message("vision",HIC "一阵狂风过后,护法灵鹫消失得无影无踪\n" NOR,
+                environment(),this_object() );
+        destruct(this_object());
+}
+

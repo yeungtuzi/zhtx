@@ -1,0 +1,33 @@
+
+// $Id: hongying-force.c,v 1.1 2000/12/14 16:12:23 cmy Exp $
+/**************************************************************************/
+
+inherit FORCE;
+
+int valid_enable(string usage) { return usage=="force"; }
+
+int valid_learn(object me) { return 1; }
+
+int practice_skill(object me)
+{
+        return 
+notify_fail("红鹰内功只能用学的，或是从运用(exert)中增加熟练度。\n");
+}
+
+ 
+int effective_level() { return 10;}
+
+int learn_bonus()
+{
+        return 10;
+}
+int practice_bonus()
+{
+        return 10;
+}
+int black_white_ness()
+{
+        return 30;
+}
+
+

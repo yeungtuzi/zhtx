@@ -1,0 +1,604 @@
+inherit NPC;
+#include <ansi.h>
+
+string ask_mother();
+string ask_hou();   
+string ask_zhh();
+string wiz_status;
+
+void create()
+{
+	set_name(HIY"夜莺"NOR, ({"miss singbird","miss","singbird"}));
+	set("nickname", HIM"心跳"HIY"的"HIG"回忆"NOR);
+	set("long", 
+	HIG"她容色晶莹如玉，宛若凌波仙子，眼波顾盼，巧笑嫣然，实是我见尤怜。\n"NOR);
+	set("title", HIC "网际精灵" NOR);
+	set("gender", "女性");
+	set("age", 18);
+	set("rank_info/respect", "小帅妹");
+        set("combat_exp",1500000);
+	set("max_kee", 3000);
+	set("max_gin", 1000);
+	set("max_sen",1000);
+	set("force", 6000);
+	set("max_force", 3000);
+	set("force_factor", 300);
+	set("attitude", "friendly");
+	set("str", 50);
+	set("int", 50);
+	set("con", 50);
+	set("per", 50);
+	set("cor", 50);
+	set("no_get_from", 1);
+	set("no_get",1);
+        set("bellicosity", 1000);
+
+	set_skill("force", 100);
+	set_skill("dodge", 200);
+	set_skill("parry", 100);
+	set_skill("sword", 100);
+	set_skill("move", 86);
+	set_skill("literate", 120);
+	set_skill("spells",40);
+
+	set_skill("taiji-shengong",156);
+	set_skill("taiji-jian",176);
+	set_skill("taiji-quan",50);
+	set_skill("tiyunzong",200);
+	set_skill("taoism",130);
+	set_skill("mysterrier",150);
+
+	map_skill("dodge", "tiyunzong");
+	map_skill("cuff","taiji-quan");
+	map_skill("move","mysterrier");
+	map_skill("force", "taiji-shengong");
+	map_skill("parry", "taiji-sword");
+	map_skill("sword", "taiji-sword");
+	
+	set_temp("apply/attack", 200);
+	set_temp("apply/defense", 200);
+	set_temp("apply/damage", 200);
+	set("env/wimpy", 80);
+	set("inquiry", ([
+		"夜莺"   : (: ask_mother :),
+		"darkgod"   : (: ask_mother :),
+		"剑神一笑"   : (: ask_mother :), 
+		"朱红"   : (: ask_zhh :), 
+		"zhuhong"   : (: ask_zhh :), 
+		"不死印卷"   : (: ask_hou :), 
+		"石青璇"     : "石青璇是石之轩和碧秀心的小姐，她平时隐居在城外的幽林小谷。\n",
+		"渡天长老"   : "渡天长老是我的好朋友呀，你认识他吗？\n",
+		"brett" :"渡天长老是我的好朋友呀，你认识他吗？\n",
+		"jenny" : "这鬼丫头现在也不知道跑哪里去了。当年我路过波斯的时候和\n她结为姐妹，还是她帮我重回中土的呢。好久没见了，真想念她...",
+		"小昭" :  "这鬼丫头现在也不知道跑哪里去了。当年我路过波斯的时候和\n她结为姐妹，还是她帮我重回中土的呢。好久没见了，真想念她...",
+		"yeung" : "嘻嘻，你真苯，她就是做我这个机器人的巫师啊。\n",
+		"如梦" : "你是在说如梦呀，她是喜欢捣乱的巫师，整天装神弄鬼，又总是露馅。\n",
+		"lla" : "你是在说如梦呀，她是喜欢捣乱的巫师，整天装神弄鬼，又总是露馅。\n",
+		"龙五" : "龙五是纵横天下的巫师，他最喜欢干的就是造谣，却整天失败，嘻。。。\n",
+		"roar" : "龙五是纵横天下的巫师，他最喜欢干的就是造谣，却整天失败，嘻。。。\n",
+		"sirius" : "sirius是少林老三渡之首——大渡天，与嫣然\n苦恋多年，最后离开嵩山，归隐山林，唉，神龙见首不见尾啊！\n",		
+		"大玄天": "sirius是少林老三渡之首——大渡天，与嫣然\n苦恋多年，最后离开嵩山，归隐山林，唉，神龙见首不见尾啊！\n",		
+		"悟性" : "悟性是全真第一高手，后来他看不惯巫师任意贬\n低全真派，愤而自杀以为后来人谋福利,不过看来是白死了。\n",
+		"wxing" : "悟性是全真第一高手，后来他看不惯巫师任意贬\n低全真派，愤而自杀以为后来人谋福利,不过看来是白死了。\n",
+		"小夜子" : "小夜子又名夜魔，绰号小P，是日月神教的长老，他\n为了武林称雄而挥剑自宫，可到头来不过是一场春梦。\n",
+		"夜魔" : "夜魔又名小夜子，绰号小P，是日月神教的长老，他\n为了武林称雄而挥剑自宫，可到头来不过是一场春梦。\n",
+		"ghostme" : "小夜子又名夜魔，绰号小P，是日月神教的长老，他\n为了武林称雄而挥剑自宫，可到头来不过是一场春梦。\n",
+	]) );
+
+
+	set("chat_chance", 2);
+	set("chat_msg", ({
+		"夜莺忽然做了个鬼脸，笑道: 真想溜出去玩会儿。\n",
+		(: command("sing2") :),
+		(: command("angry") :),
+		(: command("slogan2") :),
+		(: command("yawn") :),
+		(: command("lazy") :),
+		(: command("laughproud") :),
+		"夜莺曼声吟道："HIY"\n\t\t天上白玉京\n\t\t五楼十二城\n\t\t仙人抚我顶\n\t\t结发授长生\n"NOR,
+		"夜莺忽然大声说：打倒臭泥潭！打倒道可道！\n",
+		"夜莺无聊地绕着手绢，叹道: 唉，一个人，真没意思。\n",
+		"夜莺伸出白玉雕成一般的小手，托着下巴说: 谁想和我说说话?\n",
+		"夜莺斩钉截铁地说: 嗯，谁要敢欺负我，我就宰了他！\n",
+		"夜莺打了个呵欠，左手轻轻掩住樱桃小口，柔声道：我困了。\n",
+		"夜莺说道：“小昭姐姐多年没见了，她现在好吗？”\n",
+		"夜莺叹了口气：“原来的老玩家们都走了，他们现在可好吗？”\n",
+		(: command("zzz") :),
+		(: command("sigh") :),
+		(: command("disapp") :),
+		(: command("slogan") :),
+	}) );
+
+	set("chat_chance_combat", 20);  
+	set("chat_msg_combat", ({
+		HIC"夜莺幽幽叹道：唉，你这又是何苦呢?\n"NOR,
+		(: command("giggle") :),
+		(: command("waggle") :),
+		(: command("laughproud") :),
+		(: command("nomatch") :),
+		(: command("xixi") :),
+		HIC"生有何欢，死亦何苦? 不如就成全了你吧。\n"NOR,
+		HIC"你这" + RANK_D->query_rude(this_player())+"怎生如此执迷不悟?\n"NOR,
+		(: perform_action, "move.hasten" :),
+		(: perform_action, "move.hasten" :),
+		(: perform_action, "move.hasten" :),
+		(: perform_action, "move.hasten" :),
+                (: exert_function, "recover" :),
+                (: exert_function, "recover" :),
+	}) );
+	setup();
+	carry_object(__DIR__"obj/skirt")->wear();
+	carry_object(__DIR__"obj/gangjian")->wield();
+	if( clonep() ) CHANNEL_D->register_relay_channel("chat");
+}
+
+int add_phrase(string who, string msg)
+{
+	msg = replace_string(msg, "?", "");
+	msg = replace_string(msg, "？", "");
+	msg = replace_string(msg, "？", "");
+	msg = replace_string(msg, "!", "");
+	msg = replace_string(msg, "！", "");
+	msg = replace_string(msg, "啊", "");
+	msg = replace_string(msg, "吗", "");
+	msg = replace_string(msg, "耶", "");
+	msg = replace_string(msg, "吧", "");
+
+	if( msg!="" ) {
+		add("memory/" + who, ({ msg }));
+		return 1;
+	} else return 0;
+}
+
+
+void relay_emote(object ob, string verb)
+{
+       if( !userp(ob) ) return;
+	switch(verb) {
+
+	case "ppp":
+	case "kiss":
+	case "qmarry":
+	case "forcemarry1":
+	case "forcemarry2":
+	case "forcemarry3":
+
+	if ( (string) ob -> query ("gender") == "男性"||(string) ob -> query ("gender") == "无性" )
+	{
+	command ("chat 救命呀，"+ ob->query("name") + "想要非礼我！\n") ;
+	command("chat 哎哟，谁想得到这" + RANK_D->query_rude(ob)+"，竟也是一个好色之徒 。");
+	}
+	else
+	{
+	command("chat " + ob->query("name") + ",你我同为女儿身，再怎么喜欢也不要这样啊。\n");
+	command("chat 想不到"+ ob->query("name") +"这" + RANK_D->query_rude(ob)+"，竟然是一个变态！");
+	}
+	message_vision("$N摇了摇头，对$n幽幽叹道：唉，你这又是何苦呢?\n",this_object(),this_player());
+	if(wizardp(ob))
+	{
+	ob->set("env/immortal",0);
+ 	message_vision("$N"+HIR"信手一指，$n就惨呼一声倒在了血泊之中\n"NOR,this_object(),this_player());
+	ob->set("","苍蝇");
+	ob->die();
+	return;
+	}
+	command("angry");
+	message_vision("夜莺羞红了脸，嗔道：你...你...你不要这样嘛！\n");
+	break;
+       default:
+       if( random(10)<2 )
+       {
+	command(verb + " " + ob->query("id"));
+	return;
+       }
+       else
+	{
+	switch(verb)
+	{
+	case  "kkkil":
+	case  "kick":
+	case  "taste":
+	case  "hate":
+	case  "brag":
+	case  "slap":
+	case  "rascal":
+	case  "slapsb":
+	case  "bite":
+	case  "knife":
+	case  "drug":
+	case  "cook":
+	case  "cut":
+	case  "shutup":
+	case  "stare":
+	case  "sneer":
+	case  "anniversary":
+	case  "heng":
+   switch(random(60))
+   {
+    case 0:
+    command ("kick "+ ob->query("id"));
+    command ("xixi");
+    break;
+    case 1:
+    command ("slap "+ ob->query("id"));
+    command ("xixi");
+    break;
+    case 2:
+    command ("smell");
+    command ("cook "+ ob->query("id"));
+    break;
+    case 4:
+    command ("trip "+ ob->query("id"));
+    break;
+    case 5:
+    command ("knife "+ ob->query("id"));
+    command ("doubt "+ ob->query("id"));
+    break;
+    case 6:
+    command("cry");
+    command("chat 啊，"+ob->query("name")+"这"+RANK_D->query_rude(ob)+"，真坏！\n");
+    break;
+    case 7:
+    command ("shutup ");
+    command ("shutup "+ ob->query("id"));
+    break;
+    case 8:
+    command("cry");
+    command ("chat 救命啊，"+ ob->query("name") + "想要羞辱我！\n") ;
+    command ("die "+ ob->query("id"));
+    break;
+    case 11: 
+    command ("hero");
+    command ("shout "+ ob->query("id"));
+    break;
+    case 12: 
+    command ("shake");
+    command ("nomatch "+ ob->query("id"));
+    break;
+    case 13: 
+    command ("stare "+ob->query("id"));
+    command ("hit "+ ob->query("id"));
+    break;
+    case 14: 
+    command ("sneer");
+    break;
+    case 15: 
+    command("chat 哎哟，"+ob->query("name")+"这个" + RANK_D->query_rude(ob)+"真不要脸。\n");
+    command ("faint");
+    break;
+    case 18: 
+    command ("blush");
+    break;
+    case 19: 
+    command ("ah");
+    write(HIM "夜莺一下子羞红了脸，急道：你，你。。。\n" NOR);
+    break;
+    case 20: 
+    command("cry");
+    command("chat 哎哟，谁想得到这" + RANK_D->query_rude(ob)+"，竟也是一个变态狂！\n");
+    break;
+    case 21: 
+    command ("blush");
+    command ("chat 救命呀，"+ ob->query("name") + "想要羞辱我！\n") ;
+    break;
+    case 25: 
+    command ("rascal "+ob->query("id"));
+    break;
+    case 27: 
+    command ("grpfight "+ob->query("id"));
+    break;
+    case 28: 
+    command ("rascal "+ob->query("id"));
+    command("chat 哎哟，谁想得到这" + RANK_D->query_rude(ob)+"，竟然是一个臭流氓！\n");
+    break;
+    case 29: 
+    command ("rascal "+ob->query("id"));
+    command ("die "+ob->query("id"));
+    break;
+    case 30:
+    command("waggle "+ob->query("id"));
+    break;
+    case 31:
+    command("waggle");
+    command ("callname "+ ob->query("id"));
+    break;
+    case 32: 
+    command ("chat 快来人啊，帮我打"+ ob->query("name") + "这个大色魔！\n") ;
+    break;
+    case 33: 
+    command("chat 哎哟，哎哟，"+ ob->query("name")+"这" + RANK_D->query_rude(ob)+"不老实！\n");
+    command ("shit "+ ob->query("id"));
+    break;
+    case 34:
+    command ("chat 救命！ "+ ob->query("name") + "想要羞辱我！\n") ;
+    command("chat 哎哟，谁想得到这" + RANK_D->query_rude(ob)+"，竟也是一个变态狂！\n");
+    command("faint "+ob->query("id"));
+    break;
+    case 35: 
+    command ("kick "+ ob->query("id"));
+    command ("grin");
+    break;
+    case 36:
+    command ("slap "+ ob->query("id"));
+    command ("hehe");
+    break;
+    case 37: 
+    command("faint");
+    break;
+    case 38: 
+    command("chat 哎哟，谁想得到这" + RANK_D->query_rude(ob)+"，竟也是一个变态狂！\n");
+    command ("callname "+ ob->query("id"));
+    break;
+    case 39: 
+    command("!!!");
+    break;
+    default:
+       if( random(10)<3 )
+       {
+	command(verb + " " + ob->query("id"));
+	return;
+       }
+	else	
+	{ 
+	command ("chat 救命啊，"+ ob->query("name") + "想要羞辱我！\n") ;
+	  command("chat 哎哟，谁想得到这" + RANK_D->query_rude(ob)+"，竟也是一个变态狂！\n");
+	  write(HIC "夜莺忽然大声说：打倒臭泥潭，打倒道可道！\n" NOR);
+	  command("cry");
+	  command("faint "+ob->query("id"));
+	}
+       break;
+   return;
+   }
+	case "fu":
+	case "sister":
+	case "jump":
+	case "love":
+	case "lovelook":
+	case "praise":
+	case "visit":
+	case "goodkid":
+	case "pat":
+	case "addoil":
+	case "laughproud":
+	case "smile":
+	case "xixi":
+	case "giggle":
+	case "thumb":
+	case "admire":
+	case "applaud":
+	case "hi":
+   switch(random(50))
+   {
+    case 0: 
+    command ("pat "+ ob->query("id"));
+    break;
+    case 1: 
+    command ("humble");
+    break;
+    case 2: 
+    command ("praise "+ ob->query("id"));
+    break;
+    case 3: 
+    command ("xixi");
+    break;
+    case 4: 
+    command("chat "+ob->query("name")+"是天下第一大好人！\n");
+    command ("giggle "+ ob->query("id"));
+    break;
+    case 5: 
+    command ("goodkid "+ ob->query("id"));
+    break;
+    case 6:
+    command ("pat "+ ob->query("id"));
+    break;
+    case 7: 
+    command("chat "+ob->query("name")+"是天底下最好的人了！\n");
+    command ("giggle");
+    break;
+    case 8:
+    command ("praise "+ ob->query("id"));
+    break;
+    case 9:
+    command ("laughproud "+ ob->query("id"));
+    break;
+    case 10:
+    command("chat 嗯，"+ob->query("name")+"继续努力啊！\n");
+    command ("thank");
+    break;
+    case 11: 
+    command ("nod");
+    command ("xixi");
+    break;
+    case 12:
+    command ("shake");
+    break;
+    case 13:
+    command("chat 嗯，"+ob->query("name")+"继续努力啊！\n");
+    command ("addoil "+ob->query("id"));
+    break;
+    case 14: 
+    command ("xixi");
+    break;
+    case 15:
+    command ("chat 夜莺脉脉含情地注视着"+ob->query("name")+"，眼中似有万语千言。\n");
+    break;
+    case 16:
+    command ("smile "+ob->query("id"));
+    break;
+    case 17:
+    command("chat 嗯，我好喜欢"+ob->query("name")+"耶！\n");
+    command ("kiss "+ob->query("id"));
+    break;
+    case 18:
+    command ("addoil "+ob->query("id"));
+    break;
+    case 19:
+    command ("xixi");
+    break;
+    case 20:
+    command ("shakehand "+ob->query("id"));
+    break;
+    case 22:
+    command ("touch "+ob->query("id"));
+    break;
+    case 24:
+    command ("protect "+ob->query("id"));
+    break;
+    case 25:
+    command ("thumb "+ob->query("id"));
+    break;
+    case 26:
+    command ("applaud ");
+    command ("giggle ");
+    break;
+    case 27:
+    command ("hi");
+    break;
+    case 28:
+    command ("hi "+ob->query("id"));
+    break;
+    case 29:
+    command("chat 你怎么这样？\n");
+    command("angry");
+    break;
+    default:
+    command(verb + " " + ob->query("id"));
+    command("smile");
+    break;
+   return;
+   }
+  return;
+  }
+}
+}
+return;
+}
+
+
+void reset()
+{
+	delete("memory");
+}
+	
+void init()
+{       
+	object ob;
+	ob = this_player();
+	::init();
+	if (userp(ob))
+	if(random(10)>3)
+	add_action("do_whisper","whisper");
+	add_action("do_sing", "sing");
+	add_action("do_answer","answer");
+	remove_call_out("greeting");
+	call_out("greeting", 1, ob);
+	command("prepare taiji-quan");
+}
+
+void greeting(object ob)
+{
+	if( !ob || environment(ob) != environment() ) return;
+	if(!userp(ob)) return;
+	if(wizardp(ob)) ob->set("env/invisibility",0);
+        wiz_status=SECURITY_D->get_status(ob);
+	message_vision(	"$N对$n嫣然一笑.\n\n",this_object(),ob );
+	if(ob->query("id")=="ture")
+	{
+	  command("say 噢，"+ob->query("name")+"公子回来了。");
+	}
+	else if(ob->query("id")=="yeung")
+	{	
+		say(CYN"夜莺说道:大功告成!\n"NOR);
+                command("jump yeung");
+		return;
+	}
+	else if(ob->query("id")=="jenny")
+	{	
+                command("touch jenny");
+                command("sister jenny");
+		return;
+	}
+
+       else if(wiz_status == "(admin)")
+        {       command("bow");
+		say(HIG"夜莺说道：这位这位天神老爷请了!\n"NOR);
+                command("sister" + ob->query("id"));
+		return;
+	}
+
+	else
+	{
+	command("say 这位" + RANK_D->query_respect(ob)
+	+ "，你好啊?\n");
+	if (ob->query("gender") == "男性"||ob->query("gender") == "无性")
+	{
+	command("say "+"这位" + RANK_D->query_respect(ob)+"，欢迎你有空来坐坐。");
+	command("xixi");
+	}
+	else
+		{
+		command("say 总是有男子来惹我恼我，不想今日却来了一位" + RANK_D->query_respect(ob)+"\n");
+		}
+	}
+}
+
+void die()
+{
+	object ob;
+        if( objectp(ob = query_temp("last_damage_from")) )
+	{
+		command("chat " + HIR + ob->query("name") + "你这" + RANK_D->query_rude(ob) + "，我做鬼也不会放过你！！！\n"NOR);
+        	message_vision(HIR"夜莺在倒地身亡的瞬间对$N种下了深重的诅咒！\n"NOR,ob);
+        	tell_object(ob,HIR"你死定了！"NOR);
+        	ob->set("PK_point",ob->query("PK_point")+10000);
+	}
+	::die();
+}
+
+
+void defeated_enemy(object victim)
+{
+	command("nomatch");
+}
+void destroying(object me, object obj)
+{
+        destruct(obj);
+        return;
+}
+int accept_fight(object who)
+{
+	message_vision("\n$N摇了摇头，对$n幽幽叹道：唉，你这又是何苦呢?\n",this_object(),who);
+	command("nomatch "+who->query("id"));
+}
+
+string ask_mother()
+{
+	command( "sigh");
+	command("cry miss");
+	return("咦，你也知道她呀，她原来是纵横天下的玩家，可是后来被迫\n自杀了，她就是我的前身啊....\n");
+}
+
+string ask_zhh()
+{
+	command( "sigh");
+	return("她是以前剑神一笑的爱妻。本来一直过着幸福快乐的生活，后来\n因无法忍受师门之变的重大打击，愤然辞世。自从她去世之后，剑神一笑\n也性情大变，成了一个大魔头。从此江湖上就多了许许多多的是是非非，\n风风雨雨......");
+}
+
+string ask_hou()
+{
+	object ob;
+	ob = this_player();
+	if( ob->query("marks/yeying") )
+	{
+		command("angry");
+		return("我不是已经告诉你了吗？好讨厌！");
+	}
+	if( ob->query("kar") > 5 )
+		return("你问这个干什么呢？\n");
+	else
+	{
+		ob->set("marks/yeying",1);
+		command("whisper "+ob->query("id")+" 不死印心法是石之轩的魔门绝学，有很多妙用，现在可能在他的徒弟的手里。");
+		return("我知道的就这么多了，自己保重。\n");
+	}
+}

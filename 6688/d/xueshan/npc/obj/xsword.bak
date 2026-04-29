@@ -1,0 +1,45 @@
+//OBJ:/d/xueshan/npc/obj/xsword.c
+//By tlang for 旋芒宝剑
+
+#include <weapon.h>
+#include <ansi.h>
+
+inherit F_AUTOLOAD;
+inherit SWORD;
+//inherit F_UNIQUE;
+
+int query_autoload()
+{
+	object dest=this_object()->query("owner");
+
+	if( this_player()->query("id") ==dest  )
+                return 1;
+        return 0;
+}
+
+void create()
+{
+	set_name("旋芒宝剑", ({ "lighting sword", "sword" }) );
+	set_weight(1500);
+        set("no_get",1);
+	set("no_drop",1);
+	set("no_give",1);
+	set("owner","no_owner");
+	set("unpawnable",1);
+	if( clonep() )
+		set_default_object(__FILE__);
+	else {
+		set("unit", "把");
+		set("long",  "旋芒宝剑，留赠有缘.\n");
+		set("value", 9999);
+		set("material", "crimson gold");
+        }
+        init_sword(99);
+	setup();
+}
+
+void init()
+{
+	seteuid(geteuid());
+}
+

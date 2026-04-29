@@ -1,0 +1,38 @@
+                "布衣"          : __DIR__"obj/cloth",
+                "软猬甲"        : __DIR__"obj/armor1",
+                "怒龙锦胄"      : __DIR__"obj/armor2",
+                "风泉之剑"      : __DIR__"obj/sword1",
+                "邪剑穿灵"      : __DIR__"obj/sword2",
+                "离别钩"        : __DIR__"obj/hook",
+                "妖刀狗屠"      : __DIR__"obj/blade1",
+                "碧玉胡刀"      : __DIR__"obj/blade2",
+                "昏睡卡"        : __DIR__"obj/card1",
+                "抢夺卡"        : __DIR__"obj/card2",
+                "诬告卡"        : __DIR__"obj/card3",
+                "复仇卡"        : __DIR__"obj/card4",
+                "均富卡"        : __DIR__"obj/card5",
+//fin
+                "九花玉露丸"    : __DIR__"obj/wan",
+                "菩提子"        : __DIR__"obj/ptz",
+                "天香断续膏"    : __DIR__"obj/gao",
+                "起死回生散"    : __DIR__"obj/san",
+                "保命还魂丹"    : __DIR__"obj/dan",
+                "天山雪莲"      : __DIR__"obj/lotus",
+                "人参"          : __DIR__"obj/ginseng",
+                "灵芝"          : __DIR__"obj/agaric",
+                "酒"    : __DIR__"obj/wine1",
+                "烈酒"  : __DIR__"obj/wine2",
+                "小菜"  : __DIR__"obj/cai1",
+                "咸菜"  : __DIR__"obj/cai2",
+                "泡菜"  : __DIR__"obj/cai3",
+                "炒菜"  : __DIR__"obj/cai4",
+                "面条"  : __DIR__"obj/noodle",
+                "米饭"  : __DIR__"obj/rice",
+                "包子"  : __DIR__"obj/dumpling",
+                "馒头"  : __DIR__"obj/maintal",
+jianpu
+poison
+
+'你说道：if ... enviromnet()->query("name")!="小巫仙" ...
+你说道：return ... notify_fail("偷来的书也想用啊") ...
+

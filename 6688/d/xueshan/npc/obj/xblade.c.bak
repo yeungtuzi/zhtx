@@ -1,0 +1,41 @@
+//OBJ:/d/xueshan/npc/obj/xblade.c
+//By tlang for 邪剑穿灵
+
+#include <weapon.h>
+#include <ansi.h>
+
+inherit F_AUTOLOAD;
+inherit BLADE;
+//inherit F_UNIQUE;
+
+int query_autoload()
+{
+        return query("weapon_prop");
+}
+
+void create()
+{
+	set_name("邪剑穿灵", ({ "lighting blade", "blade" }) );
+	set_weight(1500);
+	set("no_drop",1);
+	set("owner","no_owner");
+	set("weapons/寒于",1);
+	set("unpawnable",1);
+	if( clonep() )
+		set_default_object(__FILE__);
+	else {
+		set("unit", "把");
+		set("long",  "邪剑穿灵，似剑实刀.\n");
+		set("value", 9999);
+		set("material", "crimson gold");
+        }
+        init_blade(199);
+	setup();
+}
+
+
+mixed hit_ob(object me, object victim, int damage_bonus)
+{
+        //victim->receive_wound("kee",damage_bonus/10);
+        me->add("force",me->query("force_factor"));
+}

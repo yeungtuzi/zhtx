@@ -1,0 +1,80 @@
+$HIG$━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NOR$
+$HIG$结婚生子$NOR$
+$HIG$━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NOR$                      
+
+$HIY$结婚手续$NOR$
+
+ 投缘的男女可到 $HIW$媒婆$NOR$ 处结为夫妻，媒婆发给 婚约 $HIY$(marrycard)$NOR$
+
+ $HIG$地点：$NOR$   $HIR$红娘庄$NOR$(绮云镇十字路口 w w n)
+
+ $HIG$命令：$NOR$   $HIY$marry sb$NOR$
+
+ $HIG$条件：$NOR$   $HIG$A、$NOR$异性男女、男大于等于十七岁、女大于等于十四岁。
+        
+          $HIG$B、$NOR$和尚、喇嘛、道士、公公就不用来了。
+
+$HIY$婚后购房$NOR$
+
+ 结婚后可找 $HIW$『老板』朱亭$NOR$ 买房子居住。发给 房契 $HIY$(indenture)$NOR$
+
+ $HIG$地点：$NOR$   绮云镇街道(绮云镇十字路口 w w)
+
+ $HIG$命令：$NOR$   $HIY$makeroom$NOR$
+
+ $HIG$条件：$NOR$   $HIG$A、$NOR$夫妻双方都在场，并且持有 婚约 $HIY$(marrycard)$NOR$
+
+          $HIG$B、$NOR$手续费一百两黄金，只要现银，不收银票。
+
+$HIY$举行婚礼$NOR$
+
+ 已结婚的可到“紫阳楼”找 $HIW$冼老板$NOR$ 举行婚礼。
+ 
+ $HIG$地点：$NOR$   紫阳楼二楼(李白处 w w w w n u)
+
+ $HIG$命令：$NOR$   $HIY$ask xian about 酒席$NOR$
+
+          $HIY$decide <档次> and <规模>$NOR$
+
+ $HIG$价钱：$NOR$   低档   5 gold
+          中档  10 gold
+          高档  20 gold
+
+ $HIG$规模 ：$NOR$  在场玩家   $HIY$here$NOR$
+          全体玩家   $HIY$all$NOR$
+
+ $HIG$条件：$NOR$   $HIG$A、$NOR$在线玩家必须多于三人。
+
+          $HIG$B、$NOR$夫妻双方在场。
+          
+          $HIG$C、$NOR$双方都必须持有 婚约 $HIY$(marrycard)$NOR$
+
+$HIY$补发证件$NOR$
+
+ $HIG$丢失婚约 (marrycard)$NOR$
+ 
+ 已婚者由于种种原因丢失 婚约 $HIY$(marrycard)$NOR$ 的，可单独到媒婆处
+ 补办 $HIY$remarry$NOR$ ，领取 婚约 $HIY$(marrycard)$NOR$。
+
+ $HIG$丢失房契 (indenture)$NOR$
+ 
+ 丢失 房契 $HIY$(indenture)$NOR$ 者，可持 婚约 $HIY$(marrycard)$NOR$ 单独到 $HIW$朱亭$NOR$
+ 处 $HIY$makeroom$NOR$，补领 房契$HIY$(indenture)$NOR$，花费 1 gold。
+
+$HIY$房屋使用$NOR$
+ 
+ $HIG$A、回家$NOR$ 在开封(李白 #21 e) $HIY$gohome$NOR$。
+ $HIG$B、请客$NOR$ 可 $HIY$invite$NOR$ 同一地点的玩家去作客。
+ $HIG$C、学习$NOR$ 买房者 5 年后，在家里夫妻间可互相
+         学习武功 $HIY$xuexi sth from sb$NOR$
+ $HIG$D、踢人$NOR$ 在家里可将不欢迎的客人 $HIY$kickout$NOR$。
+ $HIG$E、做饭$NOR$ 夫妻可以在家里 $HIY$zuofan$NOR$。
+ $HIG$F、做客$NOR$ 持有 请帖 者，可在开封 $HIY$zuoke$NOR$。
+
+$HIY$离婚$NOR$
+ 
+ 夫妻双方一起在媒婆处 $HIY$unmarry$NOR$，买房者将没收房屋。
+
+$HIG$━━━━━━━━━━━━━━━━━━━━━━━━━━@ZHTX2━━━$NOR$
+
+

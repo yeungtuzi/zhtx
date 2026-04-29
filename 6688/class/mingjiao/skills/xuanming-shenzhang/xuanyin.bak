@@ -1,0 +1,97 @@
+// xuanyin.c 玄阴真气
+ 
+#include <ansi.h>
+ 
+inherit F_SSERVER;
+ 
+int perform(object me)
+{
+        string msg;
+        object weapon, target;
+        int skill, ap, dp, force_wound, kee_wound;
+
+        me->clean_up_enemy();
+        target = me->select_opponent();
+
+        skill = me->query_skill("xuanming-shenzhang",1);
+
+        if( !(me->is_fighting() ))
+                return notify_fail("「玄阴真气」只能对战斗中的对手使用。\n");
+ 
+        if (objectp(weapon = me->query_temp("weapon")))
+                return notify_fail("只有空手才能够使用「玄阴真气」。\n");
+
+        if( skill < 180)
+                return notify_fail("你的「玄冥神掌」等级不够, 不能使用「玄阴真气」！\n");
+
+         msg = HIB "$N运起「玄阴真气」，欺近$n的身前，舞动双掌夹带着一股阴寒之气闪电般的向$n击去。\n"NOR;
+        message_vision(msg, me, target);
+ 
+        ap = skill*skill*skill/2;
+        dp = target->query("combat_exp") / 2;
+        if( dp < 1 )
+                dp = 1;
+        if( random(ap) > dp )
+        {
+                if(userp(me))
+                        me->add("force",-100);
+
+                msg = HIG "$n只觉得全身一阵发紧，一股至阴至寒之气在体内游走，$N已然击中了$n身上的要穴！\n"NOR;
+                force_wound = 400 + random(skill);
+                if(force_wound > target->query("force"))
+                        force_wound = target->query("force");
+
+                kee_wound = force_wound * 4;
+                if(kee_wound > target->query("kee"))
+                        kee_wound = target->query("kee");
+
+                target->add("force", -force_wound);
+                target->add("kee", -kee_wound);
+                target->apply_condition("ninemoonpoison",skill/8);
+                target->update_condition("ninemoonpoison");
+        if( skill > 50){
+                target->update_condition("ninemoonpoison");
+        } 
+        if( skill > 100){
+                target->update_condition("ninemoonpoison");
+        }
+
+        if( skill > 150){
+                target->update_condition("ninemoonpoison");
+        }
+
+        if( skill > 200){
+                target->update_condition("ninemoonpoison");
+        }
+
+        if( skill > 250){
+                target->update_condition("ninemoonpoison");
+        }
+
+        if( skill > 300){
+                target->update_condition("ninemoonpoison");
+        } 
+
+        if( skill > 350){
+                target->update_condition("ninemoonpoison");
+        }
+
+        if( skill > 399){
+                target->update_condition("ninemoonpoison");
+        }
+
+                target->start_busy(3);
+                me->start_busy(random(1));
+        }
+        else
+        {
+                msg = HIC "只见$n不慌不忙，轻轻一闪，躲过了$N的攻势！\n"NOR;
+                if(userp(me))
+                        me->add("force",-400);
+                me->start_busy(4);
+        }
+        message_vision(msg, me, target);
+
+        return 1;
+}
+

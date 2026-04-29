@@ -1,0 +1,131 @@
+// suicide.c
+#include <ansi.h>
+#define __BAK_EXTENSION__  ".bak.o"
+inherit F_CLEAN_UP;
+
+int main(object me, string arg)
+{
+        if( me->is_busy() )
+                return notify_fail("你上一个动作还没完成。\n");
+
+        if( !arg || (arg != "-f" && arg != "-q")) 
+                return notify_fail("自杀有两种，您是要考虑一会还是立刻自杀？\n");
+
+        if( wiz_level(me) || raw_wiz_level(me) )
+                return notify_fail("重任在肩你还想死？没门！\n");   
+
+        if( arg == "-q" && me->query("mud_age") > 120)
+                return notify_fail("你已经成年了，不能通过这种方式自杀！\n");
+                
+        seteuid(getuid());
+
+        write(
+                "如果您选择永远死掉的自杀方式，这个人物的资料就永远删除了，请务必\n"
+                "考虑清楚，确定的话请输入您的管理密码：");
+
+        if (arg == "-f")
+                input_to("check_password", me, 90);
+        else if( arg == "-q")
+                input_to("check_password", me, 1);
+
+        return 1;
+}
+
+private void check_password(string passwd, object me, int forever)
+{
+        object link_ob;
+        string old_pass;
+
+        link_ob = me->query_temp("link_ob");
+        old_pass = link_ob->query("ad_password");
+        if( crypt(passwd, old_pass)!=old_pass ) {
+                write("管理密码错误！\n");
+                return;
+        }
+
+        if (forever) {
+                tell_object( me,
+                        HIR "\n\n你决定要自杀了，如果在不后悔，就真的永别了。\n\n\n" NOR);
+                me->set_temp("suicide_countdown", forever);
+                me->start_busy( bind((: call_other, __FILE__, "slow_suicide" ,me
+                :), me),bind((: call_other, __FILE__,"halt_suicide":),me));
+        }
+}
+
+int halt_suicide(object me, object who, string reason) {
+
+       switch(reason) {
+                case "halt":
+                        tell_object( me ,
+                                HIY"\n你忽然发觉人世间还有很多值得留恋的事情，心情忽然开朗起来。自杀的念头一下子飘到九霄云外去了。\n" NOR); 
+                        break;
+                case "hit":
+                        tell_object( me,
+                                HIY "\n"+who->name()+"似乎还有些事情未与你了结，你只好先放弃自杀的念头。\n" NOR );
+                        break;
+        }
+        me->delete_temp("suicide_countdown");
+        return 1;
+}
+
+int slow_suicide(object me)
+{
+        object link_ob;
+        int stage,n,i;
+        string *custom_ob,filename,id,first;
+        
+        stage = me->query_temp("suicide_countdown");
+        me->add_temp("suicide_countdown", -1);
+        if( stage > 1 ) {
+                if( stage%5 == 0 )
+                        tell_object(me, HIR "你还有 " + stage + " 秒的时间可以后悔。\n" NOR);
+                return 1;
+        }
+
+        link_ob = me->query_temp("link_ob");
+        if( !link_ob ) return 0;
+
+        log_file("static/SUICIDE",
+                sprintf("%s committed suicide on %s\n", geteuid(me), ctime(time())) );
+
+        seteuid(getuid());
+        cp( link_ob->query_save_file() + __SAVE_EXTENSION__ , "/databak/login");
+        rm( link_ob->query_save_file() + __SAVE_EXTENSION__ );
+        rm( link_ob->query_save_file() + __BAK_EXTENSION__ );
+        cp( me->query_save_file() + __SAVE_EXTENSION__ , "/databak/user");
+        rm( me->query_save_file() + __SAVE_EXTENSION__ );
+        rm( me->query_save_file() + __BAK_EXTENSION__ );
+        //删除信件
+       id = getuid(me);
+        cp( "/data/mail/"+id[0..0]+"/"+id+".o" , "/databak/mail");
+        rm( "/data/mail/"+id[0..0]+"/"+id+".o" );
+        //write("Suicide：Delete file "+"/data/mail/"+id[0..0]+"/"+id+".o"+"\n");
+        
+        write("好吧，永别了:)。\n");
+        tell_room(environment(me), me->name() +
+                "自杀了，以后你再也看不到这个人了。\n", ({me}));
+        destruct(me);
+        return 0;
+}
+
+int help (object me)
+{
+        write(@HELP
+指令格式: suicide [-f] [-q]
+ 
+如果因为某种原因你不想活了, 你可以选择自杀.
+自杀分两种:
+ 
+suicide -f : 永远的除去玩家资料, 系统会要求你
+             输入密码以确认身份.
+
+suicide -q : 立刻自杀，选人用，登陆起两分种后
+             如果不自杀就不能立刻自杀。
+
+请慎重选择 :)
+ 
+HELP
+);
+        return 1;
+}
+

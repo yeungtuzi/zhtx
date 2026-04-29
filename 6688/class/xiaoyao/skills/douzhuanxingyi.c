@@ -1,0 +1,82 @@
+#include <combat.h>
+
+inherit SKILL;
+
+string *parry_msg = ({
+        "$N一招击在$n身上，却被$n暗运斗转星移，将内力尽数移入地下。\n",
+        "$n轻轻一带，$N发现自己招数回击过来，吓得往后倒退几步。\n",
+        "$n身形不动，$N一招击下，有如石沉大海，不觉呆住了。\n",
+        "$n左牵右引，$N如身处漩流，连续转了好几个圈。\n",
+        "$n轻轻一转，$N一招击在地上，只打得尘土飞扬。\n",
+});
+
+
+string *move_attack_msg = ({
+        "$N双肘略沉，左手一引，$n的攻势不由自主地被移向了$k\n!",
+        "$N一声轻笑，顺手将$k牵引过来，挡住了$n的这一招。\n",
+        "$N使出以彼之道，还施彼身之绝技，将$n的攻式全部移向$k。\n",
+        });
+
+int valid_enable(string usage) { return (usage == "parry"); }
+
+/*int valid_learn(object me) 
+{
+        return notify_fail("斗转星移乃慕容氏传家绝技，从不外传。\n");
+}
+*/
+
+string query_parry_msg(object weapon,object defenser,object attacker,mapping attack_action)
+{
+        object *targets,target,me,victim;
+        mapping his_action;
+        int     i,level;
+        string  msg;
+
+        me = defenser;
+        victim = attacker;
+        his_action = attack_action;
+
+        level = me->query_skill("douzhuanxingyi",1);
+        target = me->select_opponent();
+        if( !objectp(target) )
+                target = victim;        
+        if( his_action["unparryable"] < 10 
+         && random(level/4) > random(target->query_cps())
+         && me->query("force") > 200
+         && !me->is_busy()
+         && random(me->query("force")) > victim->query("force") / 2 ) 
+        {
+                msg = move_attack_msg[random(sizeof(move_attack_msg))];
+                message_vision(msg,me,victim,target);
+                if( userp(me) ) me->add("force", -50);
+                COMBAT_D->do_attack(victim,target,victim->query_temp("weapon"),TYPE_SELFATTACK,his_action,me);
+                return "";
+        }
+        return parry_msg[random(sizeof(parry_msg))];
+}
+
+int practice_skill(object me)
+{ 
+        if( (int)me->query("kee") < 30
+        ||  (int)me->query("sen") < 30
+        ||  (int)me->query("gin") < 30
+        ||  (int)me->query("force") < 110 )
+                return notify_fail("你的内力或精气神不够，没有办法练习斗转星移。\n");
+        me->receive_damage("kee", 30);
+        me->add("force", -80);
+        return 1;
+}
+
+mapping enable_req() {
+
+        return( ([ 
+                "force":"beiming-shengong",       
+        ]) );
+
+}
+
+
+int effective_level() {
+       return 12;
+}
+

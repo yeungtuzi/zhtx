@@ -1,0 +1,22 @@
+  Research也叫“研习”武功，指令：research 功夫名称、resarch 功夫名称with 几点qn，它和普通的learn有比较大的区别，同时也困难很多，具体如下：
+  1、能进行research的条件
+  并不是所有玩家都能research的，因为它有几个比较苛刻的条件：
+  1)、exp 3M，exp符合exp>=(skills+1)^3/2.5；
+  2)、research 200－250级要求杀死魔域的任狂（251－300的基本skills可以杀死接天楼第9层的浪翻云后向武林宗师乔峰【正派】或者欧阳峰【邪派】学习，不需要research）；300级以上要求杀死接天楼第九层的魔师庞斑，在取得他的魔晶后，将它交给知机子，在知机子chat一段话后，你就可以开始research了。
+  3)、如果要reserch高级功夫，必须把相应的基础功夫research到比高级功夫高。比如想research太极剑201级，就必须有sword、parry同时比taiji－jian高才行。
+  2、research计算公式
+  每点qn换取skills小点数为：1+random（（先天悟性+ literate/5）/10），或者是：1+random（（后天悟性 + literate/10）/10）。
+  这里的“先天悟性”是指：选新人时的悟性+literate229级以及以后skills级别“逢9加2”长的悟性。
+  例如：你的选人时的悟性是30,并且学literate 290级（学到290最佳，学到300当然更好），那么实际的先天悟性就有30+（389-229）/10×2=44点，research一次所取得的skills小点为：1+random（44+58）/10=1+random 10.2,也就是最多11点，如果literate是280的话，最多只有10点！300级最多也是11点。
+  别说慢哦，以前的公式更慢！279级literate最多只有7点！
+  BTW：zh2的定力、悟性、体质、膂力等天赋都是可以提升先天数值的，悟性提升靠literate，其他方面的提升（包括隐含天赋的提升等）限于篇幅以后再说。
+  3、应该research何种skills
+  因为research速度相当慢，因此选择research的功夫种类要挑好。这和你的门派息息相关。
+  如果你的门派功夫相当多（比如少林），就应该先research parry，然后practice其它高级功夫（比如金刚拳），然后去lingwu cuff，这样如果你有400 parry，将可以有较轻松得到380金刚拳和360cuff，以及其它功夫。
+  通常的门派都会先选择reserch parry。
+  但特色门派就有可能不同，比如茅山（spells）、唐门（gudong）、步选（sword或者dodge）等。
+  当然，任何门派还是有个共同点的，就是可以先research 一定级别的force。
+  Research有很多的学问，欢迎大家更正、补充。
+
+
+by fanny

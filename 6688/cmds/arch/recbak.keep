@@ -1,0 +1,64 @@
+// recoverdummy.c
+// yeung
+
+#include <ansi.h>
+#define SYNTAX "指令格式：recbak <使用者姓名>\n"
+#define SAVE_EXTENSION ".o"
+#define BAKDATA_DIR "/databak/"
+
+inherit F_CLEAN_UP;
+
+
+int main(object me, string arg)
+{
+        string name, reason;
+        string status;
+        string src;
+        string dst;
+
+        status = wizhood(me);
+        if( me!=this_player(1)
+        || wiz_level(me) < wiz_level(status) )
+                return notify_fail("你没有权力使用这个指令。\n");
+
+        if( !arg ) return notify_fail(SYNTAX);
+
+	name = arg;
+	
+        seteuid(getuid());
+        if( file_size(DATA_DIR + "login/" + name[0..0] + "/" + name + SAVE_EXTENSION)>0 )
+                return notify_fail("这位使用者的档案已经存在了。\n");
+
+        if( file_size(BAKDATA_DIR + "login/" + name + SAVE_EXTENSION)<0 )
+                return notify_fail("备份中没有这位使用者的档案。\n");
+
+        src = (BAKDATA_DIR + "login/" + name + SAVE_EXTENSION);
+        dst = (DATA_DIR + "login/" + name[0..0] + "/" + name + SAVE_EXTENSION);
+        src = resolve_path(me->query("cwd"), src);
+        dst = resolve_path(me->query("cwd"), dst);
+        cp(src,dst);
+        src = (BAKDATA_DIR + "user/" + name + SAVE_EXTENSION);
+        dst = (DATA_DIR + "user/" + name[0..0] + "/" + name + SAVE_EXTENSION);
+        src = resolve_path(me->query("cwd"), src);
+        dst = resolve_path(me->query("cwd"), dst);
+        cp(src,dst);    
+
+        write( "恢复了使用者 " + capitalize(name) + " 的备份数据。\n");
+        log_file("static/RECOVERBAK", sprintf("[%s] %s recovered %s.\n",
+                ctime(time())[0..15], geteuid(this_player(1)), name, reason));
+
+        return 1;
+}
+
+
+int help(object me)
+{
+write(@HELP
+指令格式：recbak <使用者姓名>
+
+这个指令让你恢复玩家的备份数据，当玩家被怀疑为DUMMY的时候，
+他的档案就会被删除。如果必要，这个指令可以恢复他被删除的档案。
+HELP
+        );
+    return 1;
+}

@@ -1,0 +1,106 @@
+// dongsw add for zh2 system 2002
+#include <ansi.h>
+#include <mudlib.h>
+
+inherit F_CLEAN_UP;
+int top_list(object ob1,object ob2);
+int get_score(object ob);
+int main(object me, string arg)
+{
+   object *list,*ob;
+   int i,a,i1;
+   string msg;
+
+   if(!arg)
+   {
+      a=10;
+   }
+   else
+   {
+      sscanf(arg,"%d",a);
+//      if(a>100) a=100;
+      if(a>50) a=50;
+   }
+
+   ob   = filter_array(objects(), (: userp($1) && !wizardp($1) && SECURITY_D->get_status($1)!="(immortal)" :));
+   list = sort_array(ob, (: top_list :));
+   if(a>sizeof(list))
+      a=sizeof(list);
+   msg  =  "\n             "+NOR+MUD_NAME+"在线高手排行榜"NOR"   \n";
+   msg += "┏━━━━┯━━━━━━━━━━┯━━━━┯━━━━┓\n";
+   msg += "┃  名 次 │    高        手    │ 门  派 │ 评  价 ┃\n";
+   msg += "┠────┴──────────┴────┴────┨\n";
+   for (i = 0 , i1 = 0 ;i < a ; i++)
+   {
+      if( i >= sizeof(list))
+         msg += "┃暂时空缺                                          ┃\n";
+      else
+      {
+        if(list[i]->query("name") == 0 || list[i]->query("id") == 0 || get_score(list[i]) == 1)
+                continue;
+        if(list[i] == me)
+                msg += BBLU;
+        msg += sprintf("┃  "+HIW"%-7s "+HIW"%11s"+"%-11s"+HIG"%-10s"+HIR" %5d"+NOR"  ┃\n",chinese_number(i1+1),list[i]->query("name"),"("+
+                        list[i]->query("id")+")", list[i]->query("family")?  list[i]->query("family/family_name"):"普通百姓",
+                        get_score(list[i]));
+        i1 ++;
+      }
+   }
+   msg += "┗━━━━━━━━━━━━━━━━━━━━━━━━━┛\n";
+   msg += "  \t\t\t" + NATURE_D->game_time() + "记。\n";
+   msg +=HIC"\n\t\t\t\t您的评价是："+get_score(this_player())+"。\n"NOR;
+   this_player()->set("score",get_score(this_player()));
+   write(msg);
+   return 1;
+}
+
+int top_list(object ob1, object ob2)
+{
+        int score1,score2;
+
+        score1 = get_score(ob1);
+        score2 = get_score(ob2);
+
+        return score2 - score1;
+}
+
+int get_score(object ob)
+{
+        int tlvl,i,score;
+        string *ski;
+        mapping skills;
+
+        reset_eval_cost();
+        skills = ob->query_skills();
+        if (!sizeof(skills)) 
+                return 1; 
+        ski  = keys(skills);
+        for(i = 0; i<sizeof(ski); i++) 
+        {
+                tlvl += skills[ski[i]];
+        }  // count total skill levels
+        score = tlvl/10;
+        score += ob->query("max_force")/100;
+        score += ob->query("max_mana")/150;
+        score += ob->query("max_atman")/150;
+        score += ob->query_str() + ob->query_int() + ob->query_dex() + ob->query_con();
+          score += (int)ob->query("combat_exp")/5000;
+
+        score += (int)ob->query("max_kee")/10;
+        score += (int)ob->query("max_gin")/20;
+        score += (int)ob->query("max_sen")/20;
+        return score;
+}
+
+int help(object me)
+{
+write(@HELP
+指令格式 : top 
+ 
+在线10大高手，大家向他们问帮助吧。
+ 
+HELP
+    );
+    return 1;
+}
+

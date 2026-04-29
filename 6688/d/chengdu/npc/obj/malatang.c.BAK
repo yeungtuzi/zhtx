@@ -1,0 +1,41 @@
+// malatang.c 麻辣烫
+#include <ansi.h>
+
+inherit ITEM;
+
+int do_eat(string);
+void init();
+
+void init()
+{
+        add_action("do_eat", "eat");
+}
+
+void create()
+{
+        set_name(HIR "麻辣烫" NOR, ({"mala tang"}));
+        set_weight(20);
+        set("unit", "份");
+        set("long", 
+"这是一份热气腾腾的麻辣烫，还没有吃你就能感觉到热力和刺激！");
+ 
+        set("value", 10000);
+	
+        setup();
+}
+
+int do_eat(string arg)
+{
+        object me = this_player();
+
+        if (!id(arg))
+                return notify_fail("你要吃什么？\n");
+        
+	me->set("food",me->query("str")*10);
+	me->set("drunk",me->query("str")*10);	
+        message_vision(HIM
+ "$N吃下一份热气腾腾的麻辣烫，豆大的汗珠从额头流下，好爽啊! \n"NOR,me);
+
+        destruct(this_object());
+        return 1;
+}

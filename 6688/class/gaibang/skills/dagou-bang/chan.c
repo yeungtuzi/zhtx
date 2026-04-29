@@ -1,0 +1,77 @@
+//chan.c 打狗棒法「缠」字诀
+
+#include <ansi.h>
+
+inherit F_SSERVER;
+
+int perform(object me, object target)
+{
+        string msg;
+        object weapon;            
+      	int ap,dp;
+
+        if( !target ) target = offensive_target(me);
+//	if( me->query("id") == "rpg" )
+//		return 0;
+                                                                              
+	if( !me->visible(target) )
+		return notify_fail("你要对谁使用「缠」字诀？\n");
+		                                                                              
+        if( !objectp(weapon = me->query_temp("weapon"))
+        || (string)weapon->query("skill_type") != "staff")
+                return notify_fail("你必须使棒能使「缠」字诀。\n");
+
+	if( me->query_skill_mapped("staff")!="dagou-bang")
+		return notify_fail("你必须使打狗棒法才能施展「缠」字诀。\n");
+
+        if( !target || !target->is_character() || !me->is_fighting(target) )
+                return notify_fail("牵制攻击只能对战斗中的对手使用。\n");
+
+        if( target->is_busy() )
+                return notify_fail(target->name() + "目前正自顾不暇，放胆攻击吧。\n");
+
+        if( (int)me->query_skill("dagou-bang", 1) + (int)me->query_skill("staff", 1)/2 < 100 )
+                return notify_fail("你的棒法不够娴熟，不会使用「缠」字诀。\n");
+
+        if(  (int)me->query_skill("force") < 200 )
+                return notify_fail("你的内功等级不够，无法使用「打狗棒法」。\n");
+
+        if( (int)me->query("kee") < 100 ) return notify_fail("你的气不够！\n");
+        if( (int)me->query("force") - (int)me->query("max_force") < 300 )
+                return notify_fail("你的真气不够！\n");
+
+	me->add("force",-300);
+
+        msg = CYN "$N使出打狗棒法「缠」字诀，棒身轻若无物，随$n身形连绕了几个圈子。\n";
+
+        me->start_busy(3);
+
+        ap = me->query_skill("dagou-bang",1);
+        ap = ap*ap*ap/2; // 900万max    
+	dp = me->query("betrayer");
+	//对叛师的惩罚
+	while(dp--)
+		ap /= 4;	
+	ap += me->query("combat_exp")*2; 
+			
+	dp = target->query_skill("dagou-bang",1) + target->query_int() + target->query_spi() + target->query_cps(); 
+	dp = dp*dp*dp; //对不会打狗棒的，大概有100万,跟对方的定力和聪明程度相关，对会打狗棒的就很难成功了
+	dp += target->query("combat_exp")*2; // 1440万				
+        if ( target->query("id") == "long xiang") ap = ap/2;
+        if ( target->query("id") == "buzhi huowu") ap = ap/2;
+	if( !userp(target) )
+                dp /= 1; // 对npc赚一点
+	
+	        
+        if( random(ap+dp) > dp ) {
+                msg += "结果$p被$P攻了个措手不及，手忙脚乱之下不由得身形迟滞！\n" NOR;
+                target->start_busy( (int)me->query_skill("dagou-bang",1) / 20 + 1 );
+        } else {
+                msg += "可是$p看破了$P的企图，并没有上当。\n" NOR;       
+                me->start_busy(1);
+        }
+        message_vision(msg, me, target);
+
+        return 1;
+
+}

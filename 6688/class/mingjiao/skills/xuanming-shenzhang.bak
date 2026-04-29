@@ -1,0 +1,110 @@
+//玄冥神掌
+
+#include <ansi.h>
+
+inherit SKILL;
+
+mapping *action = ({
+([      "action" : "$N双掌一错，使出一式「黄云陇底白雪飞」，漫天掌影向$n全身涌去",
+        "force" : 220,
+        "dodge" : 25,
+        "attack" : 20,
+        "damage": 80,
+        "damage_type" : "瘀伤"
+]),
+([      "action" : "$N长笑一声，使出一式「龙吟虎啸一时发」，左掌划了一道弧线，右掌径自劈往$n的$l",
+        "force" : 280,
+        "dodge" : 25,
+        "attack" : 25,
+        "damage": 160,
+        "lvl" : 50,
+        "skill_name" : "小雨初晴",
+        "damage_type" : "瘀伤"
+]),
+([      "action" : "$N使一式「四郊秋叶惊瑟瑟」，双掌如同无边落木，招数纷至沓来，令$n避无可避",
+        "force" : 300,
+        "dodge" : 30,
+        "attack" : 30,
+        "damage": 150,
+        "lvl" : 80,
+        "damage_type" : "瘀伤"
+]),
+([      "action" : "$N身法陡然加快，使出一式「将往复旋如有情」，闪电般绕着$n盘旋周转，掌影千万径直罩向$n",
+        "force" : 350,
+        "dodge" : 40,
+        "attack" : 30,
+        "damage": 190,
+        "lvl" : 140,
+        "damage_type" : "瘀伤"
+]),
+([      "action" : "$N仰面清啸一声，一式「风头如刀面如割」，阴风扑面如同刀割，双掌运足阴劲拍向$n的$l",
+        "force" : 380,
+        "dodge" : 45,
+        "attack" : 30,
+        "damage": 200,
+        "lvl" : 160,
+        "damage_type" : "瘀伤"
+]),
+});
+
+string *unarmed_parry_msg = ({
+        "$n猛击$N的面门，逼得$N中途撤回$w。\n",
+        "$n以守为攻，猛击$N的手腕。\n",
+        "$n左手轻轻一托$N$w，引偏了$N$w。\n",
+        "$n脚走阴阳，攻$N之必救。\n",
+        "$n左拳击下，右拳自保，将$N封于尺外。\n",
+        "$n双拳齐出，$N的功势入泥牛入海，消失得无影无踪。\n",
+});
+
+string query_parry_msg(object weapon)
+{
+        return unarmed_parry_msg[random(sizeof(unarmed_parry_msg))];
+}
+
+int valid_enable(string usage) { return usage=="strike" ||  usage=="parry"; }
+
+
+int valid_learn(object me)
+{
+        return 1;
+}
+
+mapping query_action(object me, object weapon)
+{
+        int i, level;
+        level   = (int) me->query_skill("xuanming-shenzhang",1);
+        for(i = sizeof(action); i > 0; i--)
+                if(level > action[i-1]["lvl"])
+                        return action[NewRandom(i, 20, level/5)];
+}
+
+int practice_skill(object me)
+{
+        if ((int)me->query("kee") < 30)
+                return notify_fail("你的体力太低了。\n");
+        if ((int)me->query("force") < 40)
+                return notify_fail("你的内力不够练玄冥神掌。\n");
+        me->receive_damage("kee", 30);
+        me->add("force", -10);
+        return 1;
+}
+
+mixed hit_ob(object me, object victim, int damage_bonus, int factor)
+{
+	int i;
+	
+	if( victim == me ) return;
+	if( random(i = me->query_skill("xuanming-shenzhang")) > 50 )
+        {
+        	message_vision(HIY"$N双掌挟至阴之气击中了$n，阴气透体直入，$n顿时全身僵硬！\n"NOR,me,victim);
+		victim->apply_condition("ninemoonpoison", random(me->query_skill("strike")/5) + 1 + victim->query_condition("ninemoonpoison"));
+		victim->start_busy(1);
+		while( i > 1 )
+		{
+			victim->update_condition("ninemoonpoison");
+			i /= 3;
+		}
+	}
+	return;
+}
+

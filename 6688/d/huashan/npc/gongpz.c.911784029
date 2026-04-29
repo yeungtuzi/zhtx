@@ -1,0 +1,116 @@
+//比武设擂台(/d/huashan/leitai)一个,看台(/d/huashan/kantai0..9)十个,
+//每个看台可容纳20人,即最多容纳200人观看比武.
+//注意的是比武一定要在擂台(/d/huashan/leitai.c)举行.
+
+string helpstr =
+"1.只要玩家 set biwu 1 就能参加比武.\n
+2.比武以前用召集(zhaoji)命令,可以把设 set biwu 1 的玩家抓到看台.\n
+  注意这条命令同其它命令无关,仅仅是把玩家抓到看台.\n
+3.用start from <起始年龄> to <终止年龄> 来分年龄段比武.系统会自动\n
+  选一名该年龄段的玩家作为擂主,并自动安排玩家向擂主挑战,赢者作为\n
+  新的擂主,一直下去,直至决出最后的擂主,作为该年龄段的冠军.\n
+4.每两个玩家比武以前,巫师要用确认(queren)命令,使两个玩家正式比武.\n
+  这样可以控制比武节奏.\n
+5.巫师可以用list命令,来查看比武名单.\n
+6.巫师可以用add <玩家的id>命令,把一个玩家加到比武中.\n
+7.巫师可以用retreat <玩家的id>命令,把一个玩家从比武名单中去掉.\n
+8.如果不想按年龄段来比武,可以用如下命令进行.\n
+  (1)先敲biwu命令.\n
+  (2)再用add命令把玩家加入到比赛名单中去.\n
+  (3)再用start命令使比武开始,注意这时的start命令没有参数.\n
+  (4)上述的4.5.6.7条仍然起作用.\n
+9.为了比武公平,大会统一了比赛的武器.玩家可以用qu <武器>来去自己需要\n
+  的武器,具体有什么武器,可以看舍身崖(/d/huashan/sheshen.c)中的字迹.\n
+10.玩家除了可以由系统自动抓到看台上去外,也可以自己在舍身崖\n
+   (/d/huashan/sheshen.c)用watch命令自己去,但平常这个命令是不开的,\n
+   比武时巫师要在舍身崖用biwu命令开放watch命令,比武结束,用cancel命令\n
+   关闭watch命令.\n
+11.两个组的群殴命令用group,说明如下：\n
+   group add1 <id> 把玩家增加到第一组\n
+   group add2 <id> 把玩家增加到第二组\n
+   group list 显示两个组的名单\n
+   group startrace 两个组开始群殴   \n"
+
+
+#define MAXNUMBER 20
+
+inherit NPC;
+#include <ansi.h>;
+
+mixed winer=0,fighter=0,fighter1=0;
+object winerroom,fighterroom,fighter1room;
+string *group1=({}),*group2=({});
+string *list=({});
+int over;
+
+int selectplayer(int);
+int seekplayer(mixed);
+int race();
+int bonus(object);
+int full(mixed);
+
+void create()
+{
+	set_name("公平子", ({ "gongpingzi", "zi", "gong" }) );
+	set("gender", "男性");
+	set("age", 35);
+	set("long",
+		"这是一位仙风道骨的中年道人，早年云游四方，性好任侠，公正无私。\n");
+	set("combat_exp",60000);
+        set("shen_type", 1);
+	set("attitude", "friendly");
+
+	set("apply/attack", 50);
+	set("apply/defense", 50);
+
+	set("max_kee", 800);
+	set("max_gin", 800);
+	set("max_force", 800);
+
+	set_skill("force", 80);
+	set_skill("unarmed", 80);
+	set_skill("sword",80);
+	set_skill("parry",80);
+	set_skill("dodge", 80);
+
+	set("no_get",1);
+
+	setup();
+
+        carry_object("/obj/cloth")->wear();
+        carry_object("/obj/weapon/changjian")->wield();
+}
+
+
+void init()
+{
+	add_action("do_zhaoji","zhaoji");
+	add_action("do_start","start");
+	add_action("do_queren","queren");
+	add_action("do_biwu","biwu");
+	add_action("do_add","add");
+	add_action("do_list","list");
+	add_action("do_retreat","retreat");
+	add_action("do_qu","qu");
+        add_action("do_halt", "halt");
+	add_action("do_study","study");
+	add_action("do_practice","practice");
+	add_action("do_update","update");
+	add_action("do_get","get");
+	add_action("do_play","play");
+	add_action("do_group","group");
+	add_action("do_help","help");	
+}
+
+int do_update(string arg)
+{
+	if( query("in_race") || query("group_race"))
+	{
+	write("比武期间不能在这update，如果真需要的话，可以先smash公平子，再update。\n");
+	return 1;
+	}
+	return 0;
+}
+
+int do_play(string arg)
+{

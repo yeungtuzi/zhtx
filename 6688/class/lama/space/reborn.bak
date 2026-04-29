@@ -1,0 +1,106 @@
+// /daemon/class/lama/space/reborn.c
+// 转生术
+//
+
+#include <ansi.h>
+#include <login.h>
+
+inherit F_CLEAN_UP;
+inherit F_DBASE;
+inherit SSERVER;
+
+string *start_loc = ({
+	"/d/snow/inn",
+	"/d/xizang/inn",
+//	"/d/guanwai/inn",
+        "/d/cloud/tearoom",
+//	"/d/jingcheng/jiuguan",
+//	"/d/yueyang/kedian",
+//	"/d/suzhou/kezhan",
+});
+// set for zh2, commented the room which not included in ir for debugging
+
+int conjure(object me, object target)
+{
+        if( wizardp(me) )return notify_fail("巫师限制使用此法术!\n");
+	if(target && (target!=me)) 
+		return notify_fail("只能对自己使用转生术.\n");
+	if(me->query("gender")!="男性") 
+		return notify_fail("这不是你能使用的神通!\n");
+	if( me->is_fighting() ) return notify_fail("拜托,先打完这架再说!\n");
+	if( me->query_skill("space",1) < 400)
+		return notify_fail("你的天外神识修为还不够!\n");
+        if((me->query_skill("zang-buddhi",1) < me->query_skill("space",1))||
+                me->query_skill("zang-buddhi",1) <250)
+		return notify_fail("你的佛法修为还不够!\n");
+	if(me->query("combat_exp")< 500000)
+		return notify_fail("你的人生经历还不够!\n");
+	if(me->query("max_atman")<500)
+		return notify_fail("你缺乏足够的灵识.\n");
+
+	write("如果你投入转世,开始另一次生命的话\n");
+	write("你今世所有的记忆都将不复存在\n");
+	write("你确定要转世投胎,再入凡尘吗?[yes]\n");
+	input_to( (: call_other, __FILE__, "confirm", me:));
+	return 1;
+}
+
+void confirm(object me, string arg)
+{
+	object ob, ob1, cloth;
+	if( !arg || arg!= "yes") {
+		write("回心转意了?也好.\n");
+		return;
+	}
+	ob=me->query_temp("link_ob");	
+	if(!objectp(ob1 = LOGIN_D->make_body(ob))){
+		write("施法失败\n");
+		return;
+	}
+//now copy the talents for the new born
+	ob1->set("str", (int)me->query("str"));
+	ob1->set("cps", (int)me->query("cps"));
+	ob1->set("int", (int)me->query("int"));
+	ob1->set("cor",	(int)me->query("cor"));
+	ob1->set("con", (int)me->query("con"));
+	ob1->set("spi", (int)me->query("spi"));
+	ob1->set("per", (int)me->query("per"));
+	ob1->set("kar", (int)me->query("kar"));
+	ob1->set("dex", (int)me->query("dex"));
+// 9 of it?
+
+	if(random(30)>=15) ob1->set("gender", "男性");
+		else ob1->set("gender", "女性");
+//equal chance for reborn
+
+	if((int)me->query("marks/reborn"));
+		ob1->set("marks/reborn", (int)me->query("marks/reborn")+1);
+	ob1->set("marks/reborn_exp", (int)me->query("combat_exp"));
+// leave sth as memorize
+	ob1->set_temp("link_ob", ob);
+	ob->set_temp("body_ob", ob1);
+//	exec(ob, me);
+	CHANNEL_D->do_channel(me, "chat", sprintf("%s轮回转世了.",
+		me->query("name")));
+	exec(ob1, me);
+	ob1->setuid(ob->query("id"));
+	ob1->setid(ob->query("id"));
+	ob1->setup();
+	cloth=new(OBJ_DIR"cloth");
+	cloth->move(ob1);
+	cloth->wear();
+//	ob1->reincarnate();
+	ob1->move(start_loc[random(sizeof(start_loc))]);
+	UPDATE_D->check_user(ob1);
+	ob1->save();
+//	destruct(ob1);
+	destruct(me);
+	return;
+}
+
+void create() 
+{
+        seteuid(getuid());
+	set("id", "reborn");
+	set("name", "轮回转世");
+}

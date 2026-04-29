@@ -1,0 +1,215 @@
+head	1.6;
+access;
+symbols;
+locks
+	mudadm:1.6; strict;
+comment	@ * @;
+
+
+1.6
+date	97.10.20.19.29.21;	author mudadm;	state Exp;
+branches;
+next	1.5;
+
+1.5
+date	97.10.20.19.03.17;	author mudadm;	state Exp;
+branches;
+next	1.4;
+
+1.4
+date	97.10.20.16.49.11;	author mudadm;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	97.10.20.16.35.40;	author mudadm;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	97.10.20.15.25.17;	author mudadm;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	97.10.19.01.16.29;	author mudadm;	state Exp;
+branches;
+next	;
+
+
+desc
+@paff
+@
+
+
+1.6
+log
+@add mingjiao skills by PAFF
+@
+text
+@// skilld.c
+//
+// This is the "daemon dispatcher" that provide a link to varius skill
+// daemons.
+
+mapping skill_daemons = ([
+        //shangjia
+        "guanli":              CLASS_D("shangjia")+"/skills/guanli",
+        "qiatan":              CLASS_D("shangjia")+"/skills/qiatan",  
+        "zhizao":             CLASS_D("shangjia")+"/skills/zhizao",
+        "kuaiji":              CLASS_D("shangjia")+"/skills/kuaiji",
+
+        //mingjiao
+        "jiuyang-shengong":   CLASS_D("mingjiao")+"/skills/jiuyang-shengong",
+        "qiankun-danuoyi":    CLASS_D("mingjiao")+"/skills/qiankun-danuoyi",
+        "shenghuo-shengong":  CLASS_D("mingjiao")+"/skills/shenghuo-shengong",
+        "taxue-wuhen":        CLASS_D("mingjiao")+"/skills/taxue-wuhen",
+        "xiaoyao-jian":       CLASS_D("mingjiao")+"/skills/xiaoyao-jian",
+        "xiaoyao-zhang":      CLASS_D("mingjiao")+"/skills/xiaoyao-zhang",
+
+        //taohuadao
+        "taohua-force":       CLASS_D("taohua")+"/skills/taohua-force",
+        "baguabu":            CLASS_D("taohua")+"/skills/baguabu",
+        "luoying-zhang":      CLASS_D("taohua")+"/skills/luoying-zhang",
+        "qimen-bagua":        CLASS_D("taohua")+"/skills/qimen-bagua",
+        "lanhua-shou":        CLASS_D("taohua")+"/skills/lanhua-shou",
+        "yuxiao-jian":        CLASS_D("taohua")+"/skills/yuxiao-jian",
+ 
+        //xingxiu
+        "huagong-dafa":       CLASS_D("xingxiu")+"/skills/huagong-dafa",
+        "tianshan-zhang":     CLASS_D("xingxiu")+"/skills/tianshan-zhang",
+        "xingxiu-duzhang":    CLASS_D("xingxiu")+"/skills/xingxiu-duzhang",
+        "zhaixinggong":       CLASS_D("xingxiu")+"/skills/zhaixinggong",
+
+        //gaibang
+        "dagou-bang":          CLASS_D("gaibang")+"/skills/dagou-bang",
+        "huntian-qigong":      CLASS_D("gaibang")+"/skills/huntian-qigong",
+        "liuhe-dao":           CLASS_D("gaibang")+"/skills/liuhe-dao",
+        "xianglong-zhang":     CLASS_D("gaibang")+"/skills/xianglong-zhang",
+        "xiaoyaoyou":          CLASS_D("gaibang")+"/skills/xiaoyaoyou",
+        "shexing-shou":        CLASS_D("gaibang")+"/skills/shexing-shou",
+
+        // wudang
+        "taiji-jian":          CLASS_D("wudang")+"/skills/taiji-jian",
+        "taiji-quan":          CLASS_D("wudang")+"/skills/taiji-quan",
+        "taiji-shengong":          CLASS_D("wudang")+"/skills/taiji-shengong",
+        "tiyunzong":		CLASS_D("wudang")+"/skills/tiyunzong",
+
+        // shaolin
+        "banruo-zhang":        CLASS_D("shaolin")+"/skills/banruo-zhang",
+        "cibei-dao":           CLASS_D("shaolin")+"/skills/cibei-dao",
+        "damo-jian":           CLASS_D("shaolin")+"/skills/damo-jian",
+        "fengyun-shou":        CLASS_D("shaolin")+"/skills/fengyun-shou",
+        "fumo-jian":           CLASS_D("shaolin")+"/skills/fumo-jian",
+        "hunyuan-yiqi":        CLASS_D("shaolin")+"/skills/hunyuan-yiqi",
+        "jingang-quan":        CLASS_D("shaolin")+"/skills/jingang-quan",
+        "longzhua-gong":       CLASS_D("shaolin")+"/skills/longzhua-gong",
+        "luohan-quan":         CLASS_D("shaolin")+"/skills/luohan-quan",
+        "nianhua-zhi":         CLASS_D("shaolin")+"/skills/nianhua-zhi",
+        "pudu-zhang":          CLASS_D("shaolin")+"/skills/pudu-zhang",
+        "qianye-shou":         CLASS_D("shaolin")+"/skills/qianye-shou",
+        "riyue-bian":          CLASS_D("shaolin")+"/skills/riyue-bian",
+        "sanhua-zhang":        CLASS_D("shaolin")+"/skills/sanhua-zhang",
+        "shaolin-shenfa":      CLASS_D("shaolin")+"/skills/shaolin-shenfa",
+        "weituo-gun":          CLASS_D("shaolin")+"/skills/weituo-gun",
+        "wuchang-zhang":       CLASS_D("shaolin")+"/skills/wuchang-zhang",
+        "xiuluo-dao":          CLASS_D("shaolin")+"/skills/xiuluo-dao",
+        "yingzhua-gong":       CLASS_D("shaolin")+"/skills/yingzhua-gong",
+        "yizhi-chan":          CLASS_D("shaolin")+"/skills/yizhi-chan",
+        "zui-gun":              CLASS_D("shaolin")+"/skills/zui-gun",
+
+	// Beggar
+	"serpentforce":		CLASS_D("beggar") + "/skills/serpentforce",
+	"spicyclaw":		CLASS_D("beggar") + "/skills/spicyclaw",
+
+	// Bonze
+	"buddhism":			CLASS_D("bonze") + "/skills/buddhism",
+	"cloudstaff":		CLASS_D("bonze") + "/skills/cloudstaff",
+	"essencemagic":		CLASS_D("bonze") + "/skills/essencemagic",
+	"lotusforce":		CLASS_D("bonze") + "/skills/lotusforce",
+	"nutrifux":			CLASS_D("bonze") + "/skills/nutrifux",
+
+	// Dancer
+	"iceforce":			CLASS_D("dancer") + "/skills/iceforce",
+	"tenderzhi":		CLASS_D("dancer") + "/skills/tenderzhi",
+	"snowwhip":			CLASS_D("dancer") + "/skills/snowwhip",
+	"stormdance":		CLASS_D("dancer") + "/skills/stormdance",
+
+	// Fighter
+	"celestial":		CLASS_D("fighter") + "/skills/celestial",
+	"celestrike":		CLASS_D("fighter") + "/skills/celestrike",
+	"pyrobat-steps":	CLASS_D("fighter") + "/skills/pyrobat-steps",
+	"six-chaos-sword":	CLASS_D("fighter") + "/skills/six-chaos-sword",
+	"spring-blade":		CLASS_D("fighter") + "/skills/spring-blade",
+
+	// Scholar
+	"mysterrier":		CLASS_D("scholar") + "/skills/mysterrier",
+	"mystforce":		CLASS_D("scholar") + "/skills/mystforce",
+	"mystsword":		CLASS_D("scholar") + "/skills/mystsword",
+
+	// Swordsman
+	"fonxansword":	 	CLASS_D("swordsman") + "/skills/fonxansword",
+	"fonxanforce":	 	CLASS_D("swordsman") + "/skills/fonxanforce",
+	"chaos-steps":	 	CLASS_D("swordsman") + "/skills/chaos-steps",
+	"liuh-ken": 		CLASS_D("swordsman") + "/skills/liuh-ken",
+	"spider-array":		CLASS_D("swordsman") + "/skills/spider-array",
+
+	// Taoist
+	"gouyee":			CLASS_D("taoist") + "/skills/gouyee",
+	"taoism":			CLASS_D("taoist") + "/skills/taoism",
+	"taosword":			CLASS_D("taoist") + "/skills/taosword",
+	"necromancy":		CLASS_D("taoist") + "/skills/necromancy",
+	"testskill":        "/open/skill/testskill.c",
+]);
+
+string query_skill_daemon(string skill)
+{
+	if( !undefinedp(skill_daemons[skill]) ) return skill_daemons[skill];
+	return "/daemon/skill/" + replace_string(skill, " ", "_");
+}
+@
+
+
+1.5
+log
+@add taohua skills by PAFF
+@
+text
+@d13 8
+@
+
+
+1.4
+log
+@add xingxiu skills by PAFF
+@
+text
+@d13 8
+@
+
+
+1.3
+log
+@add gaibang skills by PAFF
+@
+text
+@d13 6
+@
+
+
+1.2
+log
+@ADD shaolin skills by PAFF
+@
+text
+@d12 9
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d18 23
+@

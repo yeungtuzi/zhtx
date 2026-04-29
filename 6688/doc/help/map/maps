@@ -1,0 +1,47 @@
+$HIG$━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NOR$
+$HIG$地图指南$NOR$
+$HIG$━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━$NOR$
+
+请在查看地图前把ZMUD中的字体设置为宋体五号字以便取得最佳效果。
+
+您可以使用 $HIY$help here$NOR$ 指令来查看当前您所在位置的地图，
+
+$BLINK$$HIW$白色闪耀$NOR$ 文字为当前您所在位置。
+
+$HIG$纵横天下总图$NOR$
+ 
+$WHT$西北部分    $YEL$allmap1.map          $WHT$东北部分    $YEL$allmap2.map$NOR$
+$WHT$东南部分    $YEL$allmap3.map          $WHT$西南部分    $YEL$allmap4.map$NOR$
+
+$HIG$城市乡村地图$NOR$
+ 
+$WHT$北京城    $YEL$beijing.map             $WHT$成都城    $YEL$chengdu.map$NOR$
+$WHT$乔阴县    $YEL$choyin.map              $WHT$福州城    $YEL$fuzhou.map$NOR$
+$WHT$杭州城    $YEL$hangzhou.map            $WHT$嘉兴城    $YEL$jiaxing.map$NOR$
+$WHT$长安城    $YEL$jingcheng.map           $WHT$拉萨城    $YEL$lasa.map$NOR$
+$WHT$泉州城    $YEL$quanzhou.map            $WHT$西夏城    $YEL$xixia.map$NOR$
+$WHT$苏州城    $YEL$suzhou.map              $WHT$雪亭镇    $YEL$xueting.map$NOR$
+$WHT$倚云镇    $YEL$yiyun.map               $WHT$岳阳城    $YEL$yueyang.map$NOR$
+ 
+$HIG$地区山庄地图$NOR$
+
+$WHT$幽明山庄    $YEL$shanzhuang.map        $WHT$吹雪山庄    $YEL$chuixue.map$NOR$
+$WHT$黑松堡      $YEL$heisongbao.map        $WHT$仙客来      $YEL$xiankelai.map$NOR$
+$WHT$擂鼓山      $YEL$leigu.map             $WHT$峨眉山      $YEL$emei.map$NOR$
+$WHT$灵鹫宫      $YEL$lingjiu.map           $WHT$华山村      $YEL$village.map$NOR$
+$WHT$泰  山      $YEL$taishan.map           $WHT$西  藏      $YEL$xizang.map$NOR$
+ 
+$HIG$门派寺庙地图$NOR$
+ 
+$WHT$布达拉    $YEL$budalagong.map          $WHT$古墓派    $YEL$gumu.map$NOR$
+$WHT$华山派    $YEL$huashan.map             $WHT$金轮寺    $YEL$jinlunsi.map$NOR$
+$WHT$晚月庄    $YEL$latemoon.map            $WHT$茅山派    $YEL$maoshan.map$NOR$
+$WHT$明  教    $YEL$mingjiao.map            $WHT$青城派    $YEL$qingcheng.map$NOR$
+$WHT$全真教    $YEL$quanzhen.map            $WHT$日月教    $YEL$rysj.map$NOR$
+$WHT$少林寺    $YEL$shaolin.map             $WHT$唐  门    $YEL$tangmen.map$NOR$
+$WHT$桃花岛    $YEL$taohua.map              $WHT$天邪派    $YEL$tianxie.map$NOR$
+$WHT$武当派    $YEL$wudang.map              $WHT$星宿派    $YEL$xingxiu.map$NOR$
+$WHT$雪山寺    $YEL$xueshan.map$NOR$
+$HIG$━━━━━━━━━━━━━━━━━━━━━━@ZHTX2━━━━━━━$NOR$
+
+

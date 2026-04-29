@@ -1,0 +1,5 @@
+// spells.c
+
+inherit SKILL;
+
+

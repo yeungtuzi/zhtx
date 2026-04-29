@@ -1,0 +1,147 @@
+//NPC:/class/guard/npc/goldend.c 
+//by tlang for 混世神剑
+         
+#include <ansi.h>
+#include <globals.h>
+
+#ifndef SWORDDATA
+#define SWORDDATA "/data/weapon/sword/"
+#endif
+#define HUNSWORD SWORDDATA + "hsword.c"
+#define TIME_TICK (time()*60)    
+
+//inherit SWORD;
+inherit F_SAVE;
+//inherit F_UNIQUE;
+//inherit F_AUTOLOAD;
+inherit NPC;
+
+void do_check();
+void checking();
+int do_mksword();
+
+void create()
+{
+	set_name(YEL"五爪金龙"NOR, ({ "golden dragon", "dragon", "long" }));
+	set("race", "野兽");
+	set("age", 128);
+	set("gender", "雄性");
+	set("long", "一头张牙舞爪的龙，看上去不好惹。\n");
+	set("attitude", "peacefully");
+
+	set("limbs", ({ "头部", "身体", "尾巴","前脚", "後脚"}) );
+        set("verbs", ({ "bite","claw" }) );
+
+	set("str", 40);
+	set("dex", 40);
+
+	set("max_kee",3000);
+	set("max_gin",1500);
+	set("max_sen",1500);
+
+	set("combat_exp", 2000000);
+	set("shen_type", -10);
+
+	set_skill("unarmed", 100);
+	set_skill("dodge", 100);
+	set_skill("parry", 100);
+
+	setup();
+	call_out("do_check",1);
+}
+
+void do_check()
+{
+	object me=this_object();
+
+	/*	if( NATURE_D->game_time()!=GTIME_D->chinese_date_dragon(TIME_TICK)
+|| !environment(me) )
+		{
+			command("say 时间还没有到啊。\n");
+			call_out("do_check",20);
+			command("say "+NATURE_D->game_time()+"距"
+				+GTIME_D->chinese_date_dragon(TIME_TICK)+
+				"，有一段时间差呢。\n");
+					return;
+		}
+*/
+	if(!present("sword",environment(me)) )
+		return;
+	message("system",
+		HIR "\n你听到天空中传来一阵可怕的咆哮 ....\n\n"
+		YEL	"五爪金龙" HIR "用震耳欲聋的声音吼道：\n\n"
+			"\t\t嗷嗷嗷嗷嗷！！！！！！！！！！ ！\n\n" NOR,users() );
+	call_out("do_check",120);
+	call_out("checking",5);
+}
+
+void checking()
+{
+	object ob=this_player();
+	object me=this_object();
+	
+	if(!ob->query("hsword_master") )
+	{
+		ob->die();
+		message("sys","the dragon killed the cheater.\n",users());
+		call_out("checking",120);
+			return;
+	}
+	message("sys","the dragon smiles.\n",users() );
+	call_out("do_mksword",1);
+}
+
+int do_mksword()
+{
+	string mastername,masterid;
+	object sword,ob=this_player();
+	string file;
+	
+	mastername=ob->query("name");
+//	masterid = ob->query("id");
+
+	if( geteuid(previous_object()) != ROOT_UID ) return 0;
+
+	file = HUNSWORD;
+	rm(file);
+	if( !write_file(file, @ROOM_CODE
+//this is the sword for a player to use.
+inherit "/class/guard/npc/obj/hsword.h";
+
+void create()
+{
+	set_name(HIW""+mastername+"的混世神剑"NOR, ({ "hun sword", "sword" }) );
+	set_weight(80);
+	if( clonep() )
+		set_default_object(__FILE__);
+	else {
+		set("unit", "把");
+		set("long",  "千古神器，得之不易。\n");
+		set("value", 999999);
+		set("material", "crimson gold");
+		//set("replica_ob", "/obj/longsword");
+	}
+
+	init_sword(500);
+	setup();
+}
+ROOM_CODE))
+	return 0;
+//	return notify_fail("你没有写入档案(" + file +")的权利。\n");;
+	message_vision("the dragon give hun sword to "+mastername+".\n");
+	save();
+	sword = new(file);
+	sword->move(ob);
+	tell_object(ob,"gonxi you.\n");
+//        deal_notepad(me,ob);
+//        environment(ob)->set("been_got",1);
+	ob->start_busy(1);
+	call_out("dest",1);
+		return 1;
+}
+
+int dest()
+{
+	destruct(this_object());
+}
+	

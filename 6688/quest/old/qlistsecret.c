@@ -1,0 +1,357 @@
+#include <ansi.h>
+inherit SKILL;
+
+mapping *quest = ({
+
+        ([      "quest":        "离别钩",
+                "quest_type":   "寻",
+                "exp_bonus":    100,
+                "shen_type":    1,
+        ]),
+/*
+        ([      "quest":        GRN "孔雀翎" NOR,
+                "quest_type":   "寻",
+                "exp_bonus":    100,
+                "shen_type":    1,
+        ]),
+*/
+
+        ([      "quest":        "孔雀图",
+                "quest_type":   "寻",
+                "exp_bonus":    100,
+                "shen_type":    1,
+        ]),
+/*
+        ([      "quest":        HIR "霸王枪" NOR,
+                "quest_type":   "寻",
+                "exp_bonus":    100,
+                "shen_type":    1,
+        ]),
+        ([      "quest":        WHT "多情环" NOR,
+                "quest_type":   "寻",
+                "exp_bonus":    100,
+                "shen_type":    1,
+        ]),
+*/
+        ([      "quest":        "箱子",
+                "quest_type":   "寻",
+                "exp_bonus":    1000,
+                "shen_type":    1,
+        ]),
+/*
+        ([      "quest":        HIG "长生剑" NOR,
+                "quest_type":   "寻",
+                "exp_bonus":    100,
+                "shen_type":    1,
+        ]),
+*/
+
+        ([      "quest":        "白玉琴",
+                "quest_type":   "寻",
+                "exp_bonus":    100,
+                "shen_type":    1,
+        ]),
+
+        ([      "quest":        "黑色火药",
+                "quest_type":   "寻",
+                "exp_bonus":    10,
+                "shen_type":    1,
+        ]),
+
+        ([      "quest":        "铁血大旗",
+                "quest_type":   "寻",
+                "exp_bonus":    100,
+                "shen_type":    1,
+        ]),
+
+        ([      "quest":        "锦册",
+                "quest_type":   "寻",
+                "exp_bonus":    100,
+                "shen_type":    1,
+        ]),
+/*
+        ([      "quest":        HIR "宣花巨斧" NOR,
+                "quest_type":   "寻",
+                "exp_bonus":    100,
+                "shen_type":    1,
+        ]),
+*/
+
+        ([      "quest":        "嫁衣神功",
+                "quest_type":   "寻",
+                "exp_bonus":    100,
+                "shen_type":    1,
+        ]),
+
+        ([      "quest":        "树叶",
+                "quest_type":   "寻",
+                "exp_bonus":    100,
+                "shen_type":    1,
+        ]),
+
+        ([      "quest":        "遁甲天书",
+                "quest_type":   "寻",
+                "exp_bonus":    20,
+                "shen_type":    1,
+        ]),
+
+        ([      "quest":        "软猥甲",
+                "quest_type":   "寻",
+                "exp_bonus":    50,
+                "shen_type":    1,
+        ]),
+
+        ([      "quest":        "桃枝",
+                "quest_type":   "寻",
+                "exp_bonus":    10,
+                "shen_type":    1,
+        ]),
+/*
+        ([      "quest":        HIR "屠龙刀" NOR,
+                "quest_type":   "寻",
+                "exp_bonus":    50,
+                "shen_type":    1,
+        ]),
+*/
+
+        ([      "quest":        "游龙剑",
+                "quest_type":   "寻",
+                "exp_bonus":    50,
+                "shen_type":    1,
+        ]),
+
+        ([      "quest":        "九花玉露丸",
+                "quest_type":   "寻",
+                "exp_bonus":    50,
+                "shen_type":    1,
+        ]),
+
+        ([      "quest":        "蛤蟆肉",
+                "quest_type":   "寻",
+                "exp_bonus":    20,
+                "shen_type":    1,
+        ]),
+
+        ([      "quest":        "通天草",
+                "quest_type":   "寻",
+                "exp_bonus":    10,
+                "shen_type":    1,
+        ]),
+
+
+        ([      "quest":        "过招要旨",
+                "quest_type":   "寻",
+                "exp_bonus":    50,
+                "shen_type":    1,
+        ]),
+/*
+        ([      "quest":        "踏雪无痕",
+                "quest_type":   "寻",
+                "exp_bonus":    50,
+                "shen_type":    1,
+        ]),*/
+/*
+        ([      "quest":        GRN "长生剑" NOR,
+                "quest_type":   "寻",
+                "exp_bonus":    50,
+                "shen_type":    1,
+        ]),
+
+        ([      "quest":        RED "驻颜丹" NOR,
+                "quest_type":   "寻",
+                "exp_bonus":    50,
+                "shen_type":    1,
+        ]),
+
+
+        ([      "quest":        "暗器手法",
+                "quest_type":   "寻",
+                "exp_bonus":    20,
+                "shen_type":    1,
+        ]),
+        ([      "quest":        "遗书",
+                "quest_type":   "寻",
+                "exp_bonus":    80,
+                "shen_type":    1,
+        ]),
+
+
+        ([      "quest":        "圣火令",
+                "quest_type":   "寻",
+                "exp_bonus":    10,
+                "shen_type":    1,
+        ]),
+
+        ([      "quest":        "华山剑谱",
+                "quest_type":   "寻",
+                "exp_bonus":    30,
+                "shen_type":    1,
+        ]),
+
+        ([      "quest":        "伊犁马",
+                "quest_type":   "寻",
+                "exp_bonus":    20,
+                "shen_type":    1,
+        ]),*/
+
+        ([      "quest":        "白玉琵琶",
+                "quest_type":   "寻",
+                "exp_bonus":    30,
+                "shen_type":    1,
+        ]),
+
+        ([      "quest":        "焦尾琴",
+                "quest_type":   "寻",
+                "exp_bonus":    20,
+                "shen_type":    1,
+        ]),
+
+        ([      "quest":        "圣经",
+                "quest_type":   "寻",
+                "exp_bonus":    30,
+                "shen_type":    1,
+        ]),
+
+        ([      "quest":        "菩提子",
+                "quest_type":   "寻",
+                "exp_bonus":    200,
+                "shen_type":    1,
+        ]),
+
+        ([      "quest":        "伏魔刀",
+                "quest_type":   "寻",
+                "exp_bonus":    100,
+                "shen_type":    1,
+        ]),
+
+        ([      "quest":        "金刚罩",
+                "quest_type":   "寻",
+                "exp_bonus":    100,
+                "shen_type":    1,
+        ]),
+
+        ([      "quest":        "石板",
+                "quest_type":   "寻",
+                "exp_bonus":    20,
+                "shen_type":    1,
+        ]),
+
+        ([      "quest":        "薄绢",
+                "quest_type":   "寻",
+                "exp_bonus":    20,
+                "shen_type":    1,
+        ]),
+
+        ([      "quest":        "风云手手法",
+                "quest_type":   "寻",
+                "exp_bonus":    50,
+                "shen_type":    1,
+        ]),
+
+        ([      "quest":        "如来千叶手手法",
+                "quest_type":   "寻",
+                "exp_bonus":    50,
+                "shen_type":    1,
+        ]),
+
+        ([      "quest":        "大金刚拳法",
+                "quest_type":   "寻",
+                "exp_bonus":    50,
+                "shen_type":    1,
+        ]),
+
+        ([      "quest":        "罗汉拳法",
+                "quest_type":   "寻",
+                "exp_bonus":    50,
+                "shen_type":    1,
+        ]),
+
+        ([      "quest":        "般若掌法",
+                "quest_type":   "寻",
+                "exp_bonus":    50,
+                "shen_type":    1,
+        ]),
+
+        ([      "quest":        "散花掌法",
+                "quest_type":   "寻",
+                "exp_bonus":    50,
+                "shen_type":    1,
+        ]),
+
+        ([      "quest":        "龙爪功法",
+                "quest_type":   "寻",
+                "exp_bonus":    50,
+                "shen_type":    1,
+        ]),
+
+        ([      "quest":        "鹰爪功法",
+                "quest_type":   "寻",
+                "exp_bonus":    50,
+                "shen_type":    1,
+        ]),
+
+        ([      "quest":        "拈花指法",
+                "quest_type":   "寻",
+                "exp_bonus":    50,
+                "shen_type":    1,
+        ]),
+
+        ([      "quest":        "一指禅功",
+                "quest_type":   "寻",
+                "exp_bonus":    50,
+                "shen_type":    1,
+        ]),
+
+        ([      "quest":        "慈悲刀法",
+                "quest_type":   "寻",
+                "exp_bonus":    50,
+                "shen_type":    1,
+        ]),
+
+        ([      "quest":        "修罗刀法",
+                "quest_type":   "寻",
+                "exp_bonus":    50,
+                "shen_type":    1,
+        ]),
+
+        ([      "quest":        "韦陀棍法",
+                "quest_type":   "寻",
+                "exp_bonus":    50,
+                "shen_type":    1,
+        ]),
+
+        ([      "quest":        "醉棍棍法",
+                "quest_type":   "寻",
+                "exp_bonus":    50,
+                "shen_type":    1,
+        ]),
+
+        ([      "quest":        "无常杖法",
+                "quest_type":   "寻",
+                "exp_bonus":    50,
+                "shen_type":    1,
+        ]),
+
+        ([      "quest":        "普渡杖法",
+                "quest_type":   "寻",
+                "exp_bonus":    50,
+                "shen_type":    1,
+        ]),
+
+        ([      "quest":        "伏魔剑法",
+                "quest_type":   "寻",
+                "exp_bonus":    50,
+                "shen_type":    1,
+        ]),
+
+        ([      "quest":        "达摩剑法",
+                "quest_type":   "寻",
+                "exp_bonus":    50,
+                "shen_type":    1,
+        ]),
+});
+mapping query_quest()
+{
+        return quest[random(sizeof(quest))];
+}
+

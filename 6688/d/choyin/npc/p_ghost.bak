@@ -1,0 +1,28 @@
+// ghost.c
+
+inherit NPC;
+
+void create()
+{
+        set_name("琵琶鬼", ({ "pipa ghost", "ghost" }) );
+        set("age", 30);
+        
+        set("str", 24);
+        set("cor", 26);
+        set("combat_exp",10000);
+        set("max_force",1000);
+        set("env/wimpy", 70);
+        set_temp("apply/attack", 30);
+        set_temp("apply/armor", 10);
+        set("chat_chance", 10);
+        set("chat_msg", ({
+                (: random_move :),
+        }) );
+        set("chat_msg_combat",({
+        (:command,"play pipa":),
+        }));
+        setup();
+        carry_object(__DIR__"obj/pipa.c");
+}
+
+int is_ghost() { return 1; }

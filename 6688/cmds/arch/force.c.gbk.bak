@@ -1,0 +1,34 @@
+ // force.c
+inherit F_CLEAN_UP;
+void create() { seteuid(getuid()); }
+int main(object me, string arg)
+{
+        string dest, cmd;
+        object ob;
+        if( me != this_player(1) ) return 0;
+        if( !arg || sscanf(arg, "%s to %s", dest, cmd) != 2 )
+                return notify_fail("指 令 格 式 force <某 人> to <指 令>\n")
+;
+           ob = find_player(dest);
+       if (!ob) ob=find_living(dest);
+        if( !ob )
+                return notify_fail("没有" + dest + "这个人。\n");
+        if( !living(ob) )
+                return notify_fail("这 个 物 件 不 能 执 行 命 令。\n");
+        if(wiz_level(me) < wiz_level(ob)) return notify_fail(
+"你 没 有 强 制" + ob->name() + "执 行 的 权 力。\n");
+        if( userp(ob) )
+                log_file("FORCE_PLAYER", sprintf("[%s] %s forces %s to %s\n",
+                        ctime(time()), geteuid(me), geteuid(ob), cmd));
+        return ob->force_me(cmd);
+}
+int help(object me)
+{
+        write(@Help
+ 指 令 格 式 force <某 人> to <指 令>
+ 强 迫 某 人 做 某 事, 但 你 的 巫 师 等 级 必 须 比 对 方 高, 而 且 必 须 是
+在 同 一 个 房 间 里。
+Help
+        );
+        return 1;
+}

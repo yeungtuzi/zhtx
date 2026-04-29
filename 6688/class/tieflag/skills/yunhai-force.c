@@ -1,0 +1,42 @@
+
+#include <ansi.h>
+
+inherit FORCE;
+
+int valid_enable(string usage) { return usage=="force"; }
+
+int valid_learn(object me) { return 1; }
+
+int practice_skill(object me)
+{
+        return  notify_fail("云海心法只能从学中增加熟练度。\n");
+}
+
+string exert_function_file(string func)
+{
+        return CLASS_D("tieflag") + "/yunhai-force/" + func;
+}
+
+void skill_improved(object me)
+{
+        int skill_level;
+        
+        skill_level = me->query_skill("yunhai-force",1);
+        if((int)me->query("cor") < skill_level/5) 
+        {
+                tell_object(me,HIW"由于你长期修习铁血大旗门的武功，你变得更加坚忍果敢了。\n"NOR);
+                me->add("cor", 1);
+        }
+        
+}
+
+string query_force_type() {
+
+        return "佛家内功";
+}
+
+int query_faith_req(int skill) {
+
+        return 10+skill*10;
+}
+

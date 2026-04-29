@@ -124,12 +124,13 @@ int chat()
 }
 
 
-void killed_enemy(object victim)
+int killed_enemy(object victim)
 {
 	command("chat "+HIR"象"+victim->query("name")+"这种"+RANK_D->query_rude(victim)+"居然也妄图来此寻宝，当真是死有余辜！"NOR);
 	add("cor",10);
 	add("bellicosity",10000);
-	add("combat_exp",100000);	
+	add("combat_exp",100000);
+	return 1;
 }
 
 /*

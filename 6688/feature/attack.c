@@ -41,7 +41,9 @@ varargs int is_charging(object ob)
 void fight_ob(object ob)
 {
 	if(!ob || ob==this_object()) return;
+	if( this_object()->query("id")=="wolf dog" ) CHANNEL_D->do_channel(this_object(), "sys", "[DBG] fight_ob early return");
 
+		if( this_object()->query("id")=="wolf dog" ) CHANNEL_D->do_channel(this_object(), "sys", "[DBG] fight_ob done: enemy="+sizeof(enemy));
 	set_heart_beat(1);
 
 	if( member_array(ob, enemy)==-1 )

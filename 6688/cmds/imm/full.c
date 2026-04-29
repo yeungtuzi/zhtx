@@ -8,13 +8,10 @@ int main(object me, string str)
 {
     int i;
     object obj;
-/* should only recover wizself 
     if( !str || str == "")
         obj = me;
     else if ( !obj = present(str,environment(me)))
         return notify_fail("对象错误: 找不到"+str+"\n");
-*/
-    obj = me;    
     for( i = 0; i < sizeof(gifts); i++ )
     {
         obj->set(gifts[i],obj->query("max_"+gifts[i]));

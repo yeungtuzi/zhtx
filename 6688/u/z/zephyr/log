@@ -139,3 +139,6 @@
 [Apr 29 15:34:13]/u/z/zephyr/traitor.c line 560: Bad type for argument 2 of query ( int vs string )
   if(stringp(type=query("weapon_type",type))
                                              ^
+[Apr 29 21:37:02]/u/z/zephyr/traitor.c line 560: Bad type for argument 2 of query ( int vs string )
+  if(stringp(type=query("weapon_type",type))
+                                             ^

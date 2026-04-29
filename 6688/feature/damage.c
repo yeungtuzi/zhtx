@@ -301,7 +301,7 @@ varargs void revive(int quiet)
 varargs void die(int quiet)
 {
         object corpse, killer, killer2, me=this_object();
-int i,tmp_pot,xiandan,bonze;
+        int i,tmp_pot,xiandan,bonze;
         int high_bellicosity=0;
         
         string str;

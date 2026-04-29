@@ -88,8 +88,6 @@ void heart_beat()
         object ob,link_ob,weap;
         int con_eff;
 
-        if( !userp(this_object()) && this_object()->query("id")=="wolf dog" )
-                CHANNEL_D->do_channel(this_object(), "sys", sprintf("%O [HB] enemy=%d killer=%d busy=%d fighting=%d", this_object(), sizeof(this_object()->query_enemy()), sizeof(this_object()->query_killer()), this_object()->is_busy(), this_object()->is_fighting()));
 
           if( userp(this_object()))
         {
@@ -126,8 +124,6 @@ void heart_beat()
 
         // If we are dying because of mortal wounds?
         if( my["eff_kee"] < 0 || my["eff_sen"] < 0 || my["eff_gin"] < 0) {
-                if( !userp(this_object()) && this_object()->query("id")=="wolf dog" )
-                        CHANNEL_D->do_channel(this_object(), "sys", sprintf("[DEBUG] mortal: eff_kee=%d eff_sen=%d eff_gin=%d", my["eff_kee"], my["eff_sen"], my["eff_gin"]));
                 remove_all_enemy();
                 die();
                 return;
@@ -136,8 +132,6 @@ void heart_beat()
         // If we're dying or falling unconcious?
         if( my["kee"] < 0 || my["sen"] < 0 || my["gin"] < 0 || my["force"]<0 || my["mana"]<0 || my["atman"]<0 )
         {
-                if( !userp(this_object()) && this_object()->query("id")=="wolf dog" )
-                        CHANNEL_D->do_channel(this_object(), "sys", sprintf("[DEBUG] uncon: kee=%d sen=%d gin=%d force=%d mana=%d atman=%d", my["kee"], my["sen"], my["gin"], my["force"], my["mana"], my["atman"]));
                 remove_all_enemy();
                 if( !living(this_object()) ) die();
                 else unconcious();
@@ -152,8 +146,6 @@ void heart_beat()
 
         // Do attack if we are fighting.
         if( is_busy() ) {
-                if( !userp(this_object()) && this_object()->query("id")=="wolf dog" )
-                        CHANNEL_D->do_channel(this_object(), "sys", sprintf("[DEBUG] busy=%O", query_busy()));
                 continue_action();
                 // We don't want heart beat be halt eventually, so return here.
                 // busy has the highest priority that healing will be susspended.

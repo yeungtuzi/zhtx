@@ -69,14 +69,14 @@ void kill_ob(object ob)
 
 	tell_object(ob, HIR "看起来" + me->name() + "想杀死你！\n" NOR);
 
-	if( userp(ob) && userp(me) && ob->query_temp("pk_id") 
+	if( userp(ob) && userp(me) && ob->query_temp("pk_id")
 		&& member_array(me->query("id"),ob->query_temp("pk_id"))!=-1 )
 	{
 		tell_object(me,HIW"你开始反击"+ob->name()+"。\n"NOR);
 	}
 	else if( userp(ob) && userp(me) )
 	{
-		if( !me->query_temp("pk_id") 
+		if( !me->query_temp("pk_id")
 			|| member_array(ob->query("id"),me->query_temp("pk_id"))==-1 )
 			me->add_temp("pk_id",({ob->query("id")}) );
 		tell_object(me,HIW"你开始主动pk"+ob->name()+"。\n"NOR);
@@ -114,23 +114,15 @@ void kill_ob(object ob)
 		}
 	}
 	fight_ob(ob);
-	if( this_object()->query("id")=="wolf dog" ) {
-		CHANNEL_D->do_channel(this_object(), "sys", sprintf("%O [DBG] kill_ob end: enemy=%d killer=%d", this_object(), sizeof(enemy), sizeof(killer)));
-		call_out("debug_check_arrays", 0);
-	}
 }
 
-void debug_check_arrays() {
-	if( this_object()->query("id")=="wolf dog" )
-		CHANNEL_D->do_channel(this_object(), "sys", sprintf("%O [DBG] delayed check: enemy=%d killer=%d", this_object(), sizeof(enemy), sizeof(killer)));
-}
 
 // This function promotes ob to the first ordered target to attack.
 void charge_ob(object ob)
 {
 	if( !arrayp(enemy) || member_array(ob, enemy)==-1 ) return;
 	enemy -= ({ ob });
-	enemy = ({ ob }) + enemy;	
+	enemy = ({ ob }) + enemy;
 	tell_object(this_object(), HIY "你选择" + ob->name() + "为首要攻击目标！\n" NOR);
 	charge_target = ob;
 }
@@ -170,19 +162,17 @@ void clean_up_enemy()
 		//&& ($2->visible($1))
 		&& (living($1) || is_killing($1))
 	:), this_object() );
-	if( this_object()->query("id")=="wolf dog" && before != sizeof(enemy) )
-		CHANNEL_D->do_channel(this_object(), "sys", sprintf("%O [CL] enemy %d->%d killer=%d", this_object(), before, sizeof(enemy), sizeof(killer)));                                		
 
 	if( sizeof(enemy) > 0 ) {
-		for(int i=0; i<sizeof(enemy); i++) 
+		for(int i=0; i<sizeof(enemy); i++)
 		{
 			if(  !living(enemy[i]) && is_killing(enemy[i]) && (enemy[i]->query_per()/2+random(enemy[i]->query_per()))>(this_object()->query_wil()+query("bellicosity")/10+query("cps")) )
-			{                    
-				message_vision("$N看了看昏迷在地上的$n的样子，叹了口气，实在不忍心动手。\n",this_object(),enemy[i]);				
+			{
+				message_vision("$N看了看昏迷在地上的$n的样子，叹了口气，实在不忍心动手。\n",this_object(),enemy[i]);
 				if( environment(enemy[i])->query("no_death") )
 					enemy[i]->set_temp("be_defeated",1);
 				enemy[i] = 0;
-			}	
+			}
 		}
 		enemy -= ({ 0 });
 	}
@@ -209,6 +199,7 @@ object select_opponent()
 int remove_enemy(object ob)
 {
 	object *obj;
+
 
 	if( is_killing(ob) && present(ob,environment(this_object())) ) return 0;
 
@@ -239,11 +230,30 @@ int remove_enemy(object ob)
 int remove_killer(object ob)
 {
 	if( is_killing(ob) ) {
+		// Must remove from enemy BEFORE removing from killer, otherwise
+		// remove_enemy's protection check (is_killing(ob) && present(...))
+		// will fail and remove_enemy will proceed with the removal.
+		object *obj;
+		enemy -= ({ ob });
 		killer -= ({ ob });
-		remove_enemy(ob);
+		// Clean up ally/partner relationship if needed
+		if(obj=ob->query_temp("ally/partner"))
+		{
+			int i;
+			ob->delete_temp("ally");
+			i=sizeof(obj);
+			while(i--)
+			{
+				if(objectp(obj[i]))
+				{
+					obj[i]->delete_temp("ally");
+					if( member_array(obj[i], enemy)!=-1 ) enemy -= ({ obj[i] });
+				}
+			}
+			message_vision(HIW "联合攻击终止。\n" NOR,ob);
+		}
 		return 1;
 	}
-
 	return remove_enemy(ob);
 }
 
@@ -256,7 +266,6 @@ int remove_charge()
 // Stop all fighting, but killer remains.
 void remove_all_enemy()
 {
-	if( this_object()->query("id")=="wolf dog" ) CHANNEL_D->do_channel(this_object(), "sys", "[DEBUG] remove_all_enemy");
 	object me=this_object();
 	int i;
 
@@ -274,7 +283,6 @@ void remove_all_enemy()
 // Stop all fighting and killing.
 void remove_all_killer()
 {
-	if( this_object()->query("id")=="wolf dog" ) CHANNEL_D->do_channel(this_object(), "sys", "[DEBUG] remove_all_killer");
 	object *ob;
 	int i;
 
@@ -300,11 +308,11 @@ void reset_action()
 	mapping prepare;
 
 	me= this_object();
-	prepare = query_skill_prepare();	
+	prepare = query_skill_prepare();
 
 	if( ob = query_temp("weapon") )
 		type = ob->query("skill_type");
-//	else 
+//	else
 //		type = "unarmed";
 //copy from xkx cmy971020
         else if ( sizeof(prepare) == 0) type = "unarmed";
@@ -338,8 +346,6 @@ protected int attack()
 		COMBAT_D->fight(this_object(), opponent);
 		return 1;
 	} else {
-		if( this_object()->query("id")=="wolf dog")
-			CHANNEL_D->do_channel(this_object(), "sys", sprintf("%O [DEBUG] no opponent, enemy=%d killer=%d fighting=%d", this_object(), sizeof(enemy), sizeof(killer), is_fighting()));
 		return 0;
 	}
 }

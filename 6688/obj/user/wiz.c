@@ -88,7 +88,7 @@ void heart_beat()
                                 tell_object(this_object(),"自动存盘...");
                                 this_object()->save();
                                 if( objectp(link_ob=(this_object())->query_temp("link_ob")) )
-                                      link_ob->save_back();                   
+                                      link_ob->save_back();
                                 tell_object(this_object(),"完毕.\n");
                         }
                         else

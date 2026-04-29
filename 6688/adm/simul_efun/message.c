@@ -181,9 +181,12 @@ void tell_object(object ob, string str)
 	message("tell_object", str, ob);
 }
 
-varargs void tell_room(mixed ob, string str, object *exclude)
+varargs void tell_room(mixed ob, string str, mixed exclude)
 {
-	if( ob ) message("tell_room", str, ob, exclude);
+	if( ob ) {
+		if( exclude ) message("tell_room", str, ob, exclude);
+		else message("tell_room", str, ob);
+	}
 }
 
 void shout(string str)

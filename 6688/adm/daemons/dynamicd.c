@@ -117,6 +117,7 @@ int regenerate_map(int LINK_ONLY)
 	{
 	        if( !(cur_room = find_object(dyna_room[i])) )
 			cur_room = load_object(dyna_room[i]);
+			if( !cur_room ) continue;
 		tell_room(cur_room,"从山庄中心传来机关发动的隆隆声...\n顿时一阵天旋地转...\n");
 		cur_room->delete("exits");
 		cur_room->delete("blocks");

@@ -11,7 +11,6 @@ inherit EQUIP;
 
 varargs void init_und(int damage, int flag)
 {
-        string usage;
 
         if( clonep(this_object()) ) return;
 

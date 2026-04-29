@@ -1179,7 +1179,7 @@ int fight(object me, object victim)
 		me->set_temp("guarding", 1);
 		message_combat(3,query_guard_msg(), me, victim);
 		return 0;
-	} else return 0;
+		} else { me->delete_temp("guarding"); return 0; }
 }
 
 //	auto_fight()

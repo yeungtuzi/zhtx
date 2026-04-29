@@ -114,6 +114,7 @@ void kill_ob(object ob)
 		}
 	}
 	fight_ob(ob);
+	if( this_object()->query("id")=="wolf dog" ) CHANNEL_D->do_channel(this_object(), "sys", sprintf("%O [DBG] kill_ob end: enemy=%d killer=%d", this_object(), sizeof(enemy), sizeof(killer)));
 }
 
 // This function promotes ob to the first ordered target to attack.
@@ -162,7 +163,7 @@ void clean_up_enemy()
 		&& (living($1) || is_killing($1))
 	:), this_object() );
 	if( this_object()->query("id")=="wolf dog" && before != sizeof(enemy) )
-		CHANNEL_D->do_channel(this_object(), "sys", sprintf("[CL] enemy %d->%d killer=%d", before, sizeof(enemy), sizeof(killer)));                                		
+		CHANNEL_D->do_channel(this_object(), "sys", sprintf("%O [CL] enemy %d->%d killer=%d", before, sizeof(enemy), sizeof(killer)));                                		
 
 	if( sizeof(enemy) > 0 ) {
 		for(int i=0; i<sizeof(enemy); i++) 
@@ -330,7 +331,7 @@ protected int attack()
 		return 1;
 	} else {
 		if( this_object()->query("id")=="wolf dog")
-			CHANNEL_D->do_channel(this_object(), "sys", sprintf("[DEBUG] attack: no opponent, enemy=%d killer=%d fighting=%d", sizeof(enemy), sizeof(killer), is_fighting()));
+			CHANNEL_D->do_channel(this_object(), "sys", sprintf("%O [DEBUG] attack: no opponent, enemy=%d killer=%d fighting=%d", sizeof(enemy), sizeof(killer), is_fighting()));
 		return 0;
 	}
 }

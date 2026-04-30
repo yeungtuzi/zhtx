@@ -19,7 +19,9 @@
 *.core
 
 # Runtime logs
-log/
+6688/log/**
+!6688/log/**/
+log/**
 
 # Runtime-generated player data (recreated on first boot)
 6688/data/login/

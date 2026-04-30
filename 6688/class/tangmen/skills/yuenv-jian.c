@@ -151,7 +151,8 @@ int query_faith_req(int skill) {
 
 mixed hit_ob(object me, object victim)
 { 
-        int str;
+        // 2026-04-30: unused variable commented out
+        // int str;
         object weapon = me->query_temp("weapon");
         
         if ( weapon && weapon->query_temp("wuyingdu") && 

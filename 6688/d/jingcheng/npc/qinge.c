@@ -64,7 +64,8 @@ void create()
 }      
 
 string ask_me()
-{
+// 2026-04-30: unused variable commented out
+// {
 	mapping fam; 
 	object ob;
 	

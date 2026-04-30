@@ -55,7 +55,8 @@ void create()
 }
 mixed hit_ob(object me, object victim, int damage_bonus)
 {
-   mixed foo;
+   // 2026-04-30: unused variable commented out
+   // mixed foo;
    object *inv;
    object dress; 
    int i; 

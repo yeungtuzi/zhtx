@@ -85,7 +85,8 @@ void greeting(object ob)
 
 void leave_stage(object who, int stage)
 {
-     object obj;
+     // 2026-04-30: unused variable commented out
+     // object obj;
      tell_object(who, leave_msg[stage]);
      if( ++stage < sizeof(leave_msg) ) {
 	 call_out( "leave_stage", 2, who, stage );

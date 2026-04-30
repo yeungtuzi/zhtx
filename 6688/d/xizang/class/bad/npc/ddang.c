@@ -57,7 +57,8 @@ TEXT
 void use_poison()
 {
         object *enemy, ob;
-        string msg;
+        // 2026-04-30: unused variable commented out
+        // string msg;
 
         enemy = query_enemy();
         if( sizeof(enemy) ) ob = enemy[random(sizeof(enemy))];

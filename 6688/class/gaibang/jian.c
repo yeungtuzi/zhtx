@@ -179,8 +179,10 @@ int accept_object(object ob, object obj)
 {
         object me = this_object();
 
-        mapping my_fam  = me->query("family");
-        mapping ob_fam  = ob->query("family");
+        // 2026-04-30: unused variable commented out
+        // mapping my_fam  = me->query("family");
+        // 2026-04-30: unused variable commented out
+        // mapping ob_fam  = ob->query("family");
 	object obje;
 
 

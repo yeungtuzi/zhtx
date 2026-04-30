@@ -46,7 +46,8 @@ void greeting(object ob)
 
 int accept_object(object who, object ob)
 {
-    object myenv ;
+    // 2026-04-30: unused variable commented out
+    // object myenv ;
     if (ob->query("money_id") && ob->value() >= 100)
     {
     message_vision("马夫对$N说：好！这位"+RANK_D->query_respect(who) +

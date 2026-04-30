@@ -56,7 +56,8 @@ void create()
 
 string ask_xiaolin()
 {
-	object me=this_object();
+	// 2026-04-30: unused variable commented out
+	// object me=this_object();
 	object ob=this_player();
 
 	if(query("count")<1)

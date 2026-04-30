@@ -6,7 +6,8 @@ int help();
 
 int main(object me,string arg)
 {
-	object login_ob,user_ob;
+	// 2026-04-30: unused variable commented out
+	// object login_ob,user_ob;
           if( me != this_player(1) ) return 0;
 
         me=this_player();

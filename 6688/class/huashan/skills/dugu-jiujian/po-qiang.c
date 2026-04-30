@@ -83,7 +83,8 @@ int perform(object me, object target)
 int do_fire(object me,object target)
 {
         int damage,i;
-        object *obs;
+        // 2026-04-30: unused variable commented out
+        // object *obs;
         object weapon,weap;
         
         me->clean_up_enemy();

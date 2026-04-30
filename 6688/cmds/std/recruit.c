@@ -10,7 +10,8 @@ int main(object me, string arg)
 {
         object ob, old_rec;
         mapping family;
-        int i;
+        // 2026-04-30: unused variable commented out
+        // int i;
         string myfam, obfam, mypart, obpart;
 
         if( !arg ) return notify_fail("指令格式：recruit [cancel]|<对象>\n");

@@ -148,7 +148,8 @@ int accept_fight(object ob)
 int checking(object me, object ob)
 {
 
-	object obj;
+	// 2026-04-30: unused variable commented out
+	// object obj;
 	int my_max_qi, his_max_qi;
 
     
@@ -265,7 +266,8 @@ int do_clone(object me, object ob)
 	object *inv, newob;
 	mapping hp_status, skill_status, map_status, prepare_status;
 	string *sname, *mname, *pname;
-	string file;
+	// 2026-04-30: unused variable commented out
+	// string file;
 	int i, temp;
 
 

@@ -3,7 +3,8 @@ inherit NPC;
 
 void create()
 {
-        int i;
+        // 2026-04-30: unused variable commented out
+        // int i;
         
         set_name("骏马", ({ "horse" }) );
         set("race", "野兽");

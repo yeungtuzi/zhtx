@@ -27,7 +27,8 @@ void init()
 
 int do_climb(string arg)
 {
-	int i,j;
+	// 2026-04-30: unused variable commented out
+	// int i,j;
 	object obj,ob;
 	ob = this_player();
 	if( !arg || arg=="" ) return 1;

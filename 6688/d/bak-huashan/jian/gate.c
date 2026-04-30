@@ -24,7 +24,8 @@ void init()
 
 void wantopen(object me)
 {
-        object  waiter, tao1, tao2, tao3;
+        // 2026-04-30: unused variable commented out
+        // object  waiter, tao1, tao2, tao3;
         object  room;
 
         seteuid(geteuid());

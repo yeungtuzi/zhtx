@@ -4,7 +4,8 @@
 inherit NPC;
 void create()
 {
-	int i,amun;
+	// 2026-04-30: unused variable commented out
+	// int i,amun;
 	string *name= ({"小兰", "牡丹", "冬青", "玫瑰", "杜鹃"});
 	set_name( name[random(5)] , ({ "pretty girl", "girl" }) );
 	set("long", "这是一位山谷中的小丫头，也不知道是谁家的姑娘。\n");

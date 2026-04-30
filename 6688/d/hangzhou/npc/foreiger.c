@@ -32,7 +32,8 @@ int greeting(object ob)
         int i;
         string str, objname, objid, pro;
         mixed *inv;
-        mapping exits;
+        // 2026-04-30: unused variable commented out
+        // mapping exits;
 
         me = this_object();
 	obj=ob;

@@ -9,7 +9,8 @@ inherit F_CONDITION;
 
 int exert(object me, object target)
 {
-        string *conditions=({}), *list, arg;
+        // 2026-04-30: unused variable commented out
+        // string *conditions=({}), *list, arg;
         int i, mark, lev, jk;
         object *enemy;
 

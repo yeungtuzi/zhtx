@@ -466,7 +466,8 @@ string query_close(object ob)
 
 string query_per(object ob)
 {
- int per;
+ // 2026-04-30: unused variable commented out
+ // int per;
  int age;
  age=(int)ob->query("age");
  switch(ob->query("gender")){

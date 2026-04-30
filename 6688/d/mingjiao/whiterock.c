@@ -39,7 +39,8 @@ int do_step(string arg)
 int do_climb(string arg)
 {
         object 	me;
-	int	mlvl;
+	// 2026-04-30: unused variable commented out
+	// int	mlvl;
 
 	if(!arg || (arg != "up" && arg != "down")) {
 		write("你要往上或下爬？\n");

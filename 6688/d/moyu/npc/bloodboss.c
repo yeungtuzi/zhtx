@@ -73,7 +73,8 @@ void create()
 int consider()
 {
 	object me;
-	int fighting,hurt,force_fac;
+	// 2026-04-30: unused variable commented out
+	// int fighting,hurt,force_fac;
 
 	me = this_object();
 	if( !environment(me) ) return 0;

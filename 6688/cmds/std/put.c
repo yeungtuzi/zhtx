@@ -11,7 +11,8 @@ int main(object me, string arg)
 	string target, item;
 	object obj, dest, *inv, obj2;
 	int i, amount;
-	string mess;
+	// 2026-04-30: unused variable commented out
+	// string mess;
 
 	if(!arg) return notify_fail("你要将什麽东西放进哪里？\n");
 

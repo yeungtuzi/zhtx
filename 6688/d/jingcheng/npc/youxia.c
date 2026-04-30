@@ -46,7 +46,8 @@ void init()
 }
 void greeting(object me)
 {
-	object obj;
+	// 2026-04-30: unused variable commented out
+	// object obj;
 	if( !me || !objectp(me) ) return;
 
 	command("say "+RANK_D->query_respect(me)+"跟我一起闯荡江湖吧。\n");

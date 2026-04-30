@@ -103,7 +103,8 @@ void create()
 
 void use_poison()
 {
-        object *enemy, ob;
+        // 2026-04-30: unused variable commented out
+        // object *enemy, ob;
         string msg;
 
         enemy = query_enemy();

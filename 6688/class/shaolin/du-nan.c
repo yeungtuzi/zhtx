@@ -145,7 +145,8 @@ int do_accept(string arg)
         return 0;
 }
 
-int do_test(object ppl)
+// 2026-04-30: unused variable commented out
+// int do_test(object ppl)
 {
         mapping guild;
         object ob,obj;

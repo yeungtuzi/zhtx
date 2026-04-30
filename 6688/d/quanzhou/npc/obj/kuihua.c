@@ -34,7 +34,8 @@ int do_du(string arg)
         object me = this_player();
         object where = environment(me);
         object ob;
-        mapping skill;
+        // 2026-04-30: unused variable commented out
+        // mapping skill;
         int pxlevel; 
 	int force_lost;
 

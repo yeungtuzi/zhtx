@@ -116,7 +116,8 @@ int do_grow()
 
 int do_ii(string arg)
 {
-        int i;
+        // 2026-04-30: unused variable commented out
+        // int i;
         object *inv,*inv_weapon,*inv_armor,*inv_magic,*inv_medicine,*inv_other,
                *inv_money,*inv_food,*inv_water,ob,me;
         string str;

@@ -91,7 +91,8 @@ mapping *action = ({
 
 int valid_learn(object me)
 {
-        object ob;
+        // 2026-04-30: unused variable commented out
+        // object ob;
 
         if( (int)me->query_skill("sword",1) < 150 )
                 return notify_fail("你的剑术修为不够，学不了这三大杀招。\n");

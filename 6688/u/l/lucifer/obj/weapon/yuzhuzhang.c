@@ -53,9 +53,12 @@ int wield()
 
 mixed hit_ob(object me, object victim, int damage_bonus)
 {
-        object weap;
-        int    wap,wdp;
-        string weap_name;
+        // 2026-04-30: unused variable commented out
+        // object weap;
+        // 2026-04-30: unused variable commented out
+        // int    wap,wdp;
+        // 2026-04-30: unused variable commented out
+        // string weap_name;
         int skill;
         skill=this_player()->query_skill("dagou-bang",1);
                if (damage_bonus < 0 ) return 0;

@@ -36,7 +36,8 @@ void init()
 
 int do_play(string arg )
 {
-        string msgg;
+        // 2026-04-30: unused variable commented out
+        // string msgg;
         object obj;
         object obj2;
         if( arg == "chess" && !is_fighting())

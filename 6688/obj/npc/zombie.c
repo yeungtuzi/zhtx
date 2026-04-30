@@ -67,7 +67,8 @@ void animate(object who)
 
 void dispell()
 {
-        object corpse;
+        // 2026-04-30: unused variable commented out
+        // object corpse;
 
         if( environment() ) {
                 say( name() + "缓缓地倒了下来，化为一滩血水。\n");

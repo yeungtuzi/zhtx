@@ -101,7 +101,8 @@ void init()
 
 int do_accept(string arg)
 {
-        mapping guild;
+        // 2026-04-30: unused variable commented out
+        // mapping guild;
 
         if( (string)this_player()->query("gender") != "女性" ) {
         command("say 我不收男弟子！");
@@ -152,7 +153,8 @@ say("\n忘情人轻轻抚摸着你的头发道: 很好，只要你好好学,它�
 void use_poison()
 {
         object *enemy, ob;
-        string msg;
+        // 2026-04-30: unused variable commented out
+        // string msg;
 
         enemy = query_enemy();
         if( sizeof(enemy) ) ob = enemy[random(sizeof(enemy))];

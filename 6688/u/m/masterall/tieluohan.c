@@ -54,9 +54,11 @@ int wield()
 
 mixed hit_ob(object me, object victim, int damage_bonus)
 {
-        object weap;
+        // 2026-04-30: unused variable commented out
+        // object weap;
         int    wap,wd,skill,dforce;
-        string weap_name;
+        // 2026-04-30: unused variable commented out
+        // string weap_name;
         skill=this_player()->query_skill("jingang-quan",1);
         dforce=-3*skill/2;
         if (damage_bonus < 0 ) return 0;

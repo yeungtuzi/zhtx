@@ -69,7 +69,8 @@ int do_chushi()
 
 void sanya(object who, int stage)
 {
-     object obj;
+     // 2026-04-30: unused variable commented out
+     // object obj;
      tell_object(who, make_msg[stage]);
      	
      if( ++stage < sizeof(make_msg) ) {

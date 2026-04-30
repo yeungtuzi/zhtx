@@ -28,7 +28,8 @@ LONG
 int valid_leave(object me, string dir)
 {
         object renzhi;
-        int i;
+        // 2026-04-30: unused variable commented out
+        // int i;
 
         if( dir == "north" ) { 
                   if( present("shi wei", environment(me)) && me->query("ct_faith")==0

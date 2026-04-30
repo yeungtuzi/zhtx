@@ -188,7 +188,8 @@ void open_passage()
 
 void close_passage()
 {
-        object room;
+        // 2026-04-30: unused variable commented out
+        // object room;
 
         if( !query("exits/west") ) return;
         message("vision","“外面风又大了，茅山小道随手把门关上了。”\n",

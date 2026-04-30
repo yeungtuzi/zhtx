@@ -9,7 +9,8 @@ int start_hehe(object me, object target);
 
 int perform(object me, object target)
 {
-        string msg,*limbs;
+        // 2026-04-30: unused variable commented out
+        // string msg,*limbs;
         int ap, dp;
         if( !target ) target = offensive_target(me);
 

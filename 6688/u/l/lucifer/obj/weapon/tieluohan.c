@@ -52,9 +52,11 @@ int wear()
 
 mixed hit_ob(object me, object victim, int damage_bonus)
 {
-        object weap;
+        // 2026-04-30: unused variable commented out
+        // object weap;
         int    wap,wdp,skills;
-        string weap_name;
+        // 2026-04-30: unused variable commented out
+        // string weap_name;
           int skill;
         skill=this_player()->query_skill("jingang-quan",1);
         skills=-3*this_player()->query_skill("jingang-quan",1)/2;

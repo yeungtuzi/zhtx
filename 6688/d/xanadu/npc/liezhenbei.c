@@ -6,7 +6,8 @@ inherit "/std/char/doomnpc";
 
 void create()
 {
-	object sword;
+	// 2026-04-30: unused variable commented out
+	// object sword;
 
 	set_name("烈震北", ({ "lie zhenbei","lie","zhenbei"}) );
 	set("long",@LONG

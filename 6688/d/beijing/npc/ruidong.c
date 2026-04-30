@@ -47,7 +47,8 @@ TEXT
 
 void die()
 {
-	int i;
+	// 2026-04-30: unused variable commented out
+	// int i;
 	object killer;
 
 	if(objectp(killer = query_temp("last_damage_from")))

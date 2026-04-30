@@ -113,7 +113,8 @@ int do_chushi()
 
 void guohe(object who, int stage)
 {
-     object obj;
+     // 2026-04-30: unused variable commented out
+     // object obj;
      tell_object(who, make_msg[stage]);
      if( ++stage < sizeof(make_msg) ) {
          call_out( "guohe", 2, who, stage );

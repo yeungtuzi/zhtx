@@ -42,7 +42,8 @@ LONG
 int valid_leave(object me,string arg)
 {
 	int j;
-	object weapon,ob1,ob2;
+	// 2026-04-30: unused variable commented out
+	// object weapon,ob1,ob2;
 	if (!present("gold key",this_player())||!present("secret map",this_player()))
 	{
 		message_vision("你手中没有钥匙无法打开大门，没有地图没法进一步探险。\n");

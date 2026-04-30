@@ -39,9 +39,12 @@ int wield()
 
 mixed hit_ob(object me, object victim, int damage_bonus)
 {
-        object weap;
-        int    wap,wdp;
-        string weap_name;
+        // 2026-04-30: unused variable commented out
+        // object weap;
+        // 2026-04-30: unused variable commented out
+        // int    wap,wdp;
+        // 2026-04-30: unused variable commented out
+        // string weap_name;
 
         if(victim == me) return;
 	if(random(3)==0)

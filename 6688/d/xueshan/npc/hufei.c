@@ -86,7 +86,8 @@ void init()
 int do_accept()
 {
 	object ob=this_player();
-	mapping guild;
+	// 2026-04-30: unused variable commented out
+	// mapping guild;
 	mapping tmp_apply;
 
 	if( !ob->query("can_speak") || !ob->query("marks/hufei")) 

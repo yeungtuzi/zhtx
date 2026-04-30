@@ -89,7 +89,8 @@ int do_pawn(string arg)
 	string term, *terms;
 	string data;
 	int value,  pawn_count, i;
-	int rvalue;
+	// 2026-04-30: unused variable commented out
+	// int rvalue;
 	mapping pawn;
 	object me;
 	me = this_player();

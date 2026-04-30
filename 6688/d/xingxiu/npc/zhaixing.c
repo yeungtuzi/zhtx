@@ -107,7 +107,8 @@ int do_bihua(string arg)
 
 int checking(object me, object ob)
 {
-	object *obs;
+	// 2026-04-30: unused variable commented out
+	// object *obs;
 	int i;
 	string ob_title;
 	string *msg = ({

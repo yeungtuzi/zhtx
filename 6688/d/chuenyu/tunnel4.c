@@ -71,7 +71,8 @@ void close_passage()
 
 int do_push(string arg)
 {
-        string dir;
+        // 2026-04-30: unused variable commented out
+        // string dir;
 
         if( !arg || arg=="" ) 
         {

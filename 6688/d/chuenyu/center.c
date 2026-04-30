@@ -32,7 +32,8 @@ int roping(string arg)
 {
 	int i;
 	int damage;
-	object obj;
+	// 2026-04-30: unused variable commented out
+	// object obj;
 	object ob;
 	object me;
 	ob = this_player();

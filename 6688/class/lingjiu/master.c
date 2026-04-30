@@ -85,7 +85,8 @@ void create()
    
 void attempt_apprentice(object ob)
 {
-	string name,new_name;
+	// 2026-04-30: unused variable commented out
+	// string name,new_name;
 
 	if( ob->query("gender") != "女性") 
   	{     

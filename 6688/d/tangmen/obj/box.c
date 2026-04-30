@@ -6,7 +6,8 @@ inherit ITEM;
 
 void create()
 {
-        	object obj;
+        	// 2026-04-30: unused variable commented out
+        	// object obj;
         	set_name("剑匣", ({ "box" }) );
         	set_weight(4000);
     	set_max_encumbrance(5000);    

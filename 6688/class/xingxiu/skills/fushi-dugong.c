@@ -4,7 +4,8 @@ inherit SKILL;
 
 int valid_learn(object me)
 {
-	object ob;
+	// 2026-04-30: unused variable commented out
+	// object ob;
 	int lv;
 
 	lv = me->query_skill("fushi-dugong", 1);	

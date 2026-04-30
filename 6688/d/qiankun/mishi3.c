@@ -33,7 +33,8 @@ void init()
 int do_dive(string arg) 
 {
         object me;
-        object obj;
+        // 2026-04-30: unused variable commented out
+        // object obj;
         object ob;
         me=this_player();
         

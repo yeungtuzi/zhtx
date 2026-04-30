@@ -27,7 +27,8 @@ LONG
 
 int valid_leave(object me, string dir)
 {
-        mapping fam;
+        // 2026-04-30: unused variable commented out
+        // mapping fam;
 
         if (dir == "enter")
         {

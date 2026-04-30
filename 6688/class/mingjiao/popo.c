@@ -245,7 +245,8 @@ int query_yinye()
 
 int do_accept(string arg)
 {
-    object feng;
+    // 2026-04-30: unused variable commented out
+    // object feng;
     object me; 
     me=this_player();
 

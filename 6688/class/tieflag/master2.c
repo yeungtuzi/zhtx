@@ -4,7 +4,8 @@ inherit F_MASTER;
 
 void create()
 {
-        object armor;
+        // 2026-04-30: unused variable commented out
+        // object armor;
         set_name("日后", ({ "master queen", "master","queen" }) );
         set("gender", "女性" );
         set("age", 46);

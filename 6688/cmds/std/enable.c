@@ -164,7 +164,8 @@ int main(object me, string arg)
 
 void check_related(object me,string ski,string map_to) {
         mapping map_skill,req_map;   
-        mapping req;
+        // 2026-04-30: unused variable commented out
+        // mapping req;
         int i,j;
         string* base_skill,*req_base;
         string orig_map_to; 

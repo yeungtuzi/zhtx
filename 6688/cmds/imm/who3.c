@@ -4,7 +4,8 @@ int main(object me, string str)
 {
     object where, ob, *ob_list;
     int i;
-    string stri;
+    // 2026-04-30: unused variable commented out
+    // string stri;
     seteuid(getuid());
 
     ob_list = users();

@@ -57,7 +57,8 @@ int do_exercise(object me, int low_kee)
         int cycle;
         int max_realforce,coeff,speed_coeff;
         string *short;  
-        string force_skill;     
+        // 2026-04-30: unused variable commented out
+        // string force_skill;
         
         max_realforce = (int)me->query_skill("force", 1)*5 + me->query("max_force")/5; //先天真气的瓶颈和内功等级和最大内力挂钩
 

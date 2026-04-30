@@ -5,7 +5,8 @@ inherit F_CLEAN_UP;
 int main(object me, string str)
 {
 	object ob;
-	int i;
+	// 2026-04-30: unused variable commented out
+	// int i;
 	string src;
 
 	if (!str) return notify_fail("<Syntax>: Summon <player id>\n");

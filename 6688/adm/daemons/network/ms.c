@@ -323,7 +323,8 @@ read_callback(int id, string data)
 void
 flush_mail_queue()
 {
-    string *muds, address, port;
+    // 2026-04-30: unused variable commented out
+    // string *muds, address, port;
     string tmp;
     int id;
 
@@ -346,7 +347,8 @@ void
 service_callback(int id)
 {
     int i, max;
-    string str;
+    // 2026-04-30: unused variable commented out
+    // string str;
     string to, cc;
 
     INETD->write_socket(id, mname + "\n");

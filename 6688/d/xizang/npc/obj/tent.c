@@ -108,7 +108,8 @@ int do_enter(string arg)
 int do_sleep(string arg)
 {
 	object bag, me;
-	int time;
+	// 2026-04-30: unused variable commented out
+	// int time;
 	if(arg && arg !="") return notify_fail("睡觉就睡觉,罗嗦什么啊!\n");
 	me=this_player();
 	if(environment(me)!=this_object())

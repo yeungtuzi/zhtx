@@ -7,7 +7,8 @@ inherit F_CLEAN_UP;
 
 int main(object me, string arg)
 {
-	string wiz_status;
+	// 2026-04-30: unused variable commented out
+	// string wiz_status;
 	object npc;
 
 	if( me != this_player(1) ) return 0;

@@ -35,7 +35,8 @@ void create()
 void init()
 {	
 	object ob; 
-	mapping myfam; 
+	// 2026-04-30: unused variable commented out
+	// mapping myfam;
 
 	ob = this_player();
 

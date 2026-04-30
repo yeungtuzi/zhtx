@@ -18,7 +18,8 @@ int judge(object me,object victim)
 }
 int perform(object me, object target)
 {
-        object soldier;
+        // 2026-04-30: unused variable commented out
+        // object soldier;
         string msg;
         int num;
 

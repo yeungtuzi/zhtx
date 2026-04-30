@@ -6,7 +6,8 @@ int remove_effect(object ob);
 
 void create()
 {
-	object sword;
+	// 2026-04-30: unused variable commented out
+	// object sword;
 
 	set_name("辛十三娘", ({ "lady xin","lady","xin"}) );
 	set("long",

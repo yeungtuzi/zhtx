@@ -45,7 +45,8 @@ void create()
 
 void init()
 {
-        mapping mine;
+        // 2026-04-30: unused variable commented out
+        // mapping mine;
         object ob, room;
         ::init();
         if (interactive(ob = this_player()) && 

@@ -222,7 +222,8 @@ int time_period(int timep, object me)
 }
  int accept_object(object who, object ob)
 {
-        int bonus, exp, pot, score,factor;
+        // 2026-04-30: unused variable commented out
+        // int bonus, exp, pot, score,factor;
         string test;
         mapping quest;
 

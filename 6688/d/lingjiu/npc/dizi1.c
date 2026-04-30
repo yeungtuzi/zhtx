@@ -2,7 +2,8 @@ inherit NPC;
 
 void create()
 {  
-   	int i; 
+   	// 2026-04-30: unused variable commented out
+   	// int i;
 
 	set_name("灵鹫宫昊天部弟子", ({"lingjiu dizi", "dizi"}) );
 	set("gender", "女性");

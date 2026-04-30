@@ -33,7 +33,8 @@ string query_autoload()
 void autoload(string arg)
 {
         object who;
-        string f_status;
+        // 2026-04-30: unused variable commented out
+        // string f_status;
         int f_level;
         who = this_player();
         set("name",arg+"的计算机");
@@ -51,9 +52,11 @@ void init()
 
 int do_fix(string arg)
 {
-        string what;
+        // 2026-04-30: unused variable commented out
+        // string what;
         object who, ob;
-        int temp;
+        // 2026-04-30: unused variable commented out
+        // int temp;
         if (!arg) return notify_fail("你要往机箱里装什么?\n");
         if ((this_object()->query("f_level") == 0) &&
         (arg != "board") && (arg != "mainboard") && (arg != "mother board") )

@@ -35,11 +35,15 @@ int load_adv_equips(object ob)
 
 void check_user(object ob)
 {
-        mapping custom_ob;                             
-        string *custom_ob_key; 
-        int key_size;
+        // 2026-04-30: unused variable commented out
+        // mapping custom_ob;
+        // 2026-04-30: unused variable commented out
+        // string *custom_ob_key;
+        // 2026-04-30: unused variable commented out
+        // int key_size;
 
-        int v1, v2;
+        // 2026-04-30: unused variable commented out
+        // int v1, v2;
         string m;
         mapping my;
         //check bug-gained money

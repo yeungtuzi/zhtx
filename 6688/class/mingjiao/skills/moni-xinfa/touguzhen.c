@@ -4,7 +4,8 @@ inherit SSERVER;
  
 int exert(object me, object target)
 {
-        object *ob;
+        // 2026-04-30: unused variable commented out
+        // object *ob;
         int i, skill,level, damage, ff;
  
         level = me->query_skill("moni-xinfa",1);

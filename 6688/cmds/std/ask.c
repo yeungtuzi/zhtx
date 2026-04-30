@@ -12,7 +12,8 @@ int main(object me, string arg)
 {
 	string dest, topic, msg;
 	object ob,*usr;
-	mapping inquiry;                   
+	// 2026-04-30: unused variable commented out
+	// mapping inquiry;
 	int i;
 
 	seteuid(getuid());                                                                    

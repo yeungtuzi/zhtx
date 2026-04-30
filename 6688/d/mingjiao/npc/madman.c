@@ -43,9 +43,12 @@ void create()
 void init()
 {
         object ob, me;
-        mapping skill_status, map_status;
-        string *sname, *mname;
-        int i;
+        // 2026-04-30: unused variable commented out
+        // mapping skill_status, map_status;
+        // 2026-04-30: unused variable commented out
+        // string *sname, *mname;
+        // 2026-04-30: unused variable commented out
+        // int i;
         me = this_object();
         ob = this_player();
         ::init();

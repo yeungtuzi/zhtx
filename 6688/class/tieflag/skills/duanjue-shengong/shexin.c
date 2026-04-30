@@ -12,7 +12,8 @@ inherit SSERVER;
 int perform(object me, object target)
 {
         string msg;
-        string weapon;
+        // 2026-04-30: unused variable commented out
+        // string weapon;
         if( !target ) target = offensive_target(me);
 
         if( (int)me->query_skill("duanjue-shengong",1) < 231) return notify_fail("你的断绝神功还不够高深，不能用摄心术");

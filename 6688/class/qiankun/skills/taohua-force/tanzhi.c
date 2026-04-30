@@ -7,7 +7,8 @@ inherit F_SSERVER;
 int exert(object me, object target)
 {       int taohua,force,t;
          object ob;
-         string msg;
+         // 2026-04-30: unused variable commented out
+         // string msg;
         
         me->this_player();  
            if (me->is_busy())

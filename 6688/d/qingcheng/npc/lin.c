@@ -66,8 +66,10 @@ void init()
 
 void greeting(object ob)
 {
-        object book;
-        object sword;
+        // 2026-04-30: unused variable commented out
+        // object book;
+        // 2026-04-30: unused variable commented out
+        // object sword;
         if((int) ob->query("marks/murder") == 0)
         {
         if( (int) ob->query("marks/林平之") == 0 ) 

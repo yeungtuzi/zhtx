@@ -163,7 +163,8 @@ int do_remarry(string arg)
 {
 	object marry_card,  me;
  	object obj;
-	string cardname,target;
+	// 2026-04-30: unused variable commented out
+	// string cardname,target;
 
 	me = this_player();
 

@@ -33,7 +33,8 @@ int perform(object me, object target)
 {
         string msg,name;
         int extra,i,lmt;
-        object weapon,tgt;
+        // 2026-04-30: unused variable commented out
+        // object weapon,tgt;
            
         extra = me->query_skill("cuff");
         if ( me->query_skill("qishang-quan",1) < 200) return notify_fail("你的七伤拳还不够纯熟！\n");

@@ -9,7 +9,8 @@ int ask_me();
 
 void create()
 {
-        object ob;
+        // 2026-04-30: unused variable commented out
+        // object ob;
         set_name("海娃", ({ "hai wa","boy"}) );
         set("gender", "男性" );
         set("age", 12);

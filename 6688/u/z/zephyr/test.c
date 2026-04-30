@@ -33,7 +33,8 @@ void init()
 int do_chop()
 {
 	object env, wood, saw, me=this_player(),room;
-	int i;
+	// 2026-04-30: unused variable commented out
+	// int i;
 	string room_long;
 	room=environment(this_object());
 	room=environment(room);

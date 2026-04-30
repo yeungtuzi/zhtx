@@ -125,7 +125,8 @@ void tcp_channel(object source, string channel, string mud, string msg,
 // to use, then acts appropriately
 string remote_tell(object source, string user, string mud, string msg)
 {
-    mapping minfo;
+    // 2026-04-30: unused variable commented out
+    // mapping minfo;
     int msvc;
 
     if(!DNS_MASTER->query_mud_info(mud))

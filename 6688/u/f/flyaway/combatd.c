@@ -862,7 +862,8 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type,m
 	int absorb_vic, bounce = 0;	
 	mixed foo,foo2;	
 	object parryer;
-	int cost;
+	// 2026-04-30: unused variable commented out
+	// int cost;
 	mapping prepare;
 	
 	//防止问题
@@ -1329,7 +1330,8 @@ void killer_reward(object killer, object victim)
 {
 	int bls, block_time, i;
 	string vmark;
-	string adv_force;
+	// 2026-04-30: unused variable commented out
+	// string adv_force;
 	mapping quest;
 	int pk_flag = 0,force_punish,exp_punish,faith_punish,skill_punish,factor;
 	int atman_punish,mana_punish,gene;

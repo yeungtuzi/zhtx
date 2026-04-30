@@ -38,7 +38,8 @@ void create()
 
 int query_unparryable(object me,object victim)
 {
-        object weap;
+        // 2026-04-30: unused variable commented out
+        // object weap;
       
         return 100;  //普通技能或兵器10%的可parry机率
 }

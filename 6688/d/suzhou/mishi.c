@@ -42,7 +42,8 @@ void init()
 int do_dig(string arg)
 {
         object me;
-	object ob;
+	// 2026-04-30: unused variable commented out
+	// object ob;
 	me = this_player();
         
         if ( !arg || arg != "地板" )

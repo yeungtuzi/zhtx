@@ -43,7 +43,8 @@ int practice_skill(object me)
 
 int practice_skill(object me)
 {
-       object ob;
+       // 2026-04-30: unused variable commented out
+       // object ob;
         
         if( (int) me->query_skill("kuihua-shengong", 1) < 250)
                 return notify_fail("你的葵花神功等级太低，还无法自行练习。\n");

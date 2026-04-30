@@ -12,7 +12,8 @@ int check_base_skill(object,string);
 int main(object me, string arg)
 {
         string skill, teacher, master, *ski, *sname, *mapped;
-        object ob;
+        // 2026-04-30: unused variable commented out
+        // object ob;
         int master_skill, my_skill, gin_cost,point;
         mapping res,map,lrn;
         int i;

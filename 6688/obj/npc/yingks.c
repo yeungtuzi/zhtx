@@ -608,7 +608,8 @@ int suitable_room(object room)
 string treasure_move()
 {
         object *treasure,tr,room,env,*allnpc, *allroom, bak_room;
-        mixed *list;
+        // 2026-04-30: unused variable commented out
+        // mixed *list;
         int i,j,k,npc_flag,no_suitable;
 
         // by yeung

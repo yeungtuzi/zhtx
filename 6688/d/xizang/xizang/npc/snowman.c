@@ -36,7 +36,8 @@ void init()
 
 void greeting(object ob)
 {
-	object wine;
+	// 2026-04-30: unused variable commented out
+	// object wine;
 	if (ob->query_temp("snowman")) {
 		say("哇..哇..\n");
 		message_vision("雪人对$N露出友善的笑容.\n", ob);

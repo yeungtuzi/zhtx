@@ -3,7 +3,8 @@
 inherit F_CLEAN_UP;
 int main(object me, string arg)
 {
-        string msg;
+        // 2026-04-30: unused variable commented out
+        // string msg;
         me->delete_temp("block_msg/all");
         write(CLR);
         write("这么提心吊胆的玩值得吗？\n");

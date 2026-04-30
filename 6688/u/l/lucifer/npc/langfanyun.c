@@ -4,7 +4,8 @@
 
 void create()
 {
-        object sword;
+        // 2026-04-30: unused variable commented out
+        // object sword;
 
         set_name("浪翻云", ({ "lang fanyun","lang","yun"}) );
         set("long",@LONG

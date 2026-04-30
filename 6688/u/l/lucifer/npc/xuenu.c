@@ -8,7 +8,8 @@ int consider();
 
 void create()
 {
-	object sword;
+	// 2026-04-30: unused variable commented out
+	// object sword;
 
 	set_name(RED"幽明血奴"NOR, ({ "xue nu","xue","nu"}) );
 	set("long",

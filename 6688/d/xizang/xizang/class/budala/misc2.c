@@ -32,7 +32,8 @@ void init()
 int do_push(string arg)
 {
 	object me;
-        string dir;
+        // 2026-04-30: unused variable commented out
+        // string dir;
 
         if( !arg || arg=="" ) return 0;
 

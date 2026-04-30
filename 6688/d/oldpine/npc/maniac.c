@@ -4,7 +4,8 @@ inherit NPC;
 
 void create()
 {
-        object ob;
+        // 2026-04-30: unused variable commented out
+        // object ob;
 
         set_name("疯老头子", ({ "mad bad ugly dirty oldman", "man", "oldman" }) );
         set("gender", "男性");

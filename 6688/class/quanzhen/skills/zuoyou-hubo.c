@@ -8,7 +8,8 @@ inherit NPC;
 int perform(object me, object target)
 {
         string msg;
-        object weapon;
+        // 2026-04-30: unused variable commented out
+        // object weapon;
         if(!me->query("zuoyou-hobo"))
                 return notify_fail("你所使用的外功中没有这项功能");                        
         if( !target ) 

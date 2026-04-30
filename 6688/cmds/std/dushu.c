@@ -9,8 +9,10 @@ int main(object me, string arg)
 {
        int t_hours;
        int my_age, eff_recover, myskill, myexp, addskill;
-       int eff_kee_2_force, eff_force_2_kee, ex_time, auto_recover, recover_time;
-       int auto_ex_time, loop_ex_time,heart_point1,heart_point2;
+       // 2026-04-30: unused variable commented out
+       // int eff_kee_2_force, eff_force_2_kee, ex_time, auto_recover, recover_time;
+       // 2026-04-30: unused variable commented out
+       // int auto_ex_time, loop_ex_time,heart_point1,heart_point2;
        int start_force, final_force, total_point, max_force;
        object ob1,ob2,ob3,ob4;
 

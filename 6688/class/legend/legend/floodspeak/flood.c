@@ -6,7 +6,8 @@ inherit SSERVER;
 
 int perform(object me, object target)
 {
-        string msg;
+        // 2026-04-30: unused variable commented out
+        // string msg;
         int ap, dp, damage;
         object ob;
 

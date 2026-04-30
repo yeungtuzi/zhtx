@@ -155,7 +155,8 @@ varargs void ally_ob(object ob,int coefficient)
 
 void clean_up_enemy()
 {
-	int before = sizeof(enemy);
+	// 2026-04-30: unused variable commented out
+	// int before = sizeof(enemy);
 	enemy = filter_array(enemy, (:
 		objectp($1)
 		&& (environment($1)==environment($2))

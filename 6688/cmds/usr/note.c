@@ -7,7 +7,8 @@ int help();
  
 int main(object me, string arg)
 {
-    	int i;
+    	// 2026-04-30: unused variable commented out
+    	// int i;
 	object ob;
 	mapping quest; 
 

@@ -39,7 +39,8 @@ int do_wield(string arg)
 
         object ob;
         string str;
-	int i, count;
+	// 2026-04-30: unused variable commented out
+	// int i, count;
 
         if (!id(arg))   return notify_fail("你要装备什么？\n");
 

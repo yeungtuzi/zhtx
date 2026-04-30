@@ -23,9 +23,12 @@ void check()
 {
         object me;
         string name;
-        string *conditions=({}),*list,arg;
-        int i,flag;
-        string eqflag;
+        // 2026-04-30: unused variable commented out
+        // string *conditions=({}),*list,arg;
+        // 2026-04-30: unused variable commented out
+        // int i,flag;
+        // 2026-04-30: unused variable commented out
+        // string eqflag;
 
         remove_call_out("check");
         call_out("check",1);

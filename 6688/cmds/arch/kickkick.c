@@ -6,8 +6,10 @@ inherit F_CLEAN_UP;
 int main(object me, string arg)
 {
         object ob;
-        string wiz_status;
-        string tmpstr;
+        // 2026-04-30: unused variable commented out
+        // string wiz_status;
+        // 2026-04-30: unused variable commented out
+        // string tmpstr;
 	int    block_time,cur_time;
 	string name;
 

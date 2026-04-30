@@ -42,7 +42,8 @@ int do_push(string arg)
 int do_climb(string arg)
 {             
         object me;
-        object obj;
+        // 2026-04-30: unused variable commented out
+        // object obj;
         object ob;
         ob = this_player();
         

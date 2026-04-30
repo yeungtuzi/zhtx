@@ -20,7 +20,8 @@ LONG
 
 int valid_leave(object me, string dir)
 {
-        int i;
+        // 2026-04-30: unused variable commented out
+        // int i;
         if (dir=="up") return 1;
         return notify_fail("\n你使劲往下游，可是潭水浮力太大，怎么也游不下去！\n");
             

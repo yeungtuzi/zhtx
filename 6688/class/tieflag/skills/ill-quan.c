@@ -145,7 +145,8 @@ int query_faith_req(int skill) {
 mixed hit_ob(object me, object victim, int damage_bonus)
 {
 	object *inv,dress;
-	int i;
+	// 2026-04-30: unused variable commented out
+	// int i;
 	
 	if (victim == me) return;
 	inv = all_inventory(victim);

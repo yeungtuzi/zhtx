@@ -69,7 +69,8 @@ int main(object me, string arg)
 
 int do_give(object me, object obj, object who)
 {
-  int tmp;
+  // 2026-04-30: unused variable commented out
+  // int tmp;
 /* maybe not check obj is a problem dao 971223 */
   if (!obj) {
 //                      log_file("ZERO_LOG",sprintf("%s %s\n",me->name() , who->name()));

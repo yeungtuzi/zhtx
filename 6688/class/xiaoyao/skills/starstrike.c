@@ -62,7 +62,8 @@ mapping query_action(object me, object weapon)
 
 int practice_skill(object me)
 {
-        object ob;
+        // 2026-04-30: unused variable commented out
+        // object ob;
                 
         if( (int)me->query("kee") < 20
         ||  (int)me->query("sen") < 20

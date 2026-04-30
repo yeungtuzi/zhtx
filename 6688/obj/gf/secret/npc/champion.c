@@ -112,7 +112,8 @@ void init()
 
 int do_accept(string arg)
 {
-        mapping guild;            
+        // 2026-04-30: unused variable commented out
+        // mapping guild;
         object me;
 
         if( !(me = this_player())->query("can_speak") ) return 0;

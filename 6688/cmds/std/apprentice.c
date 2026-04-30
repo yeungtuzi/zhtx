@@ -9,8 +9,10 @@ inherit F_CLEAN_UP;
 int main(object me, string arg)
 {
         object ob, old_app;
-        mapping family, skills;
-        int i;
+        // 2026-04-30: unused variable commented out
+        // mapping family, skills;
+        // 2026-04-30: unused variable commented out
+        // int i;
         string myfam, obfam, mypart, obpart;
 
         if( !arg ) return notify_fail("指令格式：apprentice [cancel]|<对象>\n");

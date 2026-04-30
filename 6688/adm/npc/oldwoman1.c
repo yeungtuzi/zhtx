@@ -6,7 +6,8 @@ int ask_jitang();
  
 void create()
 {
-        int has_game;
+        // 2026-04-30: unused variable commented out
+        // int has_game;
         seteuid(getuid());
         set_name("老婆婆",({"old woman", "oldwoman", "woman"}));
         set("long", @TEXT 

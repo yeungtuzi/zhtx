@@ -6,7 +6,8 @@ inherit SSERVER;
  
 int exert(object me, object target)
 {
-        object *ob;
+        // 2026-04-30: unused variable commented out
+        // object *ob;
         int i, skill, damage ,ap, dp;
  
         if( !me->is_fighting() )

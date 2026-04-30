@@ -47,7 +47,8 @@ int do_yell(string arg) {
 
 void pipe_notify()
 {
-        object ob;
+        // 2026-04-30: unused variable commented out
+        // object ob;
 
         message("vision","一阵尖锐哨声响自岸边，划破了天地间的静寂，传达到远方。\n" , this_object() );
                 call_out("boat_come",5);
@@ -55,9 +56,11 @@ void pipe_notify()
 void boat_come()
 {
         object boat;
-        object woman;
+        // 2026-04-30: unused variable commented out
+        // object woman;
         object *inv;
-        object who;
+        // 2026-04-30: unused variable commented out
+        // object who;
         int i;
 
         if (query("exits/down")) return;

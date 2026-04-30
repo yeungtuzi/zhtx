@@ -5,7 +5,8 @@ inherit ROOM;
 int drop_him(object me);
 void create()
 {
-	object san, sna;
+	// 2026-04-30: unused variable commented out
+	// object san, sna;
 	set("short",HIC "驿道" NOR);
 	set("long", @LONG
 一条驿道静静的向远方延伸，好象永远没有尽头。

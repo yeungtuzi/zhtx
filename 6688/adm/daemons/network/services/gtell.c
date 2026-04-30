@@ -53,7 +53,8 @@ void send_gtell(string mud, string wiz_to, object source, string msg)
 void incoming_request(mapping info)
 {
 	mapping minfo;
-	object pl;
+	// 2026-04-30: unused variable commented out
+	// object pl;
 	string reply;
 
 if( info["MUDNAME"] != MUDLIB_NAME) return ;

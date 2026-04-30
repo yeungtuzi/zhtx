@@ -26,7 +26,8 @@ void create()
 
 void owner_is_killed(object killer)
 {
-        object owner;
+        // 2026-04-30: unused variable commented out
+        // object owner;
         if(environment()->query("id")!="ouyang ke")
         {
                 destruct(this_object());

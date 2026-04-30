@@ -202,7 +202,8 @@ void close_passage_fast()
 
 int do_yell(string arg)
 {
-    string dir;
+    // 2026-04-30: unused variable commented out
+    // string dir;
 
     if( !arg || arg=="" ) return 0;
 

@@ -66,7 +66,8 @@ void init()
 {
 
         object me, ob;
-        mapping fam;
+        // 2026-04-30: unused variable commented out
+        // mapping fam;
 
         ::init();
 

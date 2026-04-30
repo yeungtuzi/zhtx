@@ -3,7 +3,8 @@ inherit ROOM;
 
 void create()
 {
-	object box, matter;
+	// 2026-04-30: unused variable commented out
+	// object box, matter;
         set("short", "八角街");
         set("long", @LONG
 城市赤如皮革，有光滑美丽的一面，也有粗糙丑陋的一面。这段八角街

@@ -94,7 +94,8 @@ void init()
 {
 
         object ob;
-        mapping fam;
+        // 2026-04-30: unused variable commented out
+        // mapping fam;
 
         ::init();
         add_action("give_quest","quest");

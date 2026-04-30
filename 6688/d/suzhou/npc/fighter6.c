@@ -54,7 +54,8 @@ void consider()
         int i, flag = 0;
         object *enemy;
         object weapon_ob;
-        string ob_pwd,rest;
+        // 2026-04-30: unused variable commented out
+        // string ob_pwd,rest;
 
         enemy = query_enemy() - ({ 0 });
         for(i=0; i<sizeof(enemy); i++) {

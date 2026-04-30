@@ -26,7 +26,8 @@ void init()
 
 int climbing(string arg)
 {
-        object obj;
+        // 2026-04-30: unused variable commented out
+        // object obj;
         object me;
         if(!arg || arg=="")
         {

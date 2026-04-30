@@ -11,7 +11,8 @@ inherit EQUIP;
 
 varargs void init_und(int damage, int flag)
 {
-        string usage;
+        // 2026-04-30: unused variable commented out
+        // string usage;
 
         if( clonep(this_object()) ) return;
 

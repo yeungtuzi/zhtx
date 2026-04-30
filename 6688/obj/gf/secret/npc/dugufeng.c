@@ -163,7 +163,8 @@ int do_accept(string arg)
 
 int do_test()
 {
-        mapping guild;
+        // 2026-04-30: unused variable commented out
+        // mapping guild;
         object player,ob,obj;
         player=this_player();
         ob =this_object();

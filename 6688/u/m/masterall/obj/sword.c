@@ -58,7 +58,8 @@ mixed hit_ob(object me, object victim, int damage_bonus)
 
 void owner_is_killed(object killer)
 {
-        object owner;
+        // 2026-04-30: unused variable commented out
+        // object owner;
         if(environment()->query("id")!="yan bei")
         {
                 destruct(this_object());

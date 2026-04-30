@@ -445,7 +445,8 @@ int accept_object(object who, object ob)
                 }
         return 0;
 }
-
+// 2026-04-30: unused variable commented out
+// 
 void clear_stat()
 {
 	int i;

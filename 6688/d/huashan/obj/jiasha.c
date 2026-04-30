@@ -30,7 +30,8 @@ int do_read(string arg)
 {
 	object me,ob;
 	int lv;
-	int i;
+	// 2026-04-30: unused variable commented out
+	// int i;
 	me=this_player();
 	if ((!arg)||(arg=="")||(!objectp(ob=present(arg,me))))
 	return notify_fail("你想读什么？？\n");

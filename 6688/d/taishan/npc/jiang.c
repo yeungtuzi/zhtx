@@ -71,7 +71,8 @@ int accept_fight(object ob)
 
 int checking(object me, object ob)
 {
-	object obj;
+	// 2026-04-30: unused variable commented out
+	// object obj;
 	int my_max_kee, his_max_kee;
 
 	if ( !present(ob, environment()) ) return 1; 

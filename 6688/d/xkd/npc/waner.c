@@ -129,7 +129,8 @@ void do_recruit(object ob)
         object me  = this_object();
 
         mapping ob_fam;
-        mapping my_fam  = me->query("family");
+        // 2026-04-30: unused variable commented out
+        // mapping my_fam  = me->query("family");
          if (!(ob_fam = ob->query("family")) || ob_fam["family_name"] != "明教")
         {
                  command("say " + RANK_D->query_respect(ob) + "与本教素无来往，不知此话从何谈起？

@@ -54,7 +54,8 @@ int accept_object(object who, object ob)
 {
 	
 	object me=this_player();
-	object obj=ob;
+	// 2026-04-30: unused variable commented out
+	// object obj=ob;
 	int my_exp; 
 	
         if (!userp(ob) && (string)ob->query("id")=="yupei" 

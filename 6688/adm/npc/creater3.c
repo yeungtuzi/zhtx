@@ -85,11 +85,16 @@ int do_show_skills(string skillsfile,int line_no) {
   string tmp_ppp;
   string skill_name,pakstringl,pakstring;
   int contiu;
-  int i,num,tmp;
-  int damage,dodge,force,parry;
-  int min_damage,min_dodge,min_force,min_parry;
-  int max_damage,max_dodge,max_force,max_parry;
-  mapping *action;
+  // 2026-04-30: unused variable commented out
+  // int i,num,tmp;
+  // 2026-04-30: unused variable commented out
+  // int damage,dodge,force,parry;
+  // 2026-04-30: unused variable commented out
+  // int min_damage,min_dodge,min_force,min_parry;
+  // 2026-04-30: unused variable commented out
+  // int max_damage,max_dodge,max_force,max_parry;
+  // 2026-04-30: unused variable commented out
+  // mapping *action;
 
   if(!skillsfile )
       return notify_fail("请输入待处理skills文件名\n");

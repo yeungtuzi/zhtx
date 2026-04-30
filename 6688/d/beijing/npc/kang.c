@@ -64,7 +64,8 @@ void init()
 
 void greeting(object ob)
 {
-	int i;
+	// 2026-04-30: unused variable commented out
+	// int i;
         object man,*obj;
 	if( !ob || environment(ob) != environment() ) return;
         if((int)ob->query("meili")<20)

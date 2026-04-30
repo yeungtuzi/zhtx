@@ -62,7 +62,8 @@ void init()
 
 void greeting(object me)
 {
-        object obj;
+        // 2026-04-30: unused variable commented out
+        // object obj;
         command("lovelook");
 }
 

@@ -9,8 +9,10 @@ void remove_effect(object me, int amount);
 
 int perform(object me, object target)
 {
-        int skill;
-        string weapon;
+        // 2026-04-30: unused variable commented out
+        // int skill;
+        // 2026-04-30: unused variable commented out
+        // string weapon;
         int damage;
         string *limb, type, result, str;
 

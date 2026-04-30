@@ -9,7 +9,8 @@ inherit F_SSERVER;
 
 int exert(object me, object target)
 {
-        string msg;
+        // 2026-04-30: unused variable commented out
+        // string msg;
         int i, extra;
 
         if( me->query("family/family_name") != "少林派")

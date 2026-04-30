@@ -82,7 +82,8 @@ string query_autoload()
 
 void autoload(string arg)
 {
-	int i;
+	// 2026-04-30: unused variable commented out
+	// int i;
 
 	set("name", arg);
 	set("blood_soaked", 3);

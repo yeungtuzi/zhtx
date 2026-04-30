@@ -84,8 +84,10 @@ mapping attrib =([
 
 int main(object me, string arg)
 {
-        object ob;
-        mapping learned;
+        // 2026-04-30: unused variable commented out
+        // object ob;
+        // 2026-04-30: unused variable commented out
+        // mapping learned;
         string pack, argn, argm;        // 属性/武功  参数1  参数2:暂时不用
         string *classname, *skills;
         int argnum, len, j;             // 参数的个数 (包括属性)

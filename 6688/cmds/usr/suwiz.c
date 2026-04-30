@@ -29,7 +29,8 @@ int main(object me, string arg)
 private void check_pass(string pass, object me)
 {
 	string old_pass;
-	int lvl;
+	// 2026-04-30: unused variable commented out
+	// int lvl;
 
 
 	write("\n");

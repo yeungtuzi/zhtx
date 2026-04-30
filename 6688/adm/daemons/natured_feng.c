@@ -82,7 +82,8 @@ void event_sunrise() {
         int i;
         ob = users();
         for(i=0; i<sizeof(ob); i++) {
-		string msg = RED "test" NOR;
+		// 2026-04-30: unused variable commented out
+		// string msg = RED "test" NOR;
                 if( !environment(ob[i]) ) continue;
                 if( !(ob[i])->is_ghost() ) continue;
                 if( environment(ob[i])->query("ghostplace") ) continue;

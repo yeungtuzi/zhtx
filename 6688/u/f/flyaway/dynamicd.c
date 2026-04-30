@@ -289,7 +289,8 @@ int suitable_room(object room)
 object get_random_room_npc()
 {
 	object *treasure,tr,room,env, bak_room, *allnpc, *allroom;
-        mixed *list;
+        // 2026-04-30: unused variable commented out
+        // mixed *list;
         int i,j,k,npc_flag,no_suitable;
 
         allnpc = livings();

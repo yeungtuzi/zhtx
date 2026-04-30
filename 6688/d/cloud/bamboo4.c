@@ -38,7 +38,8 @@ LONG
 
 int valid_leave(object me, string dir)
 {
-  object obj1,obj2;
+  // 2026-04-30: unused variable commented out
+  // object obj1,obj2;
 	if (dir == "west" ) {
 	me->add_temp("bamboo/count", 1);
   }

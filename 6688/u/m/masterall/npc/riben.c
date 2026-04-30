@@ -114,8 +114,10 @@ int killed_enemy(object ob)
 
 void die()
 {
-        mapping victims;
-        string *vic;
+        // 2026-04-30: unused variable commented out
+        // mapping victims;
+        // 2026-04-30: unused variable commented out
+        // string *vic;
         int i,exp,pot,wlshw;
         object riben;
         object ob;

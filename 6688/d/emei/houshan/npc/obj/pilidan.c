@@ -27,7 +27,8 @@ int do_tan(string arg)
 {                         
         object me,target,obj;
         int i,j,damage1,damage2,level,ap,dp,x,y,z;      
-        string skill;            
+        // 2026-04-30: unused variable commented out
+        // string skill;
                               
         if( !arg)       return notify_fail("你要向谁弹射霹雳雷火弹？\n");                                                            
 

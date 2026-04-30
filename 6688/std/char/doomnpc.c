@@ -29,7 +29,8 @@ void init()
 
 void greeting(object ob)
 {
-	mapping ob_fam;
+	// 2026-04-30: unused variable commented out
+	// mapping ob_fam;
 
 	if(!ob || environment(ob)!=environment()) return;
 	if( !wiz_level(ob) && !query("peaceful") )

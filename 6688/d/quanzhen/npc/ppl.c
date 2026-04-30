@@ -50,7 +50,8 @@ void create()
 {
 	string name, id; 
 	int num = random(sizeof(first_name));
-	object ppl;
+	// 2026-04-30: unused variable commented out
+	// object ppl;
 
 	name = first_name[num];
 	name += name_words[num];

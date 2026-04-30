@@ -7,7 +7,8 @@ void remove_effect(object me, int amount);
 int perform(object me, object target)
 {
         int skill,eff;
-        object weapon;
+        // 2026-04-30: unused variable commented out
+        // object weapon;
 
         if(!me->query("zuoyou-hubo"))
                 return notify_fail("你所使用的外功中没有这项功能");                        

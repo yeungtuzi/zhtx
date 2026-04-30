@@ -52,7 +52,8 @@ int  do_ji(string arg)
 	object gold;
 	int cost = 1;
 	int i,j,base,current;
-	string id,name ;	
+	// 2026-04-30: unused variable commented out
+	// string id,name ;
 	string file,newfile,filestring;
 	me = this_player();
 	id = me->query("id");

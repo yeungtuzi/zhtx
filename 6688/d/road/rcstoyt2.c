@@ -5,7 +5,8 @@ inherit ROOM;
 int drop_him(object me);
 void create()
 {
-	object san, sna;
+	// 2026-04-30: unused variable commented out
+	// object san, sna;
 	set("short", "马鞍山");
 	set("long", @LONG
 这是马鞍山的西面，风光秀丽。

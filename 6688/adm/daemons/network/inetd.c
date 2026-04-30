@@ -299,7 +299,8 @@ open_service(string mud, string svc, string *parms)
  
 void process_incoming(int fd)
 {
-   object ob;
+   // 2026-04-30: unused variable commented out
+   // object ob;
    int error, l;
    string msg, svc, *parms;
  

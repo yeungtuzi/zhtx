@@ -6,7 +6,8 @@ int main(object me, string arg)
 {
 	object ob, *inv;
 	string str;
-	int i;
+	// 2026-04-30: unused variable commented out
+	// int i;
 
       if (this_player()->is_busy()) return notify_fail("你正忙着呢，没时间卸兵器.\n");
 	if( !arg ) return notify_fail("你要脱掉什麽？\n");

@@ -34,7 +34,8 @@ LONG
 int valid_leave(object me, string dir)
 {
 	object ob1, ob2, ob3;
-        object *inv;
+        // 2026-04-30: unused variable commented out
+        // object *inv;
 	string mengzhu, shangshan, fae;
 	
 	if(!( ob1 = find_living("mengzhu")) )

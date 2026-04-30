@@ -5,7 +5,8 @@ int perform(object me, object target)
 {
         string msg;
 	int damage;
-	object weapon;
+	// 2026-04-30: unused variable commented out
+	// object weapon;
 
         if( !target ) target = offensive_target(me);
 

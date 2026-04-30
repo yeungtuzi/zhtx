@@ -63,7 +63,8 @@ int query_trading_price(string handle)
 void compelete_trade(object me, string what)
 {
 	mapping list;
-	string ob_file;
+	// 2026-04-30: unused variable commented out
+	// string ob_file;
 	object ob;
 
 	list = query("vendor_goods");

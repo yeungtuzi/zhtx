@@ -381,7 +381,8 @@ int do_cd(string arg)
 
 int do_lls(string arg)
 {
-        int mark_loaded;
+        // 2026-04-30: unused variable commented out
+        // int mark_loaded;
         int i, j, w, col;
         string dir;
         mixed *file;
@@ -468,7 +469,8 @@ int get_dp(object ob,int type)
         string attack_skill,skill_type,parry_type;
         object weapon;
         int attack_points, dodge_points, parry_points;
-        int zhenqi;
+        // 2026-04-30: unused variable commented out
+        // int zhenqi;
         mapping prepare;
 
         if( !ob ) return 0;

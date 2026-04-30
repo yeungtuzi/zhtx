@@ -115,7 +115,8 @@ void use_poison()
 	object *enemy,ob;
 	object me=this_object();
 	int obbody,mybody;
-	string msg;
+	// 2026-04-30: unused variable commented out
+	// string msg;
 
 	enemy = query_enemy();
 	if( sizeof(enemy) ) ob = enemy[random(sizeof(enemy))];

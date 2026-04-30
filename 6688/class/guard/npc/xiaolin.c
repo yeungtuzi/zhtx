@@ -141,7 +141,8 @@ string ask_lucy()
 
 int accept_object(object who, object what)
 {
-	object obj;
+	// 2026-04-30: unused variable commented out
+	// object obj;
 
 	if(userp(what) )
 		return notify_fail("小霖说道：“你竟然感拿玩家来送人？！再叫我遇上，小心我宰了你。”

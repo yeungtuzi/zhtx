@@ -57,7 +57,8 @@ void create()
 
 void attempt_apprentice(object ob)
 {
-        mapping fam;
+        // 2026-04-30: unused variable commented out
+        // mapping fam;
         if ((string)ob->query("family/family_name")!="丐帮")
         {
 		command("say 我们丐帮需要一袋一袋升，"+ RANK_D->query_respect(ob)+ "先要从一袋弟子做起。");
@@ -84,8 +85,10 @@ int accept_object(object ob, object obj)
 {
         object me = this_object();
 
-        mapping my_fam  = me->query("family");
-        mapping ob_fam  = ob->query("family");
+        // 2026-04-30: unused variable commented out
+        // mapping my_fam  = me->query("family");
+        // 2026-04-30: unused variable commented out
+        // mapping ob_fam  = ob->query("family");
 
 
         if((obj->query("id") == "qingzhu ling")

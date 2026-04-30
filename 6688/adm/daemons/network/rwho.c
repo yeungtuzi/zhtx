@@ -10,7 +10,8 @@
 
 string remote_who(string mud, object source)
 {
-  mapping minfo;
+  // 2026-04-30: unused variable commented out
+  // mapping minfo;
 
   if(geteuid(previous_object()) != ROOT_UID)
     return "rwhod: permission denied.\n";

@@ -16,7 +16,8 @@ inherit F_DBASE;
         int ap, dp, pp,coefficient;
         int damage, damage_bonus, defense_factor;
         int damaged = 0, wounded = 0;
-        int cost;
+        // 2026-04-30: unused variable commented out
+        // int cost;
         mapping prepare;
         int absorb_vic, bounce = 0;
         object *partner_ob=({}),partner;

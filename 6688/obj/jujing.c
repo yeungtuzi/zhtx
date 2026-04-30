@@ -193,7 +193,8 @@ int accept_fight(object ob)
 int checking(object me, object ob)
 {
 
-        object obj;
+        // 2026-04-30: unused variable commented out
+        // object obj;
         int my_max_qi, his_max_qi;
 
         my_max_qi  = me->query("max_kee");
@@ -229,8 +230,10 @@ int checking(object me, object ob)
 
 int do_copy(object me, object ob)
 {
-        object ob1, ob2;
-        string bangzhu;
+        // 2026-04-30: unused variable commented out
+        // object ob1, ob2;
+        // 2026-04-30: unused variable commented out
+        // string bangzhu;
 
         seteuid(getuid());
 

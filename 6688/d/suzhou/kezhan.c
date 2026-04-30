@@ -39,8 +39,10 @@ LONG
 
 int valid_leave(object me, string dir)
 {
-         object *inv;
-    	 int i;
+         // 2026-04-30: unused variable commented out
+         // object *inv;
+    	 // 2026-04-30: unused variable commented out
+    	 // int i;
 
     	 if ( me->query_temp("riden") && dir == "east")
 		return notify_fail("这个地方不能骑马过去。\n");

@@ -328,7 +328,8 @@ void find_edge()
 
 void generate_multi_npc(string npc,int dup_num)
 {
-	int move_num,new_num,exist_num,dest_num;
+	// 2026-04-30: unused variable commented out
+	// int move_num,new_num,exist_num,dest_num;
 	
 	//CHANNEL_D->do_channel(this_object(),"sys",NOR"已经有的数:"+sprintf("%d",sizeof(old_npc)));	
 	for(i=0;i<dup_num;i++)

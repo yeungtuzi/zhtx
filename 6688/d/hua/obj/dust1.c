@@ -26,7 +26,8 @@ int do_smear(string arg)
 {
 	string me, what;
 	object ob;
-	function f;
+	// 2026-04-30: unused variable commented out
+	// function f;
 
 	if( !arg
 	||	sscanf(arg, "%s on %s", me, what)!=2

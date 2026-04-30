@@ -8,7 +8,8 @@ void wield_something();
 int ask_jitang(); 
 void create()
 {
-        int has_game;
+        // 2026-04-30: unused variable commented out
+        // int has_game;
         seteuid(getuid());
         set_name("老公公",({"old man", "oldman", "man"}));
         set("long", @TEXT

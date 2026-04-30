@@ -6,7 +6,8 @@ inherit SSERVER;
 int perform(object me, object target)
 {
 	string msg;
-	string weapon;
+	// 2026-04-30: unused variable commented out
+	// string weapon;
 	if( !target ) target = offensive_target(me);
 
 	if( !target

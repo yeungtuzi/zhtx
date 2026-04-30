@@ -116,10 +116,13 @@ int killed_enemy(object ob)
                      
 void die()
 {
-        mapping victims;
-        string *vic;
+        // 2026-04-30: unused variable commented out
+        // mapping victims;
+        // 2026-04-30: unused variable commented out
+        // string *vic;
         int i;
-        object player;
+        // 2026-04-30: unused variable commented out
+        // object player;
         object ob, obj;
 
         ob = this_object()->query_temp("last_damage_from");

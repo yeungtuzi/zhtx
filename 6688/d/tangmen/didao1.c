@@ -26,7 +26,8 @@ void init()
 
 int do_drop(string arg)
 {
-	int i;
+	// 2026-04-30: unused variable commented out
+	// int i;
 	object me,ob,room;
 
     	if (query("exits/east"))

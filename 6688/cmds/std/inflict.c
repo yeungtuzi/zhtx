@@ -6,7 +6,8 @@ int main(object me, string arg)
 {
 	object weapon;
 	string martial, skill;
-	int result;
+	// 2026-04-30: unused variable commented out
+	// int result;
 	
 	seteuid(getuid());
 

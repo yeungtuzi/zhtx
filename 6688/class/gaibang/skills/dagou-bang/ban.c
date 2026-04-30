@@ -10,7 +10,8 @@ int perform(object me, object target)
                 string* msgsuccess;
                 string* msgfail;
                 string* msgloop, msg;
-                int random_text;
+                // 2026-04-30: unused variable commented out
+                // int random_text;
                 int lvl;
                 int duration;
                 int dodge;

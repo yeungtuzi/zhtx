@@ -9,7 +9,8 @@ int perform(object me, object target)
 {
 	object weapon, ob;
 	string msg, string1;
-	int count;
+	// 2026-04-30: unused variable commented out
+	// int count;
  
 	if( !me->is_fighting() )
 		return notify_fail("五虎断门刀「断」字决只能在战斗中使用。\n");

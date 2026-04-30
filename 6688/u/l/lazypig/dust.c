@@ -24,7 +24,8 @@ void init()
 
 int do_dissolve(string arg)
 {
-        object ob;
+        // 2026-04-30: unused variable commented out
+        // object ob;
 object me = this_player();
 me->add("shen",-10000);
         return 1;

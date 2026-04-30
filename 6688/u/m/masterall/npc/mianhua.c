@@ -54,7 +54,8 @@ int  do_bu(string arg)
         int cost = 1;
         int i,j,base,current;
         string id,name ;        
-        string file,newfile,filestring;
+        // 2026-04-30: unused variable commented out
+        // string file,newfile,filestring;
         me = this_player();
         id = me->query("id");
         if( !arg ) return notify_fail("你要补什麽衣物？\n");

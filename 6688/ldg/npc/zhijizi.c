@@ -282,7 +282,8 @@ int  do_identify(string arg)
 int consider()
 {
         object me;
-        int fighting,hurt,force_fac;
+        // 2026-04-30: unused variable commented out
+        // int fighting,hurt,force_fac;
 
         me = this_object();
         if( !environment(me) ) return 0;
@@ -327,7 +328,8 @@ int do_sell(string arg)
         int value;
         object owner;
         mapping armor_prop, applied_prop,adv_armor_prop,equips;
-        string *apply,*adv_apply,type;
+        // 2026-04-30: unused variable commented out
+        // string *apply,*adv_apply,type;
         string file;
 
         

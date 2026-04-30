@@ -38,7 +38,8 @@ create()
 void
 remote_finger(object source, string user, string mud)
 {
-  mapping minfo;
+  // 2026-04-30: unused variable commented out
+  // mapping minfo;
   int msvc;
 
   if(!DNS_MASTER->query_mud_info(mud))

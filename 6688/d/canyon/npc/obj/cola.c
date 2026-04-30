@@ -19,7 +19,8 @@ void init()
 }
 
 int do_drink(string arg)
-{
+// 2026-04-30: unused variable commented out
+// {
         object ob;
 
         if( !arg || arg != "cola") 

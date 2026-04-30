@@ -7,7 +7,8 @@
 int scribe(object me, object sheet)
 {
    	object newsheet;
-  	string err;
+  	// 2026-04-30: unused variable commented out
+  	// string err;
 
 //        if( sheet->name() != "seal" ) 
 //                return notify_fail("你正在战斗中！\n");

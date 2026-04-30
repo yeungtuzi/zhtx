@@ -18,7 +18,8 @@ int main(object me,string arg)
         object ob;
         object linkob;
         object *tcpip;
-        int i;
+        // 2026-04-30: unused variable commented out
+        // int i;
         me=this_player();
         
         if( strsrch(arg," ")==-1) arg+=" 23";

@@ -97,7 +97,8 @@ mapping *read_table(string file)
 
 void step()
 {
-	object ob;
+	// 2026-04-30: unused variable commented out
+	// object ob;
 	int i;        
 	
 	if (this_object()->is_fighting())

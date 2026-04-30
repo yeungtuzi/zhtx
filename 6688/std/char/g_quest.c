@@ -221,7 +221,8 @@ int valid_bribe(object who , int val) {
 
 int accept_object(object who, object ob)
 {
-        int bonus, exp, pot, score,val; 
+        // 2026-04-30: unused variable commented out
+        // int bonus, exp, pot, score,val;
         string test;
         mapping quest;
 	string accepter= this_object()->query("name");

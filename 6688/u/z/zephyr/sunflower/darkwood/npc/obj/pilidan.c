@@ -32,8 +32,10 @@ int do_throw(string arg)
 	object me,ob, *enemys;
 
 	int i,nowkee,nowsen,nowgin,noweff_kee,noweff_sen,noweff_gin;
-	mapping skill_status;
-	string* sname;
+	// 2026-04-30: unused variable commented out
+	// mapping skill_status;
+	// 2026-04-30: unused variable commented out
+	// string* sname;
 
 	me=this_player();
 

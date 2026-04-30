@@ -17,7 +17,8 @@ int main(object me, string arg)
         int my_move,your_move,enemy_size,coeff,at;
         mapping exit;
         mapping block;                         
-        object * inventory;
+        // 2026-04-30: unused variable commented out
+        // object * inventory;
         object horse;
 
         if( !arg ) return notify_fail("你要往哪个方向走？\n");

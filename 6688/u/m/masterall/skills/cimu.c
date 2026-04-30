@@ -17,7 +17,8 @@ int judge(object me,object victim)
 
 int perform(object me, object target)
 {
-        string msg;
+        // 2026-04-30: unused variable commented out
+        // string msg;
         int count,skill_level; 
         object weapon,ob;
         skill_level = me->query_skill("pixie-sword",1);

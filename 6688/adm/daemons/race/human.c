@@ -44,7 +44,8 @@ void setup(object ob)
         int max_con;
         int tmp,i,j;
         string *h_gifts = ({"bln","kar","fav","lea","elo","msc","wil","vis"});
-        int maxage;
+        // 2026-04-30: unused variable commented out
+        // int maxage;
 
         my = ob->query_entire_dbase();
 

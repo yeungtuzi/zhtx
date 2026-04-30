@@ -102,7 +102,8 @@ void init()
 {                                                                                       
                                                                                        
         object ob;                                                                     
-        mapping fam;                                                                   
+        // 2026-04-30: unused variable commented out
+        // mapping fam;
                                                                                        
         add_action("do_swear", "swear");                                             
                                                                                        

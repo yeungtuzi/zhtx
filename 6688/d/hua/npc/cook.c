@@ -22,7 +22,8 @@ void create()
 
 void init()
 {
-        object ob;
+        // 2026-04-30: unused variable commented out
+        // object ob;
 
         ::init();
         add_action("do_vendor_list", "list");

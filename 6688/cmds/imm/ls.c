@@ -6,7 +6,8 @@ inherit F_CLEAN_UP;
 
 int main(object me, string arg)
 {
-	int mark_loaded;
+	// 2026-04-30: unused variable commented out
+	// int mark_loaded;
 	int i, j, w, col;
 	string dir;
 	mixed *file;

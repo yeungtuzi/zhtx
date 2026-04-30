@@ -31,7 +31,8 @@ int perform(object me, object target)
 {
 	string msg,name;
 	int extra,i,lmt;
-	object weapon,tgt;
+	// 2026-04-30: unused variable commented out
+	// object weapon,tgt;
            
 	extra = me->query_skill("guanshan-strike",1);
 	if ( extra < 100) return notify_fail("你的七伤拳还不够纯熟！\n");

@@ -19,7 +19,8 @@ LONG
 
 int valid_leave(object me, string dir)
 {
-        object room;
+        // 2026-04-30: unused variable commented out
+        // object room;
         string outexit;
         if (dir == "north") {
                 if ( query("exits/north") ) delete("exits/north");

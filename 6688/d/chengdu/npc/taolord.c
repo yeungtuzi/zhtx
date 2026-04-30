@@ -99,7 +99,8 @@ void create()
 string ask_me()
 {
 	object me,sword;
-	mixed mengzhu;
+	// 2026-04-30: unused variable commented out
+	// mixed mengzhu;
 	
 	me=this_player();
 	if( this_object()->recognize_apprentice(me) )
@@ -183,8 +184,10 @@ int recruit_apprentice(object ob)
 
 int chat()
 {       
-	object *enemys,victim;
-	int i;
+	// 2026-04-30: unused variable commented out
+	// object *enemys,victim;
+	// 2026-04-30: unused variable commented out
+	// int i;
 	
 	if( !is_fighting() )
 	{

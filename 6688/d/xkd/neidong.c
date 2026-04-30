@@ -28,7 +28,8 @@ LONG
 
 void init()
 {       
-        object ob = this_player();
+        // 2026-04-30: unused variable commented out
+        // object ob = this_player();
 /*
         if( (int)ob->query_condition("bonze_jail") <= 0 )
         {

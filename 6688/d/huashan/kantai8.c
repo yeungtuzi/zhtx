@@ -211,7 +211,8 @@ int do_qu(string arg)
 
 int valid_leave(object me, string dir)
 {
-	object obj;
+	// 2026-04-30: unused variable commented out
+	// object obj;
 	if (dir=="up")
 	{	
 		return notify_fail("没到你上场，老老实实呆着。\n");

@@ -6,7 +6,8 @@ inherit ROOM;
 
 void create()
 {
-	object san, sna;
+	// 2026-04-30: unused variable commented out
+	// object san, sna;
 	set("short", "驿道");
 	set("long", @LONG
 一条驿道静静的向远方延伸，好象永远没有尽头。
@@ -27,7 +28,8 @@ void init()
 {	
 	object ob;
 	int water, food, bellicosity;
-	string outexit;
+	// 2026-04-30: unused variable commented out
+	// string outexit;
 	if( interactive( ob = this_player()))
 	{
 	water = ob->query("water");

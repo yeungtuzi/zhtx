@@ -139,7 +139,8 @@ int rescue_me(object ob)
 void attempt_apprentice(object ob)
 {
         object me  = this_object();
-
+// 2026-04-30: unused variable commented out
+// 
         mapping ob_fam;
         mapping my_fam  = me->query("family");
          if (!(ob_fam = ob->query("family")) || ob_fam["family_name"] != "明教")

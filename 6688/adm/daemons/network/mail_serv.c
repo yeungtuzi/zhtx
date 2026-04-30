@@ -207,8 +207,10 @@ void process_message(int id) {
 }
  
 void flush_mail_queue() {
-    string *muds;
-    string address, port;
+    // 2026-04-30: unused variable commented out
+    // string *muds;
+    // 2026-04-30: unused variable commented out
+    // string address, port;
     int id;
 
     if(!sizeof(mqi)) return;

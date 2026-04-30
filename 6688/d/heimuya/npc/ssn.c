@@ -97,7 +97,8 @@ if(this_player()->query("whichtang")!=0&&this_player()->query("whichtang
 }
 
 string ask_me()
-{
+// 2026-04-30: unused variable commented out
+// {
 	mapping fam; 
 	object ob;
 	

@@ -15,7 +15,8 @@ void create()
 void show_welcome()
 {
         string str;
-        object me = this_player();
+        // 2026-04-30: unused variable commented out
+        // object me = this_player();
 
         str = REF"\n\n\n\n                           "BGRN"  "NOR HIG" 纵横天下 II"BGRN"  "NOR"\n\n";
         str +=HIY"\n                To Venture In A New World With Great Case\n\n"NOR;

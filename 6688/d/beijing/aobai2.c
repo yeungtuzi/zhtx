@@ -27,8 +27,10 @@ LONG
 
 int valid_leave(object me, string dir)
 {
-    int i;
-    object *inv;
+    // 2026-04-30: unused variable commented out
+    // int i;
+    // 2026-04-30: unused variable commented out
+    // object *inv;
     if(dir=="west")
     {
          if(objectp(present("guan bing", environment(me)))&&living(present("bing", environment(me))))

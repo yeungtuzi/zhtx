@@ -7,7 +7,8 @@ string close_game();
 
 void create()
 {
-        object ob;
+        // 2026-04-30: unused variable commented out
+        // object ob;
         set_name(HIC"纵横活动员MM"HIR" NO.1"NOR, ({ "programer 01","programer"}) );
         set("gender", "女性" );
         set("age", 200);

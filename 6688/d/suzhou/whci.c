@@ -31,8 +31,10 @@ void init()
 int do_ketou() 
 {
         object me;
-        object obj;
-        object ob;
+        // 2026-04-30: unused variable commented out
+        // object obj;
+        // 2026-04-30: unused variable commented out
+        // object ob;
         me=this_player();
         
         if ( ((int)me->query("max_force") < 500) ||

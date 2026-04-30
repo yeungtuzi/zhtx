@@ -80,7 +80,8 @@ void init()
 
 int give_talk()
 {       
-        mapping fam;
+        // 2026-04-30: unused variable commented out
+        // mapping fam;
         object me;
         me = this_player();
 

@@ -6,9 +6,11 @@ inherit F_CLEAN_UP;
 
 int main(object me, string arg)
 {
-	mapping map;
+	// 2026-04-30: unused variable commented out
+	// mapping map;
 	string *types, *skill,  ski;
-	int i, modify;
+	// 2026-04-30: unused variable commented out
+	// int i, modify;
 
 	seteuid(getuid());
 

@@ -16,7 +16,8 @@ void invocation(object who)
         int i;
         object *enemy,me,ob,*inv;
         mapping hp_status, skill_status, map_status, prepare_status;
-        string *sname, *mname, *pname, err;
+        // 2026-04-30: unused variable commented out
+        // string *sname, *mname, *pname, err;
         int temp,add_skill1,add_skill2,mdodge,mparry,mskill; 
         mdodge = who->query_skill("dodge",1); 
         mparry = who->query_skill("parry",1); 

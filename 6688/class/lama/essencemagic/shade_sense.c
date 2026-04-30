@@ -5,7 +5,8 @@ inherit SSERVER;
 int conjure(object me, object target)
 {
         int lvl,i;
-        object env, *inv;
+        // 2026-04-30: unused variable commented out
+        // object env, *inv;
         lvl = (int) me->query_skill("essencemagic", 1);
         lvl += (int) me->query("spi");
         if ( lvl <= 150)

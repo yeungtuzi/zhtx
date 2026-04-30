@@ -25,9 +25,11 @@ inherit F_DBASE;
 */
 void incoming_request(mapping info)
 {
-	object *who;
+	// 2026-04-30: unused variable commented out
+	// object *who;
 	string str, *bits;
-	int i;
+	// 2026-04-30: unused variable commented out
+	// int i;
 
 	if(!ACCESS_CHECK(previous_object())) return;
 

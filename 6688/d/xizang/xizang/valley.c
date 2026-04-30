@@ -33,7 +33,8 @@ void init()
 
 int climbing(string arg)
 {
-        object obj;
+        // 2026-04-30: unused variable commented out
+        // object obj;
         object me;
         if(!arg || arg=="")
         {
@@ -89,7 +90,8 @@ void open_passage()
 
 void close_passage()
 {
-        object room;
+        // 2026-04-30: unused variable commented out
+        // object room;
 
         if( !query("exits/southup") ) return;
         message("vision","一阵风吹来,藤蔓飘回原位,盖住了洞口.\n",

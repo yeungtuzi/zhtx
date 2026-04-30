@@ -98,7 +98,8 @@ void attempt_apprentice(object ob)
 
 string ask_me()
 {
-	mapping fam; 
+	// 2026-04-30: unused variable commented out
+	// mapping fam;
 	object ob;
 	
 	if (this_player()->query("family/family_name")!="日月神教")

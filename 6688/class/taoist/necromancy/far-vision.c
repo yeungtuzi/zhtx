@@ -7,7 +7,8 @@
 int scribe(object me, object sheet)
 {
    	object newsheet;
-  	string err;
+  	// 2026-04-30: unused variable commented out
+  	// string err;
 
         if( sheet->name() != "桃符纸" ) 
                 return notify_fail("天通眼符要画在桃符纸上！\n");

@@ -21,7 +21,8 @@ void connect_socket(int fd)
 void read_parse_line(int fd, string msg)
 {
    string cmd, arg, arg1, arg2;
-   object ob;
+   // 2026-04-30: unused variable commented out
+   // object ob;
 
    if(sscanf(msg, "CMD:%s %s", cmd, arg))
    {

@@ -69,8 +69,6 @@ zhtx/
 
 第一次启动后请注册mudadm账号,做为MUD天神(admin)。
 
-
-
 ## 技术说明
 
 - **驱动**: MudOS v22 / FluffOS 分支，需使用 MudOS-NG 编译运行
@@ -82,6 +80,10 @@ zhtx/
 
 - [MudOS-NG](https://github.com/yeungtuzi/mudos-ng) — 下一代 LPMUD 驱动，本游戏世界的运行时引擎
 - [FluffOS](https://github.com/fluffos/fluffos) — MudOS 的上游持续维护分支
+
+## 已知问题
+
+由于曾使用自动化程序对未使用的本地变量声明进行了注释，可能会导致新的 bug。碰到此类问题时，请优先检查带有特定日期和功能声明的注释（如 `// 2026-xx-xx unused`），解除变量声明的注释即可。
 
 ## 免责声明
 

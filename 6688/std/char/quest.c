@@ -358,8 +358,7 @@ int valid_bribe(object who , int val) {
 
 int accept_object(object who, object ob)
 {
-        // 2026-04-30: unused variable commented out
-        // int bonus, exp, pot, score,val;
+        int bonus, exp, pot, score,val;
         string test;
         mapping quest;
         object killer;

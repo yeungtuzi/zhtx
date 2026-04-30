@@ -15,12 +15,15 @@
 .claude/
 
 # Build artifacts
-6688/binaries/
+6688/binaries/**
+!6688/binaries/**/
+!6688/binaries/**/.gitkeep
 *.core
 
 # Runtime logs
 6688/log/**
 !6688/log/**/
+!6688/log/**/.gitkeep
 log/**
 
 # Runtime-generated player data (recreated on first boot)

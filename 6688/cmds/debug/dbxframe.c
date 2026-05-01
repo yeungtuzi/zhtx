@@ -1,4 +1,3 @@
-#include <globals.h>
 
 string print_vars(mixed *vars) {
   string *result = allocate(sizeof(vars));

@@ -1,7 +1,6 @@
 // channel block command..
 // Modified by Marz, 04/18/96
 
-#include <globals.h>
 
 inherit F_CLEAN_UP;
 

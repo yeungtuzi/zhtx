@@ -153,7 +153,7 @@ int do_value(string arg)
 int do_sell(string arg)
 {
 	mapping goods=([]);
-	string file, *name;
+	string file;
 	object ob;
 	int value;
 	

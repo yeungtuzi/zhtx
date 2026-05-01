@@ -43,7 +43,7 @@ void create()
 
 int generate_map(string doom_path)
 {
-	int kk,row,col;
+	int row,col;
 	
 	get_all_file(doom_path);
 
@@ -215,7 +215,7 @@ void show_map()
 
 int get_all_file(string doom_path)
 {
-	string *files,*file,enter,edgerooms,*npcs,*npc,multinpcs;
+	string *files,*file,edgerooms,*npcs,*npc,multinpcs;
 	int i;
 	int kk;
 

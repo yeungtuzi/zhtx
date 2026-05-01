@@ -79,7 +79,7 @@ int sort_enemy(object ob1, object ob2)
 int chat()
 {
 	object me;
-	int fighting,hurt,force_fac,i;
+	int fighting,hurt,force_fac;
 	object *enemy,*victim;
 
 	me = this_object();

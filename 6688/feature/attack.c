@@ -284,7 +284,6 @@ void remove_all_enemy()
 // Stop all fighting and killing.
 void remove_all_killer()
 {
-	object *ob;
 	int i;
 
 	killer = ({});

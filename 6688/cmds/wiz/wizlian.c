@@ -2,7 +2,6 @@
 // Written by Doing Lu 1998/11/1
 // Updated by dongsw for zh2
 
-#include <globals.h>
 #include <ansi.h>
 
 inherit F_CLEAN_UP;

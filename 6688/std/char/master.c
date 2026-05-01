@@ -32,7 +32,7 @@ int accept_learn(object me, string skill)
 		command("hmm");
 		command("pat " + me->query("id"));
 		command("say 虽然你是我门下的弟子，可是并非我的嫡传弟子 ....");
-		command("say 我只能教你这些粗浅的本门功\夫，其他的还是去找你师父学吧。");
+		command("say 我只能教你这些粗浅的本门功夫，其他的还是去找你师父学吧。");
 		return 0;
 	}
 

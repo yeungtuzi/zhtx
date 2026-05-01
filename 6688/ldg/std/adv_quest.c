@@ -3,7 +3,6 @@
 
 #include <dbase.h>
 #include <ansi.h>
-#include <globals.h> 
 
 string quest_file(string tag) {
         string file;

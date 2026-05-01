@@ -21,7 +21,7 @@ int is_ghost() { return ghost; }
 varargs int receive_damage(string type, int damage, object who)
 {
         int val;
-        int mana,atman,maxforce,jiuyang,xishu; 
+        int mana,jiuyang,xishu;
 
         if( damage < 0 ) error("F_DAMAGE: 伤害值为负值。\n");
         if( type!="gin" && type!="kee" && type!="sen" )
@@ -95,7 +95,7 @@ varargs int receive_damage(string type, int damage, object who)
 
 varargs int receive_wound(string type, int damage, object who)
 {
-        int val,mana,atman,maxforce;
+        int val,mana,maxforce;
 
         if( damage < 0 ) error("F_DAMAGE: 伤害值为负值。\n");
         if( type!="gin" && type!="kee" && type!="sen" )
@@ -301,7 +301,7 @@ varargs void revive(int quiet)
 varargs void die(int quiet)
 {
         object corpse, killer, killer2, me=this_object();
-        int i,tmp_pot,xiandan,bonze;
+        int tmp_pot,xiandan,bonze;
         int high_bellicosity=0;
         
         string str;
@@ -450,7 +450,7 @@ int max_water_capacity() { return query_weight() / 200; }
 
 int heal_up()
 {
-        int update_flag, i;
+        int update_flag;
         mapping my;
         int con_eff;
 

@@ -1,6 +1,5 @@
 // meng-zhu.c 武林盟主
 
-#include <globals.h>
 #ifndef NPCDATA
 #define NPCDATA "/data/npc/"
 #endif

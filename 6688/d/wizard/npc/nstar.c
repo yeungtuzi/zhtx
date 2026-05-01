@@ -1,4 +1,3 @@
-#include <globals.h> 
 #ifndef NPCDATA
 #define NPCDATA "/data/user/n/"
 #endif

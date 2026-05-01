@@ -22,7 +22,7 @@ void setup()
 
 varargs int move(mixed dest, int silently)
 {
-	object ob,owner;
+	object ob;
 	
 	if( objectp(dest)) ob = dest;
         else if( stringp(dest) ) {
@@ -81,8 +81,7 @@ int detach()
 {
 	mapping equips;
 	object owner;
-	string *props,file;
-	mapping prop;
+	string file;
 	
 	if(!(owner = environment())) return 0;
 	
@@ -158,7 +157,7 @@ int wield()
 {
 	object owner, old_weapon;
 	mapping weapon_prop,adv_weapon_prop,equips;
-	string *apply, *adv_apply, type;
+	string *apply, *adv_apply;
 	int flag;
 	string file;
 
@@ -284,7 +283,7 @@ int unequip()
 
 void owner_is_killed(object killer)
 {
-        object owner;
+//        object owner;
 	
 	if(!(query("adv_props"))) return;
 	
@@ -504,7 +503,7 @@ void add_additional_prop(object who)
 
 void remove_additional_prop(object who)
 {
-	int added_kee,added_sen,added_gin,kee,sen,gin;
+	int added_kee,added_sen,added_gin;
 	if(added_kee=query("adv_props/add_max_kee")) {
 		who->add("eff_kee",-added_kee*10);
 		who->add("max_kee",-added_kee*10);

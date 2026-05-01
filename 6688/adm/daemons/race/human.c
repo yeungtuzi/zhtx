@@ -42,7 +42,7 @@ void setup(object ob)
         mapping my;
         int xism_age;
         int max_con;
-        int tmp,i,j;
+        int i,j;
         string *h_gifts = ({"bln","kar","fav","lea","elo","msc","wil","vis"});
         // 2026-04-30: unused variable commented out
         // int maxage;

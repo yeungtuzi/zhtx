@@ -441,7 +441,7 @@ int is_couple(object ob1, object ob2)
 
 object partner_can_parry(object me,object victim,int ap,mapping action,string attack_skill)
 {
-	object *partners,this_partner,env,leader;
+	object *partners,this_partner,leader;
 	int 	i,pp,coefficient,coef,c_faith;
 	string parry_skill;
 	
@@ -864,9 +864,9 @@ int calculate_damage(object me,object victim,mapping action,object weapon,string
 varargs int do_attack(object me, object victim, object weapon, int attack_type,mapping attack_action,object controler)
 {
 	int damaged = 0, wounded = 0;
-	int ap, dp, pp,coefficient;
-	int damage, damage_bonus, defense_factor;	
-	int absorb_vic, bounce = 0;	
+	int ap, dp, pp;
+	int damage;
+//	int absorb_vic, bounce = 0;
 	mixed foo,foo2;	
 	object parryer;
 	// 2026-04-30: unused variable commented out
@@ -1119,9 +1119,8 @@ varargs int do_attack(object me, object victim, object weapon, int attack_type,m
 //------------------------------------------------------
 int fight(object me, object victim)
 {
-	object ob;
 	string weapon,skill_type,skill_mapped,per_msg;
-	int rate,per_lev,per_power,victim_exp;
+	int per_lev,per_power,victim_exp;
 
 	if( !objectp(me) || !objectp(victim) ) return 1;
 	
@@ -1335,13 +1334,13 @@ void winner_reward(object killer, object victim)
 //------------------------------------------------------
 void killer_reward(object killer, object victim)
 {
-	int bls, block_time, i;
+	int bls;
 	string vmark;
 	// 2026-04-30: unused variable commented out
 	// string adv_force;
 	mapping quest;
-	int pk_flag = 0,force_punish,exp_punish,faith_punish,skill_punish,factor;
-	int atman_punish,mana_punish,gene;
+	int pk_flag = 0,faith_punish;
+	int gene;
 
 	// Call the mudlib killer apply.
 	killer->killed_enemy(victim);

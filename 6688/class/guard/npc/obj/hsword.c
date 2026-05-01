@@ -5,7 +5,6 @@
 #include <ansi.h>
 //#include <command.h>
 
-#include <globals.h>
 #ifndef SWORDDATA
 #define SWORDDATA "/data/weapon/sword/"
 #endif

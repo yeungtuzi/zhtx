@@ -199,7 +199,7 @@ int check_door(string dir, mapping door)
 
 varargs void create_door(string dir, mixed data, string other_side_dir, int status)
 {
-        mapping d, item_desc;
+        mapping d;
         object ob;
         string exit;
 
@@ -245,7 +245,7 @@ int valid_leave(object me, string dir)
         int i, move_skill;
 
         string my_name;
-        object guard, *ob;
+        object *ob;
 
         if( sizeof(ob = query("guarded/" + dir)) ) {
                 move_skill = me->query_skill("move");

@@ -7,7 +7,6 @@
 
 #include <dbase.h>
 #include <ansi.h>
-#include <globals.h>
 
 
 // npc will carry too many object if allow keep obj,see give.c
@@ -55,9 +54,9 @@ string sysmsg;
 int give_quest(string arg)
 {
         mapping quest ;
-        object me,help_obj;
-        int fft=2, j, combatexp, timep, r_kar, q_bonus, s_fail=0;
-        string tag = "1000000",err;
+        object me;
+        int fft=2, j, combatexp, timep, r_kar, s_fail=0;
+        string tag = "1000000";
         int shen = this_object()->query("shen_type");
         string myclass = this_object()->query("class");
         int is_monk = (myclass == "bonze" || myclass == "lama")?1:0;
@@ -358,8 +357,7 @@ int valid_bribe(object who , int val) {
 
 int accept_object(object who, object ob)
 {
-        int bonus, exp, pot, score,val;
-        string test;
+        int val;
         mapping quest;
         object killer;
         string accepter= this_object()->query("name");
@@ -433,7 +431,7 @@ if( this_object()->query("family/family_name") != who->query("family/family_name
 // by YEUNG
 void give_bonus(object who,mapping quest)
 {
-        int bonus, exp, pot, score, val, faith;
+        int bonus, exp, pot, score, faith;
         int quest_ok_time,nquestok_count,con_eff, faith_eff;
 
         if(who->query("quest_ok") < 10) {
@@ -662,7 +660,7 @@ int extra_reward(int count, object who)                  //give extra bonus--fly
 
 void special_quest (object me, object ob)
 {
-        int timep, bonus;
+        int bonus;
         object killer;
         string position;
         mapping quest;

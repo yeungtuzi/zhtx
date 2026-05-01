@@ -3,7 +3,6 @@
 
 #include <dbase.h>
 #include <ansi.h>
-#include <globals.h> 
 
 // npc will carry too many object if allow keep obj,see give.c
 int no_keep(object ob) {

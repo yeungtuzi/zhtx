@@ -3,6 +3,8 @@
 //
 // This file is #included in all objects automatically by the driver.
 // (See config file of driver)
+#ifndef __GLOBALS_H__
+#define __GLOBALS_H__
 
 // Directories
 
@@ -178,4 +180,4 @@
 
 #undef PROFILE_COMMANDS
 
-
+#endif // __GLOBALS_H__

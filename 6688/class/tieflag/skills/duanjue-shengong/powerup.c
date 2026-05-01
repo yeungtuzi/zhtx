@@ -15,10 +15,10 @@ int exert(object me, object target)
 {
         int skill;
 
-        if( target != me ) return notify_fail("你只能用断绝神功\提升自己的战斗力。\n");
+        if( target != me ) return notify_fail("你只能用断绝神功提升自己的战斗力。\n");
 
         if( (int)me->query("force") < 300 )     return notify_fail("你的内力不够。\n");
-        if( (int)me->query_temp("powerup") ) return notify_fail("你已经在运功\中了。\n");
+        if( (int)me->query_temp("powerup") ) return notify_fail("你已经在运功中了。\n");
 
         skill = me->query_skill("force");
 
@@ -42,6 +42,6 @@ void remove_effect(object me, int amount)
 {
         me->add_temp("apply/dodge", - amount);
         me->delete_temp("powerup");
-        tell_object(me, "你的断绝神功\运行完毕，将内力收回丹田。\n");
+        tell_object(me, "你的断绝神功运行完毕，将内力收回丹田。\n");
 }
 

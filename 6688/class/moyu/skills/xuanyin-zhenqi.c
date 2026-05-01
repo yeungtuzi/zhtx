@@ -7,7 +7,7 @@ int valid_enable(string usage) { return usage=="force"; }
 int valid_learn(object me)
 {
         if( (int)me->query("bellicosity") < (int)me->query_skill("xuanyin-zhenqi") * 50 )
-                return notify_fail("你的杀气不够，无法领悟更高深的玄阴真气\。\n");
+                return notify_fail("你的杀气不够，无法领悟更高深的玄阴真气。\n");
 
         return 1;
 }

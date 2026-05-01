@@ -35,6 +35,6 @@ void greeting(object ob)
 int accept_object(object who, object ob)
 {
 	say( "法师说道：这位" + RANK_D->query_respect(who)
-		+ "，请把香油钱投入功\德箱。\n");
+		+ "，请把香油钱投入功德箱。\n");
 	return 0;
 }

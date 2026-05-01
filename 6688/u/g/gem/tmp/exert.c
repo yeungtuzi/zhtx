@@ -13,9 +13,9 @@ int main(object me, string arg)
 	seteuid(getuid());
 
 	if( me->is_busy() )
-		return notify_fail("( 你上一个动作还没有完成，不能施用内功\。)\n");
+		return notify_fail("( 你上一个动作还没有完成，不能施用内功。)\n");
 
-	if( !arg ) return notify_fail("你要用内功\做什麽？\n");
+	if( !arg ) return notify_fail("你要用内功做什麽？\n");
 	if( me->query_condition("blockweb") )
 		return notify_fail("你的内息受到一种莫名的干扰,无法运用.\n");
 
@@ -44,7 +44,7 @@ int main(object me, string arg)
 		return 0;
 	}
 
-	return notify_fail("你请先用 enable 指令选择你要使用的内功\。\n");
+	return notify_fail("你请先用 enable 指令选择你要使用的内功。\n");
 }
 
 int help (object me)

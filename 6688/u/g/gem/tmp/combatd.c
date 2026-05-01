@@ -124,7 +124,7 @@ string damage_msg(int damage, string type)
 	case "刺伤":
 		if( damage < 10 ) return "结果只是轻轻地刺破$p的皮肉。\n";
 		else if( damage < 20 ) return "结果在$p$l刺出一个创口。\n";
-		else if( damage < 40 ) return "结果「噗」地一声刺入了$n$l寸许\！\n";
+		else if( damage < 40 ) return "结果「噗」地一声刺入了$n$l寸许！\n";
 		else if( damage < 80 ) return "结果「噗」地一声刺进$n的$l，使$p不由自主地退了几步！\n";
 		else if( damage < 160 ) return "结果「噗嗤」地一声，$w已在$p$l刺出一个血肉模糊的血窟窿！\n";
 		else return "结果只听见$n一声惨嚎，$w已在$p的$l对穿而出，鲜血溅得满地！！\n";

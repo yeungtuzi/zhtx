@@ -4,10 +4,10 @@ inherit ITEM;
 
 void create()
 {
-	set_name(HIC"功\德箱"NOR, ({ "denotation box", "box" }) );
+	set_name(HIC"功德箱"NOR, ({ "denotation box", "box" }) );
 	set("unit", "个");
 	set("long",
-		"这是妙香庵中接受善男信女捐献香油钱的功\德箱，你可以把想捐的钱\n"
+		"这是妙香庵中接受善男信女捐献香油钱的功德箱，你可以把想捐的钱\n"
 		"放进去。\n");
 	set("value", 1);
 	set("no_get", 1);

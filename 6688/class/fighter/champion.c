@@ -10,7 +10,7 @@ string ask_blade();
 void create()
 {
 	set_name("於兰天武", ({ "master champion", "champion", "master" }) );
-	set("title", "水烟阁传功\使");
+	set("title", "水烟阁传功使");
 	set("nickname", "大天邪");
 	set("gender", "男性");
 	set("age", 54);

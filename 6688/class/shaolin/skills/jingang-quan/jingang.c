@@ -24,7 +24,7 @@ int perform(object me, object target)
 
 
         if( (int)me->query_temp("jingang") )
-                return notify_fail("你已经在运功\中了。\n");
+                return notify_fail("你已经在运功中了。\n");
 
         skill = me->query_skill("jingang-quan",1);
 

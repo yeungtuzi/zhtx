@@ -35,7 +35,7 @@ int main(object me, string arg)
 
 	if( !arg
 	||	!sscanf(arg, "%d", sen_cost) )
-		return notify_fail("你要花多少神练功\？\n");
+		return notify_fail("你要花多少神练功？\n");
 
 	if( sen_cost < 10 ) return notify_fail("你最少要花 10 点「神」才能进入冥思的状态。\n");
 

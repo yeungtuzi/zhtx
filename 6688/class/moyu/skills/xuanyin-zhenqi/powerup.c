@@ -13,7 +13,7 @@ int exert(object me, object target)
         if( target != me ) return notify_fail("你只能用玄阴真气提升自己的战斗力。\n");
 
         if( (int)me->query("force") < 100 )     return notify_fail("你的内力不够。\n");
-        if( (int)me->query_temp("powerup") ) return notify_fail("你已经在运功\中了。\n");
+        if( (int)me->query_temp("powerup") ) return notify_fail("你已经在运功中了。\n");
 
         skill = me->query_skill("force");
 

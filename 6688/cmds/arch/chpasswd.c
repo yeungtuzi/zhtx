@@ -44,7 +44,7 @@ private void confirm_new_pass(string pass, object ob, string new_pass,string arg
 	}
 
 	ob->save();
-	write("密码变更成功\。\n");
+	write("密码变更成功。\n");
         log_file("CHPASS_LOG",sprintf("(%s) %s change  passwd of %s \n",ctime(time()), this_player()->query("id"), arg ));
 	destruct(ob);
 }

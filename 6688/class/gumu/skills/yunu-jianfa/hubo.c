@@ -24,7 +24,7 @@ int perform(object me, object target)
  //               return notify_fail("你必须使用先天功才能使出双剑互搏！\n");
 
         if( (int)me->query("force") < 1000)     return notify_fail("你的内力不够。\n");
-        if( (int)me->query_temp("skill_mark/hubo") ) return notify_fail("你已经在运功\中了。\n");
+        if( (int)me->query_temp("skill_mark/hubo") ) return notify_fail("你已经在运功中了。\n");
         if( !objectp( weapon = me->query_temp("weapon")) || weapon->query("skill_type")!="sword" )
                 return notify_fail("你手中无剑，如何使用双剑互搏？\n");
         if( me->query_skill_mapped("sword") != "yunu-jianfa" )

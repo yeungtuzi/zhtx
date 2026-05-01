@@ -32,5 +32,5 @@ void relay_ask(object me, string topic)
         command("?");
         command("say 对不起，老婆子耳背，" + RANK_D->query_respect(me) + "您是想"
                 "买东西吧？这儿有价钱(list) ....\n");
-        message("vision", "老太婆打开竹篓，盖\子上贴了张纸片。\n", environment(me));
+        message("vision", "老太婆打开竹篓，盖子上贴了张纸片。\n", environment(me));
 }

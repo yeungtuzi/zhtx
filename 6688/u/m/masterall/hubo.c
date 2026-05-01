@@ -22,7 +22,7 @@ int perform(object me, object target)
                 return notify_fail("你的偏好不适合运用「左右互搏」。 \n");
 
         if( (int)me->query("force") < 1000)     return notify_fail("你的内力不够。\n");
-        if( (int)me->query_temp("skill_mark/hubo") ) return notify_fail("你已经在运功\中了。\n");
+        if( (int)me->query_temp("skill_mark/hubo") ) return notify_fail("你已经在运功中了。\n");
 
         skill = me->query_skill("strike");
         if( me->query("betrayer") ) skill /= 2;

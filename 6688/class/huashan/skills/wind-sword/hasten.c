@@ -14,7 +14,7 @@ int perform(object me, object target)
         if( !me->is_fighting() )
                 return notify_fail("狂风快剑只能在战斗中使用。\n");
         if( (int)me->query("force") < 1000)     return notify_fail("你的内力不够。\n");
-        if( (int)me->query_temp("skill_mark/wind-sword") ) return notify_fail("你已经在运功\中了。\n");
+        if( (int)me->query_temp("skill_mark/wind-sword") ) return notify_fail("你已经在运功中了。\n");
         if( !objectp( weapon = me->query_temp("weapon")) || weapon->query("skill_type")!="sword" )
                 return notify_fail("你手中无剑，如何使用快剑？\n");
         if( me->query_skill_mapped("sword") != "wind-sword" )

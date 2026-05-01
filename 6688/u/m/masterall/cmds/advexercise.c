@@ -30,10 +30,10 @@ int main(object me, string arg)
 
         if( !arg
         ||      !sscanf(arg, "%d", kee_cost) )
-                return notify_fail("你要花多少真气修炼\？\n");
+                return notify_fail("你要花多少真气修炼？\n");
 
         if( kee_cost < 10 ) 
-                return notify_fail("你最少要花 10 点「真气」才能修炼\。\n");
+                return notify_fail("你最少要花 10 点「真气」才能修炼。\n");
 
         if( (int)me->query("force") -  (int)me->query("max_force") * 2 < kee_cost )
                 return notify_fail("你现在的真气太少了，无法产生内息运行全身经脉。\n");
@@ -44,7 +44,7 @@ int main(object me, string arg)
         if( (int)me->query("gin") * 100 / (int)me->query("max_gin") < 90 )
                 return notify_fail("你现在精力不够，无法控制内息的流动！\n");
 
-        message_vision(HIW"$N盘膝坐了下来，开始运气修炼先天真气\。\n$N感觉一股暖热的气流从丹田升起，直人周身各大要穴。\n", me);
+        message_vision(HIW"$N盘膝坐了下来，开始运气修炼先天真气。\n$N感觉一股暖热的气流从丹田升起，直人周身各大要穴。\n", me);
         me->start_busy(
                 bind((: call_other, __FILE__, "do_exercise", me, me->query("kee") - kee_cost :), me),
                 bind((: call_other, __FILE__, "interrupt_exercise" :), me) );
@@ -133,7 +133,7 @@ int interrupt_exercise(object me, object who, string reason)
                 break;
         }
         short = me->query_temp("apply/short");
-        short -= ({ me->name() + "正盘膝坐在地下修炼先天真气\ ...." });
+        short -= ({ me->name() + "正盘膝坐在地下修炼先天真气 ...." });
         me->set_temp("apply/short", short);
         return 1;
 }

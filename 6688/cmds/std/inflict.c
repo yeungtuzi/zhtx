@@ -12,9 +12,9 @@ int main(object me, string arg)
 	seteuid(getuid());
 
 	if( me->is_busy() )
-		return notify_fail("( 你上一个动作还没有完成，不能施用外功\。)\n");
+		return notify_fail("( 你上一个动作还没有完成，不能施用外功。)\n");
 
-	if( !arg ) return notify_fail("你要用外功\做什麽？\n");
+	if( !arg ) return notify_fail("你要用外功做什麽？\n");
 
 	if( weapon = me->query_temp("weapon") )
 		martial = weapon->query("skill_type");
@@ -22,7 +22,7 @@ int main(object me, string arg)
 		martial = "unarmed";
 
 	if( stringp(skill = me->query_skill_mapped(martial)) ) {
-		notify_fail("你所使用的外功\中没有这种功\能。\n");
+		notify_fail("你所使用的外功中没有这种功能。\n");
 		if( SKILL_D(skill)->inflict(me, arg) ) {
 			if( random(120) < (int)me->query_skill(skill) )
 				me->improve_skill(skill, 1, 1);
@@ -35,7 +35,7 @@ int main(object me, string arg)
 		return 0;
 	}
 
-	return notify_fail("你请先用 enable 指令选择你要使用的外功\。\n");
+	return notify_fail("你请先用 enable 指令选择你要使用的外功。\n");
 }
 
 int help (object me)

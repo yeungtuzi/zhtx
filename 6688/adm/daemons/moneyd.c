@@ -81,7 +81,7 @@ void pay_player(object who, int amount)
 int player_pay(object who, int amount)
 {
 	object tencash_ob,cash_ob,g_ob, s_ob, c_ob;
-	int tencash,cash,gc, sc, cc, left, mage;
+	int tencash,cash,gc, sc, cc, left;
 
 	seteuid(getuid());
         if (who->busy()) return notify_fail("你忙着呢!/n");

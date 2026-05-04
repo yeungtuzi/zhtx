@@ -78,11 +78,13 @@ int chat()
 		case 3:                                        
 		case 4:
 		case 5:
-			command("poison "+victim->query("id"));
+			if(objectp(victim)) {
+				command("poison "+victim->query("id"));
+			}
 			break;
 		case 6:
 		case 7:
-			if( victim->query_condition("tm_poison") > 10 && is_killing(victim) )
+			if( objectp(victim) &&victim->query_condition("tm_poison") > 10 && is_killing(victim) )
 			{
 				command("grin "+victim->query("id"));
 				kill_ob(victim);

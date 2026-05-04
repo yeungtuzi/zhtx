@@ -557,7 +557,7 @@ void consider()
 	}
 	if(!objectp(query_temp("weapon")))
 	{
-		if(stringp(type=query("weapon_type",type)))
+		if(stringp(type=query("weapon_type")))
 		{
 			weapon=new("/obj/weapon/"+type);
 			weapon->move(this_object());

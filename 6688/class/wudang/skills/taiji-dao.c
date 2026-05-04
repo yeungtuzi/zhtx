@@ -139,7 +139,7 @@ string query_parry_msg(object weapon)
                 return unarmed_parry_msg[random(sizeof(unarmed_parry_msg))];
 }
 
-mapping enable_req() {
+mapping enable_req(object ob) {
 
 	return( ([ 
 		"force":"taiji-shengong",	
@@ -147,7 +147,7 @@ mapping enable_req() {
 
 }
 
-mapping level_req(int level) {
+mapping level_req(int level,object ob) {
 
 	return( ([
 		"taiji-shengong":10,	

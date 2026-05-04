@@ -175,7 +175,7 @@ int query_sheng_ke(string skill)
         return 0;
 }
 
-mapping enable_req() {
+mapping enable_req(object ob) {
 
         return( ([ 
                 "force":"taiji-shengong",       
@@ -183,7 +183,7 @@ mapping enable_req() {
 
 }
 
-mapping level_req(int level) {
+mapping level_req(int level,object ob) {
 
         return( ([
                 "taiji-shengong":20,    

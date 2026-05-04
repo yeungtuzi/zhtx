@@ -63,6 +63,55 @@ void receive_message(string type, string str)
 void terminal_type(string term_type)
 {
 	set_temp("terminal_type", term_type);
+
+	// Auto-detect encoding for old MUD clients
+	if (term_type) {
+		switch (lower_case(term_type)) {
+		case "zmud":
+		case "cmud":
+			set_encoding("GBK");
+			break;
+		}
+	}
+}
+
+// Escape string for embedding in JSON (Client.GUI lua field).
+private string json_escape(string s)
+{
+    s = replace_string(s, "\\", "\\\\");
+    s = replace_string(s, "\"", "\\\"");
+    s = replace_string(s, "\n", "\\n");
+    s = replace_string(s, "\r", "\\r");
+    return s;
+}
+
+// Handle incoming GMCP messages.
+// Mudlet sends Core.Supports.Add early in the handshake — if it
+// announces Client.GUI support, push the vitals display script so
+// the client auto-installs it.
+void gmcp(string message)
+{
+    int sp;
+    string package, body, script;
+
+    if (!message || message == "") return;
+
+    sp = strsrch(message, " ");
+    if (sp == -1) return;
+    package = message[0..sp-1];
+    body = message[sp+1..];
+
+    if (package == "Core.Supports.Add"
+        && strsrch(body, "Client.GUI") != -1) {
+        script = read_file("/data/gmcp_vitals.lua");
+        if (script) {
+            send_gmcp("Client.GUI {\"name\":\"zhtx-status\",\"lua\":\"" +
+                      json_escape(script) + "\"}");
+            tell_object(this_object(), "[GMCP] Client.GUI script pushed.\n");
+        } else {
+            tell_object(this_object(), "[GMCP] read_file failed.\n");
+        }
+    }
 }
 
 // Protect login object's data against hackers.

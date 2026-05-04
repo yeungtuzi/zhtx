@@ -6,6 +6,7 @@
 inherit CHARACTER;
 inherit F_AUTOLOAD;
 inherit F_SAVE;
+inherit F_GMCP;
 
 nosave int last_age_set;
 

@@ -239,6 +239,8 @@ void heart_beat()
 
         if(query_idle(this_object()) > IDLE_TIMEOUT)
                 this_object()->user_dump(DUMP_IDLE);
+
+        this_object()->gmcp_update_status();
 }
 
 int visible(object ob)
